@@ -4,11 +4,12 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"// build": "Scripts related to building and compiling the package.",
+		"// build": "Scripts for building and compiling the package.",
 		"prebuild": "node ./scripts/prebuild.js",
 		"build:cjs": "tsc --project ./src/tsconfig.cjs.json",
 		"build:esm": "tsc --project ./src/tsconfig.esm.json",
 		"build": "npm run build:cjs & npm run build:esm",
+		"postbuild": "node ./scripts/postbuild.js",
 		"// format": "Scripts for auto-formatting the codebase.",
 		"format": "prettier --config ./package.json --ignore-path ./lib/.prettierignore",
 		"format:check": "npm run format -- --check ./",
