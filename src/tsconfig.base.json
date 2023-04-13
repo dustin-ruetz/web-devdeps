@@ -2,7 +2,11 @@
 // https://www.typescriptlang.org/tsconfig#root-fields
 // https://github.com/tsconfig/bases
 {
-	"include": ["../src/"],
+	"include": [
+		"../src/",
+		// dotfiles must be included manually, otherwise TypeScript will ignore them.
+		".prettierrc.ts"
+	],
 	// https://www.typescriptlang.org/tsconfig#compiler-options
 	"compilerOptions": {
 		"allowJs": false,
@@ -14,7 +18,7 @@
 		"jsx": "react",
 		// Set `"moduleResolution": "node"` to:
 		// 1) prevent tsc from checking /node_modules/, and
-		// 2) to allow for .ts/.tsx file imports without file extensions
+		// 2) allow for .ts/.tsx file imports without file extensions.
 		"moduleResolution": "node",
 		"noEmitOnError": true,
 		"noFallthroughCasesInSwitch": true,

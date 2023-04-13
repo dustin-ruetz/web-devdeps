@@ -9,10 +9,14 @@
 		"build:cjs": "tsc --project ./src/tsconfig.cjs.json",
 		"build:esm": "tsc --project ./src/tsconfig.esm.json",
 		"build": "npm run build:cjs & npm run build:esm",
+		"// format": "Scripts related to auto-formatting the codebase.",
+		"format": "prettier --ignore-path ./src/.prettierignore",
+		"format:check": "npm run format -- --check ./",
+		"format:write": "npm run format -- --write ./",
 		"postbuild": "node ./scripts/postbuild.js",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"typecheck": "tsc --noEmit --project ./src/tsconfig.esm.json",
-		"validate": "npm run typecheck"
+		"validate": "npm run format:check & npm run typecheck"
 	},
 	"keywords": [],
 	"author": "Dustin Ruetz",
@@ -20,6 +24,9 @@
 	"repository": "https://github.com/dustin-ruetz/dr-devdeps.git",
 	"type": "module",
 	"dependencies": {
+		"prettier": "2.8.7",
 		"typescript": "5.0.4"
-	}
+	},
+	"// config": "Configuration for Prettier.",
+	"prettier": "./lib/cjs/.prettierrc.cjs"
 }
