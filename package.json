@@ -1,14 +1,25 @@
 {
 	"name": "dr-devdeps",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"// build": "Scripts related to building and compiling the package.",
+		"prebuild": "node ./scripts/prebuild.js",
+		"build:cjs": "tsc --project ./src/tsconfig.cjs.json",
+		"build:esm": "tsc --project ./src/tsconfig.esm.json",
+		"build": "npm run build:cjs & npm run build:esm",
+		"postbuild": "node ./scripts/postbuild.js",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"typecheck": "tsc --noEmit --project ./src/tsconfig.esm.json",
+		"validate": "npm run typecheck"
 	},
 	"keywords": [],
 	"author": "Dustin Ruetz",
 	"license": "MIT",
 	"repository": "https://github.com/dustin-ruetz/dr-devdeps.git",
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"typescript": "5.0.4"
+	}
 }
