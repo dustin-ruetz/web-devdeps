@@ -1,7 +1,7 @@
 import {appendFile, copyFile, readdir, rename} from "node:fs/promises";
 
 const postbuild = async () => {
-	// Copy the uncompiled non-TypeScript files from src/config/ to lib/
+	// Copy the uncompiled non-TypeScript files from src/ to lib/
 	const srcFiles = await readdir("src/");
 
 	const jsonFiles = srcFiles.filter((file) => file.includes(".json"));
