@@ -1,0 +1,35 @@
+// https://www.typescriptlang.org/tsconfig
+// https://www.typescriptlang.org/tsconfig#root-fields
+// https://github.com/tsconfig/bases
+{
+	"include": ["../src/"],
+	// https://www.typescriptlang.org/tsconfig#compiler-options
+	"compilerOptions": {
+		"allowJs": false,
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"esModuleInterop": true,
+		"exactOptionalPropertyTypes": true,
+		"forceConsistentCasingInFileNames": true,
+		"jsx": "react",
+		// Set `"moduleResolution": "node"` to:
+		// 1) prevent tsc from checking /node_modules/, and
+		// 2) to allow for .ts/.tsx file imports without file extensions
+		"moduleResolution": "node",
+		"noEmitOnError": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"removeComments": true,
+		"resolveJsonModule": true,
+		"strict": true,
+		// Excerpt from https://www.typescriptlang.org/tsconfig#target on not using `"target": "esnext"`:
+		// > The special `ESNext` value refers to the highest version your version of TypeScript supports.
+		// > This setting should be used with caution, since it doesn’t mean the same thing between
+		// > different TypeScript versions and can make upgrades less predictable.
+		"target": "es2022"
+	}
+}

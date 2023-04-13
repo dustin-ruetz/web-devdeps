@@ -1,0 +1,17 @@
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		// Set `"isolatedModules": true` due to setting `"verbatimModuleSyntax": false`.
+		"isolatedModules": true,
+		"module": "commonjs",
+		// Set `"moduleResolution": "node"` to:
+		// 1) prevent tsc from checking /node_modules/, and
+		// 2) to allow for .ts/.tsx file imports without file extensions
+		// "moduleResolution": "node",
+		"outDir": "../lib/cjs/",
+		// Set `"verbatimModuleSyntax": false` to prevent the following error:
+		// > TS1287: A top-level 'export' modifier cannot be used on value declarations
+		// > in a CommonJS module when 'verbatimModuleSyntax' is enabled.
+		"verbatimModuleSyntax": false
+	}
+}
