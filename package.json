@@ -17,7 +17,10 @@
 		"// postinstall": "After dependencies are installed to ./node_modules/, build the package then validate the codebase.",
 		"postinstall": "npm run build && npm run validate",
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"typecheck": "tsc --noEmit --project ./src/tsconfig.esm.json",
+		"// typecheck": "Scripts for typechecking the codebase.",
+		"typecheck:cjs": "tsc --noEmit --project ./src/tsconfig.cjs.json",
+		"typecheck:esm": "tsc --noEmit --project ./src/tsconfig.esm.json",
+		"typecheck": "npm run typecheck:cjs & npm run typecheck:esm",
 		"validate": "npm run format:check & npm run typecheck"
 	},
 	"keywords": [],
