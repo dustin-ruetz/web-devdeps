@@ -1,5 +1,8 @@
+build/
+dist/
 lib/
 node_modules/
+www/
 # Ignore the Prettier config files to prevent warnings and errors when running the `format` scripts.
 .prettierrc.cjs
 .prettierrc.js
