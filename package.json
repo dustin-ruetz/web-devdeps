@@ -1,18 +1,24 @@
 {
 	"name": "dr-devdeps",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"// build": "Scripts related to building and compiling the package.",
+		"// build": "Scripts for building and compiling the package.",
 		"prebuild": "node ./scripts/prebuild.js",
 		"build:cjs": "tsc --project ./src/tsconfig.cjs.json",
 		"build:esm": "tsc --project ./src/tsconfig.esm.json",
 		"build": "npm run build:cjs & npm run build:esm",
 		"postbuild": "node ./scripts/postbuild.js",
+		"// format": "Scripts for auto-formatting the codebase.",
+		"format": "prettier --config ./package.json --ignore-path ./lib/.prettierignore",
+		"format:check": "npm run format -- --check ./",
+		"format:write": "npm run format -- --write ./",
+		"// postinstall": "After dependencies are installed to ./node_modules/, build the package then validate the codebase.",
+		"postinstall": "npm run build && npm run validate",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"typecheck": "tsc --noEmit --project ./src/tsconfig.esm.json",
-		"validate": "npm run typecheck"
+		"validate": "npm run format:check & npm run typecheck"
 	},
 	"keywords": [],
 	"author": "Dustin Ruetz",
@@ -20,6 +26,9 @@
 	"repository": "https://github.com/dustin-ruetz/dr-devdeps.git",
 	"type": "module",
 	"dependencies": {
+		"prettier": "2.8.7",
 		"typescript": "5.0.4"
-	}
+	},
+	"// config": "Configuration for Prettier.",
+	"prettier": "./lib/cjs/.prettierrc.cjs"
 }
