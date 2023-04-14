@@ -27,7 +27,7 @@ export const prettierConfig = {
 	 * Excerpt from https://prettier.io/docs/en/options.html#print-width:
 	 * > Specify the line length that the printer will wrap on.
 	 * > **For readability we recommend against using more than 80 characters.**
-	 * > Prettier’s `printWidth` option [...] is not the hard upper allowed line length limit.
+	 * > Prettier's `printWidth` option [...] is not the hard upper allowed line length limit.
 	 * > It is a way to say to Prettier roughly how long you'd like lines to be.
 	 * > Prettier will make both shorter and longer lines, but generally strive to meet the specified `printWidth`.
 	 */
