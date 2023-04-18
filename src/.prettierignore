@@ -1,8 +1,10 @@
 build/
+coverage/
 dist/
 lib/
+# Ignore the config dotfiles in lib/cjs and lib/esm/ to prevent warnings and errors when running the `format` scripts.
+# TODO: Figure out why lib/cjs/ and lib/esm/ aren't being ignored even though they're both children of the lib/ directory.
+cjs/
+esm/
 node_modules/
 www/
-# Ignore the Prettier config files to prevent warnings and errors when running the `format` scripts.
-.prettierrc.cjs
-.prettierrc.js
