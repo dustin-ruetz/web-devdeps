@@ -1,13 +1,6 @@
-// https://www.typescriptlang.org/tsconfig
-// https://www.typescriptlang.org/tsconfig#root-fields
-// https://github.com/tsconfig/bases
 {
-	"include": [
-		"../src/",
-		// dotfiles must be included manually, otherwise TypeScript will ignore them.
-		".prettierrc.ts"
-	],
-	// https://www.typescriptlang.org/tsconfig#compiler-options
+	"include": ["../src/", ".jestrc.ts", ".prettierrc.ts"],
+	"exclude": ["../src/**/*.test.ts"],
 	"compilerOptions": {
 		"allowJs": false,
 		"allowUnreachableCode": false,
@@ -16,9 +9,6 @@
 		"exactOptionalPropertyTypes": true,
 		"forceConsistentCasingInFileNames": true,
 		"jsx": "react",
-		// Set `"moduleResolution": "node"` to:
-		// 1) prevent tsc from checking /node_modules/, and
-		// 2) allow for .ts/.tsx file imports without file extensions.
 		"moduleResolution": "node",
 		"noEmitOnError": true,
 		"noFallthroughCasesInSwitch": true,
@@ -30,10 +20,6 @@
 		"removeComments": true,
 		"resolveJsonModule": true,
 		"strict": true,
-		// Excerpt from https://www.typescriptlang.org/tsconfig#target on not using `"target": "esnext"`:
-		// > The special `ESNext` value refers to the highest version your version of TypeScript supports.
-		// > This setting should be used with caution, since it doesn't mean the same thing between
-		// > different TypeScript versions and can make upgrades less predictable.
 		"target": "es2022"
 	}
 }
