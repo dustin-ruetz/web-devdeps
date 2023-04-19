@@ -12,6 +12,8 @@ export const prettierConfig: Config = {
 	 * > or in code blocks in Markdown, it will by default try to format that code.
 	 */
 	embeddedLanguageFormatting: "auto",
+	// Refer to .gitattributes file for the rationale of leaving `endOfLine` unset.
+	// endOfLine
 	/**
 	 * Excerpt from https://prettier.io/blog/2018/11/07/1.15.0.html#whitespace-sensitive-formatting:
 	 * > Whitespace is significant in HTML inline elements.

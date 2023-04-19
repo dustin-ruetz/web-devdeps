@@ -3,6 +3,8 @@ root = true
 
 [*]
 charset = utf-8
+# Refer to .gitattributes file for the rationale of leaving `end_of_line` unset.
+# end_of_line =
 # Set `indent_style` to `tab` since tabs are both accessible and customizable, whereas fixed-width spaces are not.
 # https://www.reddit.com/r/javascript/comments/c8drjo/nobody_talks_about_the_real_reason_to_use_tabs/
 # https://adamtuttle.codes/blog/2021/tabs-vs-spaces-its-an-accessibility-issue/
