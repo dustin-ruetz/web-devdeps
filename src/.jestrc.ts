@@ -8,6 +8,7 @@ export const binaryFileExtensions = {
 	},
 };
 
+// https://jestjs.io/docs/configuration
 const jestConfig: Config = {
 	// https://stackoverflow.com/questions/69567201/coveragepathignorepatterns-ignore-files-with-specific-ending
 	coveragePathIgnorePatterns: ["/node_modules/", ...binaryFileExtensions.list],
