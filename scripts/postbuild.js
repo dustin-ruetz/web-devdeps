@@ -20,6 +20,7 @@ const appendFilesInLibCJS = async () => {
 					"lib/cjs/.prettierrc.cjs",
 					"module.exports = exports.prettierConfig;\n",
 				);
+				break;
 			}
 		}
 	}
