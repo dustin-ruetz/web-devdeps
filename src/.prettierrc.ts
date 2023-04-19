@@ -1,4 +1,6 @@
-export const prettierConfig = {
+import type {Config} from "prettier";
+
+export const prettierConfig: Config = {
 	// https://prettier.io/docs/en/options.html
 	arrowParens: "always",
 	bracketSameLine: false,
