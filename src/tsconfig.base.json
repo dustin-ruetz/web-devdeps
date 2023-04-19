@@ -1,6 +1,5 @@
 {
-	"include": ["../src/", ".jestrc.ts", ".prettierrc.ts"],
-	"exclude": ["../src/**/*.test.ts"],
+	"files": [".jestrc.ts", ".prettierrc.ts", "jest-binary-file-transformer.ts"],
 	"compilerOptions": {
 		"allowJs": false,
 		"allowUnreachableCode": false,
