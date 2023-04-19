@@ -1,7 +1,7 @@
 import type {Config} from "prettier";
 
+/** https://prettier.io/docs/en/options.html */
 export const prettierConfig: Config = {
-	// https://prettier.io/docs/en/options.html
 	arrowParens: "always",
 	bracketSameLine: false,
 	bracketSpacing: false,
