@@ -17,7 +17,7 @@
 		"// postinstall": "After dependencies are installed to ./node_modules/, build the package then validate the codebase.",
 		"postinstall": "npm run build && npm run validate",
 		"// test": "Scripts for testing the codebase.",
-		"test": "jest --config ./lib/esm/.jestrc.js",
+		"test": "jest --config ./lib/.jestrc.mjs",
 		"test:clearcache": "jest --clearCache",
 		"test:coverage": "npm run test -- --coverage",
 		"test:watch": "npm run test -- --watch",
@@ -40,5 +40,5 @@
 		"typescript": "5.0.4"
 	},
 	"// config": "Configuration for Prettier.",
-	"prettier": "./lib/cjs/.prettierrc.cjs"
+	"prettier": "./lib/.prettierrc.cjs"
 }

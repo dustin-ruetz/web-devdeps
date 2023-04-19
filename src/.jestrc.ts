@@ -26,7 +26,7 @@ const jestConfig: Config = {
 	 * > using TypeScript, you may want to consider moving "ts" and/or "tsx" to the beginning of the array.
 	 */
 	moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
-	rootDir: "../../src/",
+	rootDir: "../src/",
 	/**
 	 * Explicitly declare either `"node"|"jsdom"` as the testing environment for each repo that extends this Jest config.
 	 *
@@ -38,7 +38,7 @@ const jestConfig: Config = {
 	transform: {
 		[binaryFileExtensions.getTransformRegExp()]:
 			// Set the path to the transformer relative to the Jest <rootDir>.
-			"../lib/esm/jest-binary-file-transformer.js",
+			"../lib/jest-binary-file-transformer.mjs",
 		".(ts|tsx)": [
 			"ts-jest",
 			// The below config object is adapted from the ts-jest "jest-esm-isolated" example:
