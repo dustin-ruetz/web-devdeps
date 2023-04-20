@@ -37,7 +37,7 @@ const jestConfig: Config = {
 	moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
 	rootDir: "../src/",
 	/**
-	 * Explicitly declare either `"node"|"jsdom"` as the testing environment for each repo that extends this Jest config.
+	 * Explicitly declare either `"node"|"jsdom"` as the testing environment for each repository that extends this Jest config.
 	 *
 	 * Excerpt from https://jestjs.io/docs/configuration#testenvironment-string:
 	 * > The test environment that will be used for testing. The default environment in Jest is a Node.js environment.
@@ -50,17 +50,18 @@ const jestConfig: Config = {
 			"../lib/jest-binary-file-transformer.mjs",
 		".(ts|tsx)": [
 			"ts-jest",
-			// The below config object is adapted from the ts-jest "jest-esm-isolated" example:
+			// The config object below is adapted from the ts-jest "jest-esm-isolated" example:
 			// https://github.com/kulshekhar/ts-jest/blob/main/examples/ts-only/jest-esm-isolated.config.mjs
 			{
 				isolatedModules,
+				// Set the `tsconfig` config option due to the custom location of the TypeScript configuration file.
 				tsconfig: "lib/tsconfig.esm.json",
 			},
 		],
 	},
 	/**
 	 * Don't transform anything in node_modules/, and don't transform .json files to prevent the following ts-jest warning:
-	 * > ts-jest[ts-jest-transformer] (WARN) Got a unknown file type to compile (file: *.json).
+	 * > `ts-jest[ts-jest-transformer] (WARN) Got a unknown file type to compile (file: *.json).`
 	 */
 	transformIgnorePatterns: ["/node_modules/", ".json"],
 	verbose: true,
