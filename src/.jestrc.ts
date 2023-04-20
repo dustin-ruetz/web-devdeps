@@ -8,7 +8,16 @@ export const binaryFileExtensions = {
 	},
 };
 
-// https://jestjs.io/docs/configuration
+/**
+ * Note that including the ts-jest `isolatedModules` config option here shouldn't be necessary because it's deprecated
+ * in TypeScript v5, but setting it to `true` fixes the below error when attempting to run the Jest test suite.
+ * > `error TS1286: ESM syntax is not allowed in a CommonJS module when 'verbatimModuleSyntax' is enabled.`
+ *
+ * https://github.com/kulshekhar/ts-jest/issues/4081#issuecomment-1503684089
+ */
+const isolatedModules = true;
+
+/** https://jestjs.io/docs/configuration */
 const jestConfig: Config = {
 	// https://stackoverflow.com/questions/69567201/coveragepathignorepatterns-ignore-files-with-specific-ending
 	coveragePathIgnorePatterns: ["/node_modules/", ...binaryFileExtensions.list],
@@ -44,12 +53,7 @@ const jestConfig: Config = {
 			// The below config object is adapted from the ts-jest "jest-esm-isolated" example:
 			// https://github.com/kulshekhar/ts-jest/blob/main/examples/ts-only/jest-esm-isolated.config.mjs
 			{
-				// Note that including the `isolatedModules` config option here shouldn't be necessary because it's deprecated in TypeScript v5,
-				// but setting it to `true` fixes the below error when attempting to run the Jest test suite.
-				// > error TS1286: ESM syntax is not allowed in a CommonJS module when 'verbatimModuleSyntax' is enabled.
-				// https://github.com/kulshekhar/ts-jest/issues/4081#issuecomment-1503684089
-				isolatedModules: true,
-				// Set the `tsconfig` config option due to the custom location of the TypeScript configuration file
+				isolatedModules,
 				tsconfig: "lib/tsconfig.esm.json",
 			},
 		],
