@@ -17,7 +17,7 @@ describe("the most important compilerOptions are correct for:", () => {
 	test("tsconfig.base.json", () => {
 		const {compilerOptions} = tsConfigBase;
 
-		// Verify that `moduleResolution === "node" to:
+		// Verify that `moduleResolution === "node"` to:
 		// 1) prevent tsc from checking node_modules/, and
 		// 2) allow for .ts/.tsx file imports without file extensions.
 		expect(compilerOptions.moduleResolution).toMatch(/node/i);

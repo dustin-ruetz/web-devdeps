@@ -13,7 +13,7 @@
 	"files": [],
 	// Excerpt from https://www.typescriptlang.org/tsconfig#include:
 	// > Specifies an array of filenames or patterns to include in the program. These filenames
-	// > are resolved relative to the directory containing the `tsconfig.json` file.
+	// > are resolved relative to the directory containing the tsconfig.json file.
 	"include": [
 		// Note that dotfiles (even a TypeScript file like `.dotfile.ts`) must be
 		// specified manually in `include` because tsc ignores them by default.

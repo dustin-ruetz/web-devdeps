@@ -85,14 +85,14 @@ const jestConfig: Config = {
 export const jestConfigOverrides: Config = {
 	transform: {
 		[binaryFileExtensions.getTransformRegExp()]:
-			// Reference `dr-devdeps` in this way because it's installed in the `node_modules/` directory
+			// Reference `dr-devdeps` in this way because it's installed in the node_modules/ directory.
 			// as a dependency of the extending repository.
 			"dr-devdeps/lib/jest-binary-file-transformer.mjs",
 		".(ts|tsx)": [
 			"ts-jest",
 			{
 				isolatedModules,
-				// Reference `tsconfig.json` in this way because it's located in the root of the extending repository.
+				// Reference tsconfig.json in this way because it's located in the root of the extending repository.
 				tsconfig: "tsconfig.json",
 			},
 		],
