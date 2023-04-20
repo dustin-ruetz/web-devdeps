@@ -2,18 +2,18 @@ import tsConfigBase from "../tsconfig.base.json";
 import tsConfigCJS from "../tsconfig.cjs.json";
 import tsConfigESM from "../tsconfig.esm.json";
 
-test("that all tsconfig files export a configuration object", () => {
+test("all tsconfig files export a configuration object", () => {
 	const tsConfigs = [tsConfigBase, tsConfigCJS, tsConfigESM];
 	tsConfigs.forEach((tsConfig) => expect(typeof tsConfig).toMatch("object"));
 });
 
-test("that the extending tsconfig files extend the base configuration", () => {
+test("the extending tsconfig files extend the base configuration", () => {
 	[tsConfigCJS, tsConfigESM].forEach((tsConfig) =>
 		expect(tsConfig.extends).toMatch("./tsconfig.base.json"),
 	);
 });
 
-describe("that the most important compilerOptions are correct for:", () => {
+describe("the most important compilerOptions are correct for:", () => {
 	test("tsconfig.base.json", () => {
 		const {compilerOptions} = tsConfigBase;
 
