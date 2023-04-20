@@ -29,20 +29,15 @@ const jestConfig: Config = {
 			statements: 100,
 		},
 	},
-	/**
-	 * Excerpt from https://jestjs.io/docs/configuration#modulefileextensions-arraystring:
-	 * > We recommend placing the extensions most commonly used in your project on the left, so if you are
-	 * > using TypeScript, you may want to consider moving "ts" and/or "tsx" to the beginning of the array.
-	 */
+	// Excerpt from https://jestjs.io/docs/configuration#modulefileextensions-arraystring:
+	// > We recommend placing the extensions most commonly used in your project on the left, so if you are
+	// > using TypeScript, you may want to consider moving "ts" and/or "tsx" to the beginning of the array.
 	moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
 	rootDir: "../src/",
-	/**
-	 * Explicitly declare either `"node"|"jsdom"` as the testing environment for each repository that extends this Jest config.
-	 *
-	 * Excerpt from https://jestjs.io/docs/configuration#testenvironment-string:
-	 * > The test environment that will be used for testing. The default environment in Jest is a Node.js environment.
-	 * > If you are building a web app, you can use a browser-like environment through `jsdom` instead.
-	 */
+	// Explicitly declare either `"node"|"jsdom"` as the testing environment for each extending repository that uses this Jest config.
+	// Excerpt from https://jestjs.io/docs/configuration#testenvironment-string:
+	// > The test environment that will be used for testing. The default environment in Jest is a Node.js environment.
+	// > If you are building a web app, you can use a browser-like environment through `jsdom` instead.
 	testEnvironment: "node",
 	transform: {
 		[binaryFileExtensions.getTransformRegExp()]:
@@ -59,10 +54,8 @@ const jestConfig: Config = {
 			},
 		],
 	},
-	/**
-	 * Don't transform anything in node_modules/, and don't transform .json files to prevent the following ts-jest warning:
-	 * > `ts-jest[ts-jest-transformer] (WARN) Got a unknown file type to compile (file: *.json).`
-	 */
+	// Don't transform anything in node_modules/, and don't transform .json files to prevent the following ts-jest warning:
+	// > `ts-jest[ts-jest-transformer] (WARN) Got a unknown file type to compile (file: *.json).`
 	transformIgnorePatterns: ["/node_modules/", ".json"],
 	verbose: true,
 };
