@@ -1,13 +1,21 @@
-import jestConfig, {binaryFileExtensions} from "../.jestrc";
+import jestConfig, {
+	binaryFileExtensions,
+	jestConfigOverrides,
+} from "../.jestrc";
 
-test("it exports a configuration object", () => {
+test("it exports configuration objects", () => {
 	expect(typeof jestConfig).toMatch("object");
+	expect(typeof jestConfigOverrides).toMatch("object");
 });
 
 test("the most important configuration options are correct", () => {
 	expect(jestConfig.rootDir).toMatch("../src/");
 	expect(jestConfig.testEnvironment).toMatch("node");
 	expect(jestConfig.verbose).toBe(true);
+});
+
+test("the `transform` config option differs between `jestConfig` and `jestConfigOverrides` ", () => {
+	expect(jestConfig.transform).not.toStrictEqual(jestConfigOverrides.transform);
 });
 
 test("`binaryFileExtensions.getTransformRegExp()` returns the correct regular expression", () => {

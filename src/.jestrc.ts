@@ -67,4 +67,36 @@ const jestConfig: Config = {
 	verbose: true,
 };
 
+/**
+ * The purpose of the `dr-devdeps` package is to provide standardized configurations and dependencies for other repositories to extend.
+ * `jestConfigOverrides` assumes that the `extending-repo` uses the following folder/file structure and updates the paths accordingly:
+ *
+ * ```
+ * // Created using the Shinotatwu-DS.file-tree-generator extension for Visual Studio Code.
+ * 📂 extending-repo
+ * ┣ 📂 config
+ * ┃ ┗ 📄 .jestrc.js
+ * ┣ 📂 node_modules
+ * ┃ ┗ 📂 dr-devdeps
+ * ┃ ┃ ┗ 📂 lib
+ * ┗ 📄 tsconfig.json
+ * ```
+ */
+export const jestConfigOverrides: Config = {
+	transform: {
+		[binaryFileExtensions.getTransformRegExp()]:
+			// Reference `dr-devdeps` in this way because it's installed in the `node_modules/` directory
+			// as a dependency of the extending repository.
+			"dr-devdeps/lib/jest-binary-file-transformer.mjs",
+		".(ts|tsx)": [
+			"ts-jest",
+			{
+				isolatedModules,
+				// Reference `tsconfig.json` in this way because it's located in the root of the extending repository.
+				tsconfig: "tsconfig.json",
+			},
+		],
+	},
+};
+
 export default jestConfig;
