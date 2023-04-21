@@ -10,6 +10,7 @@ test("it exports configuration objects", () => {
 
 test("the most important configuration options are correct", () => {
 	expect(jestConfig.rootDir).toMatch("../src/");
+	expect(jestConfig.roots).toStrictEqual(["../scripts/", "../src/"]);
 	expect(jestConfig.testEnvironment).toMatch("node");
 	expect(jestConfig.verbose).toBe(true);
 });
