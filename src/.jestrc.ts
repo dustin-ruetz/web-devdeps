@@ -8,6 +8,20 @@ const binaryFileExtensions = {
 	},
 };
 
+/** Paths to the files/node_modules used as transformers. */
+const transformers = {
+	babelJest: "jest-transformer-babel-jest.mjs",
+	binaryFile: "jest-transformer-binary-file.mjs",
+	tsJest: "ts-jest",
+};
+
+/** Regular expressions intended to match file extensions with the appropriate transformer. */
+const transformFileExtensions = {
+	binary: binaryFileExtensions.getTransformRegExp(),
+	javascript: ".(js|jsx)",
+	typescript: ".(ts|tsx)",
+};
+
 /**
  * Note that including the ts-jest `isolatedModules` config option here shouldn't be necessary because it's deprecated
  * in TypeScript v5, but setting it to `true` fixes the below error when attempting to run the Jest test suite.
@@ -49,13 +63,12 @@ const jestConfig: Config = {
 	// > If you are building a web app, you can use a browser-like environment through `jsdom` instead.
 	testEnvironment: "node",
 	transform: {
-		[binaryFileExtensions.getTransformRegExp()]:
+		[transformFileExtensions.binary]:
 			// Set the path to the transformer relative to the Jest <rootDir>.
-			"../lib/jest-binary-file-transformer.mjs",
-		".(ts|tsx)": [
-			"ts-jest",
-			// The config object below is adapted from the ts-jest "jest-esm-isolated" example:
-			// https://github.com/kulshekhar/ts-jest/blob/main/examples/ts-only/jest-esm-isolated.config.mjs
+			`../lib/${transformers.binaryFile}`,
+		[transformFileExtensions.javascript]: `../lib/${transformers.babelJest}`,
+		[transformFileExtensions.typescript]: [
+			transformers.tsJest,
 			{
 				isolatedModules,
 				// Set the `tsconfig` config option due to the custom location of the TypeScript configuration file.
@@ -86,12 +99,13 @@ const jestConfig: Config = {
  */
 export const jestConfigOverrides: Config = {
 	transform: {
-		[binaryFileExtensions.getTransformRegExp()]:
-			// Reference `dr-devdeps` in this way because it's installed in the node_modules/ directory.
+		[transformFileExtensions.binary]:
+			// Reference `dr-devdeps` in this way because it's installed in the node_modules/ directory
 			// as a dependency of the extending repository.
-			"dr-devdeps/lib/jest-binary-file-transformer.mjs",
-		".(ts|tsx)": [
-			"ts-jest",
+			`dr-devdeps/lib/${transformers.binaryFile}`,
+		[transformFileExtensions.javascript]: `dr-devdeps/lib/${transformers.babelJest}`,
+		[transformFileExtensions.typescript]: [
+			transformers.tsJest,
 			{
 				isolatedModules,
 				// Reference tsconfig.json in this way because it's located in the root of the extending repository.
