@@ -1,11 +1,25 @@
 import type {Config} from "jest";
 
 /** Binary file extensions 1) to ignore in test coverage, and 2) to transform the imported values to filenames. */
-export const binaryFileExtensions = {
+const binaryFileExtensions = {
 	list: [".jpg", ".png", ".woff2"],
 	getTransformRegExp: function () {
 		return `(${this.list.join("|")})`;
 	},
+};
+
+/** Paths to the files/node_modules used as transformers. */
+const transformers = {
+	babelJest: "jestTransformerBabelJest.mjs",
+	binaryFile: "jestTransformerBinaryFile.mjs",
+	tsJest: "ts-jest",
+};
+
+/** Regular expressions intended to match file extensions with the appropriate transformer. */
+const transformFileExtensions = {
+	binary: binaryFileExtensions.getTransformRegExp(),
+	javascript: ".(js|jsx)",
+	typescript: ".(ts|tsx)",
 };
 
 /**
@@ -33,20 +47,28 @@ const jestConfig: Config = {
 	// > We recommend placing the extensions most commonly used in your project on the left, so if you are
 	// > using TypeScript, you may want to consider moving "ts" and/or "tsx" to the beginning of the array.
 	moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
+	// Specify both `rootDir` and `roots` so that Jest 1) finds all of the test files, and 2) collects test coverage for everything.
+	// Excerpt from https://jestjs.io/docs/configuration#rootdir-string:
+	// > The root directory that Jest should scan for tests and modules within.
+	// > Oftentimes, you'll want to set this to `"src"` or `"lib"`, corresponding to where in your repository the code is stored.
 	rootDir: "../src/",
+	// Excerpt from https://jestjs.io/docs/configuration#roots-arraystring:
+	// > A list of paths to directories that Jest should use to search for files in.
+	// > By default, `roots` has a single entry `<rootDir>` but there are cases where you may want to have multiple roots within one project,
+	// > for example roots: `["<rootDir>/src/", "<rootDir>/tests/"]`.
+	roots: ["../scripts/", "../src/"],
 	// Explicitly declare either `"node"|"jsdom"` as the testing environment for each extending repository that uses this Jest config.
 	// Excerpt from https://jestjs.io/docs/configuration#testenvironment-string:
 	// > The test environment that will be used for testing. The default environment in Jest is a Node.js environment.
 	// > If you are building a web app, you can use a browser-like environment through `jsdom` instead.
 	testEnvironment: "node",
 	transform: {
-		[binaryFileExtensions.getTransformRegExp()]:
+		[transformFileExtensions.binary]:
 			// Set the path to the transformer relative to the Jest <rootDir>.
-			"../lib/jest-binary-file-transformer.mjs",
-		".(ts|tsx)": [
-			"ts-jest",
-			// The config object below is adapted from the ts-jest "jest-esm-isolated" example:
-			// https://github.com/kulshekhar/ts-jest/blob/main/examples/ts-only/jest-esm-isolated.config.mjs
+			`../lib/${transformers.binaryFile}`,
+		[transformFileExtensions.javascript]: `../lib/${transformers.babelJest}`,
+		[transformFileExtensions.typescript]: [
+			transformers.tsJest,
 			{
 				isolatedModules,
 				// Set the `tsconfig` config option due to the custom location of the TypeScript configuration file.
@@ -77,12 +99,13 @@ const jestConfig: Config = {
  */
 export const jestConfigOverrides: Config = {
 	transform: {
-		[binaryFileExtensions.getTransformRegExp()]:
-			// Reference `dr-devdeps` in this way because it's installed in the node_modules/ directory.
+		[transformFileExtensions.binary]:
+			// Reference `dr-devdeps` in this way because it's installed in the node_modules/ directory
 			// as a dependency of the extending repository.
-			"dr-devdeps/lib/jest-binary-file-transformer.mjs",
-		".(ts|tsx)": [
-			"ts-jest",
+			`dr-devdeps/lib/${transformers.binaryFile}`,
+		[transformFileExtensions.javascript]: `dr-devdeps/lib/${transformers.babelJest}`,
+		[transformFileExtensions.typescript]: [
+			transformers.tsJest,
 			{
 				isolatedModules,
 				// Reference tsconfig.json in this way because it's located in the root of the extending repository.

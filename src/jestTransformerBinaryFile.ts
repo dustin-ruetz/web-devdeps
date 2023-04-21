@@ -4,7 +4,7 @@
 
 import path from "path";
 
-const jestBinaryFileTransformer = {
+const jestTransformerBinaryFile = {
 	// The Jest docs "Transforming images to their path" example says that the first parameter of `process` is `sourceText`,
 	// but since it's not actually being used within the function body then we can tell TypeScript to ignore the error.
 	// @ts-ignore
@@ -16,4 +16,4 @@ const jestBinaryFileTransformer = {
 	},
 };
 
-export default jestBinaryFileTransformer;
+export default jestTransformerBinaryFile;
