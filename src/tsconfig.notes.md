@@ -4,7 +4,6 @@
 // tsconfig.json
 // https://www.typescriptlang.org/tsconfig
 // https://www.typescriptlang.org/tsconfig#root-fields
-// https://github.com/tsconfig/bases
 {
 	// Excerpt from https://www.typescriptlang.org/tsconfig#files:
 	// > Specifies an allowlist of files to include in the program. An error occurs if any of the files can't be found.
@@ -19,7 +18,10 @@
 		// specified manually in `include` because tsc ignores them by default.
 	],
 	// https://www.typescriptlang.org/tsconfig#compiler-options
-	"compilerOptions": {}
+	"compilerOptions": {
+		// Most of the `compilerOptions` values used in tsconfig.base.json are copied from
+		// the https://github.com/tsconfig/bases/blob/main/bases/strictest.json file.
+	}
 	}
 }
 ```
