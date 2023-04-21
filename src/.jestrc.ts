@@ -10,8 +10,8 @@ const binaryFileExtensions = {
 
 /** Paths to the files/node_modules used as transformers. */
 const transformers = {
-	babelJest: "jest-transformer-babel-jest.mjs",
-	binaryFile: "jest-transformer-binary-file.mjs",
+	babelJest: "jestTransformerBabelJest.mjs",
+	binaryFile: "jestTransformerBinaryFile.mjs",
 	tsJest: "ts-jest",
 };
 
