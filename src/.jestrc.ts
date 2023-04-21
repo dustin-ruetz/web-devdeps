@@ -1,7 +1,7 @@
 import type {Config} from "jest";
 
 /** Binary file extensions 1) to ignore in test coverage, and 2) to transform the imported values to filenames. */
-export const binaryFileExtensions = {
+const binaryFileExtensions = {
 	list: [".jpg", ".png", ".woff2"],
 	getTransformRegExp: function () {
 		return `(${this.list.join("|")})`;
