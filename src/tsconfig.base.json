@@ -1,5 +1,10 @@
 {
-	"files": [".jestrc.ts", ".prettierrc.ts", "jest-binary-file-transformer.ts"],
+	"files": [
+		".jestrc.ts",
+		".prettierrc.ts",
+		"jest-transformer-babel-jest.ts",
+		"jest-transformer-binary-file.ts"
+	],
 	"compilerOptions": {
 		"allowJs": false,
 		"allowUnreachableCode": false,
