@@ -8,6 +8,11 @@ const binaryFileExtensions = {
 	},
 };
 
+/** Paths to setup files. */
+const setupFiles = {
+	mockNodeCoreModules: "jestMockNodeCoreModules.mjs",
+};
+
 /** Paths to the files/node_modules used as transformers. */
 const transformers = {
 	babelJest: "jestTransformerBabelJest.mjs",
@@ -57,6 +62,14 @@ const jestConfig: Config = {
 	// > By default, `roots` has a single entry `<rootDir>` but there are cases where you may want to have multiple roots within one project,
 	// > for example roots: `["<rootDir>/src/", "<rootDir>/tests/"]`.
 	roots: ["../scripts/", "../src/"],
+	// Mock out the Node.js core modules during setup to avoid having to repeatedly mock them in every test file
+	// where the module being tested relies on methods that are imported from Node.js core modules.
+	// Excerpt from https://jestjs.io/docs/configuration#setupfilesafterenv-array:
+	// > A list of paths to modules that run some code to configure or set up the testing framework before each test file in the suite
+	// > is executed. Since `setupFiles` executes before the test framework is installed in the environment, this script file presents you
+	// > the opportunity of running some code immediately after the test framework has been installed in the environment but before
+	// > the test code itself. In other words, `setupFilesAfterEnv` modules are meant for code which is repeating in each test file.
+	setupFilesAfterEnv: [`../lib/${setupFiles.mockNodeCoreModules}`],
 	// Explicitly declare either `"node"|"jsdom"` as the testing environment for each extending repository that uses this Jest config.
 	// Excerpt from https://jestjs.io/docs/configuration#testenvironment-string:
 	// > The test environment that will be used for testing. The default environment in Jest is a Node.js environment.
@@ -98,10 +111,11 @@ const jestConfig: Config = {
  * ```
  */
 export const jestConfigOverrides: Config = {
+	setupFilesAfterEnv: [`dr-devdeps/lib/${setupFiles.mockNodeCoreModules}`],
 	transform: {
 		[transformFileExtensions.binary]:
-			// Reference `dr-devdeps` in this way because it's installed in the node_modules/ directory
-			// as a dependency of the extending repository.
+			// Reference `dr-devdeps` in this way because it's installed in the
+			// node_modules/ directory as a dependency of the extending repository.
 			`dr-devdeps/lib/${transformers.binaryFile}`,
 		[transformFileExtensions.javascript]: `dr-devdeps/lib/${transformers.babelJest}`,
 		[transformFileExtensions.typescript]: [
