@@ -19,8 +19,8 @@ export const prebuild = async () => {
 // Excerpt from https://github.com/istanbuljs/nyc#parsing-hints-ignoring-lines:
 // > There may be some sections of your codebase that you wish to purposefully exclude
 // > from coverage tracking, to do so you can use the following parsing hints:
-// > `/* istanbul ignore next */`: ignore the next _thing_ in the source-code
-// > (functions, if statements, classes, you name it).
+// > - `/* istanbul ignore next */`: ignore the next _thing_ in the source-code
+// >   (functions, if statements, classes, you name it).
 /* istanbul ignore next */
 if (process.env.NODE_ENV !== "test") {
 	prebuild();
