@@ -2,14 +2,6 @@ import {copyFile, readdir} from "node:fs/promises";
 import {cjsFiles, esmFiles} from "../__mocks__/files.js";
 import {copyCompiledFilesToLib} from "../copyCompiledFilesToLib.js";
 
-// const compiledFiles = [
-// 	".jestrc",
-// 	".prettierrc",
-// 	"jestMockNodeCoreModules",
-// 	"jestTransformerBabelJest",
-// 	"jestTransformerBinaryFile",
-// ];
-
 // `readdir` is already equal to a mocked `jest.fn()` here due to the Jest config
 // `setupFilesAfterEnv` option and the lib/jestMockNodeCoreModules.mjs file, so just use
 // `mockImplementation` to mock out its return values based on the `path` argument.
@@ -19,14 +11,6 @@ readdir.mockImplementation((path) => {
 			return cjsFiles;
 		case "lib/esm/":
 			return esmFiles;
-		// case "lib/cjs/": {
-		// const cjsFiles = compiledFiles.map((file) => `${file}.cjs`);
-		// return cjsFiles;
-		// }
-		// case "lib/esm/": {
-		// const esmFiles = compiledFiles.map((file) => `${file}.mjs`);
-		// return esmFiles;
-		// }
 	}
 });
 

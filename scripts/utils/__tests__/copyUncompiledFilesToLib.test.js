@@ -2,14 +2,7 @@ import {copyFile, readdir} from "node:fs/promises";
 import {uncompiledFiles} from "../__mocks__/files.js";
 import {copyUncompiledFilesToLib} from "../copyUncompiledFilesToLib";
 
-// const uncompiledFiles = [
-// 	".prettierignore",
-// 	"tsconfig.base.json",
-// 	"tsconfig.cjs.json",
-// 	"tsconfig.esm.json",
-// ];
-
-// Refer to scripts/utils/__tests__/copyCompiledFilesToLib.test.js for how/where `readdir` is mocked.
+// Refer to scripts/utils/__tests__/copyCompiledFilesToLib.test.js for how/where `readdir` gets mocked.
 readdir.mockImplementation(() => uncompiledFiles);
 
 test("it copies uncompiled non-TypeScript files from src/ to lib/", async () => {
