@@ -22,6 +22,5 @@
 		// Most of the `compilerOptions` values used in tsconfig.base.json are copied from
 		// the https://github.com/tsconfig/bases/blob/main/bases/strictest.json file.
 	}
-	}
 }
 ```
