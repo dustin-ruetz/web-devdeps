@@ -47,6 +47,6 @@ export const prettierConfig: Config = {
 	tabWidth: 2,
 	// Add trailing commas wherever possible to help reduce the number of changed lines when viewing Git diffs.
 	trailingComma: "all",
-	// Refer to .editorconfig file for the rationale of using tabs over spaces for indentation.
+	// Refer to .editorconfig file for the rationale of choosing to indent lines with tabs instead of spaces.
 	useTabs: true,
 };
