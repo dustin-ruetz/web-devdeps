@@ -1,10 +1,10 @@
 // These imports are ESModule files, so specifying the ".js" file extension is required.
-import {appendPrettierConfigFile} from "./utils/appendPrettierConfigFile.js";
-import {copyCompiledFilesToLib} from "./utils/copyCompiledFilesToLib.js";
-import {copyUncompiledFilesToLib} from "./utils/copyUncompiledFilesToLib.js";
-import {deleteDirectoriesInLib} from "./utils/deleteDirectoriesInLib.js";
-import {renameFilesInLibCJS} from "./utils/renameFilesInLibCJS.js";
-import {renameFilesInLibESM} from "./utils/renameFilesInLibESM.js";
+import {appendPrettierConfigFile} from "./utils/appendPrettierConfigFile";
+import {copyCompiledFilesToLib} from "./utils/copyCompiledFilesToLib";
+import {copyUncompiledFilesToLib} from "./utils/copyUncompiledFilesToLib";
+import {deleteDirectoriesInLib} from "./utils/deleteDirectoriesInLib";
+import {renameFilesInLibCJS} from "./utils/renameFilesInLibCJS";
+import {renameFilesInLibESM} from "./utils/renameFilesInLibESM";
 
 export const postbuild = async () => {
 	// Make use of `Promise.all` to kick off multiple asynchronous operations simultaneously

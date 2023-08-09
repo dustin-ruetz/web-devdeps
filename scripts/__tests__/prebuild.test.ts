@@ -1,6 +1,8 @@
 import {rm} from "node:fs/promises";
 import {prebuild} from "../prebuild";
 
+jest.mock("node:fs/promises");
+
 test("it removes the lib/ directory with the force and recursive options", async () => {
 	await prebuild();
 

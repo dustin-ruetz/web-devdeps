@@ -2,7 +2,6 @@
 	"files": [
 		".jestrc.ts",
 		".prettierrc.ts",
-		"jestMockNodeCoreModules.ts",
 		"jestTransformerBabelJest.ts",
 		"jestTransformerBinaryFile.ts"
 	],
