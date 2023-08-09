@@ -1,5 +1,5 @@
 import {appendFile} from "node:fs/promises";
-import {appendPrettierConfigFile} from "../appendPrettierConfigFile.js";
+import {appendPrettierConfigFile} from "../appendPrettierConfigFile";
 
 test("it appends the Prettier config file to make it work as a CommonJS export", async () => {
 	await appendPrettierConfigFile();

@@ -1,9 +1,9 @@
 import {copyFile, readdir} from "node:fs/promises";
-import {uncompiledFiles} from "../__mocks__/files.js";
+import {uncompiledFiles} from "../__mocks__/files";
 import {copyUncompiledFilesToLib} from "../copyUncompiledFilesToLib";
 
 // Refer to scripts/utils/__tests__/copyCompiledFilesToLib.test.js for how/where `readdir` gets mocked.
-readdir.mockImplementation(() => uncompiledFiles);
+jest.mocked(readdir as jest.Mock).mockImplementation(() => uncompiledFiles);
 
 test("it copies uncompiled non-TypeScript files from src/ to lib/", async () => {
 	await copyUncompiledFilesToLib();

@@ -1,18 +1,18 @@
-import {appendPrettierConfigFile} from "../utils/appendPrettierConfigFile.js";
-import {copyCompiledFilesToLib} from "../utils/copyCompiledFilesToLib.js";
-import {copyUncompiledFilesToLib} from "../utils/copyUncompiledFilesToLib.js";
-import {deleteDirectoriesInLib} from "../utils/deleteDirectoriesInLib.js";
-import {renameFilesInLibCJS} from "../utils/renameFilesInLibCJS.js";
-import {renameFilesInLibESM} from "../utils/renameFilesInLibESM.js";
+import {appendPrettierConfigFile} from "../utils/appendPrettierConfigFile";
+import {copyCompiledFilesToLib} from "../utils/copyCompiledFilesToLib";
+import {copyUncompiledFilesToLib} from "../utils/copyUncompiledFilesToLib";
+import {deleteDirectoriesInLib} from "../utils/deleteDirectoriesInLib";
+import {renameFilesInLibCJS} from "../utils/renameFilesInLibCJS";
+import {renameFilesInLibESM} from "../utils/renameFilesInLibESM";
 import {postbuild} from "../postbuild";
 
 // Mock out everything to ensure that the code inside these imported modules isn't actually called.
-jest.mock("../utils/appendPrettierConfigFile.js");
-jest.mock("../utils/copyCompiledFilesToLib.js");
-jest.mock("../utils/copyUncompiledFilesToLib.js");
-jest.mock("../utils/deleteDirectoriesInLib.js");
-jest.mock("../utils/renameFilesInLibCJS.js");
-jest.mock("../utils/renameFilesInLibESM.js");
+jest.mock("../utils/appendPrettierConfigFile");
+jest.mock("../utils/copyCompiledFilesToLib");
+jest.mock("../utils/copyUncompiledFilesToLib");
+jest.mock("../utils/deleteDirectoriesInLib");
+jest.mock("../utils/renameFilesInLibCJS");
+jest.mock("../utils/renameFilesInLibESM");
 
 test("it runs all of the necessary post-build file system operations", async () => {
 	await postbuild();

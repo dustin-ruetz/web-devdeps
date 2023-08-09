@@ -1,9 +1,9 @@
 import {readdir, rename} from "node:fs/promises";
-import {compiledFiles} from "../__mocks__/files.js";
+import {compiledFiles} from "../__mocks__/files";
 import {renameFilesInLibCJS} from "../renameFilesInLibCJS";
 
 // Refer to scripts/utils/__tests__/copyCompiledFilesToLib.test.js for how/where `readdir` is mocked.
-readdir.mockImplementation(() => compiledFiles);
+jest.mocked(readdir as jest.Mock).mockImplementation(() => compiledFiles);
 
 test("it renames the files in lib/cjs/ by changing their extensions from .js to .cjs ", async () => {
 	await renameFilesInLibCJS();

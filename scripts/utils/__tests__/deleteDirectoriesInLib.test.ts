@@ -1,5 +1,5 @@
 import {rm} from "node:fs/promises";
-import {deleteDirectoriesInLib} from "../deleteDirectoriesInLib.js";
+import {deleteDirectoriesInLib} from "../deleteDirectoriesInLib";
 
 test("it removes the lib/cjs/ and lib/esm/ directories with the force and recursive options", async () => {
 	const rmOptions = {force: true, recursive: true};
