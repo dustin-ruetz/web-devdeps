@@ -2,15 +2,17 @@ import {copyFile, readdir} from "node:fs/promises";
 import {cjsFiles, esmFiles} from "../__mocks__/files";
 import {copyCompiledFilesToLib} from "../copyCompiledFilesToLib";
 
-jest.mock("node:fs/promises");
-jest.mocked(readdir as jest.Mock).mockImplementation((path) => {
-	switch (path) {
-		case "lib/cjs/":
-			return cjsFiles;
-		case "lib/esm/":
-			return esmFiles;
-	}
-});
+jest.mock("node:fs/promises", () => ({
+	copyFile: jest.fn(),
+	readdir: jest.fn((path) => {
+		switch (path) {
+			case "lib/cjs/":
+				return cjsFiles;
+			case "lib/esm/":
+				return esmFiles;
+		}
+	}),
+}));
 
 test("it copies the compiled files from lib/cjs/ and lib/esm/ to lib/", async () => {
 	await copyCompiledFilesToLib();
