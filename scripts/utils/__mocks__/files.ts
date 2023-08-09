@@ -2,7 +2,6 @@
 export const compiledFiles = [
 	".jestrc.js",
 	".prettierrc.js",
-	"jestMockNodeCoreModules.js",
 	"jestTransformerBabelJest.js",
 	"jestTransformerBinaryFile.js",
 ];

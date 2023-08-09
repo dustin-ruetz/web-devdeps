@@ -2,10 +2,7 @@ import {copyFile, readdir} from "node:fs/promises";
 import {cjsFiles, esmFiles} from "../__mocks__/files";
 import {copyCompiledFilesToLib} from "../copyCompiledFilesToLib";
 
-// `readdir` is already equal to a mocked `jest.fn()` here due to the Jest config
-// `setupFilesAfterEnv` option and the lib/jestMockNodeCoreModules.mjs file, so just use
-// `mockImplementation` to mock out its return values based on the `path` argument.
-
+jest.mock("node:fs/promises");
 jest.mocked(readdir as jest.Mock).mockImplementation((path) => {
 	switch (path) {
 		case "lib/cjs/":
@@ -24,7 +21,7 @@ test("it copies the compiled files from lib/cjs/ and lib/esm/ to lib/", async ()
 	expect(readdir).toHaveBeenNthCalledWith(2, "lib/esm/");
 
 	// Verify that `copyFile` was called once per item in both `cjsFiles` and `esmFiles`.
-	expect(copyFile).toHaveBeenCalledTimes(10);
+	expect(copyFile).toHaveBeenCalledTimes(8);
 	// Verify that a sampling of `copyFile` calls received the correct arguments.
 	expect(copyFile).toHaveBeenNthCalledWith(
 		1,
@@ -32,17 +29,17 @@ test("it copies the compiled files from lib/cjs/ and lib/esm/ to lib/", async ()
 		"lib/.jestrc.cjs",
 	);
 	expect(copyFile).toHaveBeenNthCalledWith(
-		5,
+		4,
 		"lib/cjs/jestTransformerBinaryFile.cjs",
 		"lib/jestTransformerBinaryFile.cjs",
 	);
 	expect(copyFile).toHaveBeenNthCalledWith(
-		6,
+		5,
 		"lib/esm/.jestrc.mjs",
 		"lib/.jestrc.mjs",
 	);
 	expect(copyFile).toHaveBeenNthCalledWith(
-		10,
+		8,
 		"lib/esm/jestTransformerBinaryFile.mjs",
 		"lib/jestTransformerBinaryFile.mjs",
 	);

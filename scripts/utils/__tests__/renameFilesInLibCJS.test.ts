@@ -2,7 +2,7 @@ import {readdir, rename} from "node:fs/promises";
 import {compiledFiles} from "../__mocks__/files";
 import {renameFilesInLibCJS} from "../renameFilesInLibCJS";
 
-// Refer to scripts/utils/__tests__/copyCompiledFilesToLib.test.js for how/where `readdir` is mocked.
+jest.mock("node:fs/promises");
 jest.mocked(readdir as jest.Mock).mockImplementation(() => compiledFiles);
 
 test("it renames the files in lib/cjs/ by changing their extensions from .js to .cjs ", async () => {
@@ -13,7 +13,7 @@ test("it renames the files in lib/cjs/ by changing their extensions from .js to 
 	expect(readdir).toHaveBeenCalledWith("lib/cjs/");
 
 	// Verify that `rename` was called once for each item in `compiledFiles`.
-	expect(rename).toHaveBeenCalledTimes(5);
+	expect(rename).toHaveBeenCalledTimes(4);
 	// Verify that a sampling of `rename` calls received the correct arguments.
 	expect(rename).toHaveBeenNthCalledWith(
 		1,
@@ -21,7 +21,7 @@ test("it renames the files in lib/cjs/ by changing their extensions from .js to 
 		"lib/cjs/.jestrc.cjs",
 	);
 	expect(rename).toHaveBeenNthCalledWith(
-		5,
+		4,
 		"lib/cjs/jestTransformerBinaryFile.js",
 		"lib/cjs/jestTransformerBinaryFile.cjs",
 	);
