@@ -53,16 +53,12 @@ const jestConfig: Config = {
 	// > We recommend placing the extensions most commonly used in your project on the left, so if you are
 	// > using TypeScript, you may want to consider moving "ts" and/or "tsx" to the beginning of the array.
 	moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
-	// Specify both `rootDir` and `roots` so that Jest finds all of the test files.
+	// Specify the `rootDir` so that Jest finds all of the test files located in various directories
+	// (i.e. <rootDir>/__tests__/, <rootDir>/scripts/ and <rootDir>/src/).
 	// Excerpt from https://jestjs.io/docs/configuration#rootdir-string:
 	// > The root directory that Jest should scan for tests and modules within.
 	// > Oftentimes, you'll want to set this to `"src"` or `"lib"`, corresponding to where in your repository the code is stored.
 	rootDir: "../",
-	// Excerpt from https://jestjs.io/docs/configuration#roots-arraystring:
-	// > A list of paths to directories that Jest should use to search for files in.
-	// > By default, `roots` has a single entry `<rootDir>` but there are cases where you may want to have multiple roots
-	// > within one project, for example roots: `["<rootDir>/src/", "<rootDir>/tests/"]`.
-	roots: ["<rootDir>/scripts/", "<rootDir>/src/"],
 	// Explicitly declare either `"node"|"jsdom"` as the testing environment for each extending repository that uses this Jest config.
 	// Excerpt from https://jestjs.io/docs/configuration#testenvironment-string:
 	// > The test environment that will be used for testing. The default environment in Jest is a Node.js environment.
