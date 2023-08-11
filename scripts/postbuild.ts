@@ -1,4 +1,3 @@
-// These imports are ESModule files, so specifying the ".js" file extension is required.
 import {appendPrettierConfigFile} from "./utils/appendPrettierConfigFile";
 import {copyCompiledFilesToLib} from "./utils/copyCompiledFilesToLib";
 import {copyUncompiledFilesToLib} from "./utils/copyUncompiledFilesToLib";
@@ -20,7 +19,7 @@ export const postbuild = async () => {
 	await deleteDirectoriesInLib();
 };
 
-// Refer to scripts/prebuild.js file for why these lines are being excluded from the test coverage report.
+// Refer to scripts/prebuild.ts file for why these lines are being excluded from the test coverage report.
 /* istanbul ignore next */
 if (process.env.NODE_ENV !== "test") {
 	postbuild();
