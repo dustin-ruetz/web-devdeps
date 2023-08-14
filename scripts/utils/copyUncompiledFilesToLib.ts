@@ -9,8 +9,9 @@ export const copyUncompiledFilesToLib = async () => {
 	);
 	const jsonFiles = srcFiles.filter((file) => file.endsWith(".json"));
 
-	const filesToCopy = [...dotFiles, ...jsonFiles];
-	for (const file of filesToCopy) {
-		await copyFile(`src/${file}`, `lib/${file}`);
-	}
+	await Promise.all(
+		[...dotFiles, ...jsonFiles].map((file) =>
+			copyFile(`src/${file}`, `lib/${file}`),
+		),
+	);
 };

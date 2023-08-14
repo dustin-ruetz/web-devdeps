@@ -4,7 +4,10 @@ import {readdir, rename} from "node:fs/promises";
 export const renameFilesInLibESM = async () => {
 	const esmFiles = await readdir("lib/esm/");
 	const esmFileNames = esmFiles.map((file) => file.replace(".js", ""));
-	for (const fileName of esmFileNames) {
-		await rename(`lib/esm/${fileName}.js`, `lib/esm/${fileName}.mjs`);
-	}
+
+	await Promise.all(
+		esmFileNames.map((fileName) =>
+			rename(`lib/esm/${fileName}.js`, `lib/esm/${fileName}.mjs`),
+		),
+	);
 };

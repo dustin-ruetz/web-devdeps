@@ -4,7 +4,10 @@ import {readdir, rename} from "node:fs/promises";
 export const renameFilesInLibCJS = async () => {
 	const cjsFiles = await readdir("lib/cjs/");
 	const cjsFileNames = cjsFiles.map((file) => file.replace(".js", ""));
-	for (const fileName of cjsFileNames) {
-		await rename(`lib/cjs/${fileName}.js`, `lib/cjs/${fileName}.cjs`);
-	}
+
+	await Promise.all(
+		cjsFileNames.map((fileName) =>
+			rename(`lib/cjs/${fileName}.js`, `lib/cjs/${fileName}.cjs`),
+		),
+	);
 };
