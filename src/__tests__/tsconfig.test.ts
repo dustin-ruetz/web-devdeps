@@ -7,7 +7,11 @@ test("all tsconfig files export a configuration object", () => {
 	tsConfigs.forEach((tsConfig) => expect(typeof tsConfig).toMatch("object"));
 });
 
-test("the extending tsconfig files extend the base configuration", () => {
+test("the tsconfig base file extends the @tsconfig/strictest configuration", () => {
+	expect(tsConfigBase.extends).toMatch("@tsconfig/strictest/tsconfig.json");
+});
+
+test("the tsconfig CJS and ESM files extend the base configuration", () => {
 	[tsConfigCJS, tsConfigESM].forEach((tsConfig) =>
 		expect(tsConfig.extends).toMatch("./tsconfig.base.json"),
 	);
@@ -21,7 +25,6 @@ describe("the most important compilerOptions are correct for:", () => {
 		// 1) prevent tsc from checking node_modules/, and
 		// 2) allow for .ts/.tsx file imports without file extensions.
 		expect(compilerOptions.moduleResolution).toMatch(/node/i);
-		expect(compilerOptions.strict).toBe(true);
 		// Excerpt from https://www.typescriptlang.org/tsconfig#target on not using `"target": "esnext"`:
 		// > The special `ESNext` value refers to the highest version your version of TypeScript supports.
 		// > This setting should be used with caution, since it doesn't mean the same thing between
@@ -47,5 +50,6 @@ describe("the most important compilerOptions are correct for:", () => {
 
 		expect(compilerOptions.module).toMatch(/esnext/i);
 		expect(compilerOptions.outDir).toMatch("../lib/esm/");
+		expect(compilerOptions.verbatimModuleSyntax).toBe(true);
 	});
 });

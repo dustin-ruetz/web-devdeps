@@ -18,9 +18,6 @@
 		// specified manually in `include` because tsc ignores them by default.
 	],
 	// https://www.typescriptlang.org/tsconfig#compiler-options
-	"compilerOptions": {
-		// Most of the `compilerOptions` values used in tsconfig.base.json are copied from
-		// the https://github.com/tsconfig/bases/blob/main/bases/strictest.json file.
-	}
+	"compilerOptions": {}
 }
 ```

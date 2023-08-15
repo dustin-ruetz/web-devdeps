@@ -1,4 +1,5 @@
 {
+	"extends": "@tsconfig/strictest/tsconfig.json",
 	"files": [
 		".jestrc.ts",
 		".prettierrc.ts",
@@ -6,25 +7,11 @@
 		"jestTransformerBinaryFile.ts"
 	],
 	"compilerOptions": {
-		"allowJs": false,
-		"allowUnreachableCode": false,
-		"allowUnusedLabels": false,
-		"esModuleInterop": true,
-		"exactOptionalPropertyTypes": true,
-		"forceConsistentCasingInFileNames": true,
 		"jsx": "react",
 		"moduleResolution": "node",
 		"noEmitOnError": true,
-		"noFallthroughCasesInSwitch": true,
-		"noImplicitOverride": true,
-		"noImplicitReturns": true,
-		"noPropertyAccessFromIndexSignature": true,
-		"noUncheckedIndexedAccess": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
 		"removeComments": true,
 		"resolveJsonModule": true,
-		"strict": true,
 		"target": "es2022"
 	}
 }
