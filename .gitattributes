@@ -9,7 +9,6 @@
 
 # The following file types are text; they should always be normalized.
 *.md   text
-*.js   text
 *.json text
 *.ts   text
 *.yaml text
