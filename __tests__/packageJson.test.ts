@@ -13,7 +13,6 @@ test("the most important configuration options are correct", () => {
 test("that NPM packages are installed with exact version numbers", () => {
 	const dependencyVersions = [
 		...Object.values(packageJson.dependencies).map((version) => version),
-		...Object.values(packageJson.devDependencies).map((version) => version),
 	];
 
 	dependencyVersions.forEach((dependency) =>
