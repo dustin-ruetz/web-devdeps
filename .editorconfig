@@ -1,20 +1,11 @@
-# https://editorconfig.org
+# Refer to the corresponding file in the dotfiles repo for details on these config choices.
+# - Local: ~/.editorconfig
+# - Remote: https://github.com/dustin-ruetz/dotfiles/blob/main/.editorconfig
 
 root = true
 
 [*]
 charset = utf-8
-# Refer to .gitattributes file for the rationale of leaving `end_of_line` unset.
-# end_of_line =
-# Set `indent_style` to `tab` since tabs are both accessible and customizable, whereas fixed-width spaces are not.
-# https://www.reddit.com/r/javascript/comments/c8drjo/nobody_talks_about_the_real_reason_to_use_tabs/
-# https://adamtuttle.codes/blog/2021/tabs-vs-spaces-its-an-accessibility-issue/
-# https://alexandersandberg.com/articles/default-to-tabs-instead-of-spaces-for-an-accessible-first-environment/
 indent_style = tab
-# Excerpt from https://editorconfig.org on leaving `indent_size` unset:
-# > It is acceptable and often preferred to leave certain EditorConfig properties unspecified.
-# > [...]
-# > Also, when indent_style is set to tab, it may be desirable to leave indent_size unspecified
-# > so readers may view the file using their preferred indentation width.
 insert_final_newline = true
 trim_trailing_whitespace = true

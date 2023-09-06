@@ -1,13 +1,9 @@
-# https://git-scm.com/docs/gitattributes
+# Refer to the corresponding file in the dotfiles repo for details on these config choices.
+# - Local: ~/.gitattributes
+# - Remote: https://github.com/dustin-ruetz/dotfiles/blob/main/.gitattributes
 
-# Make Git detect all text files and automatically normalize them, i.e. convert `crlf` to `lf`.
-# Declare this setting first so that subsequent lines can override it.
-# Excerpt from https://git-scm.com/docs/gitattributes#_end_of_line_conversion on `* text=auto`:
-# > If you want to ensure that text files that any contributor introduces to the repository have
-# > their line endings normalized, you can set the text attribute to "auto" for all files.
 * text=auto
 
-# The following file types are text; they should always be normalized.
 *.md   text
 *.json text
 *.ts   text
