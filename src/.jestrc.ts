@@ -41,6 +41,8 @@ const jestConfig: Config = {
 	collectCoverageFrom: ["**/*.ts"],
 	// https://stackoverflow.com/questions/69567201/coveragepathignorepatterns-ignore-files-with-specific-ending
 	coveragePathIgnorePatterns: ["/node_modules/", ...binaryFileExtensions.list],
+	// Specify `coverageReporters` to prevent the default reporters from writing a coverage/ directory to disk.
+	coverageReporters: ["text", "text-summary"],
 	coverageThreshold: {
 		global: {
 			branches: 100,
