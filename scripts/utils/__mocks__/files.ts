@@ -5,7 +5,7 @@ export const compiledFiles = [
 	"jestTransformerBabelJest.js",
 	"jestTransformerBinaryFile.js",
 	"jestTransformerSVGFile.js",
-];
+] as const;
 
 /** Mock filenames after the `renameFilesInLibCJS` operation completes. */
 export const cjsFiles = compiledFiles.map((file) =>
@@ -23,4 +23,4 @@ export const uncompiledFiles = [
 	"tsconfig.base.json",
 	"tsconfig.cjs.json",
 	"tsconfig.esm.json",
-];
+] as const;

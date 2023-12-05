@@ -49,4 +49,4 @@ export const prettierConfig: Config = {
 	trailingComma: "all",
 	// Refer to .editorconfig file for the rationale of choosing to indent lines with tabs instead of spaces.
 	useTabs: true,
-};
+} as const;

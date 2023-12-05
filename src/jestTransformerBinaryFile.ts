@@ -12,6 +12,6 @@ const jestTransformerBinaryFile = {
 			code: `module.exports = ${JSON.stringify(path.basename(sourcePath))}`,
 		};
 	},
-};
+} as const;
 
 export default jestTransformerBinaryFile;

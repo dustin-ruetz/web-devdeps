@@ -4,7 +4,7 @@ import {deleteDirectoriesInLib} from "../deleteDirectoriesInLib";
 jest.mock("node:fs/promises");
 
 test("it removes the lib/cjs/ and lib/esm/ directories with the force and recursive options", async () => {
-	const rmOptions = {force: true, recursive: true};
+	const rmOptions = {force: true, recursive: true} as const;
 
 	await deleteDirectoriesInLib();
 

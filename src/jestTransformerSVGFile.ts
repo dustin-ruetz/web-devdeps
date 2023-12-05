@@ -5,6 +5,6 @@ const jestTransformerSVGFile = {
 			code: `module.exports = ${JSON.stringify(sourceText)}`,
 		};
 	},
-};
+} as const;
 
 export default jestTransformerSVGFile;
