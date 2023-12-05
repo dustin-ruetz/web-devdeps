@@ -6,7 +6,7 @@ const binaryFileExtensions = {
 	getTransformRegExp: function () {
 		return `(${this.list.join("|")})`;
 	},
-};
+} as const;
 
 /** Paths to the files/node_modules used as transformers. */
 const transformers = {
@@ -14,7 +14,7 @@ const transformers = {
 	binaryFile: "jestTransformerBinaryFile.mjs",
 	svgFile: "jestTransformerSVGFile.mjs",
 	tsJest: "ts-jest",
-};
+} as const;
 
 /** Regular expressions intended to match file extensions with the appropriate transformer. */
 const transformFileExtensions = {
@@ -22,7 +22,7 @@ const transformFileExtensions = {
 	javascript: ".(js|jsx)",
 	svg: ".svg",
 	typescript: ".(ts|tsx)",
-};
+} as const;
 
 /**
  * Note that including the ts-jest `isolatedModules` config option here shouldn't be necessary because it's deprecated
