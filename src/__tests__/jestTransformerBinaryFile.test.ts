@@ -1,7 +1,7 @@
 import jestTransformerBinaryFile from "../jestTransformerBinaryFile";
 
 test('it transforms binary file paths into `module.exports = "name.extension"`', () => {
-	const sourceText = "not applicable";
+	const sourceText = "";
 	const jpgPath = "images/image.jpg";
 	const pngPath = "images/image.png";
 	const woff2Path = "fonts/font.woff2";
