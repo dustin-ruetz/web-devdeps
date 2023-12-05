@@ -12,6 +12,7 @@ const binaryFileExtensions = {
 const transformers = {
 	babelJest: "jestTransformerBabelJest.mjs",
 	binaryFile: "jestTransformerBinaryFile.mjs",
+	svgFile: "jestTransformerSVGFile.mjs",
 	tsJest: "ts-jest",
 };
 
@@ -19,6 +20,7 @@ const transformers = {
 const transformFileExtensions = {
 	binary: binaryFileExtensions.getTransformRegExp(),
 	javascript: ".(js|jsx)",
+	svg: ".svg",
 	typescript: ".(ts|tsx)",
 };
 
@@ -40,7 +42,11 @@ const jestConfig: Config = {
 	// > no tests exist for this file and it's never required in the test suite.
 	collectCoverageFrom: ["**/*.ts"],
 	// https://stackoverflow.com/questions/69567201/coveragepathignorepatterns-ignore-files-with-specific-ending
-	coveragePathIgnorePatterns: ["/node_modules/", ...binaryFileExtensions.list],
+	coveragePathIgnorePatterns: [
+		"/node_modules/",
+		...binaryFileExtensions.list,
+		".svg",
+	],
 	// Specify `coverageReporters` to prevent the default reporters from writing a coverage/ directory to disk.
 	coverageReporters: ["text", "text-summary"],
 	coverageThreshold: {
@@ -71,6 +77,7 @@ const jestConfig: Config = {
 			// Set the path to the transformer relative to the Jest <rootDir>.
 			`<rootDir>/lib/${transformers.binaryFile}`,
 		[transformFileExtensions.javascript]: `<rootDir>/lib/${transformers.babelJest}`,
+		[transformFileExtensions.svg]: `<rootDir>/lib/${transformers.svgFile}`,
 		[transformFileExtensions.typescript]: [
 			transformers.tsJest,
 			{
@@ -108,6 +115,7 @@ export const jestConfigOverrides: Config = {
 			// node_modules/ directory as a dependency of the extending repository.
 			`dr-devdeps/lib/${transformers.binaryFile}`,
 		[transformFileExtensions.javascript]: `dr-devdeps/lib/${transformers.babelJest}`,
+		[transformFileExtensions.svg]: `dr-devdeps/lib/${transformers.svgFile}`,
 		[transformFileExtensions.typescript]: [
 			transformers.tsJest,
 			{
