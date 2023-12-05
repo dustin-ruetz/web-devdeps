@@ -15,7 +15,7 @@ test("it renames the files in lib/esm/ by changing their extensions from .js to 
 	expect(readdir).toHaveBeenCalledWith("lib/esm/");
 
 	// Verify that `rename` was called once for each item in `compiledFiles`.
-	expect(rename).toHaveBeenCalledTimes(4);
+	expect(rename).toHaveBeenCalledTimes(5);
 	// Verify that a sampling of `rename` calls received the correct arguments.
 	expect(rename).toHaveBeenNthCalledWith(
 		1,
@@ -23,8 +23,8 @@ test("it renames the files in lib/esm/ by changing their extensions from .js to 
 		"lib/esm/.jestrc.mjs",
 	);
 	expect(rename).toHaveBeenNthCalledWith(
-		4,
-		"lib/esm/jestTransformerBinaryFile.js",
-		"lib/esm/jestTransformerBinaryFile.mjs",
+		5,
+		"lib/esm/jestTransformerSVGFile.js",
+		"lib/esm/jestTransformerSVGFile.mjs",
 	);
 });

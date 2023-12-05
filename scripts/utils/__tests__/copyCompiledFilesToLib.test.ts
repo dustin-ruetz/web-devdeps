@@ -23,7 +23,7 @@ test("it copies the compiled files from lib/cjs/ and lib/esm/ to lib/", async ()
 	expect(readdir).toHaveBeenNthCalledWith(2, "lib/esm/");
 
 	// Verify that `copyFile` was called once per item in both `cjsFiles` and `esmFiles`.
-	expect(copyFile).toHaveBeenCalledTimes(8);
+	expect(copyFile).toHaveBeenCalledTimes(10);
 	// Verify that a sampling of `copyFile` calls received the correct arguments.
 	expect(copyFile).toHaveBeenNthCalledWith(
 		1,
@@ -31,18 +31,18 @@ test("it copies the compiled files from lib/cjs/ and lib/esm/ to lib/", async ()
 		"lib/.jestrc.cjs",
 	);
 	expect(copyFile).toHaveBeenNthCalledWith(
-		4,
-		"lib/cjs/jestTransformerBinaryFile.cjs",
-		"lib/jestTransformerBinaryFile.cjs",
+		5,
+		"lib/cjs/jestTransformerSVGFile.cjs",
+		"lib/jestTransformerSVGFile.cjs",
 	);
 	expect(copyFile).toHaveBeenNthCalledWith(
-		5,
+		6,
 		"lib/esm/.jestrc.mjs",
 		"lib/.jestrc.mjs",
 	);
 	expect(copyFile).toHaveBeenNthCalledWith(
-		8,
-		"lib/esm/jestTransformerBinaryFile.mjs",
-		"lib/jestTransformerBinaryFile.mjs",
+		10,
+		"lib/esm/jestTransformerSVGFile.mjs",
+		"lib/jestTransformerSVGFile.mjs",
 	);
 });

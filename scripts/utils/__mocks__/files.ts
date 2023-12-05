@@ -4,6 +4,7 @@ export const compiledFiles = [
 	".prettierrc.js",
 	"jestTransformerBabelJest.js",
 	"jestTransformerBinaryFile.js",
+	"jestTransformerSVGFile.js",
 ];
 
 /** Mock filenames after the `renameFilesInLibCJS` operation completes. */

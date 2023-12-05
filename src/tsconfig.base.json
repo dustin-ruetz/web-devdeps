@@ -4,7 +4,8 @@
 		".jestrc.ts",
 		".prettierrc.ts",
 		"jestTransformerBabelJest.ts",
-		"jestTransformerBinaryFile.ts"
+		"jestTransformerBinaryFile.ts",
+		"jestTransformerSVGFile.ts"
 	],
 	"compilerOptions": {
 		"jsx": "react",
