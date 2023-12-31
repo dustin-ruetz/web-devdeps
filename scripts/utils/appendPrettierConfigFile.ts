@@ -10,6 +10,6 @@ import {appendFile} from "node:fs/promises";
 export const appendPrettierConfigFile = async () => {
 	await appendFile(
 		"lib/cjs/.prettierrc.cjs",
-		"module.exports = exports.prettierConfig;\n",
+		"module.exports = exports.prettierConfig;",
 	);
 };

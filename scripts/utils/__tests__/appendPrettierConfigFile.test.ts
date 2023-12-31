@@ -10,6 +10,6 @@ test("it appends the Prettier config file to make it work as a CommonJS export",
 	expect(appendFile).toHaveBeenCalledTimes(1);
 	expect(appendFile).toHaveBeenCalledWith(
 		"lib/cjs/.prettierrc.cjs",
-		"module.exports = exports.prettierConfig;\n",
+		"module.exports = exports.prettierConfig;",
 	);
 });
