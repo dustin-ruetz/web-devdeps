@@ -5,7 +5,7 @@ test("it exports a configuration object", () => {
 });
 
 test("the most important configuration options are correct", () => {
-	expect(prettierConfig.endOfLine).toBe(undefined);
+	expect(prettierConfig.endOfLine).toBeUndefined();
 	expect(prettierConfig.printWidth).toEqual(80);
 	expect(prettierConfig.proseWrap).toMatch("preserve");
 	expect(prettierConfig.singleQuote).toBe(false);
