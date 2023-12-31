@@ -4,7 +4,9 @@ import tsConfigESM from "../tsconfig.esm.json";
 
 test("all tsconfig files export a configuration object", () => {
 	const tsConfigs = [tsConfigBase, tsConfigCJS, tsConfigESM];
-	tsConfigs.forEach((tsConfig) => expect(typeof tsConfig).toMatch("object"));
+	tsConfigs.forEach((tsConfig) => {
+		expect(typeof tsConfig).toMatch("object");
+	});
 });
 
 test("the tsconfig base file extends the @tsconfig/strictest configuration", () => {
@@ -12,9 +14,9 @@ test("the tsconfig base file extends the @tsconfig/strictest configuration", () 
 });
 
 test("the tsconfig CJS and ESM files extend the base configuration", () => {
-	[tsConfigCJS, tsConfigESM].forEach((tsConfig) =>
-		expect(tsConfig.extends).toMatch("./tsconfig.base.json"),
-	);
+	[tsConfigCJS, tsConfigESM].forEach((tsConfig) => {
+		expect(tsConfig.extends).toMatch("./tsconfig.base.json");
+	});
 });
 
 describe("the most important compilerOptions are correct for:", () => {
