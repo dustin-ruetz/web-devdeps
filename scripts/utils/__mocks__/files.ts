@@ -1,5 +1,6 @@
 /** Mock filenames compiled from src/ to lib/cjs/ and lib/esm/ */
 export const compiledFiles = [
+	".eslintrc.js",
 	".jestrc.js",
 	".prettierrc.js",
 	"jestTransformerBabelJest.js",
@@ -19,6 +20,7 @@ export const esmFiles = compiledFiles.map((file) =>
 
 /** Mock filenames of the non-TypeScript files copied from src/ to lib/ */
 export const uncompiledFiles = [
+	".eslintignore",
 	".prettierignore",
 	"tsconfig.base.json",
 	"tsconfig.cjs.json",

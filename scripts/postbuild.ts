@@ -1,3 +1,4 @@
+import {appendESLintConfigFile} from "./utils/appendESLintConfigFile";
 import {appendPrettierConfigFile} from "./utils/appendPrettierConfigFile";
 import {copyCompiledFilesToLib} from "./utils/copyCompiledFilesToLib";
 import {copyUncompiledFilesToLib} from "./utils/copyUncompiledFilesToLib";
@@ -13,7 +14,7 @@ export const postbuild = async () => {
 	// 1. simplify the codebase by keeping everything in src/ written in ESModule syntax,
 	// 2. export both CommonJS- and ESModule-compatible code from the lib/ directory, and
 	// 3. use tsc for building/compiling without needing to install additional dependencies.
-	await appendPrettierConfigFile();
+	await Promise.all([appendESLintConfigFile(), appendPrettierConfigFile()]);
 	await Promise.all([copyCompiledFilesToLib(), copyUncompiledFilesToLib()]);
 	// Delete lib/cjs/ and lib/esm/ now that their child files have been copied to the lib/ directory.
 	await deleteDirectoriesInLib();

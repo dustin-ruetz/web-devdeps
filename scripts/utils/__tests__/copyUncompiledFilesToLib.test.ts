@@ -15,15 +15,15 @@ test("it copies uncompiled non-TypeScript files from src/ to lib/", async () => 
 	expect(readdir).toHaveBeenCalledWith("src/");
 
 	// Verify that `copyFile` was called once for each item in `uncompiledFiles`.
-	expect(copyFile).toHaveBeenCalledTimes(4);
+	expect(copyFile).toHaveBeenCalledTimes(5);
 	// Verify that a sampling of `copyFile` calls received the correct arguments.
 	expect(copyFile).toHaveBeenNthCalledWith(
 		1,
-		"src/.prettierignore",
-		"lib/.prettierignore",
+		"src/.eslintignore",
+		"lib/.eslintignore",
 	);
 	expect(copyFile).toHaveBeenNthCalledWith(
-		4,
+		5,
 		"src/tsconfig.esm.json",
 		"lib/tsconfig.esm.json",
 	);
