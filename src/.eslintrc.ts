@@ -56,20 +56,11 @@ export const eslintConfig: Linter.Config = {
 		"no-use-before-define": "error",
 		"require-atomic-updates": "error",
 		// https://eslint.org/docs/latest/rules/#suggestions
-		"arrow-body-style": ["error", "as-needed"],
+		"arrow-body-style": "error",
 		camelcase: "error",
-		"capitalized-comments": [
-			"error",
-			"always",
-			{
-				// Excerpt from https://eslint.org/docs/latest/rules/capitalized-comments#ignoreconsecutivecomments:
-				// > Comments which otherwise violate the rule will not be reported as long as they immediately follow another comment.
-				ignoreConsecutiveComments: true,
-			},
-		],
 		curly: "error",
 		"dot-notation": "error",
-		eqeqeq: ["error", "smart"],
+		eqeqeq: "error",
 		"guard-for-in": "error",
 		"no-array-constructor": "error",
 		"no-console": "warn",
