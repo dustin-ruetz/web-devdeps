@@ -67,7 +67,7 @@ const jestConfig: Config = {
 	// > The root directory that Jest should scan for tests and modules within.
 	// > Oftentimes, you'll want to set this to `"src"` or `"lib"`, corresponding to where in your repository the code is stored.
 	rootDir: "../",
-	// Explicitly declare either `"node"|"jsdom"` as the testing environment for each extending repository that uses this Jest config.
+	// Explicitly declare one of `"node"|"jsdom"` as the testing environment for each extending repository that uses this Jest config.
 	// Excerpt from https://jestjs.io/docs/configuration#testenvironment-string:
 	// > The test environment that will be used for testing. The default environment in Jest is a Node.js environment.
 	// > If you are building a web app, you can use a browser-like environment through `jsdom` instead.
