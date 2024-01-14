@@ -1,6 +1,7 @@
 {
 	"extends": "@tsconfig/strictest/tsconfig.json",
 	"files": [
+		".eslintrc.ts",
 		".jestrc.ts",
 		".prettierrc.ts",
 		"jestTransformerBabelJest.ts",

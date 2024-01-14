@@ -15,7 +15,7 @@ test("that NPM packages are installed with exact version numbers", () => {
 		...Object.values(packageJson.dependencies).map((version) => version),
 	];
 
-	dependencyVersions.forEach((dependency) =>
-		expect(dependency).not.toContain("^"),
-	);
+	dependencyVersions.forEach((dependency) => {
+		expect(dependency).not.toContain("^");
+	});
 });
