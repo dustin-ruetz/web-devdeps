@@ -28,7 +28,7 @@
 		"typecheck:cjs": "tsc --noEmit --project ./src/tsconfig.cjs.json",
 		"typecheck:esm": "tsc --noEmit --project ./src/tsconfig.esm.json",
 		"typecheck": "npm run typecheck:cjs & npm run typecheck:esm",
-		"validate": "npm run format:check && npm run lint && npm run test:coverage && npm run typecheck"
+		"validate": "npm run build && npm run format:check && npm run lint && npm run test:coverage && npm run typecheck"
 	},
 	"keywords": [],
 	"author": "Dustin Ruetz",
