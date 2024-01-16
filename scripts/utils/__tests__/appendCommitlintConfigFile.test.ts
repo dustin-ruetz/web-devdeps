@@ -3,7 +3,7 @@ import {appendCommitlintConfigFile} from "../appendCommitlintConfigFile";
 
 jest.mock("node:fs/promises");
 
-test("it appends the commintlint config file to make it work as a CommonJS export", async () => {
+test("it appends the commitlint config file to make it work as a CommonJS export", async () => {
 	await appendCommitlintConfigFile();
 
 	// Verify that `appendFile` was called once and with the correct arguments.
