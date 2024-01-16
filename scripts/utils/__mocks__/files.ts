@@ -1,5 +1,6 @@
 /** Mock filenames compiled from src/ to lib/cjs/ and lib/esm/ */
 export const compiledFiles = [
+	".commitlintrc.js",
 	".eslintrc.js",
 	".jestrc.js",
 	".prettierrc.js",

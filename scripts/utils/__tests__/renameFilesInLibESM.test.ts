@@ -15,15 +15,15 @@ test("it renames the files in lib/esm/ by changing their extensions from .js to 
 	expect(readdir).toHaveBeenCalledWith("lib/esm/");
 
 	// Verify that `rename` was called once for each item in `compiledFiles`.
-	expect(rename).toHaveBeenCalledTimes(6);
+	expect(rename).toHaveBeenCalledTimes(7);
 	// Verify that a sampling of `rename` calls received the correct arguments.
 	expect(rename).toHaveBeenNthCalledWith(
 		1,
-		"lib/esm/.eslintrc.js",
-		"lib/esm/.eslintrc.mjs",
+		"lib/esm/.commitlintrc.js",
+		"lib/esm/.commitlintrc.mjs",
 	);
 	expect(rename).toHaveBeenNthCalledWith(
-		6,
+		7,
 		"lib/esm/jestTransformerSVGFile.js",
 		"lib/esm/jestTransformerSVGFile.mjs",
 	);
