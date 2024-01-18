@@ -4,7 +4,4 @@
 # Excerpts from https://commitlint.js.org/#/reference-cli:
 # > --edit    - read last commit message from the specified file, or fallback to ./.git/COMMIT_EDITMSG
 # > --verbose - enable verbose output for reports without problems
-npx @commitlint/cli \
-	--config ./lib/.commitlintrc.cjs \
-	--edit \
-	--verbose
+npx @commitlint/cli --config ./lib/.commitlintrc.cjs --edit --verbose
