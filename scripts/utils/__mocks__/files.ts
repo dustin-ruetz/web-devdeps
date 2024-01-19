@@ -3,6 +3,7 @@ export const compiledFiles = [
 	".commitlintrc.js",
 	".eslintrc.js",
 	".jestrc.js",
+	".lintstagedrc.js",
 	".prettierrc.js",
 	"jestTransformerBabelJest.js",
 	"jestTransformerBinaryFile.js",
