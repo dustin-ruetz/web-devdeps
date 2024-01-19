@@ -1,4 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# Build the codebase to lib/ so that all configuration files are up-to-date.
+npm run build
+# Run the validation checks on the entire codebase prior to any branches/commits being pushed up.
 npm run validate
