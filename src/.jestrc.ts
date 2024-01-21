@@ -91,7 +91,7 @@ const jestConfig: Config = {
 	// > `ts-jest[ts-jest-transformer] (WARN) Got a unknown file type to compile (file: *.json).`
 	transformIgnorePatterns: ["/node_modules/", ".json"],
 	verbose: true,
-};
+} as const;
 
 /**
  * The purpose of the `dr-devdeps` package is to provide standardized configurations and dependencies for other repositories to extend.
@@ -125,6 +125,6 @@ export const jestConfigOverrides: Config = {
 			},
 		],
 	},
-};
+} as const;
 
 export default jestConfig;
