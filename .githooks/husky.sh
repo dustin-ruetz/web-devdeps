@@ -5,7 +5,7 @@
 # Repository    - https://github.com/typicode/husky
 # Version       - 8.0.3
 #
-# To upgrade the version of husky:
+# To upgrade the husky version:
 #
 # 1. Run the following commands:
 #
