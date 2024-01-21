@@ -23,6 +23,12 @@ export const eslintConfig: Linter.Config = {
 		// > using the more modern constructs TypeScript allows for.
 		"plugin:@typescript-eslint/recommended",
 	],
+	// By default ESLint ignores dotfiles, so use a negated ignore pattern to include them when linting.
+	// Note that negating them in src/.eslintignore results in ESLint reporting errors via the CLI
+	// but _not_ the IDE extension, so negate them here too so that they're linted in the editor.
+	// Excerpt from https://eslint.org/docs/latest/use/configure/ignore:
+	// > dot-files (except for `.eslintrc.*`) as well as dot-folders and their contents are ignored.
+	ignorePatterns: ["!*.*.js", "!*.*.ts"],
 	// Excerpt from https://eslint.org/docs/latest/use/configure/parser:
 	// > You can use custom parsers to convert JavaScript code into an abstract syntax tree for ESLint to evaluate.
 	// > @typescript-eslint/parser - A parser that converts TypeScript into an ESTree-compatible form so it can be used in ESLint.

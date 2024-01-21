@@ -12,4 +12,6 @@ test("it ignores the most important directories", async () => {
 	expect(eslintignore).toContain("lib/");
 	expect(eslintignore).toContain("node_modules/");
 	expect(eslintignore).toContain("www/");
+	expect(eslintignore).toContain("!*.*.js");
+	expect(eslintignore).toContain("!*.*.ts");
 });

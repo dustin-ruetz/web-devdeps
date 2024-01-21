@@ -27,6 +27,7 @@ test("the most important configuration options are correct", () => {
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
 	]);
+	expect(eslintConfig.ignorePatterns).toStrictEqual(["!*.*.js", "!*.*.ts"]);
 	expect(eslintConfig.parser).toMatch("@typescript-eslint/parser");
 	expect(eslintConfig.parserOptions.sourceType).toMatch("module");
 	expect(eslintConfig.plugins).toStrictEqual(["@typescript-eslint"]);
