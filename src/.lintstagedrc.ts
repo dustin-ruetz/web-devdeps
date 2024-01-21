@@ -11,8 +11,11 @@ const lintstagedConfig: Config = {
 	// Check code formatting for all file types that Prettier supports.
 	"*": "npm run format -- --check --ignore-unknown",
 	"*.{js,jsx,ts,tsx}": "npm run lint",
-	// This repo has unit tests for JSON files, so include them here.
-	"*.{js,jsx,json,ts,tsx}": "npm test -- --findRelatedTests",
+	// This repo has unit tests for JSON files, so include them in the glob pattern.
+	"*.{js,jsx,json,ts,tsx}":
+		// Note that the `--collectCoverageFrom=` flag produces a scoped test coverage report; this flag is intentionally
+		// placed at the end of the command so that it correctly receives the paths that are passed to it by lint-staged.
+		"npm run test:coverage -- --findRelatedTests --collectCoverageFrom=",
 	// TODO: Enable typechecking after relocating tsconfig.json files to avoid the following error:
 	// ERROR: Option 'project' cannot be mixed with source files on a command line. ts(5042)
 	// "*.{ts,tsx}": "npm run typecheck",
