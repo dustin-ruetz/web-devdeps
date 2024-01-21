@@ -1,8 +1,12 @@
 #!/usr/bin/env sh
-# https://typicode.github.io/husky/
-. "$(dirname -- "$0")/_/husky.sh"
+source "$(dirname -- "$0")/husky.sh"
 
+# Related file: package.json (specifically `packageJson.scripts`)
+#
+# commit-msg commands:
+# - `commitlint` - Verify that the commit message is written in the correct format.
+#
 # Excerpts from https://commitlint.js.org/#/reference-cli:
 # > --edit    - read last commit message from the specified file, or fallback to ./.git/COMMIT_EDITMSG
 # > --verbose - enable verbose output for reports without problems
-npx @commitlint/cli --config ./lib/.commitlintrc.cjs --edit --verbose
+npm run githooks:commit-msg

@@ -1,10 +1,12 @@
 #!/usr/bin/env sh
-# https://typicode.github.io/husky/
-. "$(dirname -- "$0")/_/husky.sh"
+source "$(dirname -- "$0")/husky.sh"
 
-# Build the codebase to lib/ so that all configuration files are up-to-date.
-npm run build
-# Run the validation checks scoped to just the staged files prior to any changes being committed.
+# Related file: package.json (specifically `packageJson.scripts`)
+#
+# pre-commit commands:
+# - `npm run build` - Build the codebase to lib/ so that all configuration files are up-to-date.
+# - `lint-staged`   - Run the validation checks scoped to just the staged files prior to any changes being committed.
+#
 # Excerpt from https://github.com/lint-staged/lint-staged#command-line-flags:
 # > --verbose - show task output even when tasks succeed; by default only failed output is shown
-npx lint-staged --config ./lib/.lintstagedrc.mjs --verbose
+npm run githooks:pre-commit
