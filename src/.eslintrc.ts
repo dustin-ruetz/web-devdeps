@@ -109,6 +109,7 @@ export const eslintConfig: Linter.Config = {
 		"no-useless-rename": "error",
 		"no-useless-return": "error",
 		"no-var": "error",
+		"object-shorthand": "error",
 		"one-var": ["error", "never"],
 		"prefer-const": "error",
 		"prefer-numeric-literals": "error",
