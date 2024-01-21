@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+source "$(dirname -- "$0")/husky.sh"
+
+# Related file: package.json (specifically `packageJson.scripts`)
+#
+# pre-push commands:
+# - `npm run build`    - Build the codebase to lib/ so that all configuration files are up-to-date.
+# - `npm run validate` - Run the validation checks on the entire codebase prior to any branches/commits being pushed up.
+npm run githooks:pre-push

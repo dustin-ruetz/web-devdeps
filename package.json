@@ -1,6 +1,6 @@
 {
 	"name": "dr-devdeps",
-	"version": "0.6.0",
+	"version": "0.7.0",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
@@ -14,10 +14,17 @@
 		"format": "prettier --config ./package.json --ignore-path ./lib/.prettierignore",
 		"format:check": "npm run format -- --check ./",
 		"format:write": "npm run format -- --write ./",
+		"// githooks": "Refer to the files in the ./.githooks/ folder for documentation on these commands.",
+		"githooks:commit-msg": "commitlint --config ./lib/.commitlintrc.cjs --edit --verbose",
+		"githooks:pre-commit": "npm run build && lint-staged --config ./lib/.lintstagedrc.mjs --verbose",
+		"githooks:pre-push": "npm run build && npm run validate",
+		"// init": "Initialize package by 1) configuring Git hooks, 2) building to the lib/ directory, and 3) running the validation checks.",
+		"init": "git config core.hooksPath ./.githooks/ && npm run build && npm run validate",
 		"// lint": "Scripts for linting the codebase.",
-		"lint": "eslint --config ./package.json --ignore-path ./lib/.eslintignore ./",
+		"lint": "eslint --config ./package.json --ignore-path ./lib/.eslintignore",
+		"lint:check": "npm run lint -- ./",
 		"lint:fix": "npm run lint -- --fix",
-		"// postinstall": "Build the package after dependencies are installed and available to use.",
+		"// postinstall": "After package and all dependencies are installed, build to the lib/ directory.",
 		"postinstall": "npm run build",
 		"// test": "Scripts for testing the codebase.",
 		"test": "jest --config ./lib/.jestrc.mjs",
@@ -28,7 +35,7 @@
 		"typecheck:cjs": "tsc --noEmit --project ./src/tsconfig.cjs.json",
 		"typecheck:esm": "tsc --noEmit --project ./src/tsconfig.esm.json",
 		"typecheck": "npm run typecheck:cjs & npm run typecheck:esm",
-		"validate": "npm run build && npm run format:check && npm run lint && npm run test:coverage && npm run typecheck"
+		"validate": "npm run format:check && npm run lint:check && npm run test:coverage && npm run typecheck"
 	},
 	"keywords": [],
 	"author": "Dustin Ruetz",
@@ -37,18 +44,25 @@
 	"type": "module",
 	"dependencies": {
 		"@babel/preset-env": "7.23.8",
+		"@commitlint/cli": "18.4.4",
+		"@commitlint/config-conventional": "18.4.4",
 		"@tsconfig/strictest": "2.0.2",
 		"@types/eslint": "8.56.2",
 		"@types/jest": "29.5.11",
+		"@types/lint-staged": "13.3.0",
 		"@types/prettier": "2.7.3",
 		"@typescript-eslint/eslint-plugin": "6.19.0",
 		"@typescript-eslint/parser": "6.19.0",
 		"eslint": "8.56.0",
 		"jest": "29.7.0",
+		"lint-staged": "15.2.0",
 		"prettier": "2.8.8",
 		"ts-jest": "29.1.1",
 		"tsx": "4.7.0",
 		"typescript": "5.3.3"
+	},
+	"devDependencies": {
+		"husky": "8.0.3"
 	},
 	"// config": "Configuration for ESLint and Prettier.",
 	"eslintConfig": {

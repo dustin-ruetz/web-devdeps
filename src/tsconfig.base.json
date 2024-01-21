@@ -1,8 +1,10 @@
 {
 	"extends": "@tsconfig/strictest/tsconfig.json",
 	"files": [
+		".commitlintrc.ts",
 		".eslintrc.ts",
 		".jestrc.ts",
+		".lintstagedrc.ts",
 		".prettierrc.ts",
 		"jestTransformerBabelJest.ts",
 		"jestTransformerBinaryFile.ts",
