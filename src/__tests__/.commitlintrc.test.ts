@@ -1,4 +1,4 @@
-import {commitlintConfig} from "../.commitlintrc";
+import commitlintConfig from "../.commitlintrc";
 
 test("it exports a configuration object", () => {
 	expect(typeof commitlintConfig).toMatch("object");

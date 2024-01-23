@@ -1,4 +1,3 @@
-import {appendCommitlintConfigFile} from "../utils/appendCommitlintConfigFile";
 import {appendESLintConfigFile} from "../utils/appendESLintConfigFile";
 import {appendPrettierConfigFile} from "../utils/appendPrettierConfigFile";
 import {copyCompiledFilesToLib} from "../utils/copyCompiledFilesToLib";
@@ -9,7 +8,6 @@ import {renameFilesInLibESM} from "../utils/renameFilesInLibESM";
 import {postbuild} from "../postbuild";
 
 // Mock out everything to ensure that the code inside these imported modules isn't actually called.
-jest.mock("../utils/appendCommitlintConfigFile");
 jest.mock("../utils/appendESLintConfigFile");
 jest.mock("../utils/appendPrettierConfigFile");
 jest.mock("../utils/copyCompiledFilesToLib");
@@ -25,7 +23,6 @@ test("it runs all of the necessary post-build file system operations", async () 
 	// in `postbuild`, and verify that each one is called only once.
 	expect(renameFilesInLibCJS).toHaveBeenCalledTimes(1);
 	expect(renameFilesInLibESM).toHaveBeenCalledTimes(1);
-	expect(appendCommitlintConfigFile).toHaveBeenCalledTimes(1);
 	expect(appendESLintConfigFile).toHaveBeenCalledTimes(1);
 	expect(appendPrettierConfigFile).toHaveBeenCalledTimes(1);
 	expect(copyCompiledFilesToLib).toHaveBeenCalledTimes(1);
