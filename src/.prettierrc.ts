@@ -1,7 +1,7 @@
 import type {Config} from "prettier";
 
 /** https://prettier.io/docs/en/options.html */
-export const prettierConfig: Config = {
+const prettierConfig: Config = {
 	arrowParens: "always",
 	bracketSameLine: false,
 	bracketSpacing: false,
@@ -50,3 +50,5 @@ export const prettierConfig: Config = {
 	// Refer to .editorconfig file for the rationale of choosing to indent lines with tabs instead of spaces.
 	useTabs: true,
 } as const;
+
+export default prettierConfig;

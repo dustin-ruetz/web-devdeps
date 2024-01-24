@@ -1,4 +1,4 @@
-import {prettierConfig} from "../.prettierrc";
+import prettierConfig from "../.prettierrc";
 
 test("it exports a configuration object", () => {
 	expect(typeof prettierConfig).toMatch("object");
