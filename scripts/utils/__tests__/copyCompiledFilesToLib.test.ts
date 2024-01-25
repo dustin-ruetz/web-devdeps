@@ -27,22 +27,22 @@ test("it copies the compiled files from lib/cjs/ and lib/esm/ to lib/", async ()
 	// Verify that a sampling of `copyFile` calls received the correct arguments.
 	expect(copyFile).toHaveBeenNthCalledWith(
 		1,
-		"lib/cjs/.commitlintrc.cjs",
-		"lib/.commitlintrc.cjs",
+		"lib/cjs/commitlint.config.cjs",
+		"lib/commitlint.config.cjs",
 	);
 	expect(copyFile).toHaveBeenNthCalledWith(
 		8,
-		"lib/cjs/jestTransformerSVGFile.cjs",
-		"lib/jestTransformerSVGFile.cjs",
+		"lib/cjs/prettier.config.cjs",
+		"lib/prettier.config.cjs",
 	);
 	expect(copyFile).toHaveBeenNthCalledWith(
 		9,
-		"lib/esm/.commitlintrc.mjs",
-		"lib/.commitlintrc.mjs",
+		"lib/esm/commitlint.config.mjs",
+		"lib/commitlint.config.mjs",
 	);
 	expect(copyFile).toHaveBeenNthCalledWith(
 		16,
-		"lib/esm/jestTransformerSVGFile.mjs",
-		"lib/jestTransformerSVGFile.mjs",
+		"lib/esm/prettier.config.mjs",
+		"lib/prettier.config.mjs",
 	);
 });

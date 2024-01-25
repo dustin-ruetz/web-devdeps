@@ -9,7 +9,7 @@ test("it appends the ESLint config file to make it work as a CommonJS export", a
 	// Verify that `appendFile` was called once and with the correct arguments.
 	expect(appendFile).toHaveBeenCalledTimes(1);
 	expect(appendFile).toHaveBeenCalledWith(
-		"lib/cjs/.eslintrc.cjs",
+		"lib/cjs/eslint.config.cjs",
 		"module.exports = exports.eslintConfig;",
 	);
 });
