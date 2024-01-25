@@ -19,12 +19,12 @@ test("it renames the files in lib/cjs/ by changing their extensions from .js to 
 	// Verify that a sampling of `rename` calls received the correct arguments.
 	expect(rename).toHaveBeenNthCalledWith(
 		1,
-		"lib/cjs/.commitlintrc.js",
-		"lib/cjs/.commitlintrc.cjs",
+		"lib/cjs/commitlint.config.js",
+		"lib/cjs/commitlint.config.cjs",
 	);
 	expect(rename).toHaveBeenNthCalledWith(
 		8,
-		"lib/cjs/jestTransformerSVGFile.js",
-		"lib/cjs/jestTransformerSVGFile.cjs",
+		"lib/cjs/prettier.config.js",
+		"lib/cjs/prettier.config.cjs",
 	);
 });

@@ -1,13 +1,13 @@
 /** Mock filenames compiled from src/ to lib/cjs/ and lib/esm/ */
 export const compiledFiles = [
-	".commitlintrc.js",
-	".eslintrc.js",
-	".jestrc.js",
-	".lintstagedrc.js",
-	".prettierrc.js",
+	"commitlint.config.js",
+	"eslint.config.js",
+	"jest.config.js",
 	"jestTransformerBabelJest.js",
 	"jestTransformerBinaryFile.js",
 	"jestTransformerSVGFile.js",
+	"lint-staged.config.js",
+	"prettier.config.js",
 ] as const;
 
 /** Mock filenames after the `renameFilesInLibCJS` operation completes. */

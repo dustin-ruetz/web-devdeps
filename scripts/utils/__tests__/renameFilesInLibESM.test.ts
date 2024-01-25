@@ -19,12 +19,12 @@ test("it renames the files in lib/esm/ by changing their extensions from .js to 
 	// Verify that a sampling of `rename` calls received the correct arguments.
 	expect(rename).toHaveBeenNthCalledWith(
 		1,
-		"lib/esm/.commitlintrc.js",
-		"lib/esm/.commitlintrc.mjs",
+		"lib/esm/commitlint.config.js",
+		"lib/esm/commitlint.config.mjs",
 	);
 	expect(rename).toHaveBeenNthCalledWith(
 		8,
-		"lib/esm/jestTransformerSVGFile.js",
-		"lib/esm/jestTransformerSVGFile.mjs",
+		"lib/esm/prettier.config.js",
+		"lib/esm/prettier.config.mjs",
 	);
 });
