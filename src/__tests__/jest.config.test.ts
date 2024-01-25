@@ -1,4 +1,4 @@
-import jestConfig, {jestConfigOverrides} from "../.jestrc";
+import jestConfig, {jestConfigOverrides} from "../jest.config";
 
 test("it exports configuration objects", () => {
 	expect(typeof jestConfig).toMatch("object");

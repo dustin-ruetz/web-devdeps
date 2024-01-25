@@ -101,7 +101,7 @@ const jestConfig: Config = {
  * // Created using the Shinotatwu-DS.file-tree-generator extension for Visual Studio Code.
  * 📂 extending-repo
  * ┣ 📂 config
- * ┃ ┗ 📄 .jestrc.js
+ * ┃ ┗ 📄 jest.config.js
  * ┣ 📂 node_modules
  * ┃ ┗ 📂 dr-devdeps
  * ┃ ┃ ┗ 📂 lib
