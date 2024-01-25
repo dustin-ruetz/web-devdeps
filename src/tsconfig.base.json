@@ -1,15 +1,7 @@
 {
 	"extends": "@tsconfig/strictest/tsconfig.json",
-	"files": [
-		"commitlint.config.ts",
-		"eslint.config.ts",
-		"jest.config.ts",
-		"jestTransformerBabelJest.ts",
-		"jestTransformerBinaryFile.ts",
-		"jestTransformerSVGFile.ts",
-		"lint-staged.config.ts",
-		"prettier.config.ts"
-	],
+	"include": ["../src/"],
+	"exclude": ["__tests__/"],
 	"compilerOptions": {
 		"jsx": "react",
 		"moduleResolution": "node",
