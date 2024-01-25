@@ -5,10 +5,10 @@
 		".eslintrc.ts",
 		".jestrc.ts",
 		".lintstagedrc.ts",
-		".prettierrc.ts",
 		"jestTransformerBabelJest.ts",
 		"jestTransformerBinaryFile.ts",
-		"jestTransformerSVGFile.ts"
+		"jestTransformerSVGFile.ts",
+		"prettier.config.ts"
 	],
 	"compilerOptions": {
 		"jsx": "react",
