@@ -1,5 +1,5 @@
 # https://eslint.org/docs/latest/use/configure/ignore
-# Related file: src/.eslintrc.ts (specifically `eslintConfig.ignorePatterns`)
+# Related file: src/eslint.config.ts (specifically `eslintConfig.ignorePatterns`)
 
 build/
 coverage/

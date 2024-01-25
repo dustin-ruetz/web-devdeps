@@ -65,7 +65,7 @@
 	},
 	"// config": "Configuration for ESLint and Prettier.",
 	"eslintConfig": {
-		"extends": "./lib/.eslintrc.cjs"
+		"extends": "./lib/eslint.config.cjs"
 	},
 	"prettier": "./lib/prettier.config.mjs"
 }

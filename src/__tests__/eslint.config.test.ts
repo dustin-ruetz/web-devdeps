@@ -1,4 +1,4 @@
-import {eslintConfig} from "../.eslintrc";
+import {eslintConfig} from "../eslint.config";
 
 test("it exports a configuration object", () => {
 	expect(typeof eslintConfig).toMatch("object");

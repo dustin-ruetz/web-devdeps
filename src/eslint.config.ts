@@ -25,7 +25,7 @@ export const eslintConfig: Linter.Config = {
 	],
 	// By default ESLint ignores dotfiles, so use a negated ignore pattern to include them when linting.
 	// Note that negating them in src/.eslintignore results in ESLint reporting errors via the CLI
-	// but _not_ the IDE extension, so negate them here too so that they're linted in the editor.
+	// but _not_ the IDE extension; negate them here too to ensure they're linted in the editor.
 	// Excerpt from https://eslint.org/docs/latest/use/configure/ignore:
 	// > dot-files (except for `.eslintrc.*`) as well as dot-folders and their contents are ignored.
 	ignorePatterns: ["!*.*.js", "!*.*.ts"],

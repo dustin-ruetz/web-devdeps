@@ -1,9 +1,9 @@
 {
 	"extends": "@tsconfig/strictest/tsconfig.json",
 	"files": [
-		".eslintrc.ts",
 		".jestrc.ts",
 		"commitlint.config.ts",
+		"eslint.config.ts",
 		"jestTransformerBabelJest.ts",
 		"jestTransformerBinaryFile.ts",
 		"jestTransformerSVGFile.ts",
