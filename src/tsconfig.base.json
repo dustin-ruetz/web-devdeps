@@ -4,10 +4,10 @@
 		".commitlintrc.ts",
 		".eslintrc.ts",
 		".jestrc.ts",
-		".lintstagedrc.ts",
 		"jestTransformerBabelJest.ts",
 		"jestTransformerBinaryFile.ts",
 		"jestTransformerSVGFile.ts",
+		"lint-staged.config.ts",
 		"prettier.config.ts"
 	],
 	"compilerOptions": {
