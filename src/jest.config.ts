@@ -16,7 +16,7 @@ const transformers = {
 	tsJest: "ts-jest",
 } as const;
 
-/** Regular expressions intended to match file extensions with the appropriate transformer. */
+/** Regular expressions to match file extensions to the appropriate transformer. */
 const transformFileExtensions = {
 	binary: binaryFileExtensions.getTransformRegExp(),
 	javascript: ".(js|jsx)",
@@ -61,7 +61,7 @@ const jestConfig: Config = {
 	// > We recommend placing the extensions most commonly used in your project on the left, so if you are
 	// > using TypeScript, you may want to consider moving "ts" and/or "tsx" to the beginning of the array.
 	moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
-	// Specify the `rootDir` so that Jest finds all of the test files located in various directories
+	// Specify the `rootDir` so that Jest finds all of the test files located in various directories.
 	// (i.e. <rootDir>/__tests__/, <rootDir>/scripts/ and <rootDir>/src/).
 	// Excerpt from https://jestjs.io/docs/configuration#rootdir-string:
 	// > The root directory that Jest should scan for tests and modules within.
