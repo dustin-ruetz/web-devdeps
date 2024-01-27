@@ -1,5 +1,5 @@
 import {appendFile, copyFile, readdir, rename} from "node:fs/promises";
-import {postbuild} from "../postbuild";
+import {postbuild} from "../postbuild.js";
 
 jest.mock("node:fs/promises", () => ({
 	appendFile: jest.fn(),
