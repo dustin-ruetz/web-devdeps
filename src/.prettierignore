@@ -6,7 +6,15 @@ dist/
 lib/
 node_modules/
 www/
-# Ignore the .cjs and .mjs file extensions to prevent warnings and errors when running the `format` scripts.
-# TODO: Figure out why these files aren't being ignored even though they're all children of the lib/ directory.
-*.cjs
-*.mjs
+# Manually ignore every compiled file in lib/ and tsconfig.json to prevent errors and warnings when running the `format` scripts.
+# Related issue - https://github.com/prettier/prettier/issues/4081
+commitlint.config.js
+eslint.config.cjs
+eslint.config.js
+jest.config.js
+jestTransformerBabelJest.js
+jestTransformerBinaryFile.js
+jestTransformerSVGFile.js
+lint-staged.config.js
+prettier.config.js
+tsconfig.json

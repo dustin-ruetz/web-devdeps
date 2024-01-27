@@ -1,13 +1,15 @@
 {
 	"extends": "@tsconfig/strictest/tsconfig.json",
-	"include": ["../src/"],
-	"exclude": ["__tests__/"],
+	"include": ["./src/"],
 	"compilerOptions": {
 		"jsx": "react",
+		"module": "esnext",
 		"moduleResolution": "node",
 		"noEmitOnError": true,
+		"outDir": "./lib/",
 		"removeComments": true,
 		"resolveJsonModule": true,
-		"target": "es2022"
+		"target": "es2022",
+		"verbatimModuleSyntax": true
 	}
 }
