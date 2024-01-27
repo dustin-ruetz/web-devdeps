@@ -29,14 +29,14 @@ export const getTransformConfig = (overrides?: {
 	/** The base path to the files/node_modules used as Jest transformers. */
 	const basePath = overrides?.isDevDepsJestConfig
 		? // If running tests on this `dr-devdeps` repo, set the path relative to the Jest <rootDir>.
-			"<rootDir>/lib"
+			"<rootDir>"
 		: // If running tests on a `consuming-repo`, set the path relative to the node_modules/ directory.
-			"dr-devdeps/lib";
+			"dr-devdeps";
 
 	const transformConfig: Config["transform"] = {
-		[binaryFileExtensions.getTransformRegExp()]: `${basePath}/jestTransformerBinaryFile.js`,
-		".(js|jsx)": `${basePath}/jestTransformerBabelJest.js`,
-		".svg": `${basePath}/jestTransformerSVGFile.js`,
+		[binaryFileExtensions.getTransformRegExp()]: `${basePath}/lib/jestTransformerBinaryFile.js`,
+		".(js|jsx)": `${basePath}/lib/jestTransformerBabelJest.js`,
+		".svg": `${basePath}/lib/jestTransformerSVGFile.js`,
 		/**
 		 * Note that including the ts-jest `isolatedModules` config option here shouldn't be necessary because it's deprecated
 		 * in TypeScript v5, but setting it to `true` fixes the below error when attempting to run the Jest test suite.
@@ -44,7 +44,13 @@ export const getTransformConfig = (overrides?: {
 		 *
 		 * https://github.com/kulshekhar/ts-jest/issues/4081#issuecomment-1503684089
 		 */
-		".(ts|tsx)": ["ts-jest", {isolatedModules: true}],
+		".(ts|tsx)": [
+			"ts-jest",
+			{
+				// Set the `tsconfig` config option due to the need for a test-specific TypeScript configuration file.
+				tsconfig: `${basePath}/tsconfig.test.json`,
+			},
+		],
 	} as const;
 
 	return transformConfig;
