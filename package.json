@@ -5,11 +5,11 @@
 	"main": "index.js",
 	"scripts": {
 		"// build": "Scripts for building/compiling the package.",
-		"prebuild": "tsx ./scripts/prebuild.ts",
+		"prebuild": "node ./scripts/prebuild.js",
 		"build:cjs": "tsc --project ./tsconfig.cjs.json",
 		"build:esm": "tsc --project ./tsconfig.esm.json",
 		"build": "npm run build:cjs & npm run build:esm",
-		"postbuild": "tsx ./scripts/postbuild.ts",
+		"postbuild": "node ./scripts/postbuild.js",
 		"// format": "Scripts for auto-formatting the codebase.",
 		"format": "prettier --config ./package.json --ignore-path ./lib/.prettierignore",
 		"format:check": "npm run format -- --check ./",
@@ -54,7 +54,6 @@
 		"lint-staged": "15.2.0",
 		"prettier": "3.2.4",
 		"ts-jest": "29.1.2",
-		"tsx": "4.7.0",
 		"typescript": "5.3.3"
 	},
 	"devDependencies": {

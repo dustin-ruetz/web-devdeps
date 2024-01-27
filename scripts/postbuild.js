@@ -11,7 +11,7 @@ export const postbuild = async () => {
 		js() {
 			return `${this.base}.js`;
 		},
-	} as const;
+	};
 	await rename(eslintConfigPath.js(), eslintConfigPath.cjs());
 	// Append lib/eslint.config.cjs with a `module.exports` line in order to:
 	// 1. Simplify the codebase by keeping everything in src/ written in ESModule syntax;
@@ -30,7 +30,7 @@ export const postbuild = async () => {
 	);
 };
 
-// Refer to scripts/prebuild.ts file for why these lines are being excluded from the test coverage report.
+// Refer to scripts/prebuild.js file for why these lines are being excluded from the test coverage report.
 /* istanbul ignore next */
 if (process.env.NODE_ENV !== "test") {
 	postbuild();
