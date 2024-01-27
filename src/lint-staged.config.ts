@@ -16,9 +16,7 @@ const lintstagedConfig: Config = {
 		// Note that the `--collectCoverageFrom=` flag produces a scoped test coverage report; this flag is intentionally
 		// placed at the end of the command so that it correctly receives the paths that are passed to it by lint-staged.
 		"npm run test:coverage -- --findRelatedTests --collectCoverageFrom=",
-	// TODO: Enable typechecking after relocating tsconfig.json files to avoid the following error:
-	// ERROR: Option 'project' cannot be mixed with source files on a command line. ts(5042)
-	// "*.{ts,tsx}": "npm run typecheck",
+	"*.{ts,tsx}": "npm run typecheck",
 } as const;
 
 export default lintstagedConfig;

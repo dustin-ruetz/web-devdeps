@@ -10,9 +10,9 @@ const binaryFileExtensions = {
 
 /** Paths to the files/node_modules used as transformers. */
 const transformers = {
-	babelJest: "jestTransformerBabelJest.mjs",
-	binaryFile: "jestTransformerBinaryFile.mjs",
-	svgFile: "jestTransformerSVGFile.mjs",
+	babelJest: "jestTransformerBabelJest.js",
+	binaryFile: "jestTransformerBinaryFile.js",
+	svgFile: "jestTransformerSVGFile.js",
 	tsJest: "ts-jest",
 } as const;
 
@@ -35,14 +35,15 @@ const isolatedModules = true;
 
 /** https://jestjs.io/docs/configuration */
 const jestConfig: Config = {
-	// Specify `collectCoverageFrom` to ensure that Jest collects test coverage for all TypeScript files.
+	// Specify `collectCoverageFrom` to ensure that Jest collects test coverage for all JavaScript and TypeScript files.
 	// Excerpt from https://jestjs.io/docs/configuration#collectcoveragefrom-array:
 	// > An array of glob patterns indicating a set of files for which coverage information should be collected.
 	// > If a file matches the specified glob pattern, coverage information will be collected for it even if
 	// > no tests exist for this file and it's never required in the test suite.
-	collectCoverageFrom: ["**/*.ts"],
+	collectCoverageFrom: ["**/*.{js,jsx,ts,tsx}"],
 	// https://stackoverflow.com/questions/69567201/coveragepathignorepatterns-ignore-files-with-specific-ending
 	coveragePathIgnorePatterns: [
+		"/lib/",
 		"/node_modules/",
 		...binaryFileExtensions.list,
 		".svg",
@@ -80,11 +81,7 @@ const jestConfig: Config = {
 		[transformFileExtensions.svg]: `<rootDir>/lib/${transformers.svgFile}`,
 		[transformFileExtensions.typescript]: [
 			transformers.tsJest,
-			{
-				isolatedModules,
-				// Set the `tsconfig` config option due to the custom location of the TypeScript configuration file.
-				tsconfig: "<rootDir>/lib/tsconfig.esm.json",
-			},
+			{isolatedModules},
 		],
 	},
 	// Don't transform anything in node_modules/, and don't transform .json files to prevent the following ts-jest warning:
@@ -95,7 +92,7 @@ const jestConfig: Config = {
 
 /**
  * The purpose of the `dr-devdeps` package is to provide standardized configurations and dependencies for other repositories to extend.
- * `jestConfigOverrides` assumes that the `extending-repo` uses the following folder/file structure and updates the paths accordingly:
+ * `jestConfigOverrides` depends on the `extending-repo` using the following folder/file structure and updates the paths accordingly:
  *
  * ```
  * // Created using the Shinotatwu-DS.file-tree-generator extension for Visual Studio Code.
@@ -118,11 +115,7 @@ export const jestConfigOverrides: Config = {
 		[transformFileExtensions.svg]: `dr-devdeps/lib/${transformers.svgFile}`,
 		[transformFileExtensions.typescript]: [
 			transformers.tsJest,
-			{
-				isolatedModules,
-				// Reference tsconfig.json in this way because it's located in the root of the extending repository.
-				tsconfig: "tsconfig.json",
-			},
+			{isolatedModules},
 		],
 	},
 } as const;

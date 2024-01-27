@@ -1,22 +1,22 @@
 {
 	"name": "dr-devdeps",
-	"version": "0.8.0",
+	"version": "0.9.0",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
 		"// build": "Scripts for building/compiling the package.",
-		"prebuild": "tsx --tsconfig ./src/tsconfig.esm.json ./scripts/prebuild.ts",
-		"build:cjs": "tsc --project ./src/tsconfig.cjs.json",
-		"build:esm": "tsc --project ./src/tsconfig.esm.json",
+		"prebuild": "node ./scripts/prebuild.js",
+		"build:cjs": "tsc --project ./tsconfig.cjs.json",
+		"build:esm": "tsc --project ./tsconfig.esm.json",
 		"build": "npm run build:cjs & npm run build:esm",
-		"postbuild": "tsx --tsconfig ./src/tsconfig.esm.json ./scripts/postbuild.ts",
+		"postbuild": "node ./scripts/postbuild.js",
 		"// format": "Scripts for auto-formatting the codebase.",
 		"format": "prettier --config ./package.json --ignore-path ./lib/.prettierignore",
 		"format:check": "npm run format -- --check ./",
 		"format:write": "npm run format -- --write ./",
 		"// githooks": "Refer to the files in the ./.githooks/ folder for documentation on these commands.",
-		"githooks:commit-msg": "commitlint --config ./lib/commitlint.config.mjs --edit --verbose",
-		"githooks:pre-commit": "npm run build && lint-staged --config ./lib/lint-staged.config.mjs --verbose",
+		"githooks:commit-msg": "commitlint --config ./lib/commitlint.config.js --edit --verbose",
+		"githooks:pre-commit": "npm run build && lint-staged --config ./lib/lint-staged.config.js --verbose",
 		"githooks:pre-push": "npm run build && npm run validate",
 		"// init": "Initialize package by 1) configuring Git hooks, 2) building to the lib/ directory, and 3) running the validation checks.",
 		"init": "git config core.hooksPath ./.githooks/ && npm run build && npm run validate",
@@ -27,14 +27,11 @@
 		"// postinstall": "After package and all dependencies are installed, build to the lib/ directory.",
 		"postinstall": "npm run build",
 		"// test": "Scripts for testing the codebase.",
-		"test": "jest --config ./lib/jest.config.mjs",
+		"test": "jest --config ./lib/jest.config.js",
 		"test:clearcache": "jest --clearCache",
 		"test:coverage": "npm run test -- --coverage",
 		"test:watch": "npm run test -- --watch",
-		"// typecheck": "Scripts for typechecking the codebase.",
-		"typecheck:cjs": "tsc --noEmit --project ./src/tsconfig.cjs.json",
-		"typecheck:esm": "tsc --noEmit --project ./src/tsconfig.esm.json",
-		"typecheck": "npm run typecheck:cjs & npm run typecheck:esm",
+		"typecheck": "tsc --noEmit",
 		"validate": "npm run format:check && npm run lint:check && npm run test:coverage && npm run typecheck"
 	},
 	"keywords": [],
@@ -57,7 +54,6 @@
 		"lint-staged": "15.2.0",
 		"prettier": "3.2.4",
 		"ts-jest": "29.1.2",
-		"tsx": "4.7.0",
 		"typescript": "5.3.3"
 	},
 	"devDependencies": {
@@ -67,5 +63,5 @@
 	"eslintConfig": {
 		"extends": "./lib/eslint.config.cjs"
 	},
-	"prettier": "./lib/prettier.config.mjs"
+	"prettier": "./lib/prettier.config.js"
 }
