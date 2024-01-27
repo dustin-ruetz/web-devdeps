@@ -6,6 +6,7 @@
 	// > If there's no leading `*` it will be automatically configured as filename and not as file extension.
 	"material-icon-theme.files.associations": {
 		"src/eslint.config.ts": "eslint",
+		"src/jest.config.devdeps.ts": "jest",
 		"src/prettier.config.ts": "prettier"
 	}
 }

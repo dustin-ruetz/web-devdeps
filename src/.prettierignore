@@ -11,6 +11,7 @@ www/
 commitlint.config.js
 eslint.config.cjs
 eslint.config.js
+jest.config.devdeps.js
 jest.config.js
 jestTransformerBabelJest.js
 jestTransformerBinaryFile.js
