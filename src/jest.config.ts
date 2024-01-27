@@ -43,6 +43,7 @@ const jestConfig: Config = {
 	collectCoverageFrom: ["**/*.ts"],
 	// https://stackoverflow.com/questions/69567201/coveragepathignorepatterns-ignore-files-with-specific-ending
 	coveragePathIgnorePatterns: [
+		"/lib/",
 		"/node_modules/",
 		...binaryFileExtensions.list,
 		".svg",
