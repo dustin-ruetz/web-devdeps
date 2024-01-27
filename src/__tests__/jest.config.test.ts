@@ -1,4 +1,4 @@
-import jestConfig, {getTransformConfig} from "../jest.config";
+import jestConfig, {getTransformConfig} from "../jest.config.js";
 
 test("it exports a configuration object and a `getTransformConfig` function", () => {
 	expect(typeof jestConfig).toMatch("object");
@@ -17,7 +17,12 @@ test("the `transform` configuration is correct", () => {
 		"(.jpg|.png|.woff2)": "dr-devdeps/lib/jestTransformerBinaryFile.js",
 		".(js|jsx)": "dr-devdeps/lib/jestTransformerBabelJest.js",
 		".svg": "dr-devdeps/lib/jestTransformerSVGFile.js",
-		".(ts|tsx)": ["ts-jest", {isolatedModules: true}],
+		".(ts|tsx)": [
+			"ts-jest",
+			{
+				tsconfig: "dr-devdeps/tsconfig.test.json",
+			},
+		],
 	});
 	// Verify the return value of the `getTransformConfig()` function.
 	expect(jestConfig.transform).toStrictEqual(getTransformConfig());

@@ -85,6 +85,16 @@ const jestConfig: Config = {
 	// > We recommend placing the extensions most commonly used in your project on the left, so if you are
 	// > using TypeScript, you may want to consider moving "ts" and/or "tsx" to the beginning of the array.
 	moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
+	// TypeScript knows how to map imported files with the ".js" extension to their ".ts" counterparts. Jest/ts-jest
+	// doesn't handle this automatically, so specify `moduleNameMapper` to handle `.js` and `.jsx` file extensions.
+	// Specify the `moduleNameMapper` to handle the fact that tests import ".js" file extensions.
+	// Excerpt from https://jestjs.io/docs/configuration#modulenamemapper-objectstring-string--arraystring:
+	// > A map from regular expressions to module names or to arrays of module names that
+	// > allow to stub out resources, like images or styles with a single module.
+	moduleNameMapper: {
+		// https://github.com/kulshekhar/ts-jest/issues/1057#issuecomment-1482644543:
+		"^(\\.\\.?\\/.+)\\.jsx?$": "$1",
+	},
 	// Specify the `rootDir` so that Jest finds all of the test files located in various directories.
 	// (i.e. <rootDir>/__tests__/, <rootDir>/scripts/ and <rootDir>/src/).
 	// Excerpt from https://jestjs.io/docs/configuration#rootdir-string:
