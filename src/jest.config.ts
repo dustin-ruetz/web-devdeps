@@ -35,12 +35,12 @@ const isolatedModules = true;
 
 /** https://jestjs.io/docs/configuration */
 const jestConfig: Config = {
-	// Specify `collectCoverageFrom` to ensure that Jest collects test coverage for all TypeScript files.
+	// Specify `collectCoverageFrom` to ensure that Jest collects test coverage for all JavaScript and TypeScript files.
 	// Excerpt from https://jestjs.io/docs/configuration#collectcoveragefrom-array:
 	// > An array of glob patterns indicating a set of files for which coverage information should be collected.
 	// > If a file matches the specified glob pattern, coverage information will be collected for it even if
 	// > no tests exist for this file and it's never required in the test suite.
-	collectCoverageFrom: ["**/*.ts"],
+	collectCoverageFrom: ["**/*.{js,jsx,ts,tsx}"],
 	// https://stackoverflow.com/questions/69567201/coveragepathignorepatterns-ignore-files-with-specific-ending
 	coveragePathIgnorePatterns: [
 		"/lib/",
