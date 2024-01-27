@@ -1,4 +1,4 @@
-import jestTransformerSVGFile from "../jestTransformerSVGFile";
+import jestTransformerSVGFile from "../jestTransformerSVGFile.js";
 
 test('it transforms SVG files into `module.exports = "<svg>{...}</svg>"`', () => {
 	const svgSourceText = `

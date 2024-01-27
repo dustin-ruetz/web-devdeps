@@ -1,10 +1,6 @@
 {
 	"extends": "./tsconfig.json",
-	"include": [],
-	"exclude": [],
-	"files": ["./src/eslint.config.ts"],
 	"compilerOptions": {
-		"module": "CommonJS",
 		"moduleResolution": "Node10",
 		"verbatimModuleSyntax": false
 	}

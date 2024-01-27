@@ -3,14 +3,14 @@
 	"include": ["./src/"],
 	"compilerOptions": {
 		"jsx": "react",
-		"module": "esnext",
-		"moduleResolution": "node",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
 		"noEmitOnError": true,
 		"noPropertyAccessFromIndexSignature": false,
 		"outDir": "./lib/",
 		"removeComments": true,
 		"resolveJsonModule": true,
-		"target": "es2022",
+		"target": "ES2022",
 		"verbatimModuleSyntax": true
 	}
 }

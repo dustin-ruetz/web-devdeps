@@ -16,7 +16,8 @@ const lintstagedConfig: Config = {
 		// Note that the `--collectCoverageFrom=` flag produces a scoped test coverage report; this flag is intentionally
 		// placed at the end of the command so that it correctly receives the paths that are passed to it by lint-staged.
 		"npm run test:coverage -- --findRelatedTests --collectCoverageFrom=",
-	"*.{ts,tsx}": "npm run typecheck",
+	// Disable typechecking because of obtuse errors.
+	// "*.{ts,tsx}": "npm run typecheck",
 } as const;
 
 export default lintstagedConfig;

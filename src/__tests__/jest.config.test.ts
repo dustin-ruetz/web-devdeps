@@ -1,8 +1,8 @@
-import jestConfig, {jestConfigOverrides} from "../jest.config";
+import jestConfig, {getTransformConfig} from "../jest.config.js";
 
-test("it exports configuration objects", () => {
+test("it exports a configuration object and a `getTransformConfig` function", () => {
 	expect(typeof jestConfig).toMatch("object");
-	expect(typeof jestConfigOverrides).toMatch("object");
+	expect(typeof getTransformConfig).toMatch("function");
 });
 
 test("the most important configuration options are correct", () => {
@@ -11,6 +11,19 @@ test("the most important configuration options are correct", () => {
 	expect(jestConfig.verbose).toBe(true);
 });
 
-test("the `transform` config option differs between `jestConfig` and `jestConfigOverrides` ", () => {
-	expect(jestConfig.transform).not.toStrictEqual(jestConfigOverrides.transform);
+test("the `transform` configuration is correct", () => {
+	// Verify the values of the config object.
+	expect(jestConfig.transform).toStrictEqual({
+		"(.jpg|.png|.woff2)": "dr-devdeps/lib/jestTransformerBinaryFile.js",
+		".(js|jsx)": "dr-devdeps/lib/jestTransformerBabelJest.js",
+		".svg": "dr-devdeps/lib/jestTransformerSVGFile.js",
+		".(ts|tsx)": [
+			"ts-jest",
+			{
+				tsconfig: "dr-devdeps/tsconfig.test.json",
+			},
+		],
+	});
+	// Verify the return value of the `getTransformConfig()` function.
+	expect(jestConfig.transform).toStrictEqual(getTransformConfig());
 });
