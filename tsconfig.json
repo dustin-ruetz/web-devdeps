@@ -6,6 +6,7 @@
 		"module": "esnext",
 		"moduleResolution": "node",
 		"noEmitOnError": true,
+		"noPropertyAccessFromIndexSignature": false,
 		"outDir": "./lib/",
 		"removeComments": true,
 		"resolveJsonModule": true,
