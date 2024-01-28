@@ -1,4 +1,11 @@
 {
+	// Specify that the Git hook files are shell scripts because VS Code misidentifies some them as Markdown due to code comments.
+	"files.associations": {
+		// ~/.githooks/
+		"commit-msg": "shellscript",
+		"pre-commit": "shellscript",
+		"pre-push": "shellscript"
+	},
 	// Configure the icons for the following files that aren't assigned a custom icon automatically.
 	// Excerpt from https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme:
 	// > You can customize the icon associations directly in the user settings.
