@@ -1,6 +1,3 @@
-#!/usr/bin/env sh
-source "$(dirname -- "$0")/husky.sh"
-
 # Related file: package.json (specifically `packageJson.scripts`)
 #
 # commit-msg commands:

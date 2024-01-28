@@ -1,6 +1,6 @@
 {
 	"name": "dr-devdeps",
-	"version": "0.10.0",
+	"version": "0.11.0",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
@@ -18,7 +18,7 @@
 		"githooks:commit-msg": "commitlint --config ./lib/commitlint.config.js --edit --verbose",
 		"githooks:pre-commit": "npm run build && lint-staged --config ./lib/lint-staged.config.js --verbose",
 		"githooks:pre-push": "npm run build && npm run validate",
-		"// init": "Initialize package by 1) configuring Git hooks, 2) installing dependencies, 3) building to lib/, and 4) running validation checks.",
+		"// init": "Initialize package by: 1) configuring Git hooks, 2) installing dependencies (which then runs 'postinstall' to build lib/), and 3) running validation checks.",
 		"init": "git config core.hooksPath ./.githooks/ && npm install && npm run validate",
 		"// lint": "Scripts for linting the codebase.",
 		"lint": "eslint --config ./package.json --ignore-path ./lib/.eslintignore",
@@ -57,7 +57,7 @@
 		"typescript": "5.3.3"
 	},
 	"devDependencies": {
-		"husky": "8.0.3"
+		"husky": "9.0.6"
 	},
 	"// config": "Configuration for ESLint and Prettier.",
 	"eslintConfig": {
