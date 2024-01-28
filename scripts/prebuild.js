@@ -23,5 +23,5 @@ export const prebuild = async () => {
 // >   (functions, if statements, classes, you name it).
 /* istanbul ignore next */
 if (process.env.NODE_ENV !== "test") {
-	prebuild();
+	void prebuild();
 }

@@ -33,5 +33,5 @@ export const postbuild = async () => {
 // Refer to scripts/prebuild.js file for why these lines are being excluded from the test coverage report.
 /* istanbul ignore next */
 if (process.env.NODE_ENV !== "test") {
-	postbuild();
+	void postbuild();
 }
