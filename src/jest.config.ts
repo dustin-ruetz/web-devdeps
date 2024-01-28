@@ -30,8 +30,8 @@ export const getTransformConfig = (overrides?: {
 	const basePath = overrides?.isDevDepsJestConfig
 		? // If running tests on this `dr-devdeps` repo, set the path relative to the Jest <rootDir>.
 			"<rootDir>"
-		: // If running tests on a `consuming-repo`, set the path relative to the node_modules/ directory.
-			"dr-devdeps";
+		: // If running tests on a `consuming-repo`, set the path relative to its `dr-devdeps` dependency.
+			"<rootDir>/node_modules/dr-devdeps";
 
 	const transformConfig: Config["transform"] = {
 		[binaryFileExtensions.getTransformRegExp()]: `${basePath}/lib/jestTransformerBinaryFile.js`,
@@ -96,11 +96,15 @@ const jestConfig: Config = {
 		"^(\\.\\.?\\/.+)\\.jsx?$": "$1",
 	},
 	// Specify the `rootDir` so that Jest finds all of the test files located in various directories.
-	// (i.e. <rootDir>/__tests__/, <rootDir>/scripts/ and <rootDir>/src/).
+	// (i.e. <rootDir>/__tests__/, <rootDir>/scripts/ and <rootDir>/src/)
+	//
 	// Excerpt from https://jestjs.io/docs/configuration#rootdir-string:
 	// > The root directory that Jest should scan for tests and modules within.
 	// > Oftentimes, you'll want to set this to `"src"` or `"lib"`, corresponding to where in your repository the code is stored.
-	rootDir: "../",
+	//
+	// This path traverses three levels upwards to get to the root directory of the `consuming-repo`.
+	// (i.e. starting from lib/, move upwards to dr-devdeps/ ^ node_modules/ ^ consuming-repo/)
+	rootDir: "../../../",
 	// Explicitly declare one of `"node"|"jsdom"` as the testing environment for each repository that uses this Jest config.
 	// Excerpt from https://jestjs.io/docs/configuration#testenvironment-string:
 	// > The test environment that will be used for testing. The default environment in Jest is a Node.js environment.
