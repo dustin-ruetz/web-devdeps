@@ -11,4 +11,12 @@ test("the most important configuration options are correct", () => {
 	expect(prettierConfig.singleQuote).toBe(false);
 	expect(prettierConfig.trailingComma).toMatch("all");
 	expect(prettierConfig.useTabs).toBe(true);
+	expect(prettierConfig.overrides).toStrictEqual([
+		{
+			files: "*.json",
+			options: {
+				trailingComma: "none",
+			},
+		},
+	]);
 });

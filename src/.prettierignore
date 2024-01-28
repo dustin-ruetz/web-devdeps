@@ -6,7 +6,7 @@ dist/
 lib/
 node_modules/
 www/
-# Manually ignore every compiled file in lib/ and tsconfig.json to prevent errors and warnings when running the `format` scripts.
+# Manually ignore every compiled file in lib/ to prevent errors and warnings when running the `format` scripts.
 # Related issue - https://github.com/prettier/prettier/issues/4081
 commitlint.config.js
 eslint.config.cjs
@@ -18,4 +18,3 @@ jestTransformerBinaryFile.js
 jestTransformerSVGFile.js
 lint-staged.config.js
 prettier.config.js
-tsconfig.json

@@ -49,6 +49,19 @@ const prettierConfig: Config = {
 	trailingComma: "all",
 	// Refer to .editorconfig file for the rationale of choosing to indent lines with tabs instead of spaces.
 	useTabs: true,
+	// Excerpt from https://prettier.io/docs/en/configuration.html#configuration-overrides:
+	// > Overrides let you have different configuration for certain file extensions, folders and specific files.
+	overrides: [
+		// The `tsconfig.compilerOptions.resolveJsonModule` setting allows JSON files to be imported in TypeScript files, but the JSON
+		// needs to be valid syntax. Prevent Prettier from adding trailing commas to JSON files since they cause the following error:
+		// > SyntaxError: Expected double-quoted property name in JSON at position # at JSON.parse.
+		{
+			files: "*.json",
+			options: {
+				trailingComma: "none",
+			},
+		},
+	],
 } as const;
 
 export default prettierConfig;
