@@ -20,6 +20,7 @@ test("that the `transform` configuration is correct", () => {
 			"ts-jest",
 			{
 				tsconfig: "<rootDir>/tsconfig.test.json",
+				useESM: true,
 			},
 		],
 	});
