@@ -49,6 +49,7 @@ export const getTransformConfig = (overrides?: {
 			{
 				// Set the `tsconfig` config option due to the need for a test-specific TypeScript configuration file.
 				tsconfig: `${basePath}/tsconfig.test.json`,
+				useESM: true,
 			},
 		],
 	} as const;
@@ -81,6 +82,10 @@ const jestConfig: Config = {
 			statements: 100,
 		},
 	},
+	// Excerpt from https://jestjs.io/docs/configuration#extensionstotreatasesm-arraystring:
+	// > Jest will run `.mjs` and `.js` files with nearest `package.json`'s `type` field set to `module` as ECMAScript Modules.
+	// > If you have any other files that should run with native ESM, you need to specify their file extension here.
+	extensionsToTreatAsEsm: [".jsx", ".ts", ".tsx"],
 	// Excerpt from https://jestjs.io/docs/configuration#modulefileextensions-arraystring:
 	// > We recommend placing the extensions most commonly used in your project on the left, so if you are
 	// > using TypeScript, you may want to consider moving "ts" and/or "tsx" to the beginning of the array.
