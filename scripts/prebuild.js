@@ -21,7 +21,7 @@ export const prebuild = async () => {
 // > from coverage tracking, to do so you can use the following parsing hints:
 // > - `/* istanbul ignore next */`: ignore the next _thing_ in the source-code
 // >   (functions, if statements, classes, you name it).
-/* istanbul ignore next */
+/* v8 ignore next 3 */
 if (process.env.NODE_ENV !== "test") {
 	void prebuild();
 }
