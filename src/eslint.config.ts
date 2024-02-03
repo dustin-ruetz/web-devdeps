@@ -84,7 +84,14 @@ export const eslintConfig: Linter.Config = {
 		"no-labels": "error",
 		"no-lonely-if": "error",
 		"no-loop-func": "error",
-		"no-magic-numbers": "error",
+		"no-magic-numbers": [
+			"error",
+			{
+				enforceConst: true,
+				// Allow numbers to be used directly when working with arrays to avoid overly-verbose `const firstIndex = 0` declarations.
+				ignoreArrayIndexes: true,
+			},
+		],
 		"no-multi-assign": "error",
 		"no-multi-str": "error",
 		"no-new": "error",
