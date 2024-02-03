@@ -37,13 +37,6 @@ export const getTransformConfig = (overrides?: {
 		[binaryFileExtensions.getTransformRegExp()]: `${basePath}/lib/jestTransformerBinaryFile.js`,
 		".(js|jsx)": `${basePath}/lib/jestTransformerBabelJest.js`,
 		".svg": `${basePath}/lib/jestTransformerSVGFile.js`,
-		/**
-		 * Note that including the ts-jest `isolatedModules` config option here shouldn't be necessary because it's deprecated
-		 * in TypeScript v5, but setting it to `true` fixes the below error when attempting to run the Jest test suite.
-		 * > `error TS1286: ESM syntax is not allowed in a CommonJS module when 'verbatimModuleSyntax' is enabled.`
-		 *
-		 * https://github.com/kulshekhar/ts-jest/issues/4081#issuecomment-1503684089
-		 */
 		".(ts|tsx)": [
 			"ts-jest",
 			{
