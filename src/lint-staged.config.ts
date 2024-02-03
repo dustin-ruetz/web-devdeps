@@ -6,9 +6,9 @@ const lintstagedConfig: Config = {
 	 * Note: Run "format" and "lint" as their base scripts (i.e. _not_ "format:check" and "lint:check")
 	 * because lint-staged will pass just the paths of the staged files as an argument to these commands.
 	 */
-	// Check code formatting for all file types that Prettier supports.
-	"*": "npm run format -- --check --ignore-unknown",
-	"*.{js,jsx,ts,tsx}": "npm run lint",
+	// Fix code formatting for all file types that Prettier supports.
+	"*": "npm run format -- --ignore-unknown --write",
+	"*.{js,jsx,ts,tsx}": "npm run lint -- --fix",
 	// This repo has unit tests for JSON files, so include them in the glob pattern.
 	"*.{js,jsx,json,ts,tsx}": (relativePaths) => {
 		const filesToIncludeInCoverage = relativePaths.map(

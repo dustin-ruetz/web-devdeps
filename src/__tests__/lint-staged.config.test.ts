@@ -7,7 +7,7 @@ test("it exports a configuration object", () => {
 
 test("it runs the correct commands", () => {
 	expect(lintstagedConfig["*" as keyof Config]).toMatch(
-		"npm run format -- --check --ignore-unknown",
+		"npm run format -- --ignore-unknown --write",
 	);
 	expect(lintstagedConfig["*.{js,jsx,ts,tsx}" as keyof Config]).toMatch(
 		"npm run lint",

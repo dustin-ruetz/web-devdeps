@@ -17,9 +17,9 @@
 		"// githooks": "Refer to the files in the ./.githooks/ folder for documentation on these commands.",
 		"githooks:commit-msg": "commitlint --config ./lib/commitlint.config.js --edit --verbose",
 		"githooks:pre-commit": "npm run build && lint-staged --config ./lib/lint-staged.config.js --relative --verbose",
-		"githooks:pre-push": "npm run build && npm run validate",
+		"githooks:pre-push": "npm run build && npm run validate:fix",
 		"// init": "Initialize package by: 1) configuring Git hooks, 2) installing dependencies (which then runs 'postinstall' to build lib/), and 3) running validation checks.",
-		"init": "git config core.hooksPath ./.githooks/ && npm install && npm run validate",
+		"init": "git config core.hooksPath ./.githooks/ && npm install && npm run validate:check",
 		"// lint": "Scripts for linting the codebase.",
 		"lint": "eslint --config ./package.json --ignore-path ./lib/.eslintignore",
 		"lint:check": "npm run lint -- ./",
@@ -36,7 +36,8 @@
 		"vitest:coverage": "npm run vitest:test -- --coverage.enabled",
 		"vitest:watch": "npm run vitest -- watch",
 		"typecheck": "tsc --noEmit",
-		"validate": "npm run format:check && npm run lint:check && npm run test:coverage && npm run typecheck"
+		"validate:check": "npm run format:check && npm run lint:check && npm run test:coverage && npm run typecheck",
+		"validate:fix": "npm run format:write && npm run lint:fix && npm run test:coverage && npm run typecheck"
 	},
 	"keywords": [],
 	"author": "Dustin Ruetz",
