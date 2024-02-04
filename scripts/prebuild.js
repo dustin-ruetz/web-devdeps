@@ -13,14 +13,8 @@ export const prebuild = async () => {
 // `npm run prebuild` script and not automatically when it's imported for the unit test.
 
 // It's very difficult to test whether or not the `prebuild` function is called based on the value of `NODE_ENV`,
-// so use the special `istanbul` comment to exclude these lines from the test coverage report.
+// so use the special `v8` comment to exclude these lines from the test coverage report.
 // TODO: Post this issue as a question on Stack Overflow.
-
-// Excerpt from https://github.com/istanbuljs/nyc#parsing-hints-ignoring-lines:
-// > There may be some sections of your codebase that you wish to purposefully exclude
-// > from coverage tracking, to do so you can use the following parsing hints:
-// > - `/* istanbul ignore next */`: ignore the next _thing_ in the source-code
-// >   (functions, if statements, classes, you name it).
 /* v8 ignore next 3 */
 if (process.env.NODE_ENV !== "test") {
 	void prebuild();

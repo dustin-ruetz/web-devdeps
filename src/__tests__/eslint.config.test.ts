@@ -5,8 +5,7 @@ test("it exports a configuration object", () => {
 });
 
 test("the most important configuration options are correct", () => {
-	// The configuration's `parserOptions` and `rules` objects may be `undefined`,
-	// so throw an error immediately if this is the case.
+	// The configuration's `parserOptions` and `rules` objects may be `undefined`, so throw an error immediately if this is the case.
 	const getErrorMessage = (keyName: "parserOptions" | "rules") =>
 		`eslintConfig.${keyName} should be an object; value is undefined.`;
 	if (typeof eslintConfig.parserOptions === "undefined") {
