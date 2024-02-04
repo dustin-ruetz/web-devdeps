@@ -60,8 +60,9 @@ const jestConfig: Config = {
 	collectCoverageFrom: ["**/*.{js,jsx,ts,tsx}"],
 	// https://stackoverflow.com/questions/69567201/coveragepathignorepatterns-ignore-files-with-specific-ending
 	coveragePathIgnorePatterns: [
-		"/lib/",
-		"/node_modules/",
+		"<rootDir>/lib/",
+		"<rootDir>/node_modules/",
+		"<rootDir>/www/",
 		...binaryFileExtensions.list,
 		".svg",
 	],
@@ -111,7 +112,7 @@ const jestConfig: Config = {
 	transform: getTransformConfig(),
 	// Don't transform anything in node_modules/, and don't transform .json files to prevent the following ts-jest warning:
 	// > `ts-jest[ts-jest-transformer] (WARN) Got a unknown file type to compile (file: *.json).`
-	transformIgnorePatterns: ["/node_modules/", ".json"],
+	transformIgnorePatterns: ["<rootDir>/node_modules/", ".json"],
 	verbose: true,
 } as const;
 
