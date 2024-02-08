@@ -8,12 +8,12 @@ import {fileURLToPath} from "node:url";
  * The problem with relying on this method is that it's dependent on the directory where the Node.js process was started from;
  * if it's run from anywhere but the root of the repository then it will not return the desired path.
  *
- * This function uses the known location of this file within the repo's structure and uses it to figure out the
- * absolute root directory of the repo where it's being called from. It can return the absolute path of either:
+ * This function uses the known location of the `utils/getRepoMetadata` file within the repo's structure and uses it as an anchor point
+ * to determine the absolute root directory of the repo where it's being called from. It can return the absolute path of either:
  * 1. The consuming repository where the `dr-devdeps` package is installed as a dependency; or
  * 2. This `dr-devdeps` repo itself.
  *
- * **Important:** Note that the `absoluteRootDir` path is intentionally returned without a trailing slash.
+ * **Important:** Note that the `absoluteRootDir` path is intentionally returned _without_ a trailing slash.
  */
 export const getRepoMetadata = () => {
 	const absolutePath = fileURLToPath(import.meta.url);
