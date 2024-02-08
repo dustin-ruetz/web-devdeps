@@ -33,6 +33,14 @@ test("the most important configuration options are correct", () => {
 	expect(eslintConfig.root).toBe(true);
 	expect(eslintConfig.rules.camelcase).toMatch("error");
 	expect(eslintConfig.rules["no-console"]).toMatch("warn");
+	expect(eslintConfig.rules["no-magic-numbers"]).toStrictEqual([
+		"error",
+		{
+			enforceConst: true,
+			ignore: [-1, 0, 1],
+			ignoreArrayIndexes: true,
+		},
+	]);
 	expect(eslintConfig.rules["no-var"]).toMatch("error");
 	expect(eslintConfig.overrides).toStrictEqual([
 		{

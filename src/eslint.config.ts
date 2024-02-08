@@ -88,6 +88,8 @@ export const eslintConfig: Linter.Config = {
 			"error",
 			{
 				enforceConst: true,
+				// Allow the following numbers since they're commonly used when working with array methods.
+				ignore: [-1, 0, 1],
 				// Allow numbers to be used directly when working with arrays to avoid overly-verbose `const firstIndex = 0` declarations.
 				ignoreArrayIndexes: true,
 			},
