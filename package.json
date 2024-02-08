@@ -36,8 +36,9 @@
 		"vitest:coverage": "npm run vitest:test -- --coverage.enabled",
 		"vitest:watch": "npm run vitest -- watch",
 		"typecheck": "tsc --noEmit",
-		"validate:check": "npm run format:check && npm run lint:check && npm run test:coverage && npm run typecheck",
-		"validate:fix": "npm run format:write && npm run lint:fix && npm run test:coverage && npm run typecheck"
+		"validate": "npm run jest:coverage && npm run vitest:coverage && npm run typecheck",
+		"validate:check": "npm run format:check && npm run lint:check && npm run validate",
+		"validate:fix": "npm run format:write && npm run lint:fix && npm run validate"
 	},
 	"keywords": [],
 	"author": "Dustin Ruetz",
