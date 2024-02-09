@@ -22,9 +22,9 @@ export const dependsOn = async (deps: string[]) => {
 			throw new Error(
 				"All values in the `deps` array must be strings. Received:" +
 					"\n" +
-					`- typeof dep = ${typeof dep}` +
-					"\n" +
 					`- deps = ${deps}` +
+					"\n" +
+					`- typeof dep = ${typeof dep}` +
 					"\n" +
 					`- dep = ${dep}`,
 			);
