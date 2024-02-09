@@ -1,5 +1,5 @@
 {
-	// Specify that the Git hook files are shell scripts because VS Code misidentifies some them as Markdown due to code comments.
+	// Specify that the Git hook files are shell scripts because VS Code misidentifies some of them as Markdown due to code comments.
 	"files.associations": {
 		// ~/.githooks/
 		"commit-msg": "shellscript",
