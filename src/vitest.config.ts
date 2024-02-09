@@ -1,7 +1,7 @@
-import {defineConfig} from "vitest/config";
+import {defineConfig, type UserConfig} from "vitest/config";
 
 /** https://vitest.dev/config/ */
-const vitestConfig = defineConfig({
+const vitestConfig: UserConfig = defineConfig({
 	test: {
 		exclude: ["**/lib/**", "**/node_modules/**"],
 		coverage: {
@@ -29,6 +29,6 @@ const vitestConfig = defineConfig({
 		// > If you decide to keep globals disabled, be aware that common libraries like `testing-library` will not run auto DOM cleanup.
 		globals: true,
 	},
-});
+} as const);
 
 export default vitestConfig;
