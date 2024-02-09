@@ -13,7 +13,7 @@ test('it transforms binary file paths into `module.exports = "name.extension"`',
 		woff2Path,
 	);
 
-	expect(jpgTransformed.code).toMatch('module.exports = "image.jpg"');
-	expect(pngTransformed.code).toMatch('module.exports = "image.png"');
-	expect(woff2Transformed.code).toMatch('module.exports = "font.woff2"');
+	expect(jpgTransformed.code).toEqual('module.exports = "image.jpg"');
+	expect(pngTransformed.code).toEqual('module.exports = "image.png"');
+	expect(woff2Transformed.code).toEqual('module.exports = "font.woff2"');
 });

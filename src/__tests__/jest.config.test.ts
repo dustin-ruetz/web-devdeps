@@ -1,13 +1,13 @@
 import jestConfig, {getTransformConfig} from "../jest.config.js";
 
 test("it exports a configuration object and a `getTransformConfig` function", () => {
-	expect(typeof jestConfig).toMatch("object");
-	expect(typeof getTransformConfig).toMatch("function");
+	expect(typeof jestConfig).toEqual("object");
+	expect(typeof getTransformConfig).toEqual("function");
 });
 
 test("the most important configuration options are correct", () => {
-	expect(jestConfig.rootDir).toMatch("../../../");
-	expect(jestConfig.testEnvironment).toMatch("node");
+	expect(jestConfig.rootDir).toEqual("../../../");
+	expect(jestConfig.testEnvironment).toEqual("node");
 	expect(jestConfig.verbose).toBe(true);
 });
 

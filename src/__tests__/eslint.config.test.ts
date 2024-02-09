@@ -1,7 +1,7 @@
 import {eslintConfig} from "../eslint.config.js";
 
 test("it exports a configuration object", () => {
-	expect(typeof eslintConfig).toMatch("object");
+	expect(typeof eslintConfig).toEqual("object");
 });
 
 test("the most important configuration options are correct", () => {
@@ -27,12 +27,12 @@ test("the most important configuration options are correct", () => {
 		"plugin:@typescript-eslint/recommended",
 	]);
 	expect(eslintConfig.ignorePatterns).toStrictEqual(["!*.*.js", "!*.*.ts"]);
-	expect(eslintConfig.parser).toMatch("@typescript-eslint/parser");
-	expect(eslintConfig.parserOptions.sourceType).toMatch("module");
+	expect(eslintConfig.parser).toEqual("@typescript-eslint/parser");
+	expect(eslintConfig.parserOptions.sourceType).toEqual("module");
 	expect(eslintConfig.plugins).toStrictEqual(["@typescript-eslint"]);
 	expect(eslintConfig.root).toBe(true);
-	expect(eslintConfig.rules.camelcase).toMatch("error");
-	expect(eslintConfig.rules["no-console"]).toMatch("warn");
+	expect(eslintConfig.rules.camelcase).toEqual("error");
+	expect(eslintConfig.rules["no-console"]).toEqual("warn");
 	expect(eslintConfig.rules["no-magic-numbers"]).toStrictEqual([
 		"error",
 		{
@@ -41,7 +41,7 @@ test("the most important configuration options are correct", () => {
 			ignoreArrayIndexes: true,
 		},
 	]);
-	expect(eslintConfig.rules["no-var"]).toMatch("error");
+	expect(eslintConfig.rules["no-var"]).toEqual("error");
 	expect(eslintConfig.overrides).toStrictEqual([
 		{
 			files: ["*.test.+(js|jsx|ts|tsx)"],

@@ -5,9 +5,9 @@
 import packageJson from "../package.json";
 
 test("the most important configuration options are correct", () => {
-	expect(packageJson.author).toMatch("Dustin Ruetz");
-	expect(packageJson.name).toMatch("dr-devdeps");
-	expect(packageJson.type).toMatch("module");
+	expect(packageJson.author).toEqual("Dustin Ruetz");
+	expect(packageJson.name).toEqual("dr-devdeps");
+	expect(packageJson.type).toEqual("module");
 });
 
 test("that NPM packages are installed with exact version numbers", () => {
