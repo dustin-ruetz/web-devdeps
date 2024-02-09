@@ -53,5 +53,5 @@ export const getRepoMetadata = () => {
 
 	const isDevDepsRepo = absoluteRootDir.endsWith("/dr-devdeps");
 
-	return {absoluteRootDir, isDevDepsRepo} as const;
+	return {absoluteRootDir, dependencyPartialPath, isDevDepsRepo} as const;
 };

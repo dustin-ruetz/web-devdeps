@@ -13,6 +13,7 @@ const mockReadFile = readFile as MockedFunction<typeof readFile>;
 vi.mock("../getRepoMetadata.js", () => ({
 	getRepoMetadata: vi.fn(() => ({
 		absoluteRootDir: "/Users/username/repos/dr-devdeps",
+		dependencyPartialPath: "node_modules/dr-devdeps",
 		isDevDepsRepo: true,
 	})),
 }));
