@@ -4,12 +4,13 @@ import jestConfig, {getTransformConfig} from "./jest.config.js";
 const devDepsIgnorePatterns = [
 	// Ignore the scripts/ directory because the unit tests are using `vi` for mocking
 	// and `v8` (instead of `istanbul`) as the coverage provider.
+	"<rootDir>/lib/",
 	"<rootDir>/scripts/",
-	// Ignore the hasDependency.ts file because it references the `import.meta.url` variable which causes
-	// Jest/Babel to throw the `ERROR: unknown: import.meta may appear only with 'sourceType: "module"'`.
-	"<rootDir>/src/hasDependency.ts",
 	// Ignore this file since it's too much hassle to test the `jestConfig.coveragePathIgnorePatterns` conditional.
 	"<rootDir>/src/jest.config.devdeps.ts",
+	// Ignore the src/utils/ directory because it references the `import.meta.url` variable, which causes
+	// Jest/Babel to throw `ERROR: unknown: import.meta may appear only with 'sourceType: "module"'`.
+	"<rootDir>/src/utils/",
 ];
 
 /** Jest configuration specifically for running the tests on this `dr-devdeps` repository. */
