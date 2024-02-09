@@ -18,7 +18,7 @@ import {fileURLToPath} from "node:url";
 export const getRepoMetadata = () => {
 	const absolutePath = fileURLToPath(import.meta.url);
 	/**
-	 * `partialPath` is known and stable; this partial is agnostic of differences between
+	 * `partialPath` is known and stable; it's agnostic of differences between
 	 * folder locations (`lib` or `src`) and file extensions (`.js` or `.ts`).
 	 */
 	const partialPath = "utils/getRepoMetadata";
@@ -30,7 +30,7 @@ export const getRepoMetadata = () => {
 			`partialPath string (value = ${partialPath}) is not present within absolutePath string (value = ${absolutePath}).`,
 		);
 	}
-	/** `dependencyPartialPath` is known and stable; this partial is known when the `dr-devdeps` package is installed as a dependency. */
+	/** `dependencyPartialPath` is known and stable; it's the location where the `dr-devdeps` package is installed as a dependency. */
 	const dependencyPartialPath = "node_modules/dr-devdeps";
 	/**
 	 * `relativePath` is defined as a regular expression so that it covers two types of paths:
@@ -48,7 +48,7 @@ export const getRepoMetadata = () => {
 	} else {
 		absoluteRootDir = absolutePath.replace(relativePath, "");
 	}
-	// Slice off the last character in the string, i.e. the path's trailing slash.
+	// Remove the last character in the string, i.e. the path's trailing slash.
 	absoluteRootDir = absoluteRootDir.slice(0, -1);
 
 	const isDevDepsRepo = absoluteRootDir.endsWith("/dr-devdeps");
