@@ -1,5 +1,5 @@
 import {readFile} from "node:fs/promises";
-import {type Mock, vi} from "vitest";
+import {type MockedFunction, vi} from "vitest";
 import {dependsOn} from "../dependsOn.js";
 import {getRepoMetadata} from "../getRepoMetadata.js";
 
@@ -7,8 +7,8 @@ vi.mock("node:fs/promises", () => ({
 	readFile: vi.fn(),
 }));
 // Paraphrased excerpt from https://www.mikeborozdin.com/post/changing-jest-mocks-between-tests:
-// > Typecast the imported mocked module into an object with writeable properties.
-const mockReadFile = readFile as Mock;
+// > Typecast the imported mocked module into a mocked function with writeable properties.
+const mockReadFile = readFile as MockedFunction<typeof readFile>;
 
 vi.mock("../getRepoMetadata.js", () => ({
 	getRepoMetadata: vi.fn(() => ({

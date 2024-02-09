@@ -1,13 +1,13 @@
 import {fileURLToPath} from "node:url";
-import {type Mock, vi} from "vitest";
+import {type MockedFunction, vi} from "vitest";
 import {getRepoMetadata} from "../getRepoMetadata.js";
 
 vi.mock("node:url", () => ({
 	fileURLToPath: vi.fn(),
 }));
 // Paraphrased excerpt from https://www.mikeborozdin.com/post/changing-jest-mocks-between-tests:
-// > Typecast the imported mocked module into an object with writeable properties.
-const mockFileURLToPath = fileURLToPath as Mock;
+// > Typecast the imported mocked module into a mocked function with writeable properties.
+const mockFileURLToPath = fileURLToPath as MockedFunction<typeof fileURLToPath>;
 
 test("throws an error if partialPath is not present within absolutePath", () => {
 	const absolutePath = "/Users/username/repos/bad-path";
