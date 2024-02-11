@@ -98,6 +98,9 @@ export const makeJestConfig = async (): Promise<Config> => {
 			// https://github.com/kulshekhar/ts-jest/issues/1057#issuecomment-1482644543:
 			"^(\\.\\.?\\/.+)\\.(js|jsx)": "$1",
 		},
+		// Note that while `rootDir` is set to an absolute path here, Jest also knows how to interpret relative paths. For example,
+		// a consuming repo depending on dr-devdeps could use "../../../" as the path to traverse three levels upwards to hit root.
+		// (i.e. starting from lib/, move upwards three times: dr-devdeps/ ^ node_modules/ ^ consuming-repo/)
 		// Excerpt from https://jestjs.io/docs/configuration#rootdir-string:
 		// > The root directory that Jest should scan for tests and modules within.
 		// > Oftentimes, you'll want to set this to `"src"` or `"lib"`, corresponding to where in your repository the code is stored.
