@@ -121,6 +121,4 @@ export const makeJestConfig = async (): Promise<Config> => {
 	} as const;
 };
 
-const jestConfig = await makeJestConfig();
-
-export default jestConfig;
+export default makeJestConfig();
