@@ -40,22 +40,20 @@ export const makeJestConfig = async (): Promise<Config> => {
 			] as const)
 		: ([] as const);
 
-	const makeTransformConfig = () => {
-		/** The base path to the files/packages used as Jest transformers. */
-		const basePath = isDevDepsRepo
-			? // If running tests on this `dr-devdeps` repo, set the path relative to the Jest <rootDir>.
-				"<rootDir>"
-			: // If running tests on a `consuming-repo`, set the path relative to its `dr-devdeps` dependency.
-				`<rootDir>/${dependencyPartialPath}`;
+	/** The base path to the files/packages used as Jest transformers. */
+	const transformerBasePath = isDevDepsRepo
+		? // If running tests on this `dr-devdeps` repo, set the path relative to the Jest <rootDir>.
+			"<rootDir>"
+		: // If running tests on a `consuming-repo`, set the path relative to its `dr-devdeps` dependency.
+			`<rootDir>/${dependencyPartialPath}`;
 
-		const transformConfig: Config["transform"] = {
-			[binaryFileExtensions.makeTransformRegExp()]: `${basePath}/lib/jestTransformerBinaryFile.js`,
-			".(js|jsx|ts|tsx)": "@swc/jest",
-			".svg": `${basePath}/lib/jestTransformerSVGFile.js`,
-		} as const;
-
-		return transformConfig;
-	};
+	/** https://jestjs.io/docs/code-transformation */
+	const transform = {
+		[binaryFileExtensions.makeTransformRegExp()]: `${transformerBasePath}/lib/jestTransformerBinaryFile.js`,
+		// https://swc.rs/docs/usage/jest
+		".(js|jsx|ts|tsx)": "@swc/jest",
+		".svg": `${transformerBasePath}/lib/jestTransformerSVGFile.js`,
+	} as const;
 
 	return {
 		// Specify `collectCoverageFrom` to ensure that Jest collects test coverage for all JavaScript and TypeScript files.
@@ -109,7 +107,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// > If you are building a web app, you can use a browser-like environment through `jsdom` instead.
 		testEnvironment,
 		testPathIgnorePatterns: [...ignorePatterns, ...devDepsIgnorePatterns],
-		transform: makeTransformConfig(),
+		transform,
 		// Don't transform anything in node_modules/ and don't transform .json files.
 		transformIgnorePatterns: ["<rootDir>/node_modules/", ".json"],
 		verbose: true,
