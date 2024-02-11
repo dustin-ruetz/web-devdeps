@@ -43,17 +43,9 @@ export const makeJestConfig = async (): Promise<Config> => {
 	/** The base path to the files/packages used as Jest transformers. */
 	const transformerBasePath = isDevDepsRepo
 		? // If running tests on this `dr-devdeps` repo, set the path relative to the Jest <rootDir>.
-			"<rootDir>"
+			("<rootDir>" as const)
 		: // If running tests on a `consuming-repo`, set the path relative to its `dr-devdeps` dependency.
-			`<rootDir>/${dependencyPartialPath}`;
-
-	/** https://jestjs.io/docs/code-transformation */
-	const transform = {
-		[binaryFileExtensions.makeTransformRegExp()]: `${transformerBasePath}/lib/jestTransformerBinaryFile.js`,
-		// https://swc.rs/docs/usage/jest
-		".(js|jsx|ts|tsx)": "@swc/jest",
-		".svg": `${transformerBasePath}/lib/jestTransformerSVGFile.js`,
-	} as const;
+			(`<rootDir>/${dependencyPartialPath}` as const);
 
 	return {
 		// Specify `collectCoverageFrom` to ensure that Jest collects test coverage for all JavaScript and TypeScript files.
@@ -110,7 +102,17 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// > If you are building a web app, you can use a browser-like environment through `jsdom` instead.
 		testEnvironment,
 		testPathIgnorePatterns: [...ignorePatterns, ...devDepsIgnorePatterns],
-		transform,
+		// Excerpt from https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object:
+		// > A map from regular expressions to paths to transformers.
+		// > Jest runs the code of your project as JavaScript, hence a transformer is needed if you use some syntax
+		// > not supported by Node out of the box (such as JSX, TypeScript, Vue templates).
+		transform: {
+			[binaryFileExtensions.makeTransformRegExp()]: `${transformerBasePath}/lib/jestTransformerBinaryFile.js`,
+			// Both Babel and ts-jest are cumbersome to use for transforming TypeScript, so use @swc/jest instead for its simplicity.
+			// https://github.com/swc-project/pkgs/tree/main/packages/jest
+			".(js|jsx|ts|tsx)": "@swc/jest",
+			".svg": `${transformerBasePath}/lib/jestTransformerSVGFile.js`,
+		},
 		// Don't transform anything in node_modules/ and don't transform .json files.
 		transformIgnorePatterns: ["<rootDir>/node_modules/", ".json"],
 		verbose: true,
