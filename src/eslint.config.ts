@@ -1,4 +1,4 @@
-import type {Linter} from "eslint";
+import {type Linter} from "eslint";
 
 /** https://eslint.org/docs/latest/use/configure/ */
 export const eslintConfig: Linter.Config = {
