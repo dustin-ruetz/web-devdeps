@@ -50,6 +50,7 @@ describe("the most important configuration options are correct", () => {
 		expect(mockDependsOn).toHaveBeenCalledWith(["pug", "react"]);
 		expect(typeof jestConfig).toEqual("object");
 		expect(jestConfig.coverageProvider).toEqual("v8");
+		expect(jestConfig.transform?.[".(js|jsx|ts|tsx)"]).toEqual("@swc/jest");
 		expect(jestConfig.verbose).toBe(true);
 	});
 
@@ -76,8 +77,8 @@ describe("the most important configuration options are correct", () => {
 			"<rootDir>/src/jest.config.ts",
 		);
 		// Sample the transform config object to verify that the paths to the transformer files are correct.
-		expect(jestConfig.transform?.[".(js|jsx)"]).toEqual(
-			"<rootDir>/lib/jestTransformerBabelJest.js",
+		expect(jestConfig.transform?.[".svg"]).toEqual(
+			"<rootDir>/lib/jestTransformerSVGFile.js",
 		);
 	});
 
@@ -103,8 +104,8 @@ describe("the most important configuration options are correct", () => {
 		expect(jestConfig.testEnvironment).toEqual("jsdom");
 		expect(jestConfig.testPathIgnorePatterns).toStrictEqual([]);
 		// Sample the transform config object to verify that the paths to the transformer files are correct.
-		expect(jestConfig.transform?.[".(js|jsx)"]).toEqual(
-			"<rootDir>/node_modules/dr-devdeps/lib/jestTransformerBabelJest.js",
+		expect(jestConfig.transform?.[".svg"]).toEqual(
+			"<rootDir>/node_modules/dr-devdeps/lib/jestTransformerSVGFile.js",
 		);
 	});
 });

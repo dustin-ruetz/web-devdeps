@@ -43,16 +43,8 @@ export const makeJestConfig = async (): Promise<Config> => {
 
 		const transformConfig: Config["transform"] = {
 			[binaryFileExtensions.makeTransformRegExp()]: `${basePath}/lib/jestTransformerBinaryFile.js`,
-			".(js|jsx)": `${basePath}/lib/jestTransformerBabelJest.js`,
+			".(js|jsx|ts|tsx)": "@swc/jest",
 			".svg": `${basePath}/lib/jestTransformerSVGFile.js`,
-			".(ts|tsx)": [
-				"ts-jest",
-				{
-					// Set the `tsconfig` config option due to ts-jest needing a test-specific TypeScript configuration file.
-					tsconfig: `${basePath}/tsconfig.test.json`,
-					useESM: true,
-				},
-			],
 		} as const;
 
 		return transformConfig;
@@ -94,15 +86,14 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// > We recommend placing the extensions most commonly used in your project on the left, so if you are
 		// > using TypeScript, you may want to consider moving "ts" and/or "tsx" to the beginning of the array.
 		moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
-		// TypeScript knows how to map imported files with the ".js" extension to their ".ts" counterparts. Jest/ts-jest
+		// TypeScript knows how to map imported files with the ".js" extension to their ".ts" counterparts. Jest
 		// doesn't handle this automatically, so specify `moduleNameMapper` to handle `.js` and `.jsx` file extensions.
-		// Specify the `moduleNameMapper` to handle the fact that tests import ".js" file extensions.
 		// Excerpt from https://jestjs.io/docs/configuration#modulenamemapper-objectstring-string--arraystring:
 		// > A map from regular expressions to module names or to arrays of module names that
 		// > allow to stub out resources, like images or styles with a single module.
 		moduleNameMapper: {
 			// https://github.com/kulshekhar/ts-jest/issues/1057#issuecomment-1482644543:
-			"^(\\.\\.?\\/.+)\\.jsx?$": "$1",
+			"^(\\.\\.?\\/.+)\\.(js|jsx)": "$1",
 		},
 		// Excerpt from https://jestjs.io/docs/configuration#rootdir-string:
 		// > The root directory that Jest should scan for tests and modules within.
@@ -114,8 +105,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		testEnvironment,
 		testPathIgnorePatterns: [...ignorePatterns],
 		transform: makeTransformConfig(),
-		// Don't transform anything in node_modules/, and don't transform .json files to prevent the following ts-jest warning:
-		// > `ts-jest[ts-jest-transformer] (WARN) Got a unknown file type to compile (file: *.json).`
+		// Don't transform anything in node_modules/ and don't transform .json files.
 		transformIgnorePatterns: ["<rootDir>/node_modules/", ".json"],
 		verbose: true,
 	} as const;

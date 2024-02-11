@@ -12,7 +12,6 @@ commitlint.config.js
 eslint.config.cjs
 eslint.config.js
 jest.config.js
-jestTransformerBabelJest.js
 jestTransformerBinaryFile.js
 jestTransformerSVGFile.js
 lint-staged.config.js
