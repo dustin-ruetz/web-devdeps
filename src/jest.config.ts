@@ -20,7 +20,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		},
 	} as const;
 
-	/** Folder/file patterns to ignore for repos that consume dr-devdeps. */
+	/** Folder/file patterns to ignore for all repos. */
 	const ignorePatterns = [
 		"<rootDir>/lib/",
 		"<rootDir>/node_modules/",
