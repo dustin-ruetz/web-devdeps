@@ -20,11 +20,18 @@ export const makeJestConfig = async (): Promise<Config> => {
 		},
 	} as const;
 
+	/** Folder/file patterns to ignore for repos that consume dr-devdeps. */
+	const ignorePatterns = [
+		"<rootDir>/lib/",
+		"<rootDir>/node_modules/",
+		"<rootDir>/www/",
+	] as const;
+
 	/**
-	 * Folder/file patterns to ignore for this dr-devdeps repo because the unit tests
-	 * are using `vi` instead of `jest` for mocking.
+	 * Folder/file patterns to ignore for this dr-devdeps repo because
+	 * the unit tests are using `vi` instead of `jest` for mocking.
 	 */
-	const ignorePatterns = isDevDepsRepo
+	const devDepsIgnorePatterns = isDevDepsRepo
 		? ([
 				"<rootDir>/scripts/",
 				"<rootDir>/src/utils/",
@@ -59,12 +66,10 @@ export const makeJestConfig = async (): Promise<Config> => {
 		collectCoverageFrom: ["**/*.{js,jsx,ts,tsx}"],
 		// https://stackoverflow.com/questions/69567201/coveragepathignorepatterns-ignore-files-with-specific-ending
 		coveragePathIgnorePatterns: [
-			"<rootDir>/lib/",
-			"<rootDir>/node_modules/",
-			"<rootDir>/www/",
+			...ignorePatterns,
 			...binaryFileExtensions.list,
 			".svg",
-			...ignorePatterns,
+			...devDepsIgnorePatterns,
 		],
 		// Set coverage provider as v8 to align with the Vitest default.
 		coverageProvider: "v8",
@@ -103,7 +108,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// > The test environment that will be used for testing. The default environment in Jest is a Node.js environment.
 		// > If you are building a web app, you can use a browser-like environment through `jsdom` instead.
 		testEnvironment,
-		testPathIgnorePatterns: [...ignorePatterns],
+		testPathIgnorePatterns: [...ignorePatterns, ...devDepsIgnorePatterns],
 		transform: makeTransformConfig(),
 		// Don't transform anything in node_modules/ and don't transform .json files.
 		transformIgnorePatterns: ["<rootDir>/node_modules/", ".json"],

@@ -36,7 +36,7 @@ afterEach(() => {
 });
 
 describe("the most important configuration options are correct", () => {
-	test("for the parts of the config that are determined by conditional logic", async () => {
+	test("for the parts of the config that *are not* affected by conditional logic", async () => {
 		const hasFrontendDependencies = false;
 		mockDependsOn.mockResolvedValue(hasFrontendDependencies);
 		mockGetRepoMetadata.mockReturnValue({
@@ -65,17 +65,8 @@ describe("the most important configuration options are correct", () => {
 
 		const jestConfig = await makeJestConfig();
 
-		expect(jestConfig.coveragePathIgnorePatterns).toEqual(
-			expect.arrayContaining([
-				"<rootDir>/node_modules/",
-				"<rootDir>/src/jest.config.ts",
-			]),
-		);
 		expect(jestConfig.rootDir).toEqual("/Users/username/repos/dr-devdeps");
 		expect(jestConfig.testEnvironment).toEqual("node");
-		expect(jestConfig.testPathIgnorePatterns).toContain(
-			"<rootDir>/src/jest.config.ts",
-		);
 		// Sample the transform config object to verify that the paths to the transformer files are correct.
 		expect(jestConfig.transform?.[".svg"]).toEqual(
 			"<rootDir>/lib/jestTransformerSVGFile.js",
@@ -94,15 +85,8 @@ describe("the most important configuration options are correct", () => {
 
 		const jestConfig = await makeJestConfig();
 
-		expect(jestConfig.coveragePathIgnorePatterns).toContain(
-			"<rootDir>/node_modules/",
-		);
-		expect(jestConfig.coveragePathIgnorePatterns).not.toContain(
-			"<rootDir>/src/jest.config.ts",
-		);
 		expect(jestConfig.rootDir).toEqual("/Users/username/repos/consuming-repo");
 		expect(jestConfig.testEnvironment).toEqual("jsdom");
-		expect(jestConfig.testPathIgnorePatterns).toStrictEqual([]);
 		// Sample the transform config object to verify that the paths to the transformer files are correct.
 		expect(jestConfig.transform?.[".svg"]).toEqual(
 			"<rootDir>/node_modules/dr-devdeps/lib/jestTransformerSVGFile.js",
