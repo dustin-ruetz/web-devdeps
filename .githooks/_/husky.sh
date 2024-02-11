@@ -3,7 +3,7 @@
 # Description   - husky.sh shell script adapted from the original husky template for Git hooks.
 # Documentation - https://typicode.github.io/husky/
 # Repository    - https://github.com/typicode/husky
-# Version       - 9.0.6
+# Version       - 9.10.0
 #
 # To upgrade the husky version:
 #
@@ -35,7 +35,7 @@ s="${0%/*/*}/$h"
 
 [ ! -f "$s" ] && exit 0
 
-for f in "${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh" "$HOME/.huskyrc.sh"; do
+for f in "${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh" "$HOME/.huskyrc"; do
 	# shellcheck disable=SC1090
 	[ -f "$f" ] && . "$f"
 done
