@@ -21,8 +21,8 @@ export const makeJestConfig = async (): Promise<Config> => {
 	} as const;
 
 	/**
-	 * Folder/file patterns to ignore for this dr-devdeps repo because the unit tests are using `vi`
-	 * (instead of `jest`) for mocking and `v8` (instead of `istanbul`) as the coverage provider.
+	 * Folder/file patterns to ignore for this dr-devdeps repo because the unit tests
+	 * are using `vi` instead of `jest` for mocking.
 	 */
 	const ignorePatterns = isDevDepsRepo
 		? ([
