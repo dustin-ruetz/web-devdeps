@@ -49,6 +49,7 @@ describe("the most important configuration options are correct", () => {
 
 		expect(mockDependsOn).toHaveBeenCalledWith(["pug", "react"]);
 		expect(typeof jestConfig).toEqual("object");
+		expect(jestConfig.coverageProvider).toEqual("v8");
 		expect(jestConfig.verbose).toBe(true);
 	});
 

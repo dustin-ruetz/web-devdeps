@@ -74,6 +74,8 @@ export const makeJestConfig = async (): Promise<Config> => {
 			".svg",
 			...ignorePatterns,
 		],
+		// Set coverage provider as v8 to align with the Vitest default.
+		coverageProvider: "v8",
 		// Specify `coverageReporters` to prevent the default reporters from writing a coverage/ directory to disk.
 		coverageReporters: ["text", "text-summary"],
 		coverageThreshold: {
