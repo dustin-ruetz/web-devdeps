@@ -24,7 +24,7 @@ export const getRepoMetadata = () => {
 	const partialPath = "utils/getRepoMetadata";
 
 	// This function depends on its path being known (i.e. the folder being `/utils/` and the
-	// filename being `getRepoMetadata`), so throw an early error if anything is misaligned.
+	// filename being `getRepoMetadata`), so throw an early error if these don't align.
 	if (!absolutePath.includes(partialPath)) {
 		throw new Error(
 			`partialPath string (value = ${partialPath}) is not present within absolutePath string (value = ${absolutePath}).`,
