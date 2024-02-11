@@ -9,7 +9,7 @@ const vitestConfig: UserConfig = defineConfig({
 			// > List of files excluded from coverage as glob patterns.
 			exclude: [
 				"lib/**",
-				// Vitest excludes certain configuration files by default; use a negated ignore pattern to include them in the code coverage.
+				// Vitest excludes certain configuration files by default; use a negated ignore pattern to include them in the coverage report.
 				"!src/*.config.*",
 			],
 			provider: "v8",
