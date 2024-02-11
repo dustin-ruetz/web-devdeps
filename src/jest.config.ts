@@ -26,7 +26,6 @@ export const makeJestConfig = async (): Promise<Config> => {
 	 */
 	const ignorePatterns = isDevDepsRepo
 		? ([
-				"<rootDir>/lib/",
 				"<rootDir>/scripts/",
 				"<rootDir>/src/utils/",
 				"<rootDir>/src/jest.config.ts",
@@ -68,6 +67,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		collectCoverageFrom: ["**/*.{js,jsx,ts,tsx}"],
 		// https://stackoverflow.com/questions/69567201/coveragepathignorepatterns-ignore-files-with-specific-ending
 		coveragePathIgnorePatterns: [
+			"<rootDir>/lib/",
 			"<rootDir>/node_modules/",
 			"<rootDir>/www/",
 			...binaryFileExtensions.list,
