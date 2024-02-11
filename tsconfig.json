@@ -6,7 +6,6 @@
 		"module": "NodeNext",
 		"moduleResolution": "NodeNext",
 		"noEmitOnError": true,
-		"noPropertyAccessFromIndexSignature": false,
 		"outDir": "./lib/",
 		"removeComments": true,
 		"resolveJsonModule": true,
