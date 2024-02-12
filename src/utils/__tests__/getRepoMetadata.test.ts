@@ -1,13 +1,14 @@
 import {fileURLToPath} from "node:url";
-import {type MockedFunction, vi} from "vitest";
 import {getRepoMetadata} from "../getRepoMetadata.js";
 
-vi.mock("node:url", () => ({
-	fileURLToPath: vi.fn(),
+jest.mock("node:url", () => ({
+	fileURLToPath: jest.fn(),
 }));
 // Paraphrased excerpt from https://www.mikeborozdin.com/post/changing-jest-mocks-between-tests:
 // > Typecast the imported mocked module into a mocked function with writeable properties.
-const mockFileURLToPath = fileURLToPath as MockedFunction<typeof fileURLToPath>;
+const mockFileURLToPath = fileURLToPath as jest.MockedFunction<
+	typeof fileURLToPath
+>;
 
 /** Object of static strings and helper methods meant to keep code DRY and organized. */
 const absolutePaths = {

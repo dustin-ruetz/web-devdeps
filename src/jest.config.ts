@@ -31,14 +31,14 @@ export const makeJestConfig = async (): Promise<Config> => {
 	 * Folder/file patterns to ignore for this dr-devdeps repo because
 	 * the unit tests are using `vi` instead of `jest` for mocking.
 	 */
-	const devDepsIgnorePatterns = isDevDepsRepo
-		? ([
-				"<rootDir>/scripts/",
-				"<rootDir>/src/utils/",
-				"<rootDir>/src/jest.config.ts",
-				"<rootDir>/src/__tests__/jest.config.test.ts",
-			] as const)
-		: ([] as const);
+	// const devDepsIgnorePatterns = !isDevDepsRepo
+	// 	? ([
+	// 			"<rootDir>/scripts/",
+	// 			"<rootDir>/src/utils/",
+	// 			"<rootDir>/src/jest.config.ts",
+	// 			"<rootDir>/src/__tests__/jest.config.test.ts",
+	// 		] as const)
+	// 	: ([] as const);
 
 	/** The base path to the files/packages used as Jest transformers. */
 	const transformerBasePath = isDevDepsRepo
@@ -59,7 +59,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 			...ignorePatterns,
 			...binaryFileExtensions.list,
 			".svg",
-			...devDepsIgnorePatterns,
+			// ...devDepsIgnorePatterns,
 		],
 		// Set coverage provider as v8 to align with the Vitest default.
 		coverageProvider: "v8",
@@ -101,7 +101,10 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// > The test environment that will be used for testing. The default environment in Jest is a Node.js environment.
 		// > If you are building a web app, you can use a browser-like environment through `jsdom` instead.
 		testEnvironment,
-		testPathIgnorePatterns: [...ignorePatterns, ...devDepsIgnorePatterns],
+		testPathIgnorePatterns: [
+			...ignorePatterns,
+			// ...devDepsIgnorePatterns
+		],
 		// Excerpt from https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object:
 		// > A map from regular expressions to paths to transformers.
 		// > Jest runs the code of your project as JavaScript, hence a transformer is needed if you use some syntax

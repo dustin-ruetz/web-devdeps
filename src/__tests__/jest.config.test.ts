@@ -1,10 +1,9 @@
-import {type MockedFunction, vi} from "vitest";
 import {dependsOn} from "../utils/dependsOn.js";
 import {getRepoMetadata} from "../utils/getRepoMetadata.js";
 import {makeJestConfig} from "../jest.config.js";
 
-vi.mock("../utils/dependsOn.js", () => ({
-	dependsOn: vi.fn(),
+jest.mock("../utils/dependsOn.js", () => ({
+	dependsOn: jest.fn(),
 }));
 /**
  * Usage: Call `mockDependsOn.mockResolvedValue(false|true)` based on the array of dependencies that are passed in to
@@ -12,14 +11,14 @@ vi.mock("../utils/dependsOn.js", () => ({
  * - Resolve to `true` to simulate `testEnvironment` as `jsdom` because frontend dependencies *are* installed.
  * - Resolve to `false` to simulate `testEnvironment` as `node` because frontend dependencies *are not* installed.
  * */
-const mockDependsOn = dependsOn as MockedFunction<typeof dependsOn>;
+const mockDependsOn = dependsOn as jest.MockedFunction<typeof dependsOn>;
 
-vi.mock("../utils/getRepoMetadata.js", () => ({
+jest.mock("../utils/getRepoMetadata.js", () => ({
 	// Initialize the mock to return an empty object to prevent the following error from being thrown in the test run:
 	// > TypeError: Cannot destructure property 'absoluteRootDir' of 'getRepoMetadata(...)' as it is undefined.
-	getRepoMetadata: vi.fn(() => ({})),
+	getRepoMetadata: jest.fn(() => ({})),
 }));
-const mockGetRepoMetadata = getRepoMetadata as MockedFunction<
+const mockGetRepoMetadata = getRepoMetadata as jest.MockedFunction<
 	typeof getRepoMetadata
 >;
 /**
@@ -32,7 +31,7 @@ const actualGetRepoMetadata = () =>
 	}) as const;
 
 afterEach(() => {
-	vi.clearAllMocks();
+	jest.clearAllMocks();
 });
 
 describe("the most important configuration options are correct", () => {

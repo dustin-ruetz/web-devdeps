@@ -1,17 +1,16 @@
 import {readFile} from "node:fs/promises";
-import {type MockedFunction, vi} from "vitest";
 import {dependsOn} from "../dependsOn.js";
 import {getRepoMetadata} from "../getRepoMetadata.js";
 
-vi.mock("node:fs/promises", () => ({
-	readFile: vi.fn(),
+jest.mock("node:fs/promises", () => ({
+	readFile: jest.fn(),
 }));
 // Paraphrased excerpt from https://www.mikeborozdin.com/post/changing-jest-mocks-between-tests:
 // > Typecast the imported mocked module into a mocked function with writeable properties.
-const mockReadFile = readFile as MockedFunction<typeof readFile>;
+const mockReadFile = readFile as jest.MockedFunction<typeof readFile>;
 
-vi.mock("../getRepoMetadata.js", () => ({
-	getRepoMetadata: vi.fn(() => ({
+jest.mock("../getRepoMetadata.js", () => ({
+	getRepoMetadata: jest.fn(() => ({
 		absoluteRootDir: "/Users/username/repos/dr-devdeps",
 		dependencyPartialPath: "node_modules/dr-devdeps",
 		isDevDepsRepo: true,
@@ -19,7 +18,7 @@ vi.mock("../getRepoMetadata.js", () => ({
 }));
 
 afterEach(() => {
-	vi.clearAllMocks();
+	jest.clearAllMocks();
 });
 
 test("throws errors if the `deps` argument is invalid", () => {

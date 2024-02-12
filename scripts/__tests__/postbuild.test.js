@@ -1,11 +1,10 @@
 import {appendFile, copyFile, readdir, rename} from "node:fs/promises";
-import {vi} from "vitest";
 import {postbuild} from "../postbuild.js";
 
-vi.mock("node:fs/promises", () => ({
-	appendFile: vi.fn(),
-	copyFile: vi.fn(),
-	readdir: vi.fn(() => [
+jest.mock("node:fs/promises", () => ({
+	appendFile: jest.fn(),
+	copyFile: jest.fn(),
+	readdir: jest.fn(() => [
 		"__tests__",
 		".eslintignore",
 		".prettierignore",
@@ -19,7 +18,7 @@ vi.mock("node:fs/promises", () => ({
 		"prettier.config.ts",
 		"vitest.config.ts",
 	]),
-	rename: vi.fn(),
+	rename: jest.fn(),
 }));
 
 test("it runs all of the necessary post-build file system operations", async () => {
