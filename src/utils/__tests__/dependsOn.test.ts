@@ -25,22 +25,22 @@ test("throws errors if the `deps` argument is invalid", () => {
 	expect(async () => {
 		// @ts-expect-error if no `deps` argument is passed.
 		await dependsOn();
-	}).rejects.toThrow();
+	}).rejects.toThrow(/ERR_INVALID_DEPS_ARRAY/);
 
 	expect(async () => {
 		// @ts-expect-error if `deps` argument is not an array.
 		await dependsOn("package1");
-	}).rejects.toThrow();
+	}).rejects.toThrow(/ERR_INVALID_DEPS_ARRAY/);
 
 	expect(async () => {
 		// Expect an error if `deps` argument is an empty array.
 		await dependsOn([]);
-	}).rejects.toThrow();
+	}).rejects.toThrow(/ERR_INVALID_DEPS_ARRAY/);
 
 	expect(async () => {
 		// @ts-expect-error if `deps` argument is an array containing non-string values.
 		await dependsOn(["package1", 2, "package3"]);
-	}).rejects.toThrow();
+	}).rejects.toThrow(/ERR_DEP_TYPE_NOT_STRING/);
 });
 
 test("returns `false` if the repo does not depend on the package", async () => {

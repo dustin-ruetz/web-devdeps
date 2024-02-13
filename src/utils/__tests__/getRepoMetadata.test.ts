@@ -46,7 +46,7 @@ test("throws an error if partialPath is not present within absolutePath", () => 
 
 	expect(() => {
 		getRepoMetadata();
-	}).toThrow();
+	}).toThrow(/ERR_PATH_MISMATCH/);
 });
 
 describe("it determines the correct absolute root directory", () => {

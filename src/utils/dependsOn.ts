@@ -1,5 +1,6 @@
 import {readFile} from "node:fs/promises";
 import {getRepoMetadata} from "./getRepoMetadata.js";
+import {ValidationError} from "./ValidationError.js";
 
 /**
  * Given a list of dependencies, check the repository's package.json file
@@ -9,17 +10,18 @@ export const dependsOn = async (deps: string[]) => {
 	// It's possible to use this function directly from the compiled lib/ .js file,
 	// so start with some manual typechecking and throw errors early if needed.
 	if (!Array.isArray(deps) || deps.length === 0) {
-		throw new Error(
+		throw new ValidationError(
 			"Argument for the `deps` parameter must be an array of strings with a length >= 1. Received:" +
 				"\n" +
 				`- typeof deps = ${typeof deps}` +
 				"\n" +
 				`- deps = ${deps}`,
+			{cause: {code: "ERR_INVALID_DEPS_ARRAY"}},
 		);
 	}
 	deps.forEach((dep) => {
 		if (typeof dep !== "string") {
-			throw new Error(
+			throw new ValidationError(
 				"All values in the `deps` array must be strings. Received:" +
 					"\n" +
 					`- deps = ${deps}` +
@@ -27,6 +29,7 @@ export const dependsOn = async (deps: string[]) => {
 					`- typeof dep = ${typeof dep}` +
 					"\n" +
 					`- dep = ${dep}`,
+				{cause: {code: "ERR_DEP_TYPE_NOT_STRING"}},
 			);
 		}
 	});

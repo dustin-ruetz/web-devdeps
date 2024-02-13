@@ -1,4 +1,5 @@
 import {fileURLToPath} from "node:url";
+import {ValidationError} from "./ValidationError.js";
 
 /**
  * The purpose of this function is to provide a more robust alternative to `process.cwd()`. As per
@@ -26,8 +27,9 @@ export const getRepoMetadata = () => {
 	// This function depends on its path being known (i.e. the folder being `/utils/` and the
 	// filename being `getRepoMetadata`), so throw an early error if these don't align.
 	if (!absolutePath.includes(partialPath)) {
-		throw new Error(
+		throw new ValidationError(
 			`partialPath string (value = ${partialPath}) is not present within absolutePath string (value = ${absolutePath}).`,
+			{cause: {code: "ERR_PATH_MISMATCH"}},
 		);
 	}
 	/** `dependencyPartialPath` is known and stable; it's the location where the `dr-devdeps` package is installed as a dependency. */
