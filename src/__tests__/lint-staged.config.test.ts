@@ -15,10 +15,10 @@ test("it runs the correct commands for Prettier and ESLint", () => {
 });
 
 describe("it runs the correct commands for unit testing when the TEST_RUNNER environment variable is equal to", () => {
-	/* eslint-disable dot-notation */
 	const relativePaths = ["src/lint-staged.config.ts"] as const;
 	const [relativePath] = relativePaths;
 
+	/* eslint-disable dot-notation */
 	test("jest", () => {
 		process.env["TEST_RUNNER"] = "jest";
 
