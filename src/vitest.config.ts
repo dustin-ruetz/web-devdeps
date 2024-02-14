@@ -1,3 +1,10 @@
+// Instructions for using Vitest as the test runner:
+// 1. `npm install --save --save-exact vitest @vitest/coverage-v8`
+// 2. In the package.json file `scripts.githooks:pre-commit` command, set the
+//		`TEST_RUNNER=vitest` environment variable right before `lint-staged`.
+// 3. Replace Jest methods and types (`jest.fn`, `jest.mock`, `jest.MockedFunction`, etc.) with the `vi` equivalents.
+// 4. Add `import {type MockedFunction, vi} from "vitest"` statements wherever necessary.
+
 import {defineConfig, type UserConfig} from "vitest/config";
 
 /** https://vitest.dev/config/ */
