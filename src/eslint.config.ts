@@ -24,7 +24,7 @@ export const eslintConfig: Linter.Config = {
 		"plugin:@typescript-eslint/recommended",
 	],
 	// By default ESLint ignores dotfiles, so use a negated ignore pattern to include them when linting.
-	// Note that negating them in src/.eslintignore results in ESLint reporting errors via the CLI
+	// Note that negating them in .eslintignore results in ESLint reporting errors via the CLI
 	// but _not_ the IDE extension; negate them here too to ensure they're linted in the editor.
 	// Excerpt from https://eslint.org/docs/latest/use/configure/ignore:
 	// > dot-files (except for `.eslintrc.*`) as well as dot-folders and their contents are ignored.

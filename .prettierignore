@@ -1,3 +1,5 @@
+# https://prettier.io/docs/en/ignore.html
+# Note: Do not edit this auto-generated .prettierignore file directly; refer to the scripts/postbuild.js file for details.
 # Note: The .gitignore file is used as the base for other .*ignore files; refer to the scripts/postbuild.js file for details.
 build/
 coverage/
