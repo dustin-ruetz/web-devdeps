@@ -4,6 +4,7 @@
 
 * text=auto
 
+*.js   text
 *.md   text
 *.json text
 *.ts   text
