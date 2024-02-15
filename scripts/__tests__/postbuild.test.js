@@ -1,24 +1,37 @@
 import {appendFile, readFile, rename, writeFile} from "node:fs/promises";
+import {getRepoMetadata} from "../../lib/utils/getRepoMetadata.js";
 import {postbuild} from "../postbuild.js";
 
 jest.mock("node:fs/promises");
+
+jest.mock("../../lib/utils/getRepoMetadata.js", () => ({
+	getRepoMetadata: jest.fn(() => ({
+		absoluteRootDir: "/Users/username/repos/dr-devdeps",
+		dependencyPartialPath: "node_modules/dr-devdeps",
+		isDevDepsRepo: true,
+	})),
+}));
 
 test("it runs all of the necessary post-build file system operations", async () => {
 	await postbuild();
 
 	// Verify that 1) the .gitignore file was read, and 2) that the .eslintignore and .prettierignore files were written.
+	expect(getRepoMetadata).toHaveBeenCalledTimes(1);
 	expect(readFile).toHaveBeenCalledTimes(1);
-	expect(readFile).toHaveBeenCalledWith(".gitignore", {encoding: "utf-8"});
+	expect(readFile).toHaveBeenCalledWith(
+		"/Users/username/repos/dr-devdeps/.gitignore",
+		{encoding: "utf-8"},
+	);
 	expect(writeFile).toHaveBeenCalledTimes(2);
 	expect(writeFile).toHaveBeenCalledWith(
-		".eslintignore",
+		"/Users/username/repos/dr-devdeps/.eslintignore",
 		expect.stringMatching(
 			/Do not edit this auto-generated .eslintignore file directly/,
 		),
 		{encoding: "utf-8"},
 	);
 	expect(writeFile).toHaveBeenCalledWith(
-		".prettierignore",
+		"/Users/username/repos/dr-devdeps/.prettierignore",
 		expect.stringMatching(
 			/Do not edit this auto-generated .prettierignore file directly/,
 		),

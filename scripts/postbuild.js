@@ -1,11 +1,16 @@
 import {appendFile, readFile, rename, writeFile} from "node:fs/promises";
+import {getRepoMetadata} from "../lib/utils/getRepoMetadata.js";
 
 export const postbuild = async () => {
 	// Read the contents from the Git ignore file and use it to write the ESLint and Prettier ignore files.
+	const {absoluteRootDir} = getRepoMetadata();
 	const encoding = "utf-8";
 
 	/** Contents read from the `.gitignore` file. */
-	const gitignoreFileContents = await readFile(".gitignore", {encoding});
+	const gitignoreFileContents = await readFile(
+		`${absoluteRootDir}/.gitignore`,
+		{encoding},
+	);
 
 	// Write the ignore files (overwriting them if they already exist) to the root of the repository.
 	// - Note that if https://github.com/prettier/prettier/issues/4081 is fixed in the future
@@ -20,13 +25,21 @@ ${makeIgnoreFileComment(".eslintignore")}
 ${gitignoreFileContents}
 !*.*.js
 !*.*.ts`;
-	await writeFile(".eslintignore", eslintignoreFileContents, {encoding});
+	await writeFile(
+		`${absoluteRootDir}/.eslintignore`,
+		eslintignoreFileContents,
+		{encoding},
+	);
 
 	/** Contents to write to the `.prettierignore` file. */
 	const prettierignoreFileContents = `# https://prettier.io/docs/en/ignore.html
 ${makeIgnoreFileComment(".prettierignore")}
 ${gitignoreFileContents}`;
-	await writeFile(".prettierignore", prettierignoreFileContents, {encoding});
+	await writeFile(
+		`${absoluteRootDir}/.prettierignore`,
+		prettierignoreFileContents,
+		{encoding},
+	);
 
 	// Note that ESLint requires a CommonJS file using `module.exports` in its current v8 iteration, but this changes as of v9;
 	// at that point it should be possible to remove all CommonJS-related code/compilation from this repository entirely.
