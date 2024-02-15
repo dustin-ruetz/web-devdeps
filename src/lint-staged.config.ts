@@ -6,7 +6,7 @@ const lintstagedConfig: Config = {
 	 * Note: Run "format" and "lint" as their base scripts (i.e. _not_ "format:check" and "lint:check")
 	 * because lint-staged will pass just the paths of the staged files as an argument to these commands.
 	 */
-	// Fix code formatting for all file types that Prettier supports.
+	// Fix code formatting for all file types that ESLint and Prettier support.
 	"*": "npm run format -- --ignore-unknown --write",
 	"*.{js,jsx,ts,tsx}": "npm run lint -- --fix",
 	// This repo has unit tests for JSON files, so include them in the glob pattern.
