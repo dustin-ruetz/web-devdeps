@@ -6,9 +6,20 @@ const lintstagedConfig: Config = {
 	 * Note: Run "format" and "lint" as their base scripts (i.e. _not_ "format:check" and "lint:check") because
 	 * lint-staged passes the staged file(s) by appending the path(s) as the last argument to the commands.
 	 */
-	// Fix code formatting for all file types that ESLint and Prettier support.
+	// Fix code formatting for all file types that Prettier supports.
 	"*": "npm run format -- --ignore-unknown --write",
-	"*.{js,jsx,ts,tsx}": "npm run lint -- --fix",
+	"*.{js,jsx,ts,tsx}": (relativePaths) => [
+		// Fix code issues for all file types that ESLint supports.
+		`npm run lint -- --fix ${relativePaths.join(" ")}`,
+		// The "typecheck" script runs the TypeScript compiler (tsc), but tsc ignores the tsconfig.json configuration file due to the
+		// file paths that are appended to the command by lint-staged. Work around this limitation by making this config option
+		// a function that typechecks the entire codebase, i.e. not just the staged files.
+		//
+		// Issues with more details:
+		// - https://github.com/lint-staged/lint-staged/issues/825
+		// - https://github.com/microsoft/TypeScript/issues/27379
+		"npm run typecheck",
+	],
 	// This repo has unit tests for JSON files, so include them in the glob pattern.
 	"*.{js,jsx,json,ts,tsx}": (relativePaths) => {
 		const testRunners = {
@@ -54,14 +65,6 @@ const lintstagedConfig: Config = {
 			}
 		}
 	},
-	// The "typecheck" script runs the TypeScript compiler (tsc), but tsc ignores the tsconfig.json configuration file due to the
-	// file paths that are appended to the command by lint-staged. Work around this limitation by making this config option
-	// a function that typechecks the entire codebase, i.e. not just the staged files.
-	//
-	// Issues with more details:
-	// - https://github.com/lint-staged/lint-staged/issues/825
-	// - https://github.com/microsoft/TypeScript/issues/27379
-	"*.{ts,tsx}": () => "npm run typecheck",
 } as const;
 
 export default lintstagedConfig;
