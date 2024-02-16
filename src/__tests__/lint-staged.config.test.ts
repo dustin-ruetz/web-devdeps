@@ -5,40 +5,44 @@ test("it exports a configuration object", () => {
 	expect(typeof lintstagedConfig).toEqual("object");
 });
 
-test("it runs the correct commands for Prettier and ESLint", () => {
-	expect(lintstagedConfig["*" as keyof Config]).toEqual(
-		"npm run format -- --ignore-unknown --write",
-	);
-	expect(lintstagedConfig["*.{js,jsx,ts,tsx}" as keyof Config]).toEqual(
-		"npm run lint -- --fix",
-	);
-});
+describe("it runs the correct commands for", () => {
+	test("formatting", () => {
+		expect(lintstagedConfig["*" as keyof Config]).toEqual(
+			"npm run format -- --ignore-unknown --write",
+		);
+	});
 
-describe("it runs the correct commands for unit testing when the TEST_RUNNER environment variable is equal to", () => {
-	const relativePaths = ["src/lint-staged.config.ts"] as const;
-	const [relativePath] = relativePaths;
+	test("linting", () => {
+		expect(lintstagedConfig["*.{js,jsx,ts,tsx}" as keyof Config]).toEqual(
+			"npm run lint -- --fix",
+		);
+	});
 
-	/* eslint-disable dot-notation */
-	test("jest", () => {
-		process.env["TEST_RUNNER"] = "jest";
+	describe("unit testing when the TEST_RUNNER environment variable is set to", () => {
+		const relativePaths = ["src/lint-staged.config.ts"] as const;
+		const [relativePath] = relativePaths;
 
-		expect(
+		/* eslint-disable dot-notation */
+		test("jest", () => {
+			process.env["TEST_RUNNER"] = "jest";
 			// @ts-expect-error TODO: Figure out how to type the function on this configuration object correctly.
-			lintstagedConfig["*.{js,jsx,json,ts,tsx}"](relativePaths),
-		).toEqual(
-			`npm run jest:coverage -- --findRelatedTests --collectCoverageFrom= ${relativePath}`,
-		);
+			expect(lintstagedConfig["*.{js,jsx,json,ts,tsx}"](relativePaths)).toEqual(
+				`npm run jest:coverage -- --findRelatedTests --collectCoverageFrom= ${relativePath}`,
+			);
+		});
+
+		test("vitest", () => {
+			process.env["TEST_RUNNER"] = "vitest";
+			// @ts-expect-error TODO: See above comment.
+			expect(lintstagedConfig["*.{js,jsx,json,ts,tsx}"](relativePaths)).toEqual(
+				`npm run vitest -- related --run ${relativePath} --coverage.enabled --coverage.include=${relativePath}`,
+			);
+		});
+		/* eslint-enable dot-notation */
 	});
 
-	test("vitest", () => {
-		process.env["TEST_RUNNER"] = "vitest";
-
-		expect(
-			// @ts-expect-error TODO
-			lintstagedConfig["*.{js,jsx,json,ts,tsx}"](relativePaths),
-		).toEqual(
-			`npm run vitest -- related --run ${relativePath} --coverage.enabled --coverage.include=${relativePath}`,
-		);
+	test("typechecking", () => {
+		// @ts-expect-error TODO: See above comment.
+		expect(lintstagedConfig["*.{ts,tsx}"]()).toEqual("npm run typecheck");
 	});
-	/* eslint-enable dot-notation */
 });

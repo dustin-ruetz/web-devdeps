@@ -56,7 +56,7 @@ const lintstagedConfig: Config = {
 	},
 	// The "typecheck" script runs the TypeScript compiler (tsc), but tsc ignores the tsconfig.json configuration file due to the
 	// file paths that are appended to the command by lint-staged. Work around this limitation by making this config option
-	// a function that runs the "typecheck" script on the entire codebase, i.e. not just the staged files.
+	// a function that typechecks the entire codebase, i.e. not just the staged files.
 	//
 	// Issues with more details:
 	// - https://github.com/lint-staged/lint-staged/issues/825
