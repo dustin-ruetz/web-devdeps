@@ -1,7 +1,8 @@
-# Note: The .gitignore file is used as the base for other .*ignore files; refer to the scripts/postbuild.js file for details.
-build/
+# Use this .gitignore file as the `--ignore-path` for ESLint and Prettier as well,
+# since everything that's excluded from repo source control shouldn't be checked.
 coverage/
-dist/
 lib/
 node_modules/
-www/
+# Related file: src/eslint.config.ts (specifically `eslintConfig.ignorePatterns`)
+!*.*.js
+!*.*.ts

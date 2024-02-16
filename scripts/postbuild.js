@@ -1,46 +1,6 @@
-import {appendFile, readFile, rename, writeFile} from "node:fs/promises";
-import {getRepoMetadata} from "../lib/utils/getRepoMetadata.js";
+import {appendFile, rename} from "node:fs/promises";
 
 export const postbuild = async () => {
-	// Read the contents from the Git ignore file and use it to write the ESLint and Prettier ignore files.
-	const {absoluteRootDir} = getRepoMetadata();
-	const encoding = "utf-8";
-
-	/** Contents read from the `.gitignore` file. */
-	const gitignoreFileContents = await readFile(
-		`${absoluteRootDir}/.gitignore`,
-		{encoding},
-	);
-
-	// Write the ignore files (overwriting them if they already exist) to the root of the repository.
-	// - Note that if https://github.com/prettier/prettier/issues/4081 is fixed in the future
-	//	 then the files should be written to the `lib/` directory instead.
-	const makeIgnoreFileComment = (filename) =>
-		`# Note: Do not edit this auto-generated ${filename} file directly; refer to the scripts/postbuild.js file for details.`;
-
-	/** Contents to write to the `.eslintignore` file. */
-	const eslintignoreFileContents = `# https://eslint.org/docs/latest/use/configure/ignore
-# Related file: src/eslint.config.ts (specifically \`eslintConfig.ignorePatterns\`)
-${makeIgnoreFileComment(".eslintignore")}
-${gitignoreFileContents}
-!*.*.js
-!*.*.ts`;
-	await writeFile(
-		`${absoluteRootDir}/.eslintignore`,
-		eslintignoreFileContents,
-		{encoding},
-	);
-
-	/** Contents to write to the `.prettierignore` file. */
-	const prettierignoreFileContents = `# https://prettier.io/docs/en/ignore.html
-${makeIgnoreFileComment(".prettierignore")}
-${gitignoreFileContents}`;
-	await writeFile(
-		`${absoluteRootDir}/.prettierignore`,
-		prettierignoreFileContents,
-		{encoding},
-	);
-
 	// Note that ESLint requires a CommonJS file using `module.exports` in its current v8 iteration, but this changes as of v9;
 	// at that point it should be possible to remove all CommonJS-related code/compilation from this repository entirely.
 	const eslintConfigPath = {
