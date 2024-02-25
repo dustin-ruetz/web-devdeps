@@ -11,7 +11,7 @@
 		"build": "npm run build:cjs & npm run build:esm",
 		"postbuild": "node ./scripts/postbuild.js",
 		"// format": "Scripts for auto-formatting the codebase.",
-		"format": "prettier --config ./package.json --ignore-path ./.gitignore",
+		"format": "prettier --ignore-path ./.gitignore",
 		"format:check": "npm run format -- --check ./",
 		"format:write": "npm run format -- --write ./",
 		"// githooks": "Refer to the files in the ./.githooks/ folder for documentation on these commands.",
@@ -68,9 +68,8 @@
 	"devDependencies": {
 		"husky": "9.0.11"
 	},
-	"// config": "Configuration for ESLint and Prettier.",
+	"// config": "Configuration for ESLint.",
 	"eslintConfig": {
 		"extends": "./lib/eslint.config.cjs"
-	},
-	"prettier": "./lib/prettier.config.js"
+	}
 }
