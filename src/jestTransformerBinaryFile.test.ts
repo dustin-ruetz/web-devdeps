@@ -1,4 +1,4 @@
-import jestTransformerBinaryFile from "../jestTransformerBinaryFile.js";
+import jestTransformerBinaryFile from "./jestTransformerBinaryFile.js";
 
 test('it transforms binary file paths into `module.exports = "name.extension"`', () => {
 	const sourceText = "";

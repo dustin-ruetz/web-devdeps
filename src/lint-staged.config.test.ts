@@ -1,5 +1,5 @@
 import {type Config} from "lint-staged";
-import lintstagedConfig from "../lint-staged.config.js";
+import lintstagedConfig from "./lint-staged.config.js";
 
 test("it exports a configuration object", () => {
 	expect(typeof lintstagedConfig).toEqual("object");

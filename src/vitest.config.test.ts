@@ -1,4 +1,4 @@
-import {makeVitestConfig} from "../vitest.config.js";
+import {makeVitestConfig} from "./vitest.config.js";
 
 jest.mock("vitest/config", () => ({
 	// Explicitly mock out `defineConfig` to prevent the following from being logged during the Jest test run:

@@ -36,7 +36,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 	// 			"<rootDir>/scripts/",
 	// 			"<rootDir>/src/utils/",
 	// 			"<rootDir>/src/jest.config.ts",
-	// 			"<rootDir>/src/__tests__/jest.config.test.ts",
+	// 			"<rootDir>/src/jest.config.test.ts",
 	// 		] as const)
 	// 	: ([] as const);
 

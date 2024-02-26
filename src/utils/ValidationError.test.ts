@@ -1,4 +1,4 @@
-import {ValidationError} from "../ValidationError.js";
+import {ValidationError} from "./ValidationError.js";
 
 test("ValidationError", () => {
 	const validationError = new ValidationError("error message", {
