@@ -1,4 +1,5 @@
 import {type Config} from "prettier";
+import {xmlPrettierPlugin} from "./prettier-plugins/xml.js";
 
 /** https://prettier.io/docs/en/options.html */
 const prettierConfig: Config = {
@@ -49,6 +50,12 @@ const prettierConfig: Config = {
 	trailingComma: "all",
 	// Refer to .editorconfig file for the rationale of choosing to indent lines with tabs instead of spaces.
 	useTabs: true,
-} as const;
+	// Prettier plugins.
+	plugins: [
+		// SVG files use XML syntax, so use the XML plugin to check/autoformat them.
+		xmlPrettierPlugin.name,
+	],
+	...xmlPrettierPlugin.config,
+};
 
 export default prettierConfig;

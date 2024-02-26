@@ -1,6 +1,6 @@
 {
 	"name": "dr-devdeps",
-	"version": "0.13.0",
+	"version": "0.14.0",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
@@ -11,7 +11,7 @@
 		"build": "npm run build:cjs & npm run build:esm",
 		"postbuild": "node ./scripts/postbuild.js",
 		"// format": "Scripts for auto-formatting the codebase.",
-		"format": "prettier --ignore-path ./.gitignore",
+		"format": "prettier --config ./lib/prettier.config.js --ignore-path ./.gitignore",
 		"format:check": "npm run format -- --check ./",
 		"format:write": "npm run format -- --write ./",
 		"// githooks": "Refer to the files in the ./.githooks/ folder for documentation on these commands.",
@@ -48,6 +48,7 @@
 	"dependencies": {
 		"@commitlint/cli": "18.6.1",
 		"@commitlint/config-conventional": "18.6.2",
+		"@prettier/plugin-xml": "3.3.1",
 		"@swc/core": "1.4.2",
 		"@swc/jest": "0.2.36",
 		"@tsconfig/strictest": "2.0.3",

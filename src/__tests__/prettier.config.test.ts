@@ -12,3 +12,13 @@ test("the most important configuration options are correct", () => {
 	expect(prettierConfig.trailingComma).toEqual("all");
 	expect(prettierConfig.useTabs).toBe(true);
 });
+
+test("the XML plugin and configuration are present", () => {
+	expect(prettierConfig.plugins).toStrictEqual(["@prettier/plugin-xml"]);
+	/* eslint-disable dot-notation */
+	expect(prettierConfig["xmlQuoteAttributes"]).toEqual("double");
+	expect(prettierConfig["xmlSelfClosingSpace"]).toBe(true);
+	expect(prettierConfig["xmlSortAttributesByKey"]).toBe(true);
+	expect(prettierConfig["xmlWhitespaceSensitivity"]).toEqual("ignore");
+	/* eslint-enable dot-notation */
+});
