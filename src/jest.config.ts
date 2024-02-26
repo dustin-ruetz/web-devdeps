@@ -58,7 +58,6 @@ export const makeJestConfig = async (): Promise<Config> => {
 		coveragePathIgnorePatterns: [
 			...ignorePatterns,
 			...binaryFileExtensions.list,
-			".svg",
 			// ...devDepsIgnorePatterns,
 		],
 		// Set coverage provider as v8 to align with the Vitest default.
@@ -110,11 +109,11 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// > Jest runs the code of your project as JavaScript, hence a transformer is needed if you use some syntax
 		// > not supported by Node out of the box (such as JSX, TypeScript, Vue templates).
 		transform: {
-			[binaryFileExtensions.makeTransformRegExp()]: `${transformerBasePath}/lib/jestTransformerBinaryFile.js`,
+			[binaryFileExtensions.makeTransformRegExp()]: `${transformerBasePath}/lib/jest-transformers/binaryFile.js`,
 			// Both Babel and ts-jest are cumbersome to use for transforming TypeScript, so use @swc/jest instead for its simplicity.
 			// https://github.com/swc-project/pkgs/tree/main/packages/jest
 			".(js|jsx|ts|tsx)": "@swc/jest",
-			".svg": `${transformerBasePath}/lib/jestTransformerSVGFile.js`,
+			".svg": `${transformerBasePath}/lib/jest-transformers/svgFile.js`,
 		},
 		// Don't transform anything in node_modules/ and don't transform .json files.
 		transformIgnorePatterns: ["<rootDir>/node_modules/", ".json"],

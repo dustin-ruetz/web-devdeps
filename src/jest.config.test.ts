@@ -68,7 +68,7 @@ describe("the most important configuration options are correct", () => {
 		expect(jestConfig.testEnvironment).toEqual("node");
 		// Sample the transform config object to verify that the paths to the transformer files are correct.
 		expect(jestConfig.transform?.[".svg"]).toEqual(
-			"<rootDir>/lib/jestTransformerSVGFile.js",
+			"<rootDir>/lib/jest-transformers/svgFile.js",
 		);
 	});
 
@@ -88,7 +88,7 @@ describe("the most important configuration options are correct", () => {
 		expect(jestConfig.testEnvironment).toEqual("jsdom");
 		// Sample the transform config object to verify that the paths to the transformer files are correct.
 		expect(jestConfig.transform?.[".svg"]).toEqual(
-			"<rootDir>/node_modules/dr-devdeps/lib/jestTransformerSVGFile.js",
+			"<rootDir>/node_modules/dr-devdeps/lib/jest-transformers/svgFile.js",
 		);
 	});
 });
