@@ -1,5 +1,5 @@
-import { type Config } from "prettier";
-import { xmlPrettierPlugin } from "./prettier-plugins/xml.js";
+import {type Config} from "prettier";
+import {xmlPrettierPlugin} from "./prettier-plugins/xml.js";
 
 /** https://prettier.io/docs/en/options.html */
 const prettierConfig: Config = {

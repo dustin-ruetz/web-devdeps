@@ -1,4 +1,4 @@
-import { xmlPrettierPlugin } from "../xml.js";
+import {xmlPrettierPlugin} from "../xml.js";
 
 test("it has the correct types", () => {
 	expect(typeof xmlPrettierPlugin).toEqual("object");
