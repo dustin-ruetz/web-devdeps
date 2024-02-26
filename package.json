@@ -11,7 +11,7 @@
 		"build": "npm run build:cjs & npm run build:esm",
 		"postbuild": "node ./scripts/postbuild.js",
 		"// format": "Scripts for auto-formatting the codebase.",
-		"format": "prettier --ignore-path ./.gitignore",
+		"format": "prettier --config ./lib/prettier.config.js --ignore-path ./.gitignore",
 		"format:check": "npm run format -- --check ./",
 		"format:write": "npm run format -- --write ./",
 		"// githooks": "Refer to the files in the ./.githooks/ folder for documentation on these commands.",
