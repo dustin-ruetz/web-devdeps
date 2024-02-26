@@ -28,7 +28,6 @@ describe("it runs the correct commands for", () => {
 	});
 
 	describe("unit testing when the TEST_RUNNER environment variable is set to", () => {
-		/* eslint-disable dot-notation */
 		test("jest", () => {
 			process.env["TEST_RUNNER"] = "jest";
 			// @ts-expect-error TODO: See above comment.
@@ -44,6 +43,5 @@ describe("it runs the correct commands for", () => {
 				`npm run vitest -- related --run ${relativePath} --coverage.enabled --coverage.include=${relativePath}`,
 			);
 		});
-		/* eslint-enable dot-notation */
 	});
 });

@@ -65,7 +65,9 @@ export const eslintConfig: Linter.Config = {
 		"arrow-body-style": "error",
 		camelcase: "error",
 		curly: "error",
-		"dot-notation": "error",
+		// Ideally the `"dot-notation"` rule would be set to `"error"` here, but this rule often conflicts with the strictest tsconfig
+		// `"compilerOptions"` setting the `"noPropertyAccessFromIndexSignature"` option to `true`. Having these errors typechecked
+		// is valuable and constantly disabling the `"dot-notation"` rule is tedious, so just don't enable this rule.
 		eqeqeq: "error",
 		"guard-for-in": "error",
 		"no-array-constructor": "error",
