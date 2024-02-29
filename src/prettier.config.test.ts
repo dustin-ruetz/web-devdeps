@@ -1,18 +1,7 @@
-import {dependsOn} from "./utils/dependsOn.js";
+import {dependsOnMock} from "./utils/dependsOn.mock.js";
 import {makePrettierConfig} from "./prettier.config.js";
 import {pugPrettierPlugin} from "./prettier-plugins/pug.js";
 import {xmlPrettierPlugin} from "./prettier-plugins/xml.js";
-
-jest.mock("./utils/dependsOn.js", () => ({
-	dependsOn: jest.fn(),
-}));
-/**
- * Usage: Call `mockDependsOn.mockResolvedValue(false|true)` based on the array of dependencies that are passed in to
- * the function to determine the value of the `hasPugDependency` variable in the prettier.config.ts file. For example:
- * - Resolve to `true` to simulate that the `pug` package *is* installed as a dependency.
- * - Resolve to `false` to simulate that the `pug` package *is not* installed as a dependency.
- */
-const mockDependsOn = dependsOn as jest.MockedFunction<typeof dependsOn>;
 
 test("it exports a configuration object", async () => {
 	const prettierConfig = await makePrettierConfig();
@@ -43,7 +32,7 @@ describe("plugin names and configurations are correct for", () => {
 
 	test("the Pug plugin", async () => {
 		const hasPugDependency = true;
-		mockDependsOn.mockResolvedValue(hasPugDependency);
+		dependsOnMock.mockResolvedValue(hasPugDependency);
 
 		const prettierConfig = await makePrettierConfig();
 
