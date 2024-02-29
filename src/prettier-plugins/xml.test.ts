@@ -6,7 +6,7 @@ test("it has the correct types", () => {
 	expect(typeof xmlPrettierPlugin.name).toEqual("string");
 });
 
-test("the most important configuration options and the plugin name are correct", () => {
+test("the configuration options and the plugin name are correct", () => {
 	expect(xmlPrettierPlugin.config.xmlQuoteAttributes).toEqual("double");
 	expect(xmlPrettierPlugin.config.xmlSelfClosingSpace).toBe(true);
 	expect(xmlPrettierPlugin.config.xmlSortAttributesByKey).toBe(true);
