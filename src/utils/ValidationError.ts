@@ -5,6 +5,9 @@ export class ValidationError extends Error {
 		options: {
 			cause: {
 				code: string;
+				values?: {
+					[value: string]: unknown;
+				};
 			};
 		},
 	) {
@@ -25,7 +28,7 @@ export class ValidationError extends Error {
 		// > As a recommendation, you can manually adjust the prototype immediately after any `super(...)` calls.
 		Object.setPrototypeOf(this, ValidationError.prototype);
 
-		// Note 1: The practice of throwing errors with both a human-readable `message` and a machine-readable `cause.code` is taken directly from MDN.
+		// Note 1: The practice of throwing errors with both a human-readable `message` and a machine-readable `cause` object is taken directly from MDN.
 		// Excerpt from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause#providing_structured_data_as_the_error_cause:
 		// > ### Providing structured data as the error cause
 		// > Error messages written for human consumption may be inappropriate for machine parsing — since they're subject to rewording or

@@ -40,7 +40,7 @@ test("throws errors if the `deps` argument is invalid", () => {
 	expect(async () => {
 		// @ts-expect-error if `deps` argument is an array containing non-string values.
 		await dependsOn(["package1", 2, "package3"]);
-	}).rejects.toThrow(/ERR_DEP_TYPE_NOT_STRING/);
+	}).rejects.toThrow(/ERR_TYPEOF_DEP_NOT_STRING/);
 });
 
 test("returns `false` if the repo does not depend on the package", async () => {
