@@ -1,4 +1,4 @@
-import {type Config} from "lint-staged";
+import type {Config} from "lint-staged";
 import lintstagedConfig from "./lint-staged.config.js";
 
 test("it exports a configuration object", () => {

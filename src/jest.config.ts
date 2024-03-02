@@ -1,4 +1,4 @@
-import {type Config} from "jest";
+import type {Config} from "jest";
 import {dependsOn} from "./utils/dependsOn.js";
 import {getRepoMetadata} from "./utils/getRepoMetadata.js";
 

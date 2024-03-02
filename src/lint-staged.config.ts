@@ -1,4 +1,4 @@
-import {type Config} from "lint-staged";
+import type {Config} from "lint-staged";
 
 /** https://github.com/lint-staged/lint-staged */
 const lintstagedConfig: Config = {

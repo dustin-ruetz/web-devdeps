@@ -1,4 +1,4 @@
-import {type Config} from "prettier";
+import type {Config} from "prettier";
 import {dependsOn} from "./utils/dependsOn.js";
 import {pugPrettierPlugin} from "./prettier-plugins/pug.js";
 import {xmlPrettierPlugin} from "./prettier-plugins/xml.js";
