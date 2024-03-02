@@ -1,4 +1,4 @@
 {
 	"extends": "./tsconfig.json",
-	"exclude": ["**/*.test.*", "./src/eslint.config.ts"]
+	"exclude": ["**/*.mock.*", "**/*.test.*", "./src/eslint.config.ts"]
 }
