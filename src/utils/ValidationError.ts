@@ -1,4 +1,4 @@
-/** Custom class that requires an error `message` and `code`. */
+/** Custom class that 1) requires an error `message` and `code`, and 2) supports an optional `values` object. */
 export class ValidationError extends Error {
 	constructor(
 		message: string,
