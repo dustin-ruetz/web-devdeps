@@ -1,12 +1,12 @@
 {
-	// Specify that the Git hook files are shell scripts because VS Code misidentifies some of them as Markdown due to code comments.
+	// Specify that the Git hook files are shell scripts because VS Code misidentifies them as either Markdown, plain text or YAML.
 	"files.associations": {
 		// .githooks/
 		"commit-msg": "shellscript",
 		"pre-commit": "shellscript",
 		"pre-push": "shellscript"
 	},
-	// Configure the icons for the following files that aren't assigned a custom icon automatically.
+	// Configure the icons for the following files that aren't automatically assigned a custom icon.
 	// Excerpt from https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme:
 	// > You can customize the icon associations directly in the user settings.
 	// > With the `*.[extension]` pattern you can define custom file icon associations.
@@ -15,12 +15,7 @@
 		"src/eslint.config.ts": "eslint",
 		"src/prettier.config.ts": "prettier"
 	},
-	// The simplest and most straightforward way to ensure that the IDE extensions for ESLint and Prettier work correctly in the editor
-	// is to specify the paths (relative to the root of the repo) to configuration and ignore files here in this VS Code settings file.
-	//
-	// GitHub issues related to Prettier plugins failing to autoformat files on save:
-	// https://github.com/prettier/prettier-vscode/issues/3104
-	// https://github.com/prettier/prettier-vscode/issues/3235
-	"prettier.configPath": "./lib/prettier.config.js",
-	"prettier.ignorePath": "./.gitignore"
+	// https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+	"prettier.configPath": "lib/prettier.config.js",
+	"prettier.ignorePath": ".gitignore"
 }
