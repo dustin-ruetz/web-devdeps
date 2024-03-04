@@ -5,7 +5,6 @@ test("it exports a configuration object", () => {
 });
 
 test("the most important configuration options are correct", () => {
-	// Continue with the assertions now that the config object's structure has been verified.
 	expect(eslintConfig.env).toStrictEqual({
 		browser: true,
 		es2024: true,
@@ -22,6 +21,8 @@ test("the most important configuration options are correct", () => {
 	expect(eslintConfig.plugins).toStrictEqual(["@typescript-eslint"]);
 	expect(eslintConfig.root).toBe(true);
 	expect(eslintConfig.rules?.["camelcase"]).toEqual("error");
+	// Verify that ESLint's "dot-notation" rule is undefined because enabling it
+	// conflicts with Typescript's "noPropertyAccessFromIndexSignature" rule.
 	expect(eslintConfig.rules?.["dot-notation"]).toBeUndefined();
 	expect(eslintConfig.rules?.["no-console"]).toEqual("warn");
 	expect(eslintConfig.rules?.["no-magic-numbers"]).toStrictEqual([
