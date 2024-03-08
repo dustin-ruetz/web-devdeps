@@ -32,7 +32,7 @@ describe("it runs the correct commands for", () => {
 			process.env["TEST_RUNNER"] = "jest";
 			// @ts-expect-error TODO: See above comment.
 			expect(lintstagedConfig["*.{js,jsx,json,ts,tsx}"](relativePaths)).toEqual(
-				`npm run jest:coverage -- --findRelatedTests --collectCoverageFrom= ${relativePath}`,
+				`npm run test:coverage -- --findRelatedTests --collectCoverageFrom= ${relativePath}`,
 			);
 		});
 
