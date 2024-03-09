@@ -20,8 +20,8 @@ test("the most important configuration options are correct", async () => {
 	expect(prettierConfig.useTabs).toBe(true);
 });
 
-describe("plugin names and configurations are correct for", () => {
-	test("the XML plugin", async () => {
+describe("plugin names and configurations are correct", () => {
+	test("for the XML plugin", async () => {
 		const prettierConfig = await makePrettierConfig();
 
 		expect(prettierConfig.plugins).toStrictEqual(["@prettier/plugin-xml"]);
@@ -30,15 +30,29 @@ describe("plugin names and configurations are correct for", () => {
 		);
 	});
 
-	test("the Pug plugin", async () => {
-		const hasPugDependency = true;
-		dependsOnMock.mockResolvedValue(hasPugDependency);
+	describe("for the Pug plugin", () => {
+		test("when Pug *is* installed as a dependency", async () => {
+			const hasPugDependency = true;
+			dependsOnMock.mockResolvedValue(hasPugDependency);
 
-		const prettierConfig = await makePrettierConfig();
+			const prettierConfig = await makePrettierConfig();
 
-		expect(prettierConfig.plugins).toContain("@prettier/plugin-pug");
-		expect(prettierConfig).toEqual(
-			expect.objectContaining(pugPrettierPlugin.config),
-		);
+			expect(prettierConfig.plugins).toContain("@prettier/plugin-pug");
+			expect(prettierConfig).toEqual(
+				expect.objectContaining(pugPrettierPlugin.config),
+			);
+		});
+
+		test("when Pug *is not* installed as a dependency", async () => {
+			const hasPugDependency = false;
+			dependsOnMock.mockResolvedValue(hasPugDependency);
+
+			const prettierConfig = await makePrettierConfig();
+
+			expect(prettierConfig.plugins).not.toContain("@prettier/plugin-pug");
+			expect(prettierConfig).toEqual(
+				expect.not.objectContaining(pugPrettierPlugin.config),
+			);
+		});
 	});
 });
