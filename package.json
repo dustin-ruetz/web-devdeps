@@ -45,11 +45,11 @@
 	"repository": "https://github.com/dustin-ruetz/dr-devdeps.git",
 	"type": "module",
 	"dependencies": {
-		"@commitlint/cli": "19.1.0",
+		"@commitlint/cli": "19.2.0",
 		"@commitlint/config-conventional": "19.1.0",
 		"@prettier/plugin-pug": "3.0.0",
 		"@prettier/plugin-xml": "3.3.1",
-		"@swc/core": "1.4.6",
+		"@swc/core": "1.4.8",
 		"@swc/jest": "0.2.36",
 		"@tsconfig/strictest": "2.0.3",
 		"@types/eslint": "8.56.5",
