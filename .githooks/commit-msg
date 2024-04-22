@@ -4,6 +4,5 @@
 # - `commitlint` - Verify that the commit message is written in the correct format.
 #
 # Excerpts from https://commitlint.js.org/#/reference-cli:
-# > --edit    - read last commit message from the specified file, or fallback to ./.git/COMMIT_EDITMSG
-# > --verbose - enable verbose output for reports without problems
+# > --edit - read last commit message from the specified file, or fallback to ./.git/COMMIT_EDITMSG
 npm run githooks:commit-msg
