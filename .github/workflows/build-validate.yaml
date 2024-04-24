@@ -14,7 +14,8 @@ jobs:
           node-version: "lts/*"
       - name: Install dependencies
         run: npm clean-install
-      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies.
+      # Verify the integrity of provenance attestations and registry signatures for installed dependencies.
+      - name: Audit dependency signatures
         run: npm audit signatures
       - name: Build library
         run: npm run build
