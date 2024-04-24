@@ -1,8 +1,5 @@
 name: Build and validate
-on:
-  push:
-    branches:
-      - main
+on: pull_request
 jobs:
   build-validate:
     runs-on: ubuntu-latest
