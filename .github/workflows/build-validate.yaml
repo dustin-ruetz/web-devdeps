@@ -1,5 +1,10 @@
 name: Build and validate
-on: pull_request
+on:
+  # Run this workflow when a PR is 1) opened/has new commits added to it, and 2) merged into the "main" branch.
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches: [main]
 jobs:
   build-validate:
     runs-on: ubuntu-latest
