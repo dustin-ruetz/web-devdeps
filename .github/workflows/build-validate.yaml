@@ -1,0 +1,28 @@
+name: Build and validate
+on:
+  # Run this workflow when a PR is 1) opened/has new commits added to it, and 2) merged into the "main" branch.
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches: [main]
+jobs:
+  build-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+        run: npm clean-install
+      # Verify the integrity of provenance attestations and registry signatures for installed dependencies.
+      - name: Audit dependency signatures
+        run: npm audit signatures
+      - name: Build library
+        run: npm run build
+      - name: Validate codebase
+        run: npm run validate:check
