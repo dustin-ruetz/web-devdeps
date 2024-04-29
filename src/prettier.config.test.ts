@@ -12,7 +12,7 @@ test("it exports a configuration object", async () => {
 test("the most important configuration options are correct", async () => {
 	const prettierConfig = await makePrettierConfig();
 
-	expect(prettierConfig.endOfLine).toBeUndefined();
+	expect(prettierConfig.endOfLine).toEqual("auto");
 	expect(prettierConfig.printWidth).toEqual(80);
 	expect(prettierConfig.proseWrap).toEqual("preserve");
 	expect(prettierConfig.singleQuote).toBe(false);

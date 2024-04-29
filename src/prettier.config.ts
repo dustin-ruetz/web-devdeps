@@ -16,9 +16,10 @@ export const makePrettierConfig = async (): Promise<Config> => {
 		// > within a string in another file, like in a tagged template in JavaScript with a tag named `html`
 		// > or in code blocks in Markdown, it will by default try to format that code.
 		embeddedLanguageFormatting: "auto",
-		// Refer to .gitattributes file for the rationale of leaving `endOfLine` unset.
-		// endOfLine
-		//
+		// The `* text=auto` setting in the .gitattributes file tells Git to detect all text files and automatically normalize the line endings.
+		// Excerpt from https://prettier.io/docs/en/options.html#end-of-line:
+		// > Maintain existing line endings (mixed values within one file are normalised by looking at what's used after the first line).
+		endOfLine: "auto",
 		// Excerpt from https://prettier.io/blog/2018/11/07/1.15.0.html#whitespace-sensitive-formatting:
 		// > Whitespace is significant in HTML inline elements.
 		// > For this reason, we cannot safely format some HTML code since it may modify the displayed output in the browser.
@@ -53,6 +54,10 @@ export const makePrettierConfig = async (): Promise<Config> => {
 		tabWidth: 2,
 		// Add trailing commas wherever possible to help reduce the number of changed lines when viewing Git diffs.
 		trailingComma: "all",
+		// Use tabs for indentation since they're both accessible and customizable, whereas fixed-width spaces are not.
+		// - https://www.reddit.com/r/javascript/comments/c8drjo/nobody_talks_about_the_real_reason_to_use_tabs/
+		// - https://adamtuttle.codes/blog/2021/tabs-vs-spaces-its-an-accessibility-issue/
+		// - https://alexandersandberg.com/articles/default-to-tabs-instead-of-spaces-for-an-accessible-first-environment/
 		useTabs: true,
 		// Configure the Prettier plugins.
 		plugins: [
