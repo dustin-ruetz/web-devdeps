@@ -1,4 +1,4 @@
-name: Build and validate
+name: build-and-check
 on:
   # Run this workflow when a PR is 1) opened/has new commits added to it, and 2) merged into the "main" branch.
   pull_request:
@@ -6,7 +6,7 @@ on:
   push:
     branches: [main]
 jobs:
-  build-validate:
+  build-and-check:
     runs-on: ubuntu-latest
     steps:
       - name: Git checkout repository
@@ -25,5 +25,5 @@ jobs:
         run: npm audit signatures
       - name: Build library
         run: npm run build
-      - name: Validate codebase
-        run: npm run validate:check
+      - name: Run validation checks
+        run: npm run check
