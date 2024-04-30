@@ -24,7 +24,7 @@ describe("it runs the correct commands for", () => {
 	});
 
 	test("typechecking", () => {
-		expect(typecheckCommand).toEqual("npm run typecheck");
+		expect(typecheckCommand).toEqual("npm run check:types");
 	});
 
 	describe("unit testing when the TEST_RUNNER environment variable is set to", () => {
