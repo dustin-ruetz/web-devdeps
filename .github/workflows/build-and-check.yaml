@@ -31,3 +31,5 @@ jobs:
         run: npm run build
       - name: Run validation checks
         run: npm run check
+      - name: Run unit tests and collect code coverage
+        run: npm run test:coverage
