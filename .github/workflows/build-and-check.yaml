@@ -8,6 +8,11 @@ on:
 jobs:
   build-and-check:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Run this job on both the maintenance (v18) and active (v20) Node.js LTS versions.
+        node-version: [18, 20]
+    name: Build and check on Node.js v${{ matrix.node-version }}
     steps:
       - name: Git checkout repository
         uses: actions/checkout@v4
@@ -15,9 +20,8 @@ jobs:
           fetch-depth: 0
       - name: Setup Node.js
         uses: actions/setup-node@v4
-        # Specify the Node.js version by referencing the .node-version file that's located in the root of the repo.
         with:
-          node-version-file: .node-version
+          node-version: ${{ matrix.node-version }}
       - name: Install dependencies
         run: npm clean-install
       # Verify the integrity of provenance attestations and registry signatures for installed dependencies.
