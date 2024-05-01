@@ -10,8 +10,11 @@ test("that NPM packages are installed with exact version numbers", () => {
 	const dependencyVersions = [
 		...Object.values(packageJson.dependencies).map((version) => version),
 	];
+	const devDependencyVersions = [
+		...Object.values(packageJson.devDependencies).map((version) => version),
+	];
 
-	dependencyVersions.forEach((dependency) => {
+	[...dependencyVersions, ...devDependencyVersions].forEach((dependency) => {
 		expect(dependency).not.toContain("^");
 	});
 });
