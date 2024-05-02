@@ -1,4 +1,4 @@
-name: build-and-check
+name: build-check-test
 on:
   # Run this workflow when a PR is 1) opened/has new commits added to it, and 2) merged into the "main" branch.
   pull_request:
@@ -6,8 +6,8 @@ on:
   push:
     branches: [main]
 jobs:
-  build-and-check:
-    name: Build and check on Node.js v${{ matrix.node-version }}
+  build-check-test:
+    name: Build, check and test on Node.js v${{ matrix.node-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
