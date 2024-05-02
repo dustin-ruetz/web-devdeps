@@ -33,7 +33,7 @@ const lintstagedConfig: Config = {
 			case typeof "undefined":
 			default: {
 				const jestCommand =
-					"npm run test:coverage --" +
+					"npm run test:unit:coverage --" +
 					// Excerpt from https://jestjs.io/docs/cli#--findrelatedtests-spaceseparatedlistofsourcefiles:
 					// > Find and run the tests that cover a space-separated list of source files that were passed in as arguments.
 					// > Useful for pre-commit hook integration to run the minimal amount of tests necessary.

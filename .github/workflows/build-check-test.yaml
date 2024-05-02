@@ -32,4 +32,4 @@ jobs:
       - name: Run validation checks
         run: npm run check
       - name: Run unit tests and collect code coverage
-        run: npm run test:coverage
+        run: npm run test:unit:coverage
