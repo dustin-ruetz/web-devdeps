@@ -1,4 +1,0 @@
-{
-	"extends": "./tsconfig.json",
-	"exclude": ["**/*.mock.*", "**/*.test.*", "./src/eslint.config.ts"]
-}

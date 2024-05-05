@@ -5,10 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"prebuild": "npm run clean",
-		"build:cjs": "tsc --project ./tsconfig.cjs.json",
-		"build:esm": "tsc --project ./tsconfig.esm.json",
-		"build": "npm-run-all2 --parallel build:*",
-		"postbuild": "node ./scripts/postbuild.js",
+		"build": "tsc --project ./tsconfig.build.json",
 		"check": "npm-run-all2 --parallel check:*",
 		"check:format": "npm run format -- --check ./",
 		"check:js-ts": "npm run lint -- ./",
