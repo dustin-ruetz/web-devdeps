@@ -17,7 +17,8 @@
 	// > With the `*.[extension]` pattern you can define custom file icon associations.
 	// > If there's no leading `*` it will be automatically configured as filename and not as file extension.
 	"material-icon-theme.files.associations": {
-		"src/eslint.config.cts": "eslint"
+		"src/eslint.config.cts": "eslint",
+		"src/prettier.config.ts": "prettier"
 	},
 	// https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
 	"prettier.configPath": "lib/prettier.config.js",
