@@ -5,6 +5,6 @@
 coverage/
 lib/
 node_modules/
-# Related file: src/eslint.config.ts (specifically `eslintConfig.ignorePatterns`)
+# Related file: src/eslint.config.cts (specifically `eslintConfig.ignorePatterns`)
 !*.*.js
 !*.*.ts

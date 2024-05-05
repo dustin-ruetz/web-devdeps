@@ -1,14 +1,11 @@
 {
 	"name": "dr-devdeps",
-	"version": "0.17.0",
+	"version": "0.18.0",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
 		"prebuild": "npm run clean",
-		"build:cjs": "tsc --project ./tsconfig.cjs.json",
-		"build:esm": "tsc --project ./tsconfig.esm.json",
-		"build": "npm-run-all2 --parallel build:*",
-		"postbuild": "node ./scripts/postbuild.js",
+		"build": "tsc --project ./tsconfig.build.json",
 		"check": "npm-run-all2 --parallel check:*",
 		"check:format": "npm run format -- --check ./",
 		"check:js-ts": "npm run lint -- ./",
@@ -28,7 +25,7 @@
 		"// init-1": "Initialize repo by: 1) configuring Git hooks, 2) installing dependencies (which then runs 'postinstall' to build lib/),",
 		"// init-2": "3) running validation checks, and 4) running unit tests and collecting code coverage.",
 		"init": "git config core.hooksPath ./.githooks/ && npm install && npm run check && npm run test:unit:coverage",
-		"lint": "eslint --config ./package.json --ignore-path ./.gitignore",
+		"lint": "eslint --config ./lib/eslint.config.cjs --ignore-path ./.gitignore",
 		"// postinstall": "After package and all dependencies are installed, build to the lib/ directory.",
 		"postinstall": "npm run build",
 		"test:unit": "jest --config ./lib/jest.config.js",
@@ -71,9 +68,5 @@
 	},
 	"devDependencies": {
 		"husky": "9.0.11"
-	},
-	"// config": "Configuration for ESLint.",
-	"eslintConfig": {
-		"extends": "./lib/eslint.config.cjs"
 	}
 }

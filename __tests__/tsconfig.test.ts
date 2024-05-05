@@ -1,19 +1,11 @@
 import tsConfig from "../tsconfig.json";
-import tsConfigCJS from "../tsconfig.cjs.json";
 
 test("all tsconfig files export a configuration object", () => {
-	const tsConfigs = [tsConfig, tsConfigCJS];
-	tsConfigs.forEach((tsConfig) => {
-		expect(typeof tsConfig).toEqual("object");
-	});
+	expect(typeof tsConfig).toEqual("object");
 });
 
 test("the tsconfig file extends the @tsconfig/strictest configuration", () => {
 	expect(tsConfig.extends).toEqual("@tsconfig/strictest/tsconfig.json");
-});
-
-test("the tsconfig CJS file extends the base configuration", () => {
-	expect(tsConfigCJS.extends).toEqual("./tsconfig.json");
 });
 
 describe("the most important compilerOptions are correct for:", () => {
@@ -30,16 +22,5 @@ describe("the most important compilerOptions are correct for:", () => {
 		expect(compilerOptions.target).not.toMatch(/esnext/i);
 		expect(compilerOptions.target).toEqual("ES2022");
 		expect(compilerOptions.verbatimModuleSyntax).toBe(true);
-	});
-
-	test("tsconfig.cjs.json", () => {
-		const {compilerOptions} = tsConfigCJS;
-
-		expect(compilerOptions.module).toEqual("CommonJS");
-		expect(compilerOptions.moduleResolution).toEqual("Node10");
-		// Verify that `verbatimModuleSyntax === false` to prevent the following error:
-		// > TS1287: A top-level 'export' modifier cannot be used on value declarations
-		// > in a CommonJS module when 'verbatimModuleSyntax' is enabled.
-		expect(compilerOptions.verbatimModuleSyntax).toBe(false);
 	});
 });
