@@ -1,4 +1,9 @@
 {
+	// https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+	"eslint.options": {
+		"ignorePath": ".gitignore",
+		"overrideConfigFile": "lib/eslint.config.cjs"
+	},
 	// Specify that the Git hook files are shell scripts because VS Code misidentifies them as either Markdown, plain text or YAML.
 	"files.associations": {
 		// .githooks/
