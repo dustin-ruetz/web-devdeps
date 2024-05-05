@@ -48,13 +48,15 @@ export const makeJestConfig = async (): Promise<Config> => {
 		: // If running tests on a `consuming-repo`, set the path relative to its `dr-devdeps` dependency.
 			(`<rootDir>/${dependencyPartialPath}` as const);
 
+	// Note: The `cjs` and `cts` file extensions are included in the Jest config because this repo has some tools
+	// that only work with CommonJS `module.exports = {}` objects, and these files need to be unit tested too.
 	return {
 		// Specify `collectCoverageFrom` to ensure that Jest collects test coverage for all JavaScript and TypeScript files.
 		// Excerpt from https://jestjs.io/docs/configuration#collectcoveragefrom-array:
 		// > An array of glob patterns indicating a set of files for which coverage information should be collected.
 		// > If a file matches the specified glob pattern, coverage information will be collected for it even if
 		// > no tests exist for this file and it's never required in the test suite.
-		collectCoverageFrom: ["**/*.{js,jsx,ts,tsx}"],
+		collectCoverageFrom: ["**/*.{cjs,js,jsx,cts,ts,tsx}"],
 		// https://stackoverflow.com/questions/69567201/coveragepathignorepatterns-ignore-files-with-specific-ending
 		coveragePathIgnorePatterns: [
 			...ignorePatterns,
@@ -80,7 +82,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// Excerpt from https://jestjs.io/docs/configuration#modulefileextensions-arraystring:
 		// > We recommend placing the extensions most commonly used in your project on the left, so if you are
 		// > using TypeScript, you may want to consider moving "ts" and/or "tsx" to the beginning of the array.
-		moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
+		moduleFileExtensions: ["cts", "ts", "tsx", "cjs", "js", "jsx", "json"],
 		// TypeScript knows how to map imported files with the ".js" extension to their ".ts" counterparts. Jest
 		// doesn't handle this automatically, so specify `moduleNameMapper` to handle `.js` and `.jsx` file extensions.
 		// Excerpt from https://jestjs.io/docs/configuration#modulenamemapper-objectstring-string--arraystring:
@@ -88,7 +90,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// > allow to stub out resources, like images or styles with a single module.
 		moduleNameMapper: {
 			// https://github.com/kulshekhar/ts-jest/issues/1057#issuecomment-1482644543:
-			"^(\\.\\.?\\/.+)\\.(js|jsx)": "$1",
+			"^(\\.\\.?\\/.+)\\.(cjs|js|jsx)": "$1",
 		},
 		// Note that while `rootDir` is set to an absolute path here, Jest also knows how to interpret relative paths. For example,
 		// a consuming repo depending on dr-devdeps could use "../../../" as the path to traverse three levels upwards to hit root.
