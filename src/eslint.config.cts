@@ -142,6 +142,6 @@ const eslintConfig = {
 			},
 		},
 	],
-} as const;
+};
 
 module.exports = eslintConfig;

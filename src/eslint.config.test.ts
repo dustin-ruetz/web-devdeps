@@ -1,4 +1,7 @@
-import {eslintConfig} from "./eslint.config.js";
+import type {Linter} from "eslint";
+import eslintCfg from "./eslint.config.cjs";
+
+const eslintConfig: Linter.Config = eslintCfg;
 
 test("it exports a configuration object", () => {
 	expect(typeof eslintConfig).toEqual("object");
