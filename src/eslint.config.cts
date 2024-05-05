@@ -1,7 +1,5 @@
-import type {Linter} from "eslint";
-
 /** https://eslint.org/docs/latest/use/configure/ */
-export const eslintConfig: Linter.Config = {
+const eslintConfig = {
 	// Excerpt from https://eslint.org/docs/latest/use/configure/language-options#specifying-environments:
 	// > An environment provides predefined global variables.
 	env: {
@@ -145,3 +143,5 @@ export const eslintConfig: Linter.Config = {
 		},
 	],
 } as const;
+
+module.exports = eslintConfig;
