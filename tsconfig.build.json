@@ -1,4 +1,9 @@
 {
 	"extends": "./tsconfig.json",
-	"exclude": ["**/*.mock.*", "**/*.test.*"]
+	"exclude": ["**/*.mock.*", "**/*.test.*"],
+	"compilerOptions": {
+		"noEmitOnError": true,
+		"outDir": "./lib/",
+		"removeComments": true
+	}
 }
