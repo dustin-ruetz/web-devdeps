@@ -23,13 +23,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install dependencies
+      - name: Install dependencies and build library
         run: npm clean-install
       # Verify the integrity of provenance attestations and registry signatures for installed dependencies.
       - name: Audit dependency signatures
         run: npm audit signatures
-      - name: Build library
-        run: npm run build
       - name: Run validation checks
         run: npm run check
       - name: Run unit tests and collect code coverage
