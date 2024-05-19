@@ -44,7 +44,9 @@
 		"node": ">=18",
 		"npm": ">=10"
 	},
-	"repository": "https://github.com/dustin-ruetz/dr-devdeps.git",
+	"repository": {
+		"url": "git@github.com:dustin-ruetz/dr-devdeps.git"
+	},
 	"type": "module",
 	"dependencies": {
 		"@commitlint/cli": "19.3.0",
