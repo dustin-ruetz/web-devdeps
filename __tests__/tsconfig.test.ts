@@ -11,6 +11,7 @@ test("the most important configuration options are correct", () => {
 	const {compilerOptions} = tsConfig;
 	expect(compilerOptions.module).toEqual("NodeNext");
 	expect(compilerOptions.moduleResolution).toEqual("NodeNext");
+	expect(compilerOptions.resolveJsonModule).toBe(true);
 	// Excerpt from https://www.typescriptlang.org/tsconfig#target on not using `"target": "esnext"`:
 	// > The special `ESNext` value refers to the highest version your version of TypeScript supports.
 	// > This setting should be used with caution, since it doesn't mean the same thing between
