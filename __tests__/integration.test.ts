@@ -13,13 +13,15 @@ test("INTEGRATION: ensure that the original src/ files are mapped one-to-one wit
 		const files = directoryContents
 			// Filter out all folder names as well as mock and test files (the latter two are deliberately excluded from compilation).
 			.filter(
+				// Filter the item _in_ as a file if:
 				(item) =>
+					// 1. It _does_ end with one of the following file extensions; and
 					(item.endsWith(".cjs") ||
 						item.endsWith(".cts") ||
 						item.endsWith(".js") ||
 						item.endsWith(".ts")) &&
-					!item.endsWith(".mock.ts") &&
-					!item.endsWith(".test.ts"),
+					// 2. It _does not_ contain the ".mock" or ".test" substrings.
+					!(item.includes(".mock") || item.includes(".test")),
 			)
 			// Sort the array in alphabetical order.
 			.sort()
