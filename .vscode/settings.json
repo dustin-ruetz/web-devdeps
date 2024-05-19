@@ -1,23 +1,16 @@
 {
-	// https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 	"eslint.options": {
 		"ignorePath": ".gitignore",
 		"overrideConfigFile": "lib/eslint.config.cjs"
 	},
-	// Specify that the Git hook files are shell scripts because VS Code misidentifies them as either Markdown, plain text or YAML.
 	"files.associations": {
-		// .githooks/
 		"commit-msg": "shellscript",
 		"pre-commit": "shellscript",
 		"pre-push": "shellscript"
 	},
-	// Configure the icons for the following files that aren't automatically assigned a custom icon.
-	// Excerpt from https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme:
-	// > You can customize the icon associations directly in the user settings.
-	// > With the `*.[extension]` pattern you can define custom file icon associations.
-	// > If there's no leading `*` it will be automatically configured as filename and not as file extension.
-	"material-icon-theme.files.associations": {},
-	// https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+	"material-icon-theme.files.associations": {
+		"src/semantic-release.config.cts": "semantic-release"
+	},
 	"prettier.configPath": "lib/prettier.config.js",
 	"prettier.ignorePath": ".gitignore"
 }
