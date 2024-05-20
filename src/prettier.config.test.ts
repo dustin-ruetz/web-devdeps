@@ -3,14 +3,10 @@ import {makePrettierConfig} from "./prettier.config.js";
 import {pugPrettierPlugin} from "./prettier-plugins/pug.js";
 import {xmlPrettierPlugin} from "./prettier-plugins/xml.js";
 
-test("it exports a configuration object", async () => {
+test("it exports a configuration object and the most important config options are correct", async () => {
 	const prettierConfig = await makePrettierConfig();
 
 	expect(typeof prettierConfig).toEqual("object");
-});
-
-test("the most important configuration options are correct", async () => {
-	const prettierConfig = await makePrettierConfig();
 
 	expect(prettierConfig.endOfLine).toEqual("auto");
 	expect(prettierConfig.printWidth).toEqual(80);

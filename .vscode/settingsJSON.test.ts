@@ -1,6 +1,6 @@
 import vscodeSettingsJSON from "./settings.json";
 
-test("the most important configuration options are correct", () => {
+test("it is a configuration object and the most important config options are correct", () => {
 	// https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 	expect(vscodeSettingsJSON["eslint.options"].ignorePath).toEqual(".gitignore");
 	expect(vscodeSettingsJSON["eslint.options"].overrideConfigFile).toEqual(

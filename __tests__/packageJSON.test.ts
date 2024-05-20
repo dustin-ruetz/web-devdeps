@@ -6,7 +6,7 @@ test("the most important configuration options are correct", () => {
 	expect(packageJSON.type).toEqual("module");
 });
 
-test("that NPM packages are installed with exact version numbers", () => {
+test("NPM packages are installed with exact version numbers", () => {
 	const dependencyVersions = [
 		...Object.values(packageJSON.dependencies).map((version) => version),
 	];

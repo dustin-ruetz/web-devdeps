@@ -3,11 +3,9 @@ import eslintCfg from "./eslint.config.cjs";
 
 const eslintConfig: Linter.Config = eslintCfg;
 
-test("it exports a configuration object", () => {
+test("it exports a configuration object and the most important config options are correct", () => {
 	expect(typeof eslintConfig).toEqual("object");
-});
 
-test("the most important configuration options are correct", () => {
 	expect(eslintConfig.env).toStrictEqual({
 		browser: true,
 		es2024: true,

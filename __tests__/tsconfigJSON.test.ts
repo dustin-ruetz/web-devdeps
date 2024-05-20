@@ -1,10 +1,8 @@
 import tsconfigJSON from "../tsconfig.json";
 
-test("it exports a configuration object", () => {
+test("it is a configuration object and the most important config options are correct", () => {
 	expect(typeof tsconfigJSON).toEqual("object");
-});
 
-test("the most important configuration options are correct", () => {
 	expect(tsconfigJSON.extends).toEqual("@tsconfig/strictest/tsconfig.json");
 	expect(tsconfigJSON.include).toStrictEqual(["./src/"]);
 

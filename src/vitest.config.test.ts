@@ -6,14 +6,10 @@ import {makeVitestConfig} from "./vitest.config.js";
 // 	defineConfig: jest.fn(),
 // }));
 
-test("it exports a configuration object", () => {
+test("it exports a configuration object and the most important config options are correct", () => {
 	const vitestConfig = makeVitestConfig();
 
 	expect(typeof vitestConfig).toEqual("object");
-});
-
-test("the most important configuration options are correct", () => {
-	const vitestConfig = makeVitestConfig();
 
 	expect(vitestConfig.test?.coverage?.provider).toEqual("v8");
 	expect(vitestConfig.test?.globals).toBe(true);

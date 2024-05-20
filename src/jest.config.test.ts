@@ -23,7 +23,7 @@ afterEach(() => {
 	jest.clearAllMocks();
 });
 
-describe("the most important configuration options are correct", () => {
+describe("it exports a configuration object and the most important config options are correct", () => {
 	test("for the parts of the config that *are not* affected by conditional logic", async () => {
 		const hasFrontendDependencies = false;
 		dependsOnMock.mockResolvedValue(hasFrontendDependencies);
