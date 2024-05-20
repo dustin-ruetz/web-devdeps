@@ -1,17 +1,17 @@
-import packageJson from "../package.json";
+import packageJSON from "../package.json";
 
 test("the most important configuration options are correct", () => {
-	expect(packageJson.author).toEqual("Dustin Ruetz");
-	expect(packageJson.name).toEqual("dr-devdeps");
-	expect(packageJson.type).toEqual("module");
+	expect(packageJSON.author).toEqual("Dustin Ruetz");
+	expect(packageJSON.name).toEqual("dr-devdeps");
+	expect(packageJSON.type).toEqual("module");
 });
 
 test("that NPM packages are installed with exact version numbers", () => {
 	const dependencyVersions = [
-		...Object.values(packageJson.dependencies).map((version) => version),
+		...Object.values(packageJSON.dependencies).map((version) => version),
 	];
 	const devDependencyVersions = [
-		...Object.values(packageJson.devDependencies).map((version) => version),
+		...Object.values(packageJSON.devDependencies).map((version) => version),
 	];
 
 	[...dependencyVersions, ...devDependencyVersions].forEach((dependency) => {

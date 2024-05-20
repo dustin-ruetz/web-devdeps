@@ -1,14 +1,14 @@
-import tsConfig from "../tsconfig.json";
+import tsconfigJSON from "../tsconfig.json";
 
 test("it exports a configuration object", () => {
-	expect(typeof tsConfig).toEqual("object");
+	expect(typeof tsconfigJSON).toEqual("object");
 });
 
 test("the most important configuration options are correct", () => {
-	expect(tsConfig.extends).toEqual("@tsconfig/strictest/tsconfig.json");
-	expect(tsConfig.include).toStrictEqual(["./src/"]);
+	expect(tsconfigJSON.extends).toEqual("@tsconfig/strictest/tsconfig.json");
+	expect(tsconfigJSON.include).toStrictEqual(["./src/"]);
 
-	const {compilerOptions} = tsConfig;
+	const {compilerOptions} = tsconfigJSON;
 	expect(compilerOptions.module).toEqual("NodeNext");
 	expect(compilerOptions.moduleResolution).toEqual("NodeNext");
 	expect(compilerOptions.resolveJsonModule).toBe(true);
