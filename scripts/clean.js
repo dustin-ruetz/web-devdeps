@@ -8,7 +8,7 @@ export const clean = async () => {
 };
 
 // The unit test for this file imports the `clean` function to test it, but the problem with this is that `clean`
-// gets called in the test just from importing it. Since Jest automatically sets the `NODE_ENV=true` environment variable
+// gets called in the test just from importing it. Since Jest automatically sets the `NODE_ENV=test` environment variable
 // when the test suite is run, use this as the conditional logic so that the `clean` function is only called via the
 // `npm run clean` script and not automatically when it's imported for the unit test.
 //
