@@ -61,4 +61,4 @@ jobs:
           GITHUB_TOKEN: ${{ steps.op-credentials.outputs.TEMP_DR_DEVDEPS_GITHUB_TOKEN }}
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ steps.op-credentials.outputs.DR_DEVDEPS_NPM_TOKEN }}
-        run: npx semantic-release@23 --dry-run
+        run: npx semantic-release@23 --dry-run --extends ./lib/semantic-release.config.cjs
