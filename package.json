@@ -1,5 +1,5 @@
 {
-	"name": "dr-devdeps",
+	"name": "@dustin-ruetz/web-dev-deps",
 	"version": "0.18.0",
 	"description": "",
 	"main": "index.js",
@@ -19,6 +19,7 @@
 		"// gha": "Use the `act` tool to test GitHub Actions workflows locally.",
 		"gha": "act",
 		"gha:build-check-test": "act --workflows .github/workflows/build-check-test.yaml",
+		"gha:release": "act --secret OP_SERVICE_ACCOUNT_TOKEN --workflows .github/workflows/release.yaml",
 		"// githooks": "Refer to the files in the ./.githooks/ folder for documentation on these commands.",
 		"githooks:commit-msg": "commitlint --config ./lib/commitlint.config.js --edit",
 		"githooks:pre-commit": "npm run build && lint-staged --config ./lib/lint-staged.config.js --relative",
@@ -45,7 +46,7 @@
 		"npm": ">=10"
 	},
 	"repository": {
-		"url": "git@github.com:dustin-ruetz/dr-devdeps.git"
+		"url": "git@github.com:dustin-ruetz/web-dev-deps.git"
 	},
 	"type": "module",
 	"dependencies": {
@@ -53,6 +54,8 @@
 		"@commitlint/config-conventional": "19.2.2",
 		"@prettier/plugin-pug": "3.0.0",
 		"@prettier/plugin-xml": "3.4.1",
+		"@semantic-release/changelog": "6.0.3",
+		"@semantic-release/git": "10.0.1",
 		"@swc/core": "1.5.7",
 		"@swc/jest": "0.2.36",
 		"@tsconfig/strictest": "2.0.5",
@@ -68,6 +71,7 @@
 		"lint-staged": "15.2.2",
 		"npm-run-all2": "6.1.2",
 		"prettier": "3.2.5",
+		"semantic-release": "23.1.1",
 		"typescript": "5.4.5"
 	},
 	"devDependencies": {

@@ -1,8 +1,8 @@
 import packageJSON from "../package.json";
 
 test("the most important configuration options are correct", () => {
+	expect(packageJSON.name).toEqual("@dustin-ruetz/web-dev-deps");
 	expect(packageJSON.author).toEqual("Dustin Ruetz");
-	expect(packageJSON.name).toEqual("dr-devdeps");
 	expect(packageJSON.type).toEqual("module");
 });
 

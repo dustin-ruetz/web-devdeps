@@ -11,8 +11,8 @@ import {ValidationError} from "./ValidationError.js";
  *
  * This function uses the known location of the `utils/getRepoMetadata` file within the repo's structure and uses it as an anchor point
  * to determine the absolute root directory of the repo where it's being called from. It can return the absolute path of either:
- * 1. The consuming repository where the `dr-devdeps` package is installed as a dependency; or
- * 2. This `dr-devdeps` repo itself.
+ * 1. The consuming repository where the `web-dev-deps` package is installed as a dependency; or
+ * 2. This `web-dev-deps` repo itself.
  *
  * **Important:** Note that the `absoluteRootDir` path is intentionally returned _without_ a trailing slash.
  */
@@ -37,8 +37,8 @@ export const getRepoMetadata = () => {
 			},
 		);
 	}
-	/** `dependencyPartialPath` is known and stable; it's the location where the `dr-devdeps` package is installed as a dependency. */
-	const dependencyPartialPath = "node_modules/dr-devdeps";
+	/** `dependencyPartialPath` is known and stable; it's the location where the `web-dev-deps` package is installed as a dependency. */
+	const dependencyPartialPath = "node_modules/@dustin-ruetz/web-dev-deps";
 	/**
 	 * `relativePath` is defined as a regular expression so that it covers two types of paths:
 	 * 1. A compiled JavaScript file in the lib/ directory; and
@@ -49,7 +49,7 @@ export const getRepoMetadata = () => {
 	const dependencyRelativePath = new RegExp(
 		`${dependencyPartialPath}/${relativePath.source}`,
 	);
-	let absoluteRootDir;
+	let absoluteRootDir = "";
 	if (absolutePath.includes(dependencyPartialPath)) {
 		absoluteRootDir = absolutePath.replace(dependencyRelativePath, "");
 	} else {
@@ -58,7 +58,7 @@ export const getRepoMetadata = () => {
 	// Remove the last character in the string, i.e. the path's trailing slash.
 	absoluteRootDir = absoluteRootDir.slice(0, -1);
 
-	const isDevDepsRepo = absoluteRootDir.endsWith("/dr-devdeps");
+	const isWebDevDepsRepo = absoluteRootDir.endsWith("/web-dev-deps");
 
-	return {absoluteRootDir, dependencyPartialPath, isDevDepsRepo} as const;
+	return {absoluteRootDir, dependencyPartialPath, isWebDevDepsRepo} as const;
 };

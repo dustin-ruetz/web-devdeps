@@ -9,7 +9,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		? "jsdom"
 		: "node";
 
-	const {absoluteRootDir, dependencyPartialPath, isDevDepsRepo} =
+	const {absoluteRootDir, dependencyPartialPath, isWebDevDepsRepo} =
 		getRepoMetadata();
 
 	/** Binary file extensions 1) to ignore in test coverage, and 2) to transform the imported values to filenames. */
@@ -29,10 +29,10 @@ export const makeJestConfig = async (): Promise<Config> => {
 	] as const;
 
 	/**
-	 * Folder/file patterns to ignore for this dr-devdeps repo because
+	 * Folder/file patterns to ignore for this `web-dev-deps` repo because
 	 * the unit tests are using `vi` instead of `jest` for mocking.
 	 */
-	// const devDepsIgnorePatterns = !isDevDepsRepo
+	// const webDevDepsIgnorePatterns = !isWebDevDepsRepo
 	// 	? ([
 	// 			"<rootDir>/scripts/",
 	// 			"<rootDir>/src/utils/",
@@ -42,10 +42,10 @@ export const makeJestConfig = async (): Promise<Config> => {
 	// 	: ([] as const);
 
 	/** The base path to the files/packages used as Jest transformers. */
-	const transformerBasePath = isDevDepsRepo
-		? // If running tests on this `dr-devdeps` repo, set the path relative to the Jest <rootDir>.
+	const transformerBasePath = isWebDevDepsRepo
+		? // If running tests on this `web-dev-deps` repo, set the path relative to the Jest <rootDir>.
 			("<rootDir>" as const)
-		: // If running tests on a `consuming-repo`, set the path relative to its `dr-devdeps` dependency.
+		: // If running tests on a `consuming-repo`, set the path relative to its `web-dev-deps` dependency.
 			(`<rootDir>/${dependencyPartialPath}` as const);
 
 	// Note: The `cjs` and `cts` file extensions are included in the Jest config because this repo has some tools
@@ -61,7 +61,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		coveragePathIgnorePatterns: [
 			...ignorePatterns,
 			...binaryFileExtensions.list,
-			// ...devDepsIgnorePatterns,
+			// ...webDevDepsIgnorePatterns,
 		],
 		// Set coverage provider as v8 to align with the Vitest default.
 		coverageProvider: "v8",
@@ -92,9 +92,10 @@ export const makeJestConfig = async (): Promise<Config> => {
 			// https://github.com/kulshekhar/ts-jest/issues/1057#issuecomment-1482644543:
 			"^(\\.\\.?\\/.+)\\.(cjs|js|jsx)": "$1",
 		},
-		// Note that while `rootDir` is set to an absolute path here, Jest also knows how to interpret relative paths. For example,
-		// a consuming repo depending on dr-devdeps could use "../../../" as the path to traverse three levels upwards to hit root.
-		// (i.e. starting from lib/, move upwards three times: dr-devdeps/ ^ node_modules/ ^ consuming-repo/)
+		// Note that while `rootDir` is set to an absolute path here, Jest also knows how to interpret relative paths.
+		// For example, a consuming repo depending on `web-dev-deps` could use "../../../../" as the path to traverse
+		// four levels upwards to reach the root. (i.e. starting from lib/, move upwards three times:
+		// web-dev-deps/ ^ @dustin-ruetz/ ^ node_modules/ ^ consuming-repo/)
 		// Excerpt from https://jestjs.io/docs/configuration#rootdir-string:
 		// > The root directory that Jest should scan for tests and modules within.
 		// > Oftentimes, you'll want to set this to `"src"` or `"lib"`, corresponding to where in your repository the code is stored.
@@ -105,7 +106,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		testEnvironment,
 		testPathIgnorePatterns: [
 			...ignorePatterns,
-			// ...devDepsIgnorePatterns
+			// ...webDevDepsIgnorePatterns
 		],
 		// Excerpt from https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object:
 		// > A map from regular expressions to paths to transformers.
