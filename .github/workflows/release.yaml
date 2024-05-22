@@ -17,13 +17,7 @@
 name: release
 on:
   push:
-    # TODO: This `branches` array is for testing purposes; replace branch with "main" before merging this PR.
-    # branches: [configure-semantic-release]
     branches: [main]
-  # Specify that this workflow depends on the workflow(s) below completing successfully.
-  workflow_run:
-    workflows: [build-check-test]
-    types: [completed]
 permissions:
   contents: read # To be able to Git checkout the repository.
 jobs:
