@@ -3,8 +3,6 @@ on:
   # Run this workflow when a PR is 1) opened/has new commits added to it, and 2) merged into the "main" branch.
   pull_request:
     types: [opened, synchronize]
-  push:
-    branches: [main]
 jobs:
   build-check-test:
     name: Build, check and test on Node.js v${{ matrix.node-version }}
