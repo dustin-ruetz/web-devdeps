@@ -3,5 +3,6 @@
 *.js   text
 *.md   text
 *.json text
+*.sh   text
 *.ts   text
 *.yaml text
