@@ -44,7 +44,7 @@ jobs:
           # https://github.com/dustin-ruetz/web-dev-deps/settings/secrets/actions
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           # Human-readable 1Password CLI secret reference - 'op://SA - Repos_GitHub/web-dev-deps/$FIELD_LABEL'
-          TEMP_WEB_DEV_DEPS_GITHUB_TOKEN: "op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/TEMP_WEB_DEV_DEPS_GITHUB_TOKEN"
+          # TEMP_WEB_DEV_DEPS_GITHUB_TOKEN: "op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/TEMP_WEB_DEV_DEPS_GITHUB_TOKEN"
           WEB_DEV_DEPS_NPM_TOKEN: "op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEV_DEPS_NPM_TOKEN"
       - name: Git checkout repository
         uses: actions/checkout@v4
@@ -67,7 +67,7 @@ jobs:
         # semantic-release requires specific key names for environment variables.
         # https://semantic-release.gitbook.io/semantic-release/usage/ci-configuration#authentication
         env:
-          GITHUB_TOKEN: ${{ steps.op-secrets.outputs.TEMP_WEB_DEV_DEPS_GITHUB_TOKEN }}
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_TOKEN: ${{ steps.op-secrets.outputs.TEMP_WEB_DEV_DEPS_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ steps.op-secrets.outputs.WEB_DEV_DEPS_NPM_TOKEN }}
         run: npx semantic-release --dry-run --extends ./lib/semantic-release.config.cjs
