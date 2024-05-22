@@ -3,6 +3,9 @@ import packageJSON from "../package.json";
 test("the most important configuration options are correct", () => {
 	expect(packageJSON.name).toEqual("@dustin-ruetz/web-dev-deps");
 	expect(packageJSON.author).toEqual("Dustin Ruetz");
+	// Set `publishConfig.access` to `public` to prevent the following NPM error:
+	// > npm error 402 Payment Required - You must sign up for private packages.
+	expect(packageJSON.publishConfig.access).toEqual("public");
 	expect(packageJSON.type).toEqual("module");
 });
 
