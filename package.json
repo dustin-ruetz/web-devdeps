@@ -1,5 +1,5 @@
 {
-	"name": "dr-devdeps",
+	"name": "@dustin-ruetz/web-dev-deps",
 	"version": "0.18.0",
 	"description": "",
 	"main": "index.js",
@@ -46,7 +46,7 @@
 		"npm": ">=10"
 	},
 	"repository": {
-		"url": "git@github.com:dustin-ruetz/dr-devdeps.git"
+		"url": "git@github.com:dustin-ruetz/web-dev-deps.git"
 	},
 	"type": "module",
 	"dependencies": {

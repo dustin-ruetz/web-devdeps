@@ -1,4 +1,4 @@
-# dr-devdeps
+# web-dev-deps
 
 This repository is an installable package that provides standardized dependencies and configurations for other JavaScript/TypeScript projects to consume.
 
@@ -9,7 +9,7 @@ This repository is an installable package that provides standardized dependencie
 // Created using the `Shinotatwu-DS.file-tree-generator` extension for Visual Studio Code.
 📂 consuming-repo
 ┣ 📂 node_modules
-┃ ┗ 📂 dr-devdeps
+┃ ┗ 📂 @dustin-ruetz/web-dev-deps
 ┃ ┃ ┗ 📂 lib
 ┃ ┃ ┃ ┗ 📄 *.config.js
 ┃ ┃ ┗ 📄 tsconfig.json

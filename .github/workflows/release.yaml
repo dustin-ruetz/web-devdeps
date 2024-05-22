@@ -5,13 +5,13 @@
 # 1. Prerequisite 1: Have `act` installed.
 # 2. Prerequisite 2: Generate a temporary GitHub Personal Access Token (PAT).
 #    - Navigate to the https://github.com/settings/tokens page.
-#    - Name the PAT `TEMP_DR_DEVDEPS_GITHUB_TOKEN`.
+#    - Name the PAT `TEMP_WEB_DEV_DEPS_GITHUB_TOKEN`.
 #    - Configure the token to have the `repo` and `write:packages` scopes.
 #    - Copy the resulting `ghp_...` token value and store it in 1Password as an item in the "SA - Repos_GitHub" vault.
-#    - Temporarily change `${{ secrets.GITHUB_TOKEN }}` to `${{ steps.op-credentials.outputs.TEMP_DR_DEVDEPS_GITHUB_TOKEN }}`.
+#    - Temporarily change `${{ secrets.GITHUB_TOKEN }}` to `${{ steps.op-credentials.outputs.TEMP_WEB_DEV_DEPS_GITHUB_TOKEN }}`.
 # 3. Prerequisite 3: Temporarily pass the `--dry-run` flag following the `npx semantic-release` command.
 # 4. Use the `npm run gha:release` command (passing the `OP_SERVICE_ACCOUNT_TOKEN` secret when prompted) to perform a dry-run of the release.
-# 5. Delete the `TEMP_DR_DEVDEPS_GITHUB_TOKEN` PAT and revert the temporary changes to this file after local testing is completed.
+# 5. Delete the `TEMP_WEB_DEV_DEPS_GITHUB_TOKEN` PAT and revert the temporary changes to this file after local testing is completed.
 
 name: release
 on:
@@ -40,11 +40,11 @@ jobs:
           export-env: false
           unset-previous: true
         env:
-          # https://github.com/dustin-ruetz/dr-devdeps/settings/secrets/actions
+          # https://github.com/dustin-ruetz/web-dev-deps/settings/secrets/actions
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          # Human-readable 1Password CLI secret reference - 'op://SA - Repos_GitHub/dr-devdeps/$FIELD_LABEL'
-          TEMP_DR_DEVDEPS_GITHUB_TOKEN: "op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/TEMP_DR_DEVDEPS_GITHUB_TOKEN"
-          DR_DEVDEPS_NPM_TOKEN: "op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/DR_DEVDEPS_NPM_TOKEN"
+          # Human-readable 1Password CLI secret reference - 'op://SA - Repos_GitHub/web-dev-deps/$FIELD_LABEL'
+          TEMP_WEB_DEV_DEPS_GITHUB_TOKEN: "op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/TEMP_WEB_DEV_DEPS_GITHUB_TOKEN"
+          WEB_DEV_DEPS_NPM_TOKEN: "op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEV_DEPS_NPM_TOKEN"
       - name: Git checkout repository
         uses: actions/checkout@v4
         with:
@@ -66,7 +66,7 @@ jobs:
         # semantic-release requires specific key names for environment variables.
         # https://semantic-release.gitbook.io/semantic-release/usage/ci-configuration#authentication
         env:
-          GITHUB_TOKEN: ${{ steps.op-credentials.outputs.TEMP_DR_DEVDEPS_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.op-credentials.outputs.TEMP_WEB_DEV_DEPS_GITHUB_TOKEN }}
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ steps.op-credentials.outputs.DR_DEVDEPS_NPM_TOKEN }}
+          NPM_TOKEN: ${{ steps.op-credentials.outputs.WEB_DEV_DEPS_NPM_TOKEN }}
         run: npx semantic-release --dry-run --extends ./lib/semantic-release.config.cjs
