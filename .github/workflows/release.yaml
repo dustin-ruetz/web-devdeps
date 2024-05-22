@@ -18,7 +18,8 @@ name: release
 on:
   push:
     # TODO: This `branches` array is for testing purposes; replace branch with "main" before merging this PR.
-    branches: [configure-semantic-release]
+    # branches: [configure-semantic-release]
+    branches: [main]
   # Specify that this workflow depends on the workflow(s) below completing successfully.
   workflow_run:
     workflows: [build-check-test]
@@ -70,4 +71,4 @@ jobs:
           # GITHUB_TOKEN: ${{ steps.op-secrets.outputs.TEMP_WEB_DEV_DEPS_GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ steps.op-secrets.outputs.WEB_DEV_DEPS_NPM_TOKEN }}
-        run: npx semantic-release --dry-run --extends ./lib/semantic-release.config.cjs
+        run: npx semantic-release --extends ./lib/semantic-release.config.cjs
