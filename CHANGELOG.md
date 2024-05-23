@@ -7,8 +7,6 @@
 
 * **semantic-release.config:** set changelog title as a Markdown H1 tag ([e8f9273](https://github.com/dustin-ruetz/web-dev-deps/commit/e8f9273e67a8dd7ecbc2fdfafd141e16f325b983))
 
-CHANGELOG
-
 ## [1.0.4](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.0.3...v1.0.4) (2024-05-22)
 
 
