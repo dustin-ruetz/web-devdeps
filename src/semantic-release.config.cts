@@ -10,7 +10,7 @@ const semanticReleaseConfig = {
 			"@semantic-release/changelog",
 			{
 				changelogFile: "CHANGELOG.md",
-				changelogTitle: "CHANGELOG",
+				changelogTitle: "# CHANGELOG",
 			},
 		],
 		"@semantic-release/npm",
