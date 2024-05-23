@@ -44,6 +44,7 @@ jobs:
       - name: Git checkout repository
         uses: actions/checkout@v4
         with:
+          # Fetch all Git history for all branches and tags.
           fetch-depth: 0
           # Excerpt from https://semantic-release.gitbook.io/semantic-release/recipes/ci-configurations/github-actions#pushing-package.json-changes-to-your-repository:
           # > The actions/checkout `persist-credentials` option needs to be `false`, otherwise the generated `GITHUB_TOKEN` will interfere with the custom one.
