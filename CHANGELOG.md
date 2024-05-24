@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.2.2](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.2.1...v1.2.2) (2024-05-24)
+
+
+### Bug Fixes
+
+* **dependencies:** update packages to latest versions ([#32](https://github.com/dustin-ruetz/web-dev-deps/issues/32)) ([27b7d1f](https://github.com/dustin-ruetz/web-dev-deps/commit/27b7d1f592949a16ac30ae0e1f81200a32149f0c))
+
 ## [1.2.1](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.2.0...v1.2.1) (2024-05-24)
 
 
