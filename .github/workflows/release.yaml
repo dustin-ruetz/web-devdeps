@@ -2,20 +2,6 @@
 #
 # Adapted from "GitHub Actions - `.github/workflows/release.yml` configuration for Node projects" CI configuration recipe:
 # https://semantic-release.gitbook.io/semantic-release/recipes/ci-configurations/github-actions#github-workflows-release.yml-configuration-for-node-projects
-
-# To test this `release` GitHub Action workflow locally:
-# 1. Prerequisite 1: Have `act` installed.
-# 2. Prerequisite 2: Generate a temporary GitHub Personal Access Token (PAT).
-#    - Navigate to the https://github.com/settings/tokens page.
-#    - Name the PAT `TEMP_WEB_DEV_DEPS_GITHUB_TOKEN`.
-#    - Configure the token to have the `repo` and `write:packages` scopes.
-#    - Copy the resulting `ghp_...` token value and store it in 1Password as an item in the "SA - Repos_GitHub" vault.
-#    - Temporarily set the `TEMP_WEB_DEV_DEPS_GITHUB_TOKEN` as an environment variable in the `op-secrets` step.
-#    - Temporarily change `${{ secrets.GITHUB_TOKEN }}` to `${{ steps.op-secrets.outputs.TEMP_WEB_DEV_DEPS_GITHUB_TOKEN }}`.
-# 3. Prerequisite 3: Temporarily pass the `--dry-run` flag following the `npx semantic-release` command.
-# 4. Use the `npm run gha:release` command (passing the `OP_SERVICE_ACCOUNT_TOKEN` secret when prompted) to perform a dry-run of the release.
-# 5. Delete the `TEMP_WEB_DEV_DEPS_GITHUB_TOKEN` PAT and revert the temporary changes listed above after local testing is completed.
-
 name: release
 on:
   push:
