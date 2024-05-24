@@ -1,0 +1,30 @@
+# https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
+# https://www.wesbraga.dev/posts/how-to-use-shared-run-steps-github-actions
+
+name: setup
+description: Composite action to make shared setup tasks reusable by multiple workflows.
+inputs:
+  node-version:
+    description: Node.js version number; passed to actions/setup-node.
+    required: false
+  node-version-file:
+    description: Path to file specifying the Node.js version number; passed to actions/setup-node.
+    required: false
+runs:
+  using: "composite"
+  steps:
+    # https://github.com/actions/setup-node
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        # https://github.com/actions/setup-node#caching-global-packages-data
+        cache: npm
+        node-version: ${{ inputs.node-version }}
+        node-version-file: ${{ inputs.node-version-file }}
+    - name: Install dependencies and build library
+      run: npm clean-install
+      shell: bash
+    # Verify the integrity of provenance attestations and registry signatures for installed dependencies.
+    - name: Audit dependency signatures
+      run: npm audit signatures
+      shell: bash

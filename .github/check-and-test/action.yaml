@@ -1,0 +1,14 @@
+# https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
+# https://www.wesbraga.dev/posts/how-to-use-shared-run-steps-github-actions
+
+name: check-and-test
+description: Composite action to make shared codebase checks and tests reusable by multiple workflows.
+runs:
+  using: "composite"
+  steps:
+    - name: Run code validation checks
+      run: npm run check
+      shell: bash
+    - name: Run unit tests and collect code coverage
+      run: npm run test:unit:coverage
+      shell: bash
