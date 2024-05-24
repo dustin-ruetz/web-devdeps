@@ -1,5 +1,12 @@
 # CHANGELOG
 
+# [1.2.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.1.0...v1.2.0) (2024-05-24)
+
+
+### Features
+
+* **.vscode/extensions.json:** specify Visual Studio Code extensions recommended for this repo ([dbb412c](https://github.com/dustin-ruetz/web-dev-deps/commit/dbb412c0e1ff7cd115b30d52b75417a583a05609))
+
 # [1.1.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.0.6...v1.1.0) (2024-05-24)
 
 
