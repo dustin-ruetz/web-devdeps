@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.2.1](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.2.0...v1.2.1) (2024-05-24)
+
+
+### Bug Fixes
+
+* **.github/workflows/check-and-test:** simplify 'actions/checkout' config by removing 'fetch-depth' ([c7a7c72](https://github.com/dustin-ruetz/web-dev-deps/commit/c7a7c72cb25cdffbfe0f1413ee3f00ca8ddc747a))
+
 # [1.2.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.1.0...v1.2.0) (2024-05-24)
 
 
