@@ -1,3 +1,5 @@
+# Use the `npm run gha:release` command to test this GitHub Action workflow locally (performs a dry-run release).
+#
 # Adapted from "GitHub Actions - `.github/workflows/release.yml` configuration for Node projects" CI configuration recipe:
 # https://semantic-release.gitbook.io/semantic-release/recipes/ci-configurations/github-actions#github-workflows-release.yml-configuration-for-node-projects
 
@@ -18,8 +20,12 @@ name: release
 on:
   push:
     branches: [main]
-permissions:
-  contents: read # To be able to Git checkout the repository.
+  workflow_dispatch:
+    inputs:
+      DRY_RUN:
+        description: Perform a dry-run of the release; defaults to `false`, but set to `true` in the `gha:release` NPM script.
+        default: false
+        type: boolean
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -63,7 +69,7 @@ jobs:
         # semantic-release requires specific key names for environment variables.
         # https://semantic-release.gitbook.io/semantic-release/usage/ci-configuration#authentication
         env:
+          DRY_RUN: ${{ github.event.inputs.DRY_RUN == 'true' && '--dry-run' || '' }}
           GITHUB_TOKEN: ${{ steps.op-secrets.outputs.WEB_DEV_DEPS_GITHUB_TOKEN }}
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ steps.op-secrets.outputs.WEB_DEV_DEPS_NPM_TOKEN }}
-        run: npx semantic-release --extends ./lib/semantic-release.config.cjs
+        run: npx semantic-release@23 $DRY_RUN --extends ./lib/semantic-release.config.cjs

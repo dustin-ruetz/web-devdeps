@@ -18,6 +18,7 @@
 		"format": "prettier --config ./lib/prettier.config.js --ignore-path ./.gitignore",
 		"// gha": "Use the `act` tool to test GitHub Actions workflows locally.",
 		"gha:check-and-test": "act --workflows .github/workflows/check-and-test.yaml",
+		"gha:release": "act --input DRY_RUN=true --secret OP_SERVICE_ACCOUNT_TOKEN --workflows .github/workflows/release.yaml",
 		"// githooks": "Refer to the files in the ./.githooks/ folder for documentation on these commands.",
 		"githooks:commit-msg": "commitlint --config ./lib/commitlint.config.js --edit",
 		"githooks:pre-commit": "npm run build && lint-staged --config ./lib/lint-staged.config.js --relative",
