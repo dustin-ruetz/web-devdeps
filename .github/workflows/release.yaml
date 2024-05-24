@@ -1,34 +1,40 @@
+# Use the `npm run gha:release` command to test this GitHub Action workflow locally (performs a dry-run release).
+#
 # Adapted from "GitHub Actions - `.github/workflows/release.yml` configuration for Node projects" CI configuration recipe:
 # https://semantic-release.gitbook.io/semantic-release/recipes/ci-configurations/github-actions#github-workflows-release.yml-configuration-for-node-projects
-
-# To test this `release` GitHub Action workflow locally:
-# 1. Prerequisite 1: Have `act` installed.
-# 2. Prerequisite 2: Generate a temporary GitHub Personal Access Token (PAT).
-#    - Navigate to the https://github.com/settings/tokens page.
-#    - Name the PAT `TEMP_WEB_DEV_DEPS_GITHUB_TOKEN`.
-#    - Configure the token to have the `repo` and `write:packages` scopes.
-#    - Copy the resulting `ghp_...` token value and store it in 1Password as an item in the "SA - Repos_GitHub" vault.
-#    - Temporarily set the `TEMP_WEB_DEV_DEPS_GITHUB_TOKEN` as an environment variable in the `op-secrets` step.
-#    - Temporarily change `${{ secrets.GITHUB_TOKEN }}` to `${{ steps.op-secrets.outputs.TEMP_WEB_DEV_DEPS_GITHUB_TOKEN }}`.
-# 3. Prerequisite 3: Temporarily pass the `--dry-run` flag following the `npx semantic-release` command.
-# 4. Use the `npm run gha:release` command (passing the `OP_SERVICE_ACCOUNT_TOKEN` secret when prompted) to perform a dry-run of the release.
-# 5. Delete the `TEMP_WEB_DEV_DEPS_GITHUB_TOKEN` PAT and revert the temporary changes listed above after local testing is completed.
-
 name: release
 on:
   push:
     branches: [main]
-permissions:
-  contents: read # To be able to Git checkout the repository.
+  workflow_dispatch:
+    inputs:
+      DRY_RUN:
+        description: Perform a dry-run of the release; defaults to `false`, but set to `true` in the `gha:release` NPM script.
+        default: false
+        type: boolean
 jobs:
   release:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # To be able to publish a GitHub release.
-      issues: write # To be able to comment on released issues.
-      pull-requests: write # To be able to comment on released pull requests.
-      id-token: write # To enable use of OIDC for NPM provenance.
     steps:
+      # TODO: Figure out how to move "Git checkout repository" step into .github/setup/action.yaml composite action file.
+      # https://github.com/actions/checkout
+      - name: Git checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch all Git history for all branches and tags.
+          fetch-depth: 0
+          # Excerpt from https://semantic-release.gitbook.io/semantic-release/recipes/ci-configurations/github-actions#pushing-package.json-changes-to-your-repository:
+          # > The actions/checkout `persist-credentials` option needs to be `false`, otherwise the generated `GITHUB_TOKEN` will interfere with the custom one.
+          persist-credentials: false
+      - name: setup
+        uses: ./.github/setup/
+        with:
+          # Specify the Node.js version by referencing the .node-version file that's located in the root of the repo.
+          node-version-file: .node-version
+      # Note that while `check-and-test` is configured to run on PRs, both commands should also
+      # be run prior to releasing if/when commits are pushed directly to the `main` branch.
+      - name: check-and-test
+        uses: ./.github/check-and-test/
       - name: Load secrets from 1Password
         id: op-secrets
         uses: 1password/load-secrets-action@v2
@@ -39,31 +45,13 @@ jobs:
           # https://github.com/dustin-ruetz/web-dev-deps/settings/secrets/actions
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           # Human-readable 1Password CLI secret reference - 'op://SA - Repos_GitHub/web-dev-deps/$FIELD_LABEL'
-          WEB_DEV_DEPS_GITHUB_TOKEN: "op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEV_DEPS_GITHUB_TOKEN"
-          WEB_DEV_DEPS_NPM_TOKEN: "op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEV_DEPS_NPM_TOKEN"
-      - name: Git checkout repository
-        uses: actions/checkout@v4
-        with:
-          # Fetch all Git history for all branches and tags.
-          fetch-depth: 0
-          # Excerpt from https://semantic-release.gitbook.io/semantic-release/recipes/ci-configurations/github-actions#pushing-package.json-changes-to-your-repository:
-          # > The actions/checkout `persist-credentials` option needs to be `false`, otherwise the generated `GITHUB_TOKEN` will interfere with the custom one.
-          persist-credentials: false
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          # Specify the Node.js version by referencing the .node-version file that's located in the root of the repo.
-          node-version-file: .node-version
-      - name: Install dependencies and build library
-        run: npm clean-install
-      # Verify the integrity of provenance attestations and registry signatures for installed dependencies.
-      - name: Audit dependency signatures
-        run: npm audit signatures
+          WEB_DEV_DEPS_GITHUB_TOKEN: op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEV_DEPS_GITHUB_TOKEN
+          WEB_DEV_DEPS_NPM_TOKEN: op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEV_DEPS_NPM_TOKEN
       - name: Release package
         # semantic-release requires specific key names for environment variables.
         # https://semantic-release.gitbook.io/semantic-release/usage/ci-configuration#authentication
         env:
+          DRY_RUN: ${{ github.event.inputs.DRY_RUN == 'true' && '--dry-run' || '' }}
           GITHUB_TOKEN: ${{ steps.op-secrets.outputs.WEB_DEV_DEPS_GITHUB_TOKEN }}
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ steps.op-secrets.outputs.WEB_DEV_DEPS_NPM_TOKEN }}
-        run: npx semantic-release --extends ./lib/semantic-release.config.cjs
+        run: npx semantic-release@23 $DRY_RUN --extends ./lib/semantic-release.config.cjs

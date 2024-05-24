@@ -1,11 +1,12 @@
-name: build-check-test
+# Use the `npm run gha:check-and-test` command to test this GitHub Action workflow locally.
+name: check-and-test
 on:
   # Run this workflow when a PR is 1) opened/has new commits added to it, and 2) merged into the "main" branch.
   pull_request:
     types: [opened, synchronize]
 jobs:
-  build-check-test:
-    name: Build, check and test on Node.js v${{ matrix.node-version }}
+  check-and-test:
+    name: Check and test on Node.js v${{ matrix.node-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -13,20 +14,16 @@ jobs:
         # https://nodejs.org/en/about/previous-releases/#release-schedule
         node-version: [18, 20]
     steps:
+      # TODO: Figure out how to move "Git checkout repository" step into .github/setup/action.yaml composite action file.
+      # https://github.com/actions/checkout
       - name: Git checkout repository
         uses: actions/checkout@v4
         with:
+          # Fetch all Git history for all branches and tags.
           fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: setup
+        uses: ./.github/setup/
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install dependencies and build library
-        run: npm clean-install
-      # Verify the integrity of provenance attestations and registry signatures for installed dependencies.
-      - name: Audit dependency signatures
-        run: npm audit signatures
-      - name: Run validation checks
-        run: npm run check
-      - name: Run unit tests and collect code coverage
-        run: npm run test:unit:coverage
+      - name: check-and-test
+        uses: ./.github/check-and-test/
