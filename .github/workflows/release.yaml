@@ -29,12 +29,26 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # To be able to publish a GitHub release.
-      issues: write # To be able to comment on released issues.
-      pull-requests: write # To be able to comment on released pull requests.
-      id-token: write # To enable use of OIDC for NPM provenance.
     steps:
+      # TODO: Figure out how to move "Git checkout repository" step into .github/setup/action.yaml composite action file.
+      # https://github.com/actions/checkout
+      - name: Git checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch all Git history for all branches and tags.
+          fetch-depth: 0
+          # Excerpt from https://semantic-release.gitbook.io/semantic-release/recipes/ci-configurations/github-actions#pushing-package.json-changes-to-your-repository:
+          # > The actions/checkout `persist-credentials` option needs to be `false`, otherwise the generated `GITHUB_TOKEN` will interfere with the custom one.
+          persist-credentials: false
+      - name: setup
+        uses: ./.github/setup/
+        with:
+          # Specify the Node.js version by referencing the .node-version file that's located in the root of the repo.
+          node-version-file: .node-version
+      # Note that while `check-and-test` is configured to run on PRs, both commands should also
+      # be run prior to releasing if/when commits are pushed directly to the `main` branch.
+      - name: check-and-test
+        uses: ./.github/check-and-test/
       - name: Load secrets from 1Password
         id: op-secrets
         uses: 1password/load-secrets-action@v2
@@ -45,26 +59,8 @@ jobs:
           # https://github.com/dustin-ruetz/web-dev-deps/settings/secrets/actions
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
           # Human-readable 1Password CLI secret reference - 'op://SA - Repos_GitHub/web-dev-deps/$FIELD_LABEL'
-          WEB_DEV_DEPS_GITHUB_TOKEN: "op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEV_DEPS_GITHUB_TOKEN"
-          WEB_DEV_DEPS_NPM_TOKEN: "op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEV_DEPS_NPM_TOKEN"
-      - name: Git checkout repository
-        uses: actions/checkout@v4
-        with:
-          # Fetch all Git history for all branches and tags.
-          fetch-depth: 0
-          # Excerpt from https://semantic-release.gitbook.io/semantic-release/recipes/ci-configurations/github-actions#pushing-package.json-changes-to-your-repository:
-          # > The actions/checkout `persist-credentials` option needs to be `false`, otherwise the generated `GITHUB_TOKEN` will interfere with the custom one.
-          persist-credentials: false
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          # Specify the Node.js version by referencing the .node-version file that's located in the root of the repo.
-          node-version-file: .node-version
-      - name: Install dependencies and build library
-        run: npm clean-install
-      # Verify the integrity of provenance attestations and registry signatures for installed dependencies.
-      - name: Audit dependency signatures
-        run: npm audit signatures
+          WEB_DEV_DEPS_GITHUB_TOKEN: op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEV_DEPS_GITHUB_TOKEN
+          WEB_DEV_DEPS_NPM_TOKEN: op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEV_DEPS_NPM_TOKEN
       - name: Release package
         # semantic-release requires specific key names for environment variables.
         # https://semantic-release.gitbook.io/semantic-release/usage/ci-configuration#authentication
