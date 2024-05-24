@@ -1,5 +1,12 @@
 # CHANGELOG
 
+# [1.1.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.0.6...v1.1.0) (2024-05-24)
+
+
+### Features
+
+* improve GitHub Actions workflows ([#31](https://github.com/dustin-ruetz/web-dev-deps/issues/31)) ([53f9fb2](https://github.com/dustin-ruetz/web-dev-deps/commit/53f9fb21510dfce5be3170dc43ac94b1c4cfb91e))
+
 ## [1.0.6](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.0.5...v1.0.6) (2024-05-23)
 
 
