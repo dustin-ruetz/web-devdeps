@@ -36,7 +36,9 @@ describe("it exports a configuration object and the most important config option
 		const jestConfig = await makeJestConfig();
 
 		expect(dependsOnMock).toHaveBeenCalledWith(["pug", "react"]);
+
 		expect(typeof jestConfig).toEqual("object");
+
 		expect(jestConfig.coverageProvider).toEqual("v8");
 		expect(jestConfig.transform?.[".(js|jsx|ts|tsx)"]).toEqual("@swc/jest");
 		expect(jestConfig.verbose).toBe(true);
@@ -64,7 +66,6 @@ describe("it exports a configuration object and the most important config option
 	test("when testing a repo that has installed the web-dev-deps package (repo *does* have frontend dependencies)", async () => {
 		const hasFrontendDependencies = true;
 		dependsOnMock.mockResolvedValue(hasFrontendDependencies);
-		dependsOnMock.mockResolvedValue(true);
 		mockGetRepoMetadata.mockReturnValue({
 			absoluteRootDir: "/Users/username/repos/consuming-repo",
 			dependencyPartialPath: actualGetRepoMetadata().dependencyPartialPath,
