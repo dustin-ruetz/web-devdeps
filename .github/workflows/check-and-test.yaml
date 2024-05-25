@@ -17,9 +17,9 @@ jobs:
       # https://github.com/actions/checkout
       - name: Git checkout repository
         uses: actions/checkout@v4
-      - name: setup
+      - name: Run `setup` composite action
         uses: ./.github/setup/
         with:
           node-version: ${{ matrix.node-version }}
-      - name: check-and-test
+      - name: Run `check-and-test` composite action
         uses: ./.github/check-and-test/
