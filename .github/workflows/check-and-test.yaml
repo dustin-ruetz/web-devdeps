@@ -1,4 +1,4 @@
-# Use the `npm run gha:check-and-test` command to test this GitHub Action workflow locally.
+# Use the `npm run ghaw:check-and-test` command to test this GitHub Action workflow locally.
 name: check-and-test
 on:
   # Run this workflow when a PR is 1) opened/has new commits added to it, and 2) merged into the "main" branch.
