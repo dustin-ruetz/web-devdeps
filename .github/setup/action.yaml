@@ -21,10 +21,13 @@ runs:
         cache: npm
         node-version: ${{ inputs.node-version }}
         node-version-file: ${{ inputs.node-version-file }}
-    - name: ⬇️ Install dependencies and build library
+    - name: ⬇️ Install dependencies
       run: npm clean-install
       shell: bash
     # Verify the integrity of provenance attestations and registry signatures for installed dependencies.
     - name: 👀 Audit dependency signatures
       run: npm audit signatures
+      shell: bash
+    - name: 🛠️ Build library
+      run: npm run build
       shell: bash
