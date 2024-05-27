@@ -1,5 +1,17 @@
 # CHANGELOG
 
+# [1.3.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.2.2...v1.3.0) (2024-05-27)
+
+
+### Bug Fixes
+
+* replace 'postinstall' scripts with more appropriate 'prepublishOnly' hook ([d165ecd](https://github.com/dustin-ruetz/web-dev-deps/commit/d165ecdb6534bff1ba10021a1c45db10f4034ed7))
+
+
+### Features
+
+* **package.json:** ensure only allowlisted files and folders are included in published NPM package ([1f98429](https://github.com/dustin-ruetz/web-dev-deps/commit/1f9842925afc48c8154b58d9b31b9f72f49a556b))
+
 ## [1.2.2](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.2.1...v1.2.2) (2024-05-24)
 
 
