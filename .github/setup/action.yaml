@@ -14,17 +14,17 @@ runs:
   using: "composite"
   steps:
     # https://github.com/actions/setup-node
-    - name: Setup Node.js
+    - name: ⬡ Setup Node.js
       uses: actions/setup-node@v4
       with:
         # https://github.com/actions/setup-node#caching-global-packages-data
         cache: npm
         node-version: ${{ inputs.node-version }}
         node-version-file: ${{ inputs.node-version-file }}
-    - name: Install dependencies and build library
+    - name: ⬇️ Install dependencies and build library
       run: npm clean-install
       shell: bash
     # Verify the integrity of provenance attestations and registry signatures for installed dependencies.
-    - name: Audit dependency signatures
+    - name: 👀 Audit dependency signatures
       run: npm audit signatures
       shell: bash

@@ -6,9 +6,9 @@ description: Composite action to make shared codebase checks and tests reusable 
 runs:
   using: "composite"
   steps:
-    - name: Run code validation checks
+    - name: 🧐 Run code validation checks
       run: npm run check
       shell: bash
-    - name: Run unit tests and collect code coverage
+    - name: 🧪 Run unit tests and collect code coverage
       run: npm run test:unit:coverage
       shell: bash

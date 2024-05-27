@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # https://github.com/actions/checkout
-      - name: Git checkout repository
+      - name: 🛒 Git checkout repository
         uses: actions/checkout@v4
         with:
           # Fetch all Git history for all branches and tags.
@@ -25,16 +25,16 @@ jobs:
           # Excerpt from https://semantic-release.gitbook.io/semantic-release/recipes/ci-configurations/github-actions#pushing-package.json-changes-to-your-repository:
           # > The actions/checkout `persist-credentials` option needs to be `false`, otherwise the generated `GITHUB_TOKEN` will interfere with the custom one.
           persist-credentials: false
-      - name: Run `setup` composite action
+      - name: 🔁 Run `setup` composite action
         uses: ./.github/setup/
         with:
           # Specify the Node.js version by referencing the .node-version file that's located in the root of the repo.
           node-version-file: .node-version
       # Note that while `check-and-test` is configured to run on PRs, both commands should also
       # be run prior to releasing if/when commits are pushed directly to the `main` branch.
-      - name: Run `check-and-test` composite action
+      - name: 🔁 Run `check-and-test` composite action
         uses: ./.github/check-and-test/
-      - name: Load secrets from 1Password
+      - name: 🔐 Load secrets from 1Password
         id: op-secrets
         uses: 1password/load-secrets-action@v2
         with:
@@ -46,7 +46,7 @@ jobs:
           # Human-readable 1Password CLI secret reference - 'op://SA - Repos_GitHub/web-dev-deps/$FIELD_LABEL'
           WEB_DEV_DEPS_GITHUB_TOKEN: op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEV_DEPS_GITHUB_TOKEN
           WEB_DEV_DEPS_NPM_TOKEN: op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEV_DEPS_NPM_TOKEN
-      - name: Release package
+      - name: 📦 Release package
         # semantic-release requires specific key names for environment variables.
         # https://semantic-release.gitbook.io/semantic-release/usage/ci-configuration#authentication
         env:

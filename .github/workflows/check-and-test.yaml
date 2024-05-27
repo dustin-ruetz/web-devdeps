@@ -15,11 +15,11 @@ jobs:
         node-version: [18, 20]
     steps:
       # https://github.com/actions/checkout
-      - name: Git checkout repository
+      - name: 🛒 Git checkout repository
         uses: actions/checkout@v4
-      - name: Run `setup` composite action
+      - name: 🔁 Run `setup` composite action
         uses: ./.github/setup/
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Run `check-and-test` composite action
+      - name: 🔁 Run `check-and-test` composite action
         uses: ./.github/check-and-test/
