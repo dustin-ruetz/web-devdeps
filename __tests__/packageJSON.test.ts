@@ -12,7 +12,6 @@ test("the most important configuration options are correct", () => {
 	expect(packageJSON.files).toStrictEqual([
 		".githooks/",
 		"lib/",
-		".node-version",
 		"tsconfig.build.json",
 		"tsconfig.json",
 	]);
