@@ -9,6 +9,6 @@ node_modules/
 !*.*.js
 !*.*.ts
 # Ignore the changelog file since:
-# 1. It's an auto-generated file; and
+# 1. It's auto-generated; and
 # 2. To prevent Prettier from checking its formatting and then warning about code style issues.
 CHANGELOG.md
