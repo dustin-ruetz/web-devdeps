@@ -44,6 +44,13 @@
 		"node": ">=18",
 		"npm": ">=10"
 	},
+	"files": [
+		".githooks/",
+		"lib/",
+		".node-version",
+		"tsconfig.build.json",
+		"tsconfig.json"
+	],
 	"publishConfig": {
 		"access": "public"
 	},
