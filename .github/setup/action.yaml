@@ -2,7 +2,7 @@
 # https://www.wesbraga.dev/posts/how-to-use-shared-run-steps-github-actions
 
 name: setup
-description: Composite action to make shared setup tasks reusable by multiple workflows.
+description: Composite action to make shared setup-related tasks reusable by multiple workflows.
 inputs:
   node-version:
     description: Node.js version number; passed to actions/setup-node.
@@ -27,7 +27,4 @@ runs:
     # Verify the integrity of provenance attestations and registry signatures for installed dependencies.
     - name: 👀 Audit dependency signatures
       run: npm audit signatures
-      shell: bash
-    - name: 🛠️ Build library
-      run: npm run build
       shell: bash
