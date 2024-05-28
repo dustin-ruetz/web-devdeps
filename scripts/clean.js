@@ -2,20 +2,41 @@ import {rm} from "node:fs/promises";
 
 /** Delete the lib/ directory where the compiled code is built to. */
 export const clean = async () => {
+	const dirToDelete = "lib/";
+
+	// eslint-disable-next-line no-console
+	console.log(`🧹 Removing ${dirToDelete} directory`);
+
 	// The following line simulates the behavior of the Unix `rm -rf directoryName/` command,
 	// but since this is a Node script this operation can be run in a cross-platform way.
-	await rm("lib/", {force: true, recursive: true});
+	await rm(dirToDelete, {force: true, recursive: true});
 };
 
-// The unit test for this file imports the `clean` function to test it, but the problem with this is that `clean`
-// gets called in the test just from importing it. Since Jest automatically sets the `NODE_ENV=test` environment variable
-// when the test suite is run, use this as the conditional logic so that the `clean` function is only called via the
-// `npm run clean` script and not automatically when it's imported for the unit test.
-//
-// It's very difficult to test whether or not the `clean` function is called based on the value of `NODE_ENV`,
-// so use the special `v8` comment to exclude these lines from the test coverage report.
-// TODO: Post this issue as a question on Stack Overflow.
-/* v8 ignore next 3 */
-if (process.env.NODE_ENV !== "test") {
+const environments = {
+	/**
+	 * Excerpt from https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables:
+	 * > `CI` - Always set to `true`.
+	 */
+	isCI: process.env.CI === "true",
+	/**
+	 * Excerpt from https://jestjs.io/docs/environment-variables:
+	 * > `NODE_ENV` - Set to `"test"` if it's not already set to something else.
+	 */
+	isTest: process.env.NODE_ENV === "test",
+};
+
+// Don't call the `clean` function in the CI/CD or test environments because:
+if (
+	// 1. The CI/CD environment will never have the lib/ directory because A) lib/ is in the .gitignore file,
+	//    and B) GitHub Actions does a fresh Git checkout of the repo every time a workflow is run.
+	!environments.isCI &&
+	// 2. The unit test for this file imports the `clean` function to test it, but
+	//    the `clean` function itself should not be called during the test run.
+	!environments.isTest
+	// Since it's difficult to test whether or not the `clean` function is called based on the `NODE_ENV=test` env var,
+	// use the special `v8 ignore next #` comment to exclude the following lines from the test coverage report.
+	// TODO: Post this issue as a question on Stack Overflow.
+	/* v8 ignore next 3 */
+) {
 	void clean();
 }
