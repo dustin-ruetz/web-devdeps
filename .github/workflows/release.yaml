@@ -34,6 +34,8 @@ jobs:
       # be run prior to releasing if/when commits are pushed directly to the `main` branch.
       - name: 📋 Validate codebase (🛠️ build, 🧐 check, 🧪 test)
         run: npm run validate
+      # https://developer.1password.com/docs/ci-cd/github-actions
+      # https://github.com/1Password/load-secrets-action
       - name: 🔐 Load secrets from 1Password
         id: op-secrets
         uses: 1password/load-secrets-action@v2
