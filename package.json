@@ -31,6 +31,7 @@
 		"test:unit": "jest --config ./lib/jest.config.js",
 		"test:unit:coverage": "npm run test:unit -- --coverage",
 		"test:unit:watch": "npm run test:unit -- --watch",
+		"validate": "npm run build && npm run check && npm run test:unit:coverage",
 		"vitest": "vitest --config ./lib/vitest.config.js",
 		"vitest:test": "npm run vitest -- run",
 		"vitest:coverage": "npm run vitest:test -- --coverage.enabled",
