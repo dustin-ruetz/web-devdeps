@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.4.1](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.4.0...v1.4.1) (2024-05-28)
+
+
+### Bug Fixes
+
+* **semantic-release.config:** use 'Date.toISOString' for date time string in release commit message ([b7a853b](https://github.com/dustin-ruetz/web-dev-deps/commit/b7a853bd53221bbeba13d406fa8ccebaa31297ad))
+
 ## [1.4.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.3.0...v1.4.0) (2024-05-28)
 
 
