@@ -1,7 +1,5 @@
 /** https://semantic-release.gitbook.io/semantic-release/usage/configuration */
 const semanticReleaseConfig = {
-	// TODO: This `branches` array is for testing purposes; remove before merging this PR.
-	// branches: ["configure-semantic-release"],
 	plugins: [
 		"@semantic-release/commit-analyzer",
 		// https://github.com/semantic-release/release-notes-generator
