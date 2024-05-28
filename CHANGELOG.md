@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [1.4.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.3.0...v1.4.0) (2024-05-28)
+
+
+### Features
+
+* **semantic-release.config:** add date time to release commit message ([15ad8d2](https://github.com/dustin-ruetz/web-dev-deps/commit/15ad8d25f04c93e8b751f592b7e7d3ca617aeed6))
+
+
+### Bug Fixes
+
+* **package.json:** remove '.node-version' from allowlisted files in published NPM package ([8db9a20](https://github.com/dustin-ruetz/web-dev-deps/commit/8db9a2072bb1ef196448f0023e0ad76d035edd14))
+
 # [1.3.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.2.2...v1.3.0) (2024-05-27)
 
 
