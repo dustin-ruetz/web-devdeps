@@ -4,7 +4,11 @@ const semanticReleaseConfig = {
 	// branches: ["configure-semantic-release"],
 	plugins: [
 		"@semantic-release/commit-analyzer",
-		"@semantic-release/release-notes-generator",
+		// https://github.com/semantic-release/release-notes-generator
+		[
+			"@semantic-release/release-notes-generator",
+			{preset: "conventionalcommits"},
+		],
 		// https://github.com/semantic-release/changelog
 		[
 			"@semantic-release/changelog",
