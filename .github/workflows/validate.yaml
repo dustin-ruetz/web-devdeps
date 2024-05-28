@@ -1,12 +1,12 @@
-# Use the `npm run ghaw:check-and-test` command to test this GitHub Action workflow locally.
-name: check-and-test
+# Use the `npm run ghaw:validate` command to test this GitHub Action workflow locally.
+name: validate
 on:
-  # Run this workflow when a PR is 1) opened/has new commits added to it, and 2) merged into the "main" branch.
+  # Run this workflow when a PR is opened and whenever it has new commits added to it.
   pull_request:
     types: [opened, synchronize]
 jobs:
-  check-and-test:
-    name: Check and test on Node.js v${{ matrix.node-version }}
+  validate:
+    name: Validate codebase on Node.js v${{ matrix.node-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -21,5 +21,5 @@ jobs:
         uses: ./.github/setup/
         with:
           node-version: ${{ matrix.node-version }}
-      - name: 🔁 Run `check-and-test` composite action
-        uses: ./.github/check-and-test/
+      - name: 📋 Validate codebase (🛠️ build, 🧐 check, 🧪 test)
+        run: npm run validate

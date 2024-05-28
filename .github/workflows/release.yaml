@@ -30,10 +30,10 @@ jobs:
         with:
           # Specify the Node.js version by referencing the .node-version file that's located in the root of the repo.
           node-version-file: .node-version
-      # Note that while `check-and-test` is configured to run on PRs, both commands should also
+      # Note that while `validate` is configured to run on PRs, these commands should also
       # be run prior to releasing if/when commits are pushed directly to the `main` branch.
-      - name: 🔁 Run `check-and-test` composite action
-        uses: ./.github/check-and-test/
+      - name: 📋 Validate codebase (🛠️ build, 🧐 check, 🧪 test)
+        run: npm run validate
       - name: 🔐 Load secrets from 1Password
         id: op-secrets
         uses: 1password/load-secrets-action@v2
