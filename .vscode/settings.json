@@ -9,7 +9,7 @@
 		"pre-push": "shellscript"
 	},
 	"material-icon-theme.files.associations": {
-		"src/semantic-release.config.cts": "semantic-release"
+		"src/semantic-release.config.ts": "semantic-release"
 	},
 	"prettier.configPath": "lib/prettier.config.js",
 	"prettier.ignorePath": ".gitignore"

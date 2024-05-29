@@ -1,5 +1,7 @@
+import type {Options} from "semantic-release";
+
 /** https://semantic-release.gitbook.io/semantic-release/usage/configuration */
-const semanticReleaseConfig = {
+const semanticReleaseConfig: Options = {
 	plugins: [
 		"@semantic-release/commit-analyzer",
 		// https://github.com/semantic-release/release-notes-generator
@@ -34,6 +36,6 @@ const semanticReleaseConfig = {
 		],
 		"@semantic-release/github",
 	],
-};
+} as const;
 
-module.exports = semanticReleaseConfig;
+export default semanticReleaseConfig;

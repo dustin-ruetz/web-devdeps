@@ -27,7 +27,7 @@ test("it is a configuration object and the most important config options are cor
 	// > If there's no leading `*` it will be automatically configured as filename and not as file extension.
 	expect(
 		vscodeSettingsJSON["material-icon-theme.files.associations"][
-			"src/semantic-release.config.cts"
+			"src/semantic-release.config.ts"
 		],
 	).toEqual("semantic-release");
 
