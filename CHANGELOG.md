@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## [1.5.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.4.1...v1.5.0) (2024-05-29)
+
+
+### Features
+
+* **package.json:** re-add 'validate' script ([a82f19d](https://github.com/dustin-ruetz/web-dev-deps/commit/a82f19d31590569c928c7ac55e40e445fc944fef))
+
+
+### Bug Fixes
+
+* **.github/check-and-test/action:** delete unused 'check-and-test' composite action ([1abcda9](https://github.com/dustin-ruetz/web-dev-deps/commit/1abcda9ac088b94a31baacab6d1cbda660d3e70d))
+* **.github/setup/action:** remove 'build' script from 'setup' composite action ([a60e5da](https://github.com/dustin-ruetz/web-dev-deps/commit/a60e5da3056e00f1f1609bb19c580daa00b10c61))
+
 ## [1.4.1](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.4.0...v1.4.1) (2024-05-28)
 
 
