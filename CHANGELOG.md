@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [1.6.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.5.0...v1.6.0) (2024-05-29)
+
+
+### Features
+
+* **semantic-release.config:** change file format (from CommonJS to ES Module) ([24288f4](https://github.com/dustin-ruetz/web-dev-deps/commit/24288f40b31469c08424ad6d20ec970a9a5038db))
+
+
+### Bug Fixes
+
+* **dependencies:** update packages to latest versions ([cc8eb8d](https://github.com/dustin-ruetz/web-dev-deps/commit/cc8eb8d3ce4d5f735cefb65e27ec88440cf21d0d))
+
 ## [1.5.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.4.1...v1.5.0) (2024-05-29)
 
 
