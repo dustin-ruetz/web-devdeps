@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [1.7.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.6.0...v1.7.0) (2024-06-02)
+
+
+### Features
+
+* remove Vitest files and related code ([cbca928](https://github.com/dustin-ruetz/web-dev-deps/commit/cbca9282788175bca0f15949c693274d965cce34))
+
+
+### Bug Fixes
+
+* **dependencies:** update packages to latest versions ([9b4df9e](https://github.com/dustin-ruetz/web-dev-deps/commit/9b4df9e8546023f078fb39a6b663475780299dce))
+
 ## [1.6.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.5.0...v1.6.0) (2024-05-29)
 
 
