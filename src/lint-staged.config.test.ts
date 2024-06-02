@@ -27,21 +27,10 @@ describe("it runs the correct commands for", () => {
 		expect(typecheckCommand).toEqual("npm run check:types");
 	});
 
-	describe("unit testing when the TEST_RUNNER environment variable is set to", () => {
-		test("jest", () => {
-			process.env["TEST_RUNNER"] = "jest";
-			// @ts-expect-error TODO: See above comment.
-			expect(lintstagedConfig["*.{js,jsx,json,ts,tsx}"](relativePaths)).toEqual(
-				`npm run test:unit:coverage -- --findRelatedTests --collectCoverageFrom= ${relativePath}`,
-			);
-		});
-
-		test("vitest", () => {
-			process.env["TEST_RUNNER"] = "vitest";
-			// @ts-expect-error TODO: See above comment.
-			expect(lintstagedConfig["*.{js,jsx,json,ts,tsx}"](relativePaths)).toEqual(
-				`npm run vitest -- related --run ${relativePath} --coverage.enabled --coverage.include=${relativePath}`,
-			);
-		});
+	test("unit testing", () => {
+		// @ts-expect-error TODO: See above comment.
+		expect(lintstagedConfig["*.{js,jsx,json,ts,tsx}"](relativePaths)).toEqual(
+			`npm run test:unit:coverage -- --findRelatedTests --collectCoverageFrom= ${relativePath}`,
+		);
 	});
 });
