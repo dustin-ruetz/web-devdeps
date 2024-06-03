@@ -3,14 +3,14 @@ import type {Config} from "lint-staged";
 /** https://github.com/lint-staged/lint-staged */
 const lintstagedConfig: Config = {
 	/**
-	 * Note: Run "format" and "lint" as their base scripts (i.e. _not_ "fix:format" and "fix:js-ts") because
+	 * Note: Run "format" and "lint:js-ts" as their base scripts (i.e. _not_ "fix:format" and "fix:lint:js-ts") because
 	 * lint-staged passes the staged file(s) by appending the path(s) as the last argument to the commands.
 	 */
 	// Fix code formatting for all file types that Prettier supports.
 	"*": "npm run format -- --ignore-unknown --write",
 	"*.{js,jsx,ts,tsx}": (relativePaths) => [
 		// Fix code issues for all file types that ESLint supports.
-		`npm run lint -- --fix ${relativePaths.join(" ")}`,
+		`npm run lint:js-ts -- --fix ${relativePaths.join(" ")}`,
 		// The "check:types" script runs the TypeScript compiler (tsc), but tsc ignores the tsconfig.json configuration file
 		// due to the file paths that are appended to the command by lint-staged. Work around this limitation by
 		// typechecking the entire codebase, i.e. not just the staged files.

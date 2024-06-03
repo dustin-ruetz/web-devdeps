@@ -15,12 +15,14 @@ describe("it runs the correct commands for", () => {
 		);
 	});
 
-	const [lintCommand, typecheckCommand] =
+	const [lintJavaScriptTypeScriptCommand, typecheckCommand] =
 		// @ts-expect-error TODO: Figure out how to correctly type the function on this configuration object.
 		lintstagedConfig["*.{js,jsx,ts,tsx}"](relativePaths);
 
 	test("linting", () => {
-		expect(lintCommand).toEqual(`npm run lint -- --fix ${relativePath}`);
+		expect(lintJavaScriptTypeScriptCommand).toEqual(
+			`npm run lint:js-ts -- --fix ${relativePath}`,
+		);
 	});
 
 	test("typechecking", () => {
