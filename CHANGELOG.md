@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.8.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.7.0...v1.8.0) (2024-06-03)
+
+
+### Features
+
+* **scripts/clean:** simplify 'clean' function and its associated unit test ([57c700d](https://github.com/dustin-ruetz/web-dev-deps/commit/57c700d4022b53e898bd4508582af0ea2b35fb97))
+
 ## [1.7.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.6.0...v1.7.0) (2024-06-02)
 
 
