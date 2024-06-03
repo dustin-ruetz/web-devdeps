@@ -15,12 +15,12 @@ test("INTEGRATION: ensure that the original src/ files are mapped one-to-one wit
 			.filter(
 				// Filter the item _in_ as a file if:
 				(item) =>
-					// 1. It _does_ end with one of the following file extensions; and
+					// 1. It *does* end with one of the following file extensions; and
 					(item.endsWith(".cjs") ||
 						item.endsWith(".cts") ||
 						item.endsWith(".js") ||
 						item.endsWith(".ts")) &&
-					// 2. It _does not_ contain the ".mock" or ".test" substrings.
+					// 2. It *does not* contain the ".mock" or ".test" substrings.
 					!(item.includes(".mock") || item.includes(".test")),
 			)
 			// Sort the array in alphabetical order.

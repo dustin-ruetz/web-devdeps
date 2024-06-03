@@ -43,7 +43,7 @@ test("throws errors if the `deps` argument is invalid", () => {
 	}).rejects.toThrow(/ERR_TYPEOF_DEP_NOT_STRING/);
 });
 
-test("returns `false` if the repo does not depend on the package", async () => {
+test("returns `false` if the repo *does not* depend on the package", async () => {
 	const packageJsonContents = `
 {
 	"dependencies": {
@@ -63,7 +63,7 @@ test("returns `false` if the repo does not depend on the package", async () => {
 	expect(dependsOnDep0).toBe(false);
 });
 
-test("returns `true` if the repo does depend on the package", async () => {
+test("returns `true` if the repo *does* depend on the package", async () => {
 	const packageJsonContents = `
 {
 	"devDependencies": {
