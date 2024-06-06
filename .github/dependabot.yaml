@@ -11,6 +11,13 @@ updates:
     # > Use the `commit-message` option to specify your preferences explicitly.
     commit-message:
       prefix: fix(🤖 dependencies)
+    # Excerpt from https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#groups:
+    # > Use `groups` to create sets of dependencies (per package manager), so that Dependabot
+    # > opens a single pull request to update multiple dependencies at the same time.
+    groups:
+      dependencies:
+        patterns: ["*"]
+        update-types: [minor, patch]
     # Separate PR branch names with hyphens instead of the default forward slashes since the latter seems more appropriate for file/URL paths.
     pull-request-branch-name:
       separator: "-"
