@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # Run this job on both the maintenance (v18) and active (v20) Node.js LTS versions.
+        # Run this job on both the maintenance and active Node.js LTS versions as well as the latest current version.
         # https://nodejs.org/en/about/previous-releases/#release-schedule
-        node-version: [18, 20]
+        node-version: [lts/-1, lts/*, current]
     steps:
       # https://github.com/actions/checkout
       - name: 🛒 Git checkout repository
