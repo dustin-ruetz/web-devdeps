@@ -1,18 +1,17 @@
 # https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#about-the-dependabotyml-file
 version: 2
 updates:
-  - package-ecosystem: "npm"
+  - package-ecosystem: npm
     # Set `directory` to the root of the repo since it's the location of the package.json file.
-    directory: "/"
+    directory: /
     schedule:
-      interval: "weekly"
+      interval: weekly
     # Excerpt from https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#commit-message:
     # > By default, Dependabot attempts to detect your commit message preferences and use similar patterns.
     # > Use the `commit-message` option to specify your preferences explicitly.
     commit-message:
-      prefix: "fix(🤖 dependencies)"
+      prefix: fix(🤖 dependencies)
     # Separate PR branch names with hyphens instead of the default forward slashes since the latter seems more appropriate for file/URL paths.
     pull-request-branch-name:
       separator: "-"
-    reviewers:
-      - "dustin-ruetz"
+    reviewers: [dustin-ruetz]
