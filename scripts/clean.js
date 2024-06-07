@@ -20,8 +20,8 @@ export const clean = async () => {
 		// 1. The CI/CD environment will never have the lib/ directory because A) lib/ is in the .gitignore file,
 		//    and B) GitHub Actions does a fresh Git checkout of the repo every time a workflow is run.
 		environments.isCI ||
-		// 2. The unit test for this file imports the `clean` function to test it, but without the following
-		//    conditional check the `clean` function itself gets called twice during the test run.
+		// 2. The unit test for this file imports the `clean` function and then calls it during the "act" part of the AAA
+		//    testing process, so return here to A) avoid executing the function's actual logic, and B) simplify testing.
 		environments.isTest
 	) {
 		return;
