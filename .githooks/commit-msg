@@ -5,4 +5,4 @@
 #
 # Excerpts from https://commitlint.js.org/reference/cli.html:
 # > --edit - read last commit message from the specified file or fallback to .git/COMMIT_EDITMSG
-npm run githooks:commit-msg
+npm run githooks.commit-msg

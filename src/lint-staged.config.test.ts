@@ -19,20 +19,20 @@ describe("it runs the correct commands for", () => {
 		// @ts-expect-error TODO: Figure out how to correctly type the function on this configuration object.
 		lintstagedConfig["*.{js,jsx,ts,tsx}"](relativePaths);
 
-	test("linting", () => {
+	test("linting JS and TS files", () => {
 		expect(lintJavaScriptTypeScriptCommand).toEqual(
-			`npm run lint:js-ts -- --fix ${relativePath}`,
+			`npm run lint.js-ts -- --fix ${relativePath}`,
 		);
 	});
 
 	test("typechecking", () => {
-		expect(typecheckCommand).toEqual("npm run check:types");
+		expect(typecheckCommand).toEqual("npm run check.types");
 	});
 
 	test("unit testing", () => {
 		// @ts-expect-error TODO: See above comment.
 		expect(lintstagedConfig["*.{js,jsx,json,ts,tsx}"](relativePaths)).toEqual(
-			`npm run test:unit:coverage -- --findRelatedTests --collectCoverageFrom= ${relativePath}`,
+			`npm run test.unit.coverage -- --findRelatedTests --collectCoverageFrom= ${relativePath}`,
 		);
 	});
 });

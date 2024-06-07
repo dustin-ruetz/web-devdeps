@@ -1,4 +1,4 @@
-# Use the `npm run ghaw:release` command to test this GitHub Action workflow locally (performs a dry-run release).
+# Use the `npm run ghaw.release` command to test this GitHub Action workflow locally (performs a dry-run release).
 #
 # Adapted from "GitHub Actions - `.github/workflows/release.yml` configuration for Node projects" CI configuration recipe:
 # https://semantic-release.gitbook.io/semantic-release/recipes/ci-configurations/github-actions#github-workflows-release.yml-configuration-for-node-projects
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       DRY_RUN:
-        description: Perform a dry-run of the release; defaults to `false`, but set to `true` in the `ghaw:release` NPM script.
+        description: Perform a dry-run of the release; defaults to `false`, but set to `true` in the `ghaw.release` NPM script.
         default: false
         type: boolean
 jobs:

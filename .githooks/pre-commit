@@ -6,4 +6,4 @@
 #
 # Excerpt from https://github.com/lint-staged/lint-staged#command-line-flags:
 # > --relative - pass filepaths relative to `process.cwd()` (where `lint-staged` runs) to tasks; default is `false`
-npm run githooks:pre-commit
+npm run githooks.pre-commit
