@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.8.1](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.8.0...v1.8.1) (2024-06-07)
+
+
+### Bug Fixes
+
+* change NPM script separator from ':' colon to '.' period to make npm-run-all2 work correctly ([71e3210](https://github.com/dustin-ruetz/web-dev-deps/commit/71e32102209c49dda8e01f140a6fa2e8a78b2991))
+* **dependencies:** update packages to latest versions ([e87909f](https://github.com/dustin-ruetz/web-dev-deps/commit/e87909fb54291a9e81d022cff354aeb49328b138))
+
 ## [1.8.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.7.0...v1.8.0) (2024-06-03)
 
 
