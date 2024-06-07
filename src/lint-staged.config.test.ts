@@ -15,6 +15,12 @@ describe("it runs the correct commands for", () => {
 		);
 	});
 
+	test("linting files with styles", () => {
+		expect(lintstagedConfig["*.{css,scss,jsx,tsx}" as keyof Config]).toEqual(
+			"npm run lint.styles -- --fix",
+		);
+	});
+
 	const [lintJavaScriptTypeScriptCommand, typecheckCommand] =
 		// @ts-expect-error TODO: Figure out how to correctly type the function on this configuration object.
 		lintstagedConfig["*.{js,jsx,ts,tsx}"](relativePaths);
