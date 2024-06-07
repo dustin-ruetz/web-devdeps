@@ -26,7 +26,7 @@ jobs:
           # > The actions/checkout `persist-credentials` option needs to be `false`, otherwise the generated `GITHUB_TOKEN` will interfere with the custom one.
           persist-credentials: false
       - name: 🔁 Run `setup` composite action
-        uses: ./.github/setup/
+        uses: ./.github/composite-actions/setup/
         with:
           # Specify the Node.js version by referencing the .node-version file that's located in the root of the repo.
           node-version-file: .node-version
