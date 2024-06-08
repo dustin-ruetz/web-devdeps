@@ -8,6 +8,7 @@ const lintstagedConfig: Config = {
 	 */
 	// Fix code formatting for all file types that Prettier supports.
 	"*": "npm run format -- --ignore-unknown --write",
+	"*.{css,scss,jsx,tsx}": "npm run lint.styles -- --fix",
 	"*.{js,jsx,ts,tsx}": (relativePaths) => [
 		// Fix code issues for all file types that ESLint supports.
 		`npm run lint.js-ts -- --fix ${relativePaths.join(" ")}`,
