@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.9.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.8.1...v1.9.0) (2024-06-08)
+
+
+### Features
+
+* configure Stylelint ([#36](https://github.com/dustin-ruetz/web-dev-deps/issues/36)) ([b54f7ab](https://github.com/dustin-ruetz/web-dev-deps/commit/b54f7ab59b1c2c147c872e062434f23fabd3a90d))
+
 ## [1.8.1](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.8.0...v1.8.1) (2024-06-07)
 
 
