@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## [1.10.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.9.0...v1.10.0) (2024-06-09)
+
+
+### Features
+
+* **scripts/clean:** improvements to logging when 'clean' is run in CI/CD and test environments ([16bbe62](https://github.com/dustin-ruetz/web-dev-deps/commit/16bbe629e0ef6f370a0b9764f181cee11f225eaa))
+* **scripts/clean:** simplify 'clean' function ([721fd32](https://github.com/dustin-ruetz/web-dev-deps/commit/721fd321b4ad9e72214ee3c91ffcb0b8b72dee0d))
+* **scripts/clean:** simplify 'clean' function and make it gracefully handle errors ([6243b06](https://github.com/dustin-ruetz/web-dev-deps/commit/6243b0674592a38354856f829f37c97b22126e05))
+
 ## [1.9.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.8.1...v1.9.0) (2024-06-08)
 
 
