@@ -4,34 +4,48 @@ import {clean} from "./clean.js";
 jest.mock("node:fs/promises");
 const consoleLogSpy = jest.spyOn(console, "log").mockImplementation();
 
-beforeEach(() => {
-	// Delete both environment variables that are relevant to the clean script to make them `undefined` before each test block executes.
-	delete process.env.CI;
-});
 afterEach(() => {
 	jest.clearAllMocks();
 });
 
-test("it *does not* remove the lib/ directory in the CI/CD environment", async () => {
-	process.env.CI = "true";
-
+test("it removes the lib/ directory with the 'recursive' option", async () => {
 	await clean();
 
-	expect(consoleLogSpy).toHaveBeenCalledTimes(1);
+	expect(consoleLogSpy).toHaveBeenCalledTimes(2);
 	expect(consoleLogSpy).toHaveBeenCalledWith(
-		"ℹ️ Running in CI/CD environment; skip removing lib/ directory since there's nothing to clean",
+		"🧹-ℹ️ Attempting to remove lib/ directory...",
 	);
-	expect(rm).not.toHaveBeenCalled();
-});
-
-test("it *does* remove the lib/ directory with the 'force' and 'recursive' options", async () => {
-	await clean();
-
-	expect(consoleLogSpy).toHaveBeenCalledTimes(1);
-	expect(consoleLogSpy).toHaveBeenCalledWith("🧹 Removing lib/ directory");
 	expect(rm).toHaveBeenCalledTimes(1);
 	expect(rm).toHaveBeenCalledWith("lib/", {
-		force: true,
 		recursive: true,
 	});
+	expect(consoleLogSpy).toHaveBeenCalledWith(
+		"🧹-✅ Successfully removed lib/ directory.",
+	);
+});
+
+test("it gracefully handles the 'ENOENT' error in the event that the lib/ directory does not exist", async () => {
+	rm.mockImplementationOnce(() => {
+		throw new Error("ENOENT: no such file or directory, lstat 'lib/'");
+	});
+
+	await clean();
+
+	expect(consoleLogSpy).toHaveBeenCalledTimes(2);
+	expect(consoleLogSpy).toHaveBeenCalledWith(
+		"🧹-ℹ️ Attempting to remove lib/ directory...",
+	);
+	expect(consoleLogSpy).toHaveBeenCalledWith(
+		"🧹-⚠️ The lib/ directory does not exist; nothing to remove.",
+	);
+});
+
+test("it throws in the event that an unknown error occurs", () => {
+	rm.mockImplementationOnce(() => {
+		throw new Error("ERR_UNKNOWN: unknown error");
+	});
+
+	expect(async () => {
+		await clean();
+	}).rejects.toThrow(/ERR_UNKNOWN/);
 });
