@@ -29,7 +29,7 @@
 		"prepublishOnly": "npm run build",
 		"test.unit": "jest --config ./lib/jest.config.js",
 		"test.unit.coverage": "npm run test.unit -- --coverage",
-		"test.unit.watch": "npm run test.unit -- --watch",
+		"test.unit.watch": "npm run test.unit -- --watch --coverage --collectCoverageFrom=",
 		"validate": "npm run build && npm run check && npm run test.unit.coverage"
 	},
 	"keywords": [],
