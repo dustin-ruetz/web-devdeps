@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.11.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.10.0...v1.11.0) (2024-06-10)
+
+### Features
+
+* upgrade semantic-release package from v23 to v24 ([#38](https://github.com/dustin-ruetz/web-dev-deps/issues/38)) ([16bf97a](https://github.com/dustin-ruetz/web-dev-deps/commit/16bf97ae9ddba73821907a34db9599c7eab1a3b1))
+
 ## [1.10.0](https://github.com/dustin-ruetz/web-dev-deps/compare/v1.9.0...v1.10.0) (2024-06-09)
 
 
