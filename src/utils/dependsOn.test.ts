@@ -11,8 +11,8 @@ const mockReadFile = readFile as jest.MockedFunction<typeof readFile>;
 
 jest.mock("./getRepoMetadata.js", () => ({
 	getRepoMetadata: jest.fn(() => ({
-		absoluteRootDir: "/Users/username/repos/web-dev-deps",
-		dependencyPartialPath: "node_modules/@dustin-ruetz/web-dev-deps",
+		absoluteRootDir: "/Users/username/repos/web-devdeps",
+		dependencyPartialPath: "node_modules/@dustin-ruetz/web-devdeps",
 		isWebDevDepsRepo: true,
 	})),
 }));
@@ -57,7 +57,7 @@ test("returns `false` if the repo *does not* depend on the package", async () =>
 
 	expect(getRepoMetadata).toHaveBeenCalledTimes(1);
 	expect(mockReadFile).toHaveBeenCalledWith(
-		"/Users/username/repos/web-dev-deps/package.json",
+		"/Users/username/repos/web-devdeps/package.json",
 		{encoding: "utf-8"},
 	);
 	expect(dependsOnDep0).toBe(false);

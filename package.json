@@ -1,6 +1,6 @@
 {
-	"name": "@dustin-ruetz/web-dev-deps",
-	"version": "1.11.0",
+	"name": "@dustin-ruetz/web-devdeps",
+	"version": "0.0.0",
 	"description": "",
 	"main": "index.js",
 	"scripts": {
@@ -49,7 +49,7 @@
 		"access": "public"
 	},
 	"repository": {
-		"url": "git@github.com:dustin-ruetz/web-dev-deps.git"
+		"url": "git@github.com:dustin-ruetz/web-devdeps.git"
 	},
 	"type": "module",
 	"dependencies": {

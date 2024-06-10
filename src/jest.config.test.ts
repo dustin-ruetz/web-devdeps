@@ -16,7 +16,7 @@ const mockGetRepoMetadata = getRepoMetadata as jest.MockedFunction<
  */
 const actualGetRepoMetadata = () =>
 	({
-		dependencyPartialPath: "node_modules/@dustin-ruetz/web-dev-deps",
+		dependencyPartialPath: "node_modules/@dustin-ruetz/web-devdeps",
 	}) as const;
 
 afterEach(() => {
@@ -28,7 +28,7 @@ describe("it exports a configuration object and the most important config option
 		const hasFrontendDependencies = false;
 		dependsOnMock.mockResolvedValue(hasFrontendDependencies);
 		mockGetRepoMetadata.mockReturnValue({
-			absoluteRootDir: "/Users/username/repos/web-dev-deps",
+			absoluteRootDir: "/Users/username/repos/web-devdeps",
 			dependencyPartialPath: actualGetRepoMetadata().dependencyPartialPath,
 			isWebDevDepsRepo: true,
 		});
@@ -44,18 +44,18 @@ describe("it exports a configuration object and the most important config option
 		expect(jestConfig.verbose).toBe(true);
 	});
 
-	test("when testing this web-dev-deps repo (which *does not* have frontend dependencies)", async () => {
+	test("when testing this web-devdeps repo (which *does not* have frontend dependencies)", async () => {
 		const hasFrontendDependencies = false;
 		dependsOnMock.mockResolvedValue(hasFrontendDependencies);
 		mockGetRepoMetadata.mockReturnValue({
-			absoluteRootDir: "/Users/username/repos/web-dev-deps",
+			absoluteRootDir: "/Users/username/repos/web-devdeps",
 			dependencyPartialPath: actualGetRepoMetadata().dependencyPartialPath,
 			isWebDevDepsRepo: true,
 		});
 
 		const jestConfig = await makeJestConfig();
 
-		expect(jestConfig.rootDir).toEqual("/Users/username/repos/web-dev-deps");
+		expect(jestConfig.rootDir).toEqual("/Users/username/repos/web-devdeps");
 		expect(jestConfig.testEnvironment).toEqual("node");
 		// Sample the transform config object to verify that the paths to the transformer files are correct.
 		expect(jestConfig.transform?.[".svg"]).toEqual(
@@ -63,7 +63,7 @@ describe("it exports a configuration object and the most important config option
 		);
 	});
 
-	test("when testing a repo that has installed the web-dev-deps package (repo *does* have frontend dependencies)", async () => {
+	test("when testing a repo that has installed the web-devdeps package (repo *does* have frontend dependencies)", async () => {
 		const hasFrontendDependencies = true;
 		dependsOnMock.mockResolvedValue(hasFrontendDependencies);
 		mockGetRepoMetadata.mockReturnValue({
@@ -78,7 +78,7 @@ describe("it exports a configuration object and the most important config option
 		expect(jestConfig.testEnvironment).toEqual("jsdom");
 		// Sample the transform config object to verify that the paths to the transformer files are correct.
 		expect(jestConfig.transform?.[".svg"]).toEqual(
-			"<rootDir>/node_modules/@dustin-ruetz/web-dev-deps/lib/jest-transformers/svgFile.js",
+			"<rootDir>/node_modules/@dustin-ruetz/web-devdeps/lib/jest-transformers/svgFile.js",
 		);
 	});
 });
