@@ -33,7 +33,7 @@ describe("it exports a configuration object and the most important config option
 		expect(stylelintConfig.overrides).toStrictEqual([]);
 	});
 
-	test("when testing a repo that has installed the sass package", async () => {
+	test("when testing a repo that has the sass package installed", async () => {
 		const hasSassDependency = true;
 		dependsOnMock.mockResolvedValue(hasSassDependency);
 
@@ -47,6 +47,22 @@ describe("it exports a configuration object and the most important config option
 				{
 					customSyntax: "postcss-scss",
 					files: ["**/*.scss"],
+				},
+			]),
+		);
+	});
+
+	test("when testing a repo that has the styled-components package installed", async () => {
+		const hasStyledComponentsDependency = true;
+		dependsOnMock.mockResolvedValue(hasStyledComponentsDependency);
+
+		const stylelintConfig = await makeStylelintConfig();
+
+		expect(stylelintConfig.overrides).toEqual(
+			expect.arrayContaining([
+				{
+					customSyntax: "postcss-styled-syntax",
+					files: ["**/*.{jsx,tsx}"],
 				},
 			]),
 		);
