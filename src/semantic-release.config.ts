@@ -7,6 +7,7 @@ const semanticReleaseConfig: Options = {
 		// https://github.com/semantic-release/release-notes-generator
 		[
 			"@semantic-release/release-notes-generator",
+			// Set `preset: "conventionalcommits"` to use the conventional-changelog-conventionalcommits package.
 			{preset: "conventionalcommits"},
 		],
 		// https://github.com/semantic-release/changelog
