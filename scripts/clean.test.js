@@ -25,7 +25,7 @@ test("it removes the lib/ directory with the 'recursive' option", async () => {
 });
 
 test("it gracefully handles the 'ENOENT' error in the event that the lib/ directory does not exist", async () => {
-	rm.mockImplementationOnce(() => {
+	rm.mockImplementation(() => {
 		throw new Error("ENOENT: no such file or directory, lstat 'lib/'");
 	});
 
@@ -41,7 +41,7 @@ test("it gracefully handles the 'ENOENT' error in the event that the lib/ direct
 });
 
 test("it throws in the event that an unknown error occurs", () => {
-	rm.mockImplementationOnce(() => {
+	rm.mockImplementation(() => {
 		throw new Error("ERR_UNKNOWN: unknown error");
 	});
 
