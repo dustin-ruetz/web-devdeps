@@ -33,10 +33,11 @@ export const clean = async () => {
 
 // - Ideally the `clean` function would just be called unconditionally at the end of this `clean.js` file,
 //   since it's meant to be used as a Node.js script and run via the `node ./scripts/clean.js` CLI command.
-// - While this does work, an unfortunate side effect is that the `clean` function is also
-//   automatically called when it's imported into its associated unit test file.
-// - The conditional logic below ensures that the function is only called via the `npm run clean` script.
-// - Exclude the following lines from the test coverage report since it's difficult to mock environment variables for tests.
+// - While this does work, an unfortunate side effect is that `clean` gets automatically called
+//   just from importing the function in its associated unit test file.
+// - The conditional logic below ensures that `clean` is only called by the `npm run clean` command.
+// - Exclude the following lines from the test coverage report since it's difficult
+//   to mock the value of this environment variable since it's outside of `clean`.
 /* v8 ignore next 3 */
 if (process.env.npm_lifecycle_event === "clean") {
 	void clean();
