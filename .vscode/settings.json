@@ -11,6 +11,9 @@
 	"material-icon-theme.files.associations": {
 		"src/semantic-release.config.ts": "semantic-release"
 	},
+	"material-icon-theme.folders.associations": {
+		".caches": "Temp"
+	},
 	"prettier.configPath": "lib/prettier.config.js",
 	"prettier.ignorePath": ".gitignore"
 }
