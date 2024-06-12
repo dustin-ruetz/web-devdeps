@@ -17,9 +17,7 @@ export const clean = async () => {
 
 		console.log(`🧹-✅ Successfully removed ${dirToDelete} directory.`);
 	} catch (error) {
-		// Ideally the only conditional check here would be on the `error.code`, but mocking the thrown error
-		// does not work as expected in the unit test, so include an extra check on the `error.message` here.
-		if (error.code === "ENOENT" || error.message.includes("ENOENT")) {
+		if (error.code === "ENOENT") {
 			console.log(
 				`🧹-⚠️ The ${dirToDelete} directory does not exist; nothing to remove.`,
 			);

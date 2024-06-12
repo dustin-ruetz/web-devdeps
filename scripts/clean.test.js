@@ -24,28 +24,50 @@ test("it removes the lib/ directory with the 'recursive' option", async () => {
 	);
 });
 
-test("it gracefully handles the 'ENOENT' error in the event that the lib/ directory does not exist", async () => {
-	rm.mockImplementation(() => {
-		throw new Error("ENOENT: no such file or directory, lstat 'lib/'");
-	});
+describe("error handling", () => {
+	/** Custom class to mock how Node.js throws errors. It 1) requires an error `message`, and 2) supports an optional `options` object. */
+	class RmErrorMock extends Error {
+		constructor(message, options) {
+			// Mock the `super(...)` call and `options` object so that the error info matches the same format that `rm` throws it in.
+			super(
+				`${options.code}: ${message}, ${options.syscall} '${options.path}'`,
+			);
+			Object.setPrototypeOf(this, RmErrorMock.prototype);
+			this.code = options.code;
+			this.name = this.constructor.name;
+			this.path = options.path;
+			this.syscall = options.syscall;
+		}
+	}
 
-	await clean();
+	test("it gracefully handles the 'ENOENT' error when the lib/ directory does not exist", async () => {
+		rm.mockRejectedValue(
+			new RmErrorMock("no such file or directory", {
+				code: "ENOENT",
+				path: "lib/",
+				syscall: "lstat",
+			}),
+		);
 
-	expect(consoleLogSpy).toHaveBeenCalledTimes(2);
-	expect(consoleLogSpy).toHaveBeenCalledWith(
-		"🧹-ℹ️ Attempting to remove lib/ directory...",
-	);
-	expect(consoleLogSpy).toHaveBeenCalledWith(
-		"🧹-⚠️ The lib/ directory does not exist; nothing to remove.",
-	);
-});
-
-test("it throws in the event that an unknown error occurs", () => {
-	rm.mockImplementation(() => {
-		throw new Error("ERR_UNKNOWN: unknown error");
-	});
-
-	expect(async () => {
 		await clean();
-	}).rejects.toThrow(/ERR_UNKNOWN/);
+
+		expect(consoleLogSpy).toHaveBeenCalledTimes(2);
+		expect(consoleLogSpy).toHaveBeenCalledWith(
+			"🧹-ℹ️ Attempting to remove lib/ directory...",
+		);
+		expect(rm).toHaveBeenCalledTimes(1);
+		expect(consoleLogSpy).toHaveBeenCalledWith(
+			"🧹-⚠️ The lib/ directory does not exist; nothing to remove.",
+		);
+	});
+
+	test("it throws when an unknown error occurs", () => {
+		rm.mockRejectedValue(
+			new RmErrorMock("unknown error", {code: "ERR_UNKNOWN"}),
+		);
+
+		expect(async () => {
+			await clean();
+		}).rejects.toThrow(/ERR_UNKNOWN/);
+	});
 });
