@@ -9,7 +9,12 @@
 		"pre-push": "shellscript"
 	},
 	"material-icon-theme.files.associations": {
+		".caches/.prettiercache": "Prettier",
 		"src/semantic-release.config.ts": "semantic-release"
+	},
+	"material-icon-theme.folders.associations": {
+		".caches": "Temp",
+		".caches/.jestcache": "Test"
 	},
 	"prettier.configPath": "lib/prettier.config.js",
 	"prettier.ignorePath": ".gitignore"
