@@ -54,7 +54,8 @@ export const makeJestConfig = async (): Promise<Config> => {
 			...ignorePatterns,
 			...binaryFileExtensions.list,
 		],
-		// Set coverage provider as v8 to align with the Vitest default.
+		// Set coverage provider to v8 in order to benefit from its `v8 ignore next #` comment syntax
+		// when excluding a specific lines-of-code range from the test coverage report.
 		coverageProvider: "v8",
 		// Specify `coverageReporters` to prevent the default reporters from writing a coverage/ directory to disk.
 		coverageReporters: ["text", "text-summary"],
