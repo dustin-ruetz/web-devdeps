@@ -15,7 +15,7 @@
 		"fix": "npm-run-all2 --parallel fix.*",
 		"fix.format": "npm run format -- --write ./",
 		"fix.lint.js-ts": "npm run lint.js-ts -- --fix ./",
-		"format": "prettier --config ./lib/prettier.config.js --ignore-path ./.gitignore",
+		"format": "prettier --config ./lib/prettier.config.js --cache --cache-location ./.caches/.prettiercache --ignore-path ./.gitignore",
 		"// ghaw": "Use the `act` tool to test GitHub Actions workflows locally.",
 		"ghaw.release": "act --input DRY_RUN=true --secret OP_SERVICE_ACCOUNT_TOKEN --workflows .github/workflows/release.yaml",
 		"ghaw.validate": "act --workflows .github/workflows/validate.yaml",
