@@ -27,7 +27,7 @@
 		"init": "git config core.hooksPath ./.githooks/ && npm install && npm run validate",
 		"lint.js-ts": "eslint --config ./lib/eslint.config.cjs --cache --cache-location ./.caches/.eslintcache --ignore-path ./.gitignore",
 		"prepublishOnly": "npm run build",
-		"test.unit": "jest --config ./lib/jest.config.js",
+		"test.unit": "jest --config ./lib/jest.config.js --cache",
 		"test.unit.coverage": "npm run test.unit -- --coverage",
 		"test.unit.watch": "npm run test.unit -- --watch --coverage --collectCoverageFrom=",
 		"validate": "npm run build && npm run check && npm run test.unit.coverage"
