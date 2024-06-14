@@ -10,7 +10,7 @@
 		"check.format": "npm run format -- --check ./",
 		"check.lint.js-ts": "npm run lint.js-ts -- ./",
 		"check.types": "tsc --noEmit",
-		"clean": "node ./scripts/clean.js",
+		"clean": "rimraf lib/",
 		"dev": "npm run build -- --watch",
 		"fix": "npm-run-all2 --parallel fix.*",
 		"fix.format": "npm run format -- --write ./",
