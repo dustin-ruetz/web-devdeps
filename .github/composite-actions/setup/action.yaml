@@ -22,7 +22,15 @@ runs:
         node-version: ${{ inputs.node-version }}
         node-version-file: ${{ inputs.node-version-file }}
     - name: ⬇️ Install dependencies
-      run: npm clean-install
+      # Omit the `devDependencies` from installation since the `husky` package is the lone entry,
+      # and `husky` is only relevant for running Git hooks in the context of local development.
+      # Excerpt from https://docs.npmjs.com/cli/v10/commands/npm-install#omit:
+      # > Dependency types to omit from the installation tree on disk.
+      # > Note that these dependencies are still resolved and added to the `package-lock.json`
+      # > or `npm-shrinkwrap.json` file. They are just not physically installed on disk.
+      # > If the resulting omit list includes `'dev'`, then the `NODE_ENV` environment variable
+      # > will be set to `'production'` for all lifecycle scripts.
+      run: npm clean-install --omit=dev
       shell: bash
     # Verify the integrity of provenance attestations and registry signatures for installed dependencies.
     - name: 👀 Audit dependency signatures
