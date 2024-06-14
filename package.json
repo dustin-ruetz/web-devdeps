@@ -33,7 +33,7 @@
 		"test.unit": "jest --config ./lib/jest.config.js --cache",
 		"test.unit.coverage": "npm run test.unit -- --coverage",
 		"test.unit.watch": "npm run test.unit -- --watch --coverage --collectCoverageFrom=",
-		"validate": "npm run build && npm run check && npm run test.unit.coverage"
+		"validate": "npm-run-all2 --sequential build check test.unit.coverage"
 	},
 	"keywords": [],
 	"author": "Dustin Ruetz",
