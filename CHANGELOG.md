@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.3.2](https://github.com/dustin-ruetz/web-devdeps/compare/v1.3.1...v1.3.2) (2024-06-16)
+
+### Bug Fixes
+
+* **dependencies:** update packages to latest versions ([feab455](https://github.com/dustin-ruetz/web-devdeps/commit/feab455e8f33e30f9b3b9483ff5fa5a3670ce230))
+
 ## [1.3.1](https://github.com/dustin-ruetz/web-devdeps/compare/v1.3.0...v1.3.1) (2024-06-16)
 
 ### Bug Fixes
