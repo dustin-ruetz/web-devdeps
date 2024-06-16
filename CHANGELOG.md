@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.3.0](https://github.com/dustin-ruetz/web-devdeps/compare/v1.2.0...v1.3.0) (2024-06-16)
+
+### Features
+
+* fix and improve husky script for Git hooks ([#42](https://github.com/dustin-ruetz/web-devdeps/issues/42)) ([98279fe](https://github.com/dustin-ruetz/web-devdeps/commit/98279fe1434349c1b94df17da6fd61c2bc295552))
+
 ## [1.2.0](https://github.com/dustin-ruetz/web-devdeps/compare/v1.1.0...v1.2.0) (2024-06-14)
 
 ### Features
