@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.3.1](https://github.com/dustin-ruetz/web-devdeps/compare/v1.3.0...v1.3.1) (2024-06-16)
+
+### Bug Fixes
+
+* **.githooks/_/husky:** only log first Git hook script (i.e. .githooks/_/) that is executed ([23b56fb](https://github.com/dustin-ruetz/web-devdeps/commit/23b56fbf63470d868ad7510b44d4ef08faf8a459))
+
 ## [1.3.0](https://github.com/dustin-ruetz/web-devdeps/compare/v1.2.0...v1.3.0) (2024-06-16)
 
 ### Features
