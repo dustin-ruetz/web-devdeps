@@ -10,8 +10,9 @@ h="${0##*/}"
 # s = the path of the Git hook script (ex: .githooks/commit-msg)
 s="${0%/*/*}/$h"
 
-# Only log the script if it doesn't contain the ".githooks/_/" substring.
-if [[ $s != *.githooks/_/* ]]; then
+# Since this husky script executes two Git hooks (first in .githooks/_/ and second in .githooks/),
+# only log the first one by checking if the script path contains the ".githooks/_/" substring.
+if [[ $s == *.githooks/_/* ]]; then
   echo "🪝-ℹ️ Executing Git hook script: $s"
 fi
 
