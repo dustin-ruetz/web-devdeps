@@ -17,12 +17,12 @@
 #
 # 2. Compare the Git diffs between the following files and incorporate the changes from the former into the latter:
 #
-#    | Former                 | Latter              |
-#    | :--------------------- | :------------------ |
-#    | .githooks/_husky.sh    | .husky/_/h          |
-#    | .githooks/_/commit-msg | .husky/_/commit-msg |
-#    | .githooks/_/pre-commit | .husky/_/pre-commit |
-#    | .githooks/_/pre-push   | .husky/_/pre-push   |
+#    | Former              | Latter                 |
+#    | :------------------ | :--------------------- |
+#    | .husky/_/h          | .githooks/_/husky.sh   |
+#    | .husky/_/commit-msg | .githooks/_/commit-msg |
+#    | .husky/_/pre-commit | .githooks/_/pre-commit |
+#    | .husky/_/pre-push   | .githooks/_/pre-push   |
 #
 # 3. Delete the .husky/ directory.
 #
