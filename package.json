@@ -26,7 +26,6 @@
 		"fix/format": "npm run format -- --write ./",
 		"fix/lint/js-ts": "npm run lint/js-ts -- --fix ./",
 		"format": "prettier --config ./lib/prettier.config.js --cache --cache-location ./.caches/.prettiercache --ignore-path ./.gitignore",
-		"// init": "Initialize repo by: 1) configuring Git hooks, 2) installing dependencies, and 3) validating the codebase.",
 		"init": "git config core.hooksPath ./.githooks/_/ && npm install && npm run validate",
 		"lint/js-ts": "eslint --config ./lib/eslint.config.cjs --cache --cache-location ./.caches/.eslintcache --ignore-path ./.gitignore",
 		"prepublishOnly": "npm run build",
