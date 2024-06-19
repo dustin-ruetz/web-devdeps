@@ -1,4 +1,4 @@
-# Use the `npm run ghaw.validate` command to test this GitHub Action workflow locally.
+# Use the `npm run .github/validate` command to test this GitHub Action workflow locally.
 name: validate
 on:
   # Run this workflow when a PR is opened and whenever it has new commits added to it.
