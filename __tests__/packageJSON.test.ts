@@ -1,7 +1,7 @@
 import packageJSON from "../package.json";
 
 test("the most important configuration options are correct", () => {
-	expect(packageJSON.name).toEqual("@dustin-ruetz/web-devdeps");
+	expect(packageJSON.name).toEqual("@dustin-ruetz/devdeps");
 	expect(packageJSON.author).toEqual("Dustin Ruetz");
 	// Ensure that only the following allowlisted files and folders are included in the published NPM package.
 	//

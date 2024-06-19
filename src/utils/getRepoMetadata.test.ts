@@ -15,25 +15,25 @@ const absolutePaths = {
 	// Start by defining the static partials that comprise the absolute paths.
 	base: "/Users/username/repos",
 	namespace: "@dustin-ruetz",
-	name: "web-devdeps",
+	name: "devdeps",
 	partial: "utils/getRepoMetadata",
 	// Combine the static partials in the return values of the methods.
 	/**
-	 * - Simulates path of web-devdeps being installed as a dependency running from a `node_modules/` folder.
-	 * - Rationale: Test the value of `getRepoMetadata().absoluteRootDir` when used by a repository that depends on the `web-devdeps` package.
+	 * - Simulates path of devdeps being installed as a dependency running from a `node_modules/` folder.
+	 * - Rationale: Test the value of `getRepoMetadata().absoluteRootDir` when used by a repository that depends on the `devdeps` package.
 	 */
 	asDependency() {
 		return `${this.base}/consuming-repo/node_modules/${this.namespace}/${this.name}/lib/${this.partial}.js`;
 	},
 	/**
-	 * - Simulates path of this web-devdeps repo running a compiled `.js` file.
+	 * - Simulates path of this devdeps repo running a compiled `.js` file.
 	 * - Rationale: Test the value of `getRepoMetadata().absoluteRootDir` when used in a `lib/*.js` file.
 	 */
 	asLibraryJavaScriptFile() {
 		return `${this.base}/${this.name}/lib/${this.partial}.js`;
 	},
 	/**
-	 * - Simulates path of this web-devdeps repo running a source `.ts` file.
+	 * - Simulates path of this devdeps repo running a source `.ts` file.
 	 * - Rationale: Test the value of `getRepoMetadata().absoluteRootDir` during a test run in a `src/*.ts` test file.
 	 */
 	asSourceTypeScriptFile() {
@@ -59,9 +59,7 @@ describe("it determines the correct absolute root directory", () => {
 			getRepoMetadata();
 
 		expect(absoluteRootDir).toEqual("/Users/username/repos/consuming-repo");
-		expect(dependencyPartialPath).toEqual(
-			"node_modules/@dustin-ruetz/web-devdeps",
-		);
+		expect(dependencyPartialPath).toEqual("node_modules/@dustin-ruetz/devdeps");
 		expect(isWebDevDepsRepo).toBe(false);
 	});
 
@@ -71,7 +69,7 @@ describe("it determines the correct absolute root directory", () => {
 
 		const {absoluteRootDir, isWebDevDepsRepo} = getRepoMetadata();
 
-		expect(absoluteRootDir).toEqual("/Users/username/repos/web-devdeps");
+		expect(absoluteRootDir).toEqual("/Users/username/repos/devdeps");
 		expect(isWebDevDepsRepo).toBe(true);
 	});
 
@@ -81,7 +79,7 @@ describe("it determines the correct absolute root directory", () => {
 
 		const {absoluteRootDir, isWebDevDepsRepo} = getRepoMetadata();
 
-		expect(absoluteRootDir).toEqual("/Users/username/repos/web-devdeps");
+		expect(absoluteRootDir).toEqual("/Users/username/repos/devdeps");
 		expect(isWebDevDepsRepo).toBe(true);
 	});
 });

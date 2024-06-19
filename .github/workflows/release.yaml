@@ -40,11 +40,11 @@ jobs:
         id: op-secrets
         uses: 1Password/load-secrets-action@v2
         env:
-          # https://github.com/dustin-ruetz/web-devdeps/settings/secrets/actions
+          # https://github.com/dustin-ruetz/devdeps/settings/secrets/actions
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          # Human-readable 1Password CLI secret reference - 'op://SA - Repos_GitHub/web-devdeps/$FIELD_LABEL'
-          WEB_DEVDEPS_GITHUB_TOKEN: op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEVDEPS_GITHUB_TOKEN
-          WEB_DEVDEPS_NPM_TOKEN: op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEVDEPS_NPM_TOKEN
+          # Human-readable 1Password CLI secret reference - 'op://SA - Repos_GitHub/devdeps/$FIELD_LABEL'
+          DEVDEPS_GITHUB_TOKEN: op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/DEVDEPS_GITHUB_TOKEN
+          DEVDEPS_NPM_TOKEN: op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/DEVDEPS_NPM_TOKEN
         with:
           export-env: false
           unset-previous: true
@@ -53,6 +53,6 @@ jobs:
         # https://semantic-release.gitbook.io/semantic-release/usage/ci-configuration#authentication
         env:
           DRY_RUN: ${{ github.event.inputs.DRY_RUN == 'true' && '--dry-run' || '' }}
-          GITHUB_TOKEN: ${{ steps.op-secrets.outputs.WEB_DEVDEPS_GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ steps.op-secrets.outputs.WEB_DEVDEPS_NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.op-secrets.outputs.DEVDEPS_GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ steps.op-secrets.outputs.DEVDEPS_NPM_TOKEN }}
         run: npx semantic-release $DRY_RUN --extends ./lib/semantic-release.config.js

@@ -30,9 +30,9 @@ export const makeJestConfig = async (): Promise<Config> => {
 
 	/** The base path to the files/packages used as Jest transformers. */
 	const transformerBasePath = isWebDevDepsRepo
-		? // If running tests on this `web-devdeps` repo, set the path relative to the Jest <rootDir>.
+		? // If running tests on this `devdeps` repo, set the path relative to the Jest <rootDir>.
 			("<rootDir>" as const)
-		: // If running tests on a `consuming-repo`, set the path relative to its `web-devdeps` dependency.
+		: // If running tests on a `consuming-repo`, set the path relative to its `devdeps` dependency.
 			(`<rootDir>/${dependencyPartialPath}` as const);
 
 	// Note: The `cjs` and `cts` file extensions are included in the Jest config because this repo has some tools
@@ -85,9 +85,9 @@ export const makeJestConfig = async (): Promise<Config> => {
 			"^(\\.\\.?\\/.+)\\.(cjs|js|jsx)": "$1",
 		},
 		// Note that while `rootDir` is set to an absolute path here, Jest also knows how to interpret relative paths.
-		// For example, a consuming repo depending on `web-devdeps` could use "../../../../" as the path to traverse
+		// For example, a consuming repo depending on `devdeps` could use "../../../../" as the path to traverse
 		// four levels upwards to reach the root. (i.e. starting from lib/, move upwards four times:
-		// web-devdeps/ ^ @dustin-ruetz/ ^ node_modules/ ^ consuming-repo/)
+		// devdeps/ ^ @dustin-ruetz/ ^ node_modules/ ^ consuming-repo/)
 		// Excerpt from https://jestjs.io/docs/configuration#rootdir-string:
 		// > The root directory that Jest should scan for tests and modules within.
 		// > Oftentimes, you'll want to set this to `"src"` or `"lib"`, corresponding to where in your repository the code is stored.
