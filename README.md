@@ -142,9 +142,9 @@ npm run validate
 Note that [`act`]() can be used to locally test the GitHub Actions workflow files located in [`.github/workflows/`](.github/workflows/) as well:
 
 ```sh
-# Perform a dry-run release.
+# Simulate a dry-run release in the CI/CD context.
 npm run .github/release
 
-# Run the full suite of validation checks.
+# Simulate the full suite of validation checks in the CI/CD context.
 npm run .github/validate
 ```
