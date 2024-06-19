@@ -55,31 +55,31 @@ describe("it determines the correct absolute root directory", () => {
 		const absolutePath = absolutePaths.asDependency();
 		mockFileURLToPath.mockReturnValue(absolutePath);
 
-		const {absoluteRootDir, dependencyPartialPath, isWebDevDepsRepo} =
+		const {absoluteRootDir, dependencyPartialPath, isDevDepsRepo} =
 			getRepoMetadata();
 
 		expect(absoluteRootDir).toEqual("/Users/username/repos/consuming-repo");
 		expect(dependencyPartialPath).toEqual("node_modules/@dustin-ruetz/devdeps");
-		expect(isWebDevDepsRepo).toBe(false);
+		expect(isDevDepsRepo).toBe(false);
 	});
 
 	test("when run as a JavaScript file inside the lib/ folder", () => {
 		const absolutePath = absolutePaths.asLibraryJavaScriptFile();
 		mockFileURLToPath.mockReturnValue(absolutePath);
 
-		const {absoluteRootDir, isWebDevDepsRepo} = getRepoMetadata();
+		const {absoluteRootDir, isDevDepsRepo} = getRepoMetadata();
 
 		expect(absoluteRootDir).toEqual("/Users/username/repos/devdeps");
-		expect(isWebDevDepsRepo).toBe(true);
+		expect(isDevDepsRepo).toBe(true);
 	});
 
 	test("when run as a TypeScript file inside the src/ folder", () => {
 		const absolutePath = absolutePaths.asSourceTypeScriptFile();
 		mockFileURLToPath.mockReturnValue(absolutePath);
 
-		const {absoluteRootDir, isWebDevDepsRepo} = getRepoMetadata();
+		const {absoluteRootDir, isDevDepsRepo} = getRepoMetadata();
 
 		expect(absoluteRootDir).toEqual("/Users/username/repos/devdeps");
-		expect(isWebDevDepsRepo).toBe(true);
+		expect(isDevDepsRepo).toBe(true);
 	});
 });

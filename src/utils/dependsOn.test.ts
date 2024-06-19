@@ -13,7 +13,7 @@ jest.mock("./getRepoMetadata.js", () => ({
 	getRepoMetadata: jest.fn(() => ({
 		absoluteRootDir: "/Users/username/repos/devdeps",
 		dependencyPartialPath: "node_modules/@dustin-ruetz/devdeps",
-		isWebDevDepsRepo: true,
+		isDevDepsRepo: true,
 	})),
 }));
 

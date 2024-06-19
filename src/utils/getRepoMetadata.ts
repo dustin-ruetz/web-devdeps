@@ -58,7 +58,7 @@ export const getRepoMetadata = () => {
 	// Remove the last character in the string, i.e. the path's trailing slash.
 	absoluteRootDir = absoluteRootDir.slice(0, -1);
 
-	const isWebDevDepsRepo = absoluteRootDir.endsWith("/devdeps");
+	const isDevDepsRepo = absoluteRootDir.endsWith("/devdeps");
 
-	return {absoluteRootDir, dependencyPartialPath, isWebDevDepsRepo} as const;
+	return {absoluteRootDir, dependencyPartialPath, isDevDepsRepo} as const;
 };

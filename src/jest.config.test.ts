@@ -30,7 +30,7 @@ describe("it exports a configuration object and the most important config option
 		mockGetRepoMetadata.mockReturnValue({
 			absoluteRootDir: "/Users/username/repos/devdeps",
 			dependencyPartialPath: actualGetRepoMetadata().dependencyPartialPath,
-			isWebDevDepsRepo: true,
+			isDevDepsRepo: true,
 		});
 
 		const jestConfig = await makeJestConfig();
@@ -51,7 +51,7 @@ describe("it exports a configuration object and the most important config option
 		mockGetRepoMetadata.mockReturnValue({
 			absoluteRootDir: "/Users/username/repos/devdeps",
 			dependencyPartialPath: actualGetRepoMetadata().dependencyPartialPath,
-			isWebDevDepsRepo: true,
+			isDevDepsRepo: true,
 		});
 
 		const jestConfig = await makeJestConfig();
@@ -70,7 +70,7 @@ describe("it exports a configuration object and the most important config option
 		mockGetRepoMetadata.mockReturnValue({
 			absoluteRootDir: "/Users/username/repos/consuming-repo",
 			dependencyPartialPath: actualGetRepoMetadata().dependencyPartialPath,
-			isWebDevDepsRepo: false,
+			isDevDepsRepo: false,
 		});
 
 		const jestConfig = await makeJestConfig();

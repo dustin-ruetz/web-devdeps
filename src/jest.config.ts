@@ -9,7 +9,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		? "jsdom"
 		: "node";
 
-	const {absoluteRootDir, dependencyPartialPath, isWebDevDepsRepo} =
+	const {absoluteRootDir, dependencyPartialPath, isDevDepsRepo} =
 		getRepoMetadata();
 
 	/** Binary file extensions 1) to ignore in test coverage, and 2) to transform the imported values to filenames. */
@@ -29,7 +29,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 	] as const;
 
 	/** The base path to the files/packages used as Jest transformers. */
-	const transformerBasePath = isWebDevDepsRepo
+	const transformerBasePath = isDevDepsRepo
 		? // If running tests on this `devdeps` repo, set the path relative to the Jest <rootDir>.
 			("<rootDir>" as const)
 		: // If running tests on a `consuming-repo`, set the path relative to its `devdeps` dependency.
