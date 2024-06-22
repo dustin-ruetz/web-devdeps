@@ -4,7 +4,7 @@ test("INTEGRATION: ensure that the original src/ files are mapped one-to-one wit
 	/** Normalizes the contents of a directory by reading it, filtering out items as needed, sorting it, and removing the file extensions. */
 	const getDirectoryFiles = async (directory: string) => {
 		/** Contents of passed `directory` (includes its subdirectory folders/files due to the `recursive: true` option). */
-		const directoryContents: string[] = await readdir(directory, {
+		const directoryContents = await readdir(directory, {
 			encoding: "utf-8",
 			recursive: true,
 		});
@@ -49,8 +49,8 @@ test("INTEGRATION: ensure that the original src/ files are mapped one-to-one wit
 	};
 
 	const [srcFiles, libFiles] = await Promise.all([
-		await getDirectoryFiles("src/"),
-		await getDirectoryFiles("lib/"),
+		getDirectoryFiles("src/"),
+		getDirectoryFiles("lib/"),
 	]);
 
 	expect(srcFiles.length).toEqual(libFiles.length);
