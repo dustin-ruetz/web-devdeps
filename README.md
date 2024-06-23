@@ -99,8 +99,6 @@ Then make the following changes:
    }
    ```
 
-</details>
-
 ### Local Development
 
 Start by initializing the repo for local development:
