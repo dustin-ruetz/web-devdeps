@@ -22,8 +22,8 @@ runs:
         node-version: ${{ inputs.node-version }}
         node-version-file: ${{ inputs.node-version-file }}
     - name: ⬇️ Install dependencies
-      # Omit the `devDependencies` from installation since the `husky` package is the lone entry,
-      # and `husky` is only relevant for running Git hooks in the context of local development.
+      # Omit the `devDependencies` from installation since the `husky` package is the lone entry, and
+      # `husky` is only relevant in local development during the repo's initial Git hooks setup.
       # Excerpt from https://docs.npmjs.com/cli/v10/commands/npm-install#omit:
       # > Dependency types to omit from the installation tree on disk.
       # > Note that these dependencies are still resolved and added to the `package-lock.json`
