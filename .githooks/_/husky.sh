@@ -34,6 +34,6 @@ sh -e "$s" "$@"
 c=$?
 
 # If the Git hook script exits with a non-zero status code then log the error(s) and exit with the status code.
-[ $c != 0 ] && echo "🐶-❌ husky error - $h script failed (code $c)"
-[ $c = 127 ] && echo "🐶-❌ husky error - command not found in PATH=$PATH"
+[ $c != 0 ] && echo "🐶-❌ ERR_HUSKY - $h script failed (code $c)"
+[ $c = 127 ] && echo "🐶-❌ ERR_HUSKY - command not found in PATH=$PATH"
 exit $c
