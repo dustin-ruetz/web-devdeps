@@ -35,6 +35,7 @@ test("it exports a configuration object and the most important config options ar
 		},
 	]);
 	expect(eslintConfig.rules?.["no-var"]).toEqual("error");
+	expect(eslintConfig.rules?.["no-unused-vars"]).toEqual("off");
 	expect(eslintConfig.overrides).toStrictEqual([
 		{
 			files: ["*.test.+(js|jsx|ts|tsx)"],

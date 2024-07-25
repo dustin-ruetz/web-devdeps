@@ -130,6 +130,24 @@ const eslintConfig = {
 		radix: "error",
 		"require-await": "error",
 		yoda: "error",
+		// Excerpt from https://typescript-eslint.io/rules/no-unused-vars/#how-to-use:
+		// > Note: You must disable the base rule as it can report incorrect errors.
+		"no-unused-vars": "off",
+		// Excerpt from https://typescript-eslint.io/rules/no-unused-vars/#benefits-over-typescript:
+		// > If you would like to emulate the TypeScript style of exempting names starting with `_`,
+		// > you can use this configuration (this includes errors as well):
+		"@typescript-eslint/no-unused-vars": [
+			"error",
+			{
+				args: "all",
+				argsIgnorePattern: "^_",
+				caughtErrors: "all",
+				caughtErrorsIgnorePattern: "^_",
+				destructuredArrayIgnorePattern: "^_",
+				ignoreRestSiblings: true,
+				varsIgnorePattern: "^_",
+			},
+		],
 	},
 	// Excerpt from https://eslint.org/docs/latest/use/configure/configuration-files#how-do-overrides-work:
 	// > It is possible to override settings based on file glob patterns in your configuration by using the `overrides` key.
