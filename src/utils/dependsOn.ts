@@ -8,8 +8,8 @@ import {ValidationError} from "./ValidationError.js";
  */
 export const dependsOn = async (deps: string[]) => {
 	// It's possible to use this function directly from the compiled lib/ .js file,
-	// so start with some manual typechecking and throw errors early if needed.
-	if (!Array.isArray(deps) || deps.length === 0) {
+	// so start with validation checks and throw errors early if needed.
+	if (!Array.isArray(deps) || deps.length < 1) {
 		throw new ValidationError(
 			"Argument for the `deps` parameter must be an array of strings with a length >= 1.",
 			{
