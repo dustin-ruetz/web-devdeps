@@ -4,9 +4,7 @@
 		"overrideConfigFile": "lib/eslint.config.cjs"
 	},
 	"files.associations": {
-		"commit-msg": "shellscript",
-		"pre-commit": "shellscript",
-		"pre-push": "shellscript"
+		"**/.githooks/*": "shellscript"
 	},
 	"material-icon-theme.files.associations": {
 		".caches/.prettiercache": "Prettier",
