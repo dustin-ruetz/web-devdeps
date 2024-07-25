@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [1.1.0](https://github.com/dustin-ruetz/devdeps/compare/v1.0.2...v1.1.0) (2024-07-25)
+
+### Features
+
+* **.githooks/_/husky:** prefix error message with 'ERR_HUSKY' code ([1bcdcd2](https://github.com/dustin-ruetz/devdeps/commit/1bcdcd2461ccac4ce05699d128a6a59b11c91197))
+* **eslint.config:** turn off 'no-unused-vars' in favor of 'typescript-eslint/no-unused-vars' ([d6f949e](https://github.com/dustin-ruetz/devdeps/commit/d6f949e17b2dd4a909c7cb1bd804af06b42b34a5))
+
+### Bug Fixes
+
+* **dependencies:** update packages to latest versions ([3f66286](https://github.com/dustin-ruetz/devdeps/commit/3f6628678cbf7a789c88b050c874a3e70d93fccf))
+
 ## [1.0.2](https://github.com/dustin-ruetz/devdeps/compare/v1.0.1...v1.0.2) (2024-06-24)
 
 ### Bug Fixes
