@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.2.0](https://github.com/dustin-ruetz/devdeps/compare/v1.1.0...v1.2.0) (2024-08-01)
+
+### Features
+
+* include '.node-version' file in published NPM package ([c3bc22f](https://github.com/dustin-ruetz/devdeps/commit/c3bc22faba825e16e471696b26bad9aec59c1c69))
+
 ## [1.1.0](https://github.com/dustin-ruetz/devdeps/compare/v1.0.2...v1.1.0) (2024-07-25)
 
 ### Features
