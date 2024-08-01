@@ -43,6 +43,7 @@
 	},
 	"files": [
 		".githooks/",
+		".node-version",
 		"lib/",
 		"tsconfig.build.json",
 		"tsconfig.json"
