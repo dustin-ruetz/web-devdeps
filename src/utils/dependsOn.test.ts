@@ -21,25 +21,30 @@ afterEach(() => {
 	jest.clearAllMocks();
 });
 
-test("throws errors if the `deps` argument is invalid", () => {
+test("throws errors if the required `deps` argument is invalid", () => {
 	expect(async () => {
-		// @ts-expect-error if no `deps` argument is passed.
+		// @ts-expect-error if `deps` is not passed.
 		await dependsOn();
 	}).rejects.toThrow(/ERR_INVALID_DEPS_ARRAY/);
 
 	expect(async () => {
-		// @ts-expect-error if `deps` argument is not an array.
+		// @ts-expect-error if `deps` is not an array.
 		await dependsOn("package1");
 	}).rejects.toThrow(/ERR_INVALID_DEPS_ARRAY/);
 
 	expect(async () => {
-		// Expect an error if `deps` argument is an empty array.
+		// Expect an error if `deps` is an empty array.
 		await dependsOn([]);
 	}).rejects.toThrow(/ERR_INVALID_DEPS_ARRAY/);
 
 	expect(async () => {
-		// @ts-expect-error if `deps` argument is an array containing non-string values.
-		await dependsOn(["package1", 2, "package3"]);
+		// Expect an error if `deps` is an array containing an empty string.
+		await dependsOn(["package1", ""]);
+	}).rejects.toThrow(/ERR_TYPEOF_DEP_NOT_STRING/);
+
+	expect(async () => {
+		// @ts-expect-error if `deps` is an array containing non-string values.
+		await dependsOn(["package1", 2]);
 	}).rejects.toThrow(/ERR_TYPEOF_DEP_NOT_STRING/);
 });
 
