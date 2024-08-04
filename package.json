@@ -52,7 +52,7 @@
 		"access": "public"
 	},
 	"repository": {
-		"url": "git@github.com:dustin-ruetz/devdeps.git"
+		"url": "git+ssh://git@github.com/dustin-ruetz/devdeps.git"
 	},
 	"type": "module",
 	"dependencies": {
