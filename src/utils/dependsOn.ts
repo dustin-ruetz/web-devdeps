@@ -21,9 +21,9 @@ export const dependsOn = async (deps: string[]) => {
 		);
 	}
 	deps.forEach((dep) => {
-		if (typeof dep !== "string") {
+		if (dep === "" || typeof dep !== "string") {
 			throw new ValidationError(
-				"All values in the `deps` array argument must be strings.",
+				"All values in the `deps` array argument must be non-empty strings.",
 				{
 					cause: {
 						code: "ERR_TYPEOF_DEP_NOT_STRING",
