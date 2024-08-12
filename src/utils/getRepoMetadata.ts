@@ -42,7 +42,7 @@ export const getRepoMetadata = () => {
 	/**
 	 * `relativePath` is defined as a regular expression so that it covers two types of paths:
 	 * 1. A compiled JavaScript file in the lib/ directory; and
-	 * 2. A TypeScript file in the src/ directory.
+	 * 2. A source TypeScript file in the src/ directory.
 	 */
 	const relativePath = new RegExp(`(lib|src)/${partialPath}.(js|ts)`);
 	/** `dependencyRelativePath` is defined as a regular expression built from the previous variables. */
