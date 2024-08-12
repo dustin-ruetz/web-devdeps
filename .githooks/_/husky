@@ -5,28 +5,25 @@
 # If the $HUSKY environment variable is set to 2 then make the shell
 # print the commands (and their arguments) as they're executed.
 [ "$HUSKY" = "2" ] && set -x
-# h = the name of the Git hook (ex: commit-msg)
-h="${0##*/}"
-# s = the path of the Git hook script (ex: .githooks/commit-msg)
-s="${0%/*/*}/$h"
+# n = the name of the Git hook (ex: `commit-msg`)
+n=$(basename "$0")
+# s = the path of the Git hook script (ex: `.githooks/commit-msg`)
+s=$(dirname "$(dirname "$0")")/$n
 
-# Since this husky script executes two Git hooks (first in .githooks/_/ and second in .githooks/),
-# only log the first one by checking if the script path contains the ".githooks/_/" substring.
-if [[ $s == *.githooks/_/* ]]; then
-  echo "🪝-ℹ️ Executing Git hook script: $s"
-fi
+echo "🪝-ℹ️ Executing Git hook script: $s"
 
 # Check if the script exists; if it doesn't exist, log a warning and terminate with a zero status code.
 [ ! -f "$s" ] && echo "🪝-⚠️ Git hook script not found: $s" && exit 0
 
-# Check if the following files exist; if they do exist, source them.
-for f in "${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh" "$HOME/.huskyrc"; do
-	# shellcheck disable=SC1090
-	[ -f "$f" ] && . "$f"
-done
+# Check if the following file exists; if it does then source it.
+i="${XDG_CONFIG_HOME:-$HOME/.config}/husky/init.sh"
+[ -f "$i" ] && . "$i"
 
 # If the $HUSKY environment variable is set to 0 then terminate with a zero status code.
 [ "${HUSKY-}" = "0" ] && exit 0
+
+# Add the /node_modules/.bin directory to $PATH.
+export PATH="node_modules/.bin:$PATH"
 
 # Execute the Git hook script file along with its passed arguments.
 sh -e "$s" "$@"
@@ -34,6 +31,6 @@ sh -e "$s" "$@"
 c=$?
 
 # If the Git hook script exits with a non-zero status code then log the error(s) and exit with the status code.
-[ $c != 0 ] && echo "🐶-❌ ERR_HUSKY - $h script failed (code $c)"
+[ $c != 0 ] && echo "🐶-❌ ERR_HUSKY - $n script failed (code $c)"
 [ $c = 127 ] && echo "🐶-❌ ERR_HUSKY - command not found in PATH=$PATH"
 exit $c

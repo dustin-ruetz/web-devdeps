@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-source "${0%/*}/husky.sh"
+source "$(dirname "$0")/husky"

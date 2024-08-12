@@ -90,6 +90,6 @@
 		"typescript": "5.5.4"
 	},
 	"devDependencies": {
-		"husky": "9.0.11"
+		"husky": "9.1.4"
 	}
 }

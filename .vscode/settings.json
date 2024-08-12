@@ -4,7 +4,8 @@
 		"overrideConfigFile": "lib/eslint.config.cjs"
 	},
 	"files.associations": {
-		"**/.githooks/*": "shellscript"
+		"**/.githooks/**": "shellscript",
+		"**/.githooks/_/README.md": "markdown"
 	},
 	"material-icon-theme.files.associations": {
 		".caches/.prettiercache": "Prettier",
