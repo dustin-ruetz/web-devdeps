@@ -3,6 +3,12 @@ import packageJSON from "../package.json";
 test("the most important configuration options are correct", () => {
 	expect(packageJSON.name).toEqual("@dustin-ruetz/devdeps");
 	expect(packageJSON.author).toEqual("Dustin Ruetz");
+	// Excerpt from https://docs.npmjs.com/cli/v6/configuring-npm/package-json#bin:
+	// > A lot of packages have one or more executable files that they'd like to install into the PATH.
+	// > To use this, supply a `bin` field in your package.json which is a map of command name to local file name. On install,
+	// > npm will symlink that file into `prefix/bin` for global installs, or `./node_modules/.bin/` for local installs.
+	// > If you have a single executable, and its name should be the name of the package, then you can just supply it as a string.
+	expect(packageJSON.bin).toEqual("./lib/index.js");
 	// Ensure that only the following allowlisted files and folders are included in the published NPM package.
 	//
 	// Excerpt from https://docs.npmjs.com/cli/v10/using-npm/developers#keeping-files-out-of-your-package:
