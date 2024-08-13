@@ -6,15 +6,15 @@ Package that provides development dependencies and standardized configurations f
 
 `@dustin-ruetz/devdeps` provides `devDependencies` and configuration files for:
 
-- Building and typechecking using `typescript`.
-- Cleaning using `rimraf`.
-- Formatting using `prettier`.
-- Linting using `eslint` for JavaScript and TypeScript.
-- Linting using `stylelint` for CSS/SCSS/JSX/TSX (the latter two file types being relevant for "CSS-in-JS" solutions like `styled-components`).
-- Releasing using `semantic-release`.
-- Testing using `jest` for unit and integration tests.
-- Validating commit messages using `commitlint`.
-- Validating the codebase prior to any changes being committed using `lint-staged` and `husky` Git hooks.
+- Building and typechecking using [`typescript`](https://www.typescriptlang.org).
+- Cleaning using [`rimraf`](https://github.com/isaacs/rimraf).
+- Formatting using [`prettier`](https://prettier.io).
+- Linting using [`eslint`](https://eslint.org) for JavaScript and TypeScript.
+- Linting using [`stylelint`](https://stylelint.io) for CSS/SCSS/JSX/TSX (the latter two file types being relevant for "CSS-in-JS" solutions like `styled-components`).
+- Releasing using [`semantic-release`](https://semantic-release.gitbook.io/semantic-release).
+- Testing using [`jest`](https://jestjs.io) for unit and integration tests.
+- Validating commit messages using [`commitlint`](https://commitlint.js.org).
+- Validating the codebase prior to any changes being committed using [`lint-staged`](https://github.com/lint-staged/lint-staged) and [`husky`](https://typicode.github.io/husky) Git hooks.
 
 Additional details:
 
