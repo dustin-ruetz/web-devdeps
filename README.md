@@ -137,7 +137,7 @@ npm run test/unit/watch
 npm run validate
 ```
 
-Note that [`act`]() can be used to locally test the GitHub Actions workflow files located in [`.github/workflows/`](.github/workflows/) as well:
+Note that [`act`](https://nektosact.com) can be used to locally test the GitHub Actions workflow files located in [`.github/workflows/`](.github/workflows/) as well:
 
 ```sh
 # Simulate a dry-run release in the CI/CD context.
