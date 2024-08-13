@@ -27,7 +27,7 @@
 		"fix/lint/js-ts": "npm run lint/js-ts -- --fix ./",
 		"format": "prettier --config ./lib/prettier.config.js --cache --cache-location ./.caches/.prettiercache --ignore-path ./.gitignore",
 		"init": "git config core.hooksPath ./.githooks/_/ && npm install && npm run validate",
-		"init-repo": "rimraf ./_/ && mkdir ./_/ && node ./lib/ init-repo",
+		"init-repo": "rimraf ./.initRepoScriptTestOutput/ && mkdir ./.initRepoScriptTestOutput/ && node ./lib/ init-repo",
 		"lint/js-ts": "eslint --config ./lib/eslint.config.cjs --cache --cache-location ./.caches/.eslintcache --ignore-path ./.gitignore",
 		"prepublishOnly": "npm run build",
 		"test/unit": "jest --config ./lib/jest.config.js --cache",

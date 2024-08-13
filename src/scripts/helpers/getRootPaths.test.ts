@@ -29,7 +29,9 @@ describe("the returned root paths (1. to read from, and 2. to write to) are corr
 		const rootPaths = getRootPaths();
 
 		expect(rootPaths.readFrom).toEqual("/Users/username/repos/devdeps");
-		expect(rootPaths.writeTo).toEqual("/Users/username/repos/devdeps/_");
+		expect(rootPaths.writeTo).toEqual(
+			"/Users/username/repos/devdeps/.initRepoScriptTestOutput",
+		);
 	});
 
 	test("a consuming repo that has installed the devdeps package", () => {

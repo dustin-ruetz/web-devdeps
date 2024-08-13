@@ -17,10 +17,10 @@ export const getRootPaths = () => {
 	/* v8 ignore next 14 */
 	// *If* developing/testing locally from this `devdeps` repo:
 	// 1. Read from the root of the repo, and
-	// 2. Write to the .gitignore'd `_/` directory.
+	// 2. Write to the .gitignore'd `.initRepoScriptTestOutput/` directory.
 	if (isDevDepsRepo) {
 		rootPaths.readFrom = absoluteRootDir;
-		rootPaths.writeTo = `${absoluteRootDir}/_`;
+		rootPaths.writeTo = `${absoluteRootDir}/.initRepoScriptTestOutput`;
 	}
 	// *Else* the script is being run from a consuming repo, so:
 	// 1. Read from the `node_modules/@dustin-ruetz/devdeps/` directory, and
