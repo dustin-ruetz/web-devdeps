@@ -119,9 +119,6 @@ npm run build
 # Check the codebase for problems (formatting, linting and typechecking).
 npm run check
 
-# Run all the `clean/*` scripts.
-npm run clean
-
 # Run the TypeScript compiler in "watch" mode.
 npm run dev
 
