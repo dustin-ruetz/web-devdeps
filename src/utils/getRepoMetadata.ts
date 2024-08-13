@@ -55,12 +55,12 @@ export const getRepoMetadata = () => {
 		`${dependencyPartialPath}/${relativePath.source}`,
 	);
 	let absoluteRootDir = "";
+	/**
+	 * @todo Figure out why the following conditional logic (which _is_ in fact covered in the unit test)
+	 *       erroneously and flakily reports "Uncovered Line #s" errors in the test coverage report.
+	 */
+	/* v8 ignore next 5 */
 	if (absolutePath.includes(dependencyPartialPath)) {
-		/**
-		 * @todo Figure out why the following conditional logic (which _is_ in fact covered in the unit test)
-		 *       erroneously and flakily reports "Uncovered Line #s" errors in the test coverage report.
-		 */
-		/* v8 ignore next 1 */
 		absoluteRootDir = absolutePath.replace(dependencyRelativePath, "");
 	} else {
 		absoluteRootDir = absolutePath.replace(relativePath, "");
