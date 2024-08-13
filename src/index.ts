@@ -14,7 +14,9 @@ export const runScript = async () => {
 
 	/** List of known scripts. */
 	const scripts = {
+		/* eslint sort-keys: ["error", "asc"] */
 		initRepo: "init-repo",
+		/* eslint-disable sort-keys */
 	} as const;
 
 	switch (script) {
