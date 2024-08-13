@@ -41,64 +41,17 @@ Note that `@dustin-ruetz/devdeps` requires the project to have the following com
 ┗ 📄 tsconfig.json
 ```
 
-Start by installing the package as a development dependency:
-
-```sh
-npm install --save-dev @dustin-ruetz/devdeps
-```
-
-Then make the following changes:
-
-1. Modify the `scripts` object in the project's `package.json` file depending on the CLI tools that are needed. The simplest way to do this is to copy the `scripts` from this repo's `package.json` file and then update the configuration file paths. Here's an example:
-
-   ```json
-   // package.json
-   {
-   	"scripts": {
-   		".githooks/commit-msg": "commitlint --config ./node_modules/@dustin-ruetz/devdeps/lib/commitlint.config.js --edit",
-   		".githooks/pre-commit": "lint-staged --config ./node_modules/@dustin-ruetz/devdeps/lib/lint-staged.config.js --relative",
-   		"format": "prettier --config ./node_modules/@dustin-ruetz/devdeps/lib/prettier.config.js --ignore-path ./.gitignore",
-   		"lint/js-ts": "eslint --config ./node_modules/@dustin-ruetz/devdeps/lib/eslint.config.cjs --ignore-path ./.gitignore",
-   		"lint.styles": "stylelint --config ./node_modules/@dustin-ruetz/devdeps/lib/stylelint.config.js --ignore-path ./.gitignore",
-   		"test/unit": "jest --config ./node_modules/@dustin-ruetz/devdeps/lib/jest.config.js"
-   	}
-   }
-   ```
-
-1. Modify the `extends` value in the project's `tsconfig.json` file:
-
-   ```json
-   // tsconfig.json
-   {
-   	"extends": "./node_modules/@dustin-ruetz/devdeps/tsconfig.json"
-   }
-   ```
-
-1. Modify (or create) the project's three `.githooks/` files (`commit-msg`, `pre-commit` and `pre-push`) and have them call the Git hooks in this `devdeps` repo directly. Here's the `.githooks/commit-msg` file as an example:
+1. Use `npx` to execute this package's `init-repo` script to write the initial files needed for web-/Node.js-based projects when creating a new Git repository. Pass the `--help` flag to print the documentation for the command:
 
    ```sh
-   #!/usr/bin/env sh
-   ./node_modules/@dustin-ruetz/devdeps/.githooks/_/commit-msg
+   npx @dustin-ruetz/devdeps init-repo --help
    ```
 
-1. Modify (or create) the project's `.vscode/settings.json` file depending on the VS Code extensions that are needed. For example:
+2. Execute `npm install` to install the version of this `@dustin-ruetz/devdeps` package listed in the written `package.json` file.
 
-   ```json
-   // .vscode/settings.json
-   {
-   	// https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
-   	"eslint.options": {
-   		"overrideConfigFile": "node_modules/@dustin-ruetz/devdeps/lib/eslint.config.cjs",
-   		"ignorePath": ".gitignore"
-   	},
-   	// https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
-   	"prettier.configPath": "node_modules/@dustin-ruetz/devdeps/lib/prettier.config.js",
-   	"prettier.ignorePath": ".gitignore",
-   	// https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint
-   	"stylelint.configFile": "node_modules/@dustin-ruetz/devdeps/lib/stylelint.config.js",
-   	"stylelint.validate": ["css", "javascriptreact", "scss", "typescriptreact"]
-   }
-   ```
+3. Execute `npm run fix/format` to automatically format all of the written files.
+
+4. Note how the key files (`package.json`, `README.md`, `tsconfig.json`, etc.) and folders (`.githooks/`, `.vscode/`) have all been initialized. Open each file and make changes as needed.
 
 ### Local Development
 
