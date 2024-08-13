@@ -102,6 +102,8 @@ Then make the following changes:
 
 ### Local Development
 
+Note that [`fnm`](https://github.com/Schniz/fnm) (Fast Node Manager) can be installed and configured to automatically switch to the Node.js version number specified in the [`.node-version`](./.node-version) file.
+
 Start by initializing the repo for local development:
 
 1. Clone the repository and `cd` into it.
