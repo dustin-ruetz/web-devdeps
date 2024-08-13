@@ -48,7 +48,7 @@ test("writeGitHooks", async () => {
 		"pre-commit",
 		"pre-push",
 	] as const;
-	// @ts-expect-error TODO: Figure out how to correctly type the promise's resolved value here.
+	/** @ts-expect-error @todo Figure out how to correctly type the promise's resolved value here. */
 	mockReaddir.mockResolvedValue(githooksDirectoryContents);
 	// Filter out the "_" underscore directory since it contains the husky-specific script files.
 	const githooksFiles = githooksDirectoryContents.filter(

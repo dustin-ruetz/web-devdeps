@@ -22,7 +22,7 @@ describe("it runs the correct commands for", () => {
 	});
 
 	const [lintJavaScriptTypeScriptCommand, typecheckCommand] =
-		// @ts-expect-error TODO: Figure out how to correctly type the function on this configuration object.
+		/** @ts-expect-error @todo Figure out how to correctly type the function on this configuration object. */
 		lintstagedConfig["*.{js,jsx,ts,tsx}"](relativePaths);
 
 	test("linting JS and TS files", () => {
@@ -36,7 +36,7 @@ describe("it runs the correct commands for", () => {
 	});
 
 	test("unit testing", () => {
-		// @ts-expect-error TODO: See above comment.
+		/** @ts-expect-error @todo See above comment. */
 		expect(lintstagedConfig["*.{js,jsx,json,ts,tsx}"](relativePaths)).toEqual(
 			`npm run test/unit/coverage -- --findRelatedTests --collectCoverageFrom= ${relativePath}`,
 		);
