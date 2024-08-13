@@ -1,5 +1,30 @@
 # CHANGELOG
 
+## [1.3.0](https://github.com/dustin-ruetz/devdeps/compare/v1.2.0...v1.3.0) (2024-08-13)
+
+### Features
+
+* **.gitignore:** ignore '_/' underscore directory ([a95a181](https://github.com/dustin-ruetz/devdeps/commit/a95a1810a88184836f1d36b9691b231678347b33))
+* **package.json:** add 'init-repo' NPM script for purposes of local development/testing ([239881f](https://github.com/dustin-ruetz/devdeps/commit/239881fa1a77848704d767ae8fe8ca6149b9ebee))
+* **package.json:** add 'test/unit/coverage-watchAll' NPM script ([eded75a](https://github.com/dustin-ruetz/devdeps/commit/eded75a9f760ceece437137d5e2615476411a60d))
+* **scripts/helpers/getRootPaths:** initial 'getRootPaths' function and unit test ([1ef08e1](https://github.com/dustin-ruetz/devdeps/commit/1ef08e1d79bdbde695e36f5019cca07fe182937e))
+* **scripts/helpers/initRepoHelpers:** initial 'initRepoHelpers' functions and unit tests ([7188eb4](https://github.com/dustin-ruetz/devdeps/commit/7188eb416690712b3ef99aa2dfc3dc504e2c0462))
+* **scripts/helpers/semVerRegExp:** initial 'semVerRegExp' function and unit test ([d1d1010](https://github.com/dustin-ruetz/devdeps/commit/d1d1010d71cc95ae036788ea4387d31b19973fa5))
+* **scripts/initRepo:** initial 'initRepo' function and unit tests ([6abee1a](https://github.com/dustin-ruetz/devdeps/commit/6abee1aaf9852001632e1ca8698f913c71a04584))
+* **src/index:** add 'eslint sort-keys' code comment to ensure alphabetical 'scripts' object keys ([b8e1532](https://github.com/dustin-ruetz/devdeps/commit/b8e1532fff8f753b4002b9fc3dbf02a712f0080f))
+* **src/index:** initial 'runScript' index and unit tests ([f5bfcec](https://github.com/dustin-ruetz/devdeps/commit/f5bfcec796527f40308ace5541df35ffc3a222ef))
+
+### Bug Fixes
+
+* add 'v8 ignore next #' comments to work around erroneous 'Uncovered Line [#s](https://github.com/dustin-ruetz/devdeps/issues/s)' errors ([5295eef](https://github.com/dustin-ruetz/devdeps/commit/5295eef607ecda32f33bea4f03506aec843b7ea1))
+* add 'v8 ignore next #' comments to work around erroneous 'Uncovered Line [#s](https://github.com/dustin-ruetz/devdeps/issues/s)' errors ([b36eaaf](https://github.com/dustin-ruetz/devdeps/commit/b36eaaff8190c02d55ecdf31fe23101418180cc3))
+* change output path of 'init-repo' script (from '_/' to '.initRepoScriptTestOutput/') ([47ee350](https://github.com/dustin-ruetz/devdeps/commit/47ee350859f01f6864cfdf392edf92770fd02e13))
+* **dependencies:** update husky to latest version ([c9e80a9](https://github.com/dustin-ruetz/devdeps/commit/c9e80a9c07394776ff5769a52bbfb98baddaa3ea))
+* **dependencies:** update packages to latest versions ([8087b39](https://github.com/dustin-ruetz/devdeps/commit/8087b397de124f0f45119dabebd78b0357d20cc8))
+* **eslint.config:** remove unnecessary 'no-undefined': 'error' rule ([d69f209](https://github.com/dustin-ruetz/devdeps/commit/d69f20931988f6397115a565a3ea3264ae7e03b0))
+* **package.json:** improve format of 'repository.url' value ([d4e0d77](https://github.com/dustin-ruetz/devdeps/commit/d4e0d7778133629039851526ef4d318ea3ad2f35))
+* **utils/dependsOn:** explicitly check if 'dep' is an empty string ([60fd183](https://github.com/dustin-ruetz/devdeps/commit/60fd183f432ebfcb13f8299100d3d30a5d32037c))
+
 ## [1.2.0](https://github.com/dustin-ruetz/devdeps/compare/v1.1.0...v1.2.0) (2024-08-01)
 
 ### Features
