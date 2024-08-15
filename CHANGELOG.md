@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.3.1](https://github.com/dustin-ruetz/devdeps/compare/v1.3.0...v1.3.1) (2024-08-15)
+
+### Bug Fixes
+
+* **dependencies:** update packages to latest versions ([92017b8](https://github.com/dustin-ruetz/devdeps/commit/92017b80c0eb5b65db9fc22a59a73aba17dc77f7))
+* **jest.config:** modify '@swc/jest' config to handle JSX/TSX files when testing React components ([89c1de1](https://github.com/dustin-ruetz/devdeps/commit/89c1de1d5da45773c8a7d92815dac6f7243e1a60))
+
 ## [1.3.0](https://github.com/dustin-ruetz/devdeps/compare/v1.2.0...v1.3.0) (2024-08-13)
 
 ### Features
