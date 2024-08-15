@@ -103,9 +103,28 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// > not supported by Node out of the box (such as JSX, TypeScript, Vue templates).
 		transform: {
 			[binaryFileExtensions.makeTransformRegExp()]: `${transformerBasePath}/lib/jest-transformers/binaryFile.js`,
-			// Both Babel and ts-jest are cumbersome to use for transforming TypeScript, so use @swc/jest instead for its simplicity.
-			// https://github.com/swc-project/pkgs/tree/main/packages/jest
-			".(js|jsx|ts|tsx)": "@swc/jest",
+			/**
+			 * Both Babel and `ts-jest` are cumbersome to use for transforming TypeScript, so use `@swc/jest` instead for its simplicity.
+			 * @link https://github.com/swc-project/pkgs/tree/main/packages/jest
+			 * @link Transform configuration adapted from [this comment](https://github.com/swc-project/jest/issues/40#issuecomment-1557659699).
+			 */
+			".(js|jsx|ts|tsx)": [
+				"@swc/jest",
+				{
+					jsc: {
+						parser: {
+							jsx: true,
+							syntax: "typescript",
+							tsx: true,
+						},
+						/**
+						 * Target environment should match the value of `compilerOptions.target` in the TypeScript configuration file.
+						 * @see [tsconfig.json](../tsconfig.json)
+						 */
+						target: "ES2022",
+					},
+				},
+			],
 			".svg": `${transformerBasePath}/lib/jest-transformers/svgFile.js`,
 		},
 		// Don't transform anything in node_modules/ and don't transform .json files.
