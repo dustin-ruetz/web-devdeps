@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.4.1](https://github.com/dustin-ruetz/devdeps/compare/v1.4.0...v1.4.1) (2024-08-17)
+
+### Bug Fixes
+
+* **dependencies:** update packages to latest versions ([d8f5437](https://github.com/dustin-ruetz/devdeps/commit/d8f54372956d8de71ae3d670ea66b46fda20bf51))
+* **scripts/helpers/initRepoHelpers:** format 'package.json' + '.vscode/settings.json' files w/ tabs ([a8e4fca](https://github.com/dustin-ruetz/devdeps/commit/a8e4fca18a1d3180f7b9a6bdcc572933572358ea))
+
 ## [1.4.0](https://github.com/dustin-ruetz/devdeps/compare/v1.3.1...v1.4.0) (2024-08-17)
 
 ### Features
