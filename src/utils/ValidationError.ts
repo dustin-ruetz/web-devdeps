@@ -5,9 +5,7 @@ export class ValidationError extends Error {
 		options: {
 			cause: {
 				code: string;
-				values?: {
-					[value: string]: unknown;
-				};
+				values?: Record<string, unknown>;
 			};
 		},
 	) {
