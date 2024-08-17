@@ -155,7 +155,7 @@ export const writePackageJson = async (
 
 	await writeFile(
 		`${rootPathToWriteTo}/package.json`,
-		JSON.stringify(packageJson),
+		JSON.stringify(packageJson, null, "\t"),
 	);
 };
 
@@ -204,6 +204,6 @@ export const writeVsCodeSettings = async (configureStylelint: boolean) => {
 	await mkdir(`${rootPathToWriteTo}/.vscode/`);
 	await writeFile(
 		`${rootPathToWriteTo}/.vscode/settings.json`,
-		JSON.stringify(vsCodeSettingsJson),
+		JSON.stringify(vsCodeSettingsJson, null, "\t"),
 	);
 };
