@@ -1,32 +1,43 @@
-import type {Linter} from "eslint";
-import eslintCfg from "./eslint.config.cjs";
+import globals from "globals";
+import eslintConfig from "./eslint.config.js";
 
-const eslintConfig: Linter.Config = eslintCfg;
+test("it exports a configuration array and the most important config options are correct", () => {
+	expect(Array.isArray(eslintConfig)).toBe(true);
 
-test("it exports a configuration object and the most important config options are correct", () => {
-	expect(typeof eslintConfig).toEqual("object");
+	// Verify that the contents of the `.gitignore` file are successfully read and included as patterns.
+	const importedGitignorePatterns = eslintConfig.find(
+		(configObj) => configObj.name === "Imported .gitignore patterns",
+	);
+	expect(importedGitignorePatterns?.ignores).toEqual(
+		expect.arrayContaining(["**/lib/", "**/node_modules/"]),
+	);
 
-	expect(eslintConfig.env).toStrictEqual({
-		browser: true,
-		es2024: true,
-		jest: true,
-		node: true,
+	// Verify that one of the recommended rules is included in the configuration.
+	const recommendedConfig = eslintConfig.find(
+		(configObj) => configObj.name === "eslintjs/recommended",
+	);
+	expect(recommendedConfig?.rules?.["no-const-assign"]).toEqual("error");
+
+	// Verify the user-defined configuration is correct.
+	const userDefinedConfig = eslintConfig.find(
+		(configObj) => configObj.name === "eslintjs/user-defined-config",
+	);
+	expect(userDefinedConfig?.languageOptions).toStrictEqual({
+		globals: {
+			...globals.browser,
+			...globals.jest,
+			...globals.node,
+		},
 	});
-	expect(eslintConfig.extends).toStrictEqual([
-		"eslint:recommended",
-		"plugin:@typescript-eslint/recommended",
-	]);
-	expect(eslintConfig.ignorePatterns).toStrictEqual(["!*.*.js", "!*.*.ts"]);
-	expect(eslintConfig.parser).toEqual("@typescript-eslint/parser");
-	expect(eslintConfig.parserOptions?.sourceType).toEqual("module");
-	expect(eslintConfig.plugins).toStrictEqual(["@typescript-eslint"]);
-	expect(eslintConfig.root).toBe(true);
-	expect(eslintConfig.rules?.["camelcase"]).toEqual("error");
-	// Verify that ESLint's "dot-notation" rule is undefined because enabling it
-	// conflicts with Typescript's "noPropertyAccessFromIndexSignature" rule.
-	expect(eslintConfig.rules?.["dot-notation"]).toBeUndefined();
-	expect(eslintConfig.rules?.["no-console"]).toEqual("warn");
-	expect(eslintConfig.rules?.["no-magic-numbers"]).toStrictEqual([
+	expect(userDefinedConfig?.linterOptions).toStrictEqual({
+		reportUnusedDisableDirectives: "error",
+	});
+	expect(userDefinedConfig?.rules?.["camelcase"]).toEqual("error");
+	// Verify that ESLint's "dot-notation" rule is `undefined` because enabling it
+	// conflicts with TypeScript's "noPropertyAccessFromIndexSignature" rule.
+	expect(userDefinedConfig?.rules?.["dot-notation"]).toBeUndefined();
+	expect(userDefinedConfig?.rules?.["no-console"]).toEqual("warn");
+	expect(userDefinedConfig?.rules?.["no-magic-numbers"]).toStrictEqual([
 		"error",
 		{
 			enforceConst: true,
@@ -34,14 +45,22 @@ test("it exports a configuration object and the most important config options ar
 			ignoreArrayIndexes: true,
 		},
 	]);
-	expect(eslintConfig.rules?.["no-var"]).toEqual("error");
-	expect(eslintConfig.rules?.["no-unused-vars"]).toEqual("off");
-	expect(eslintConfig.overrides).toStrictEqual([
-		{
-			files: ["*.test.+(js|jsx|ts|tsx)"],
-			rules: {
-				"no-magic-numbers": "off",
-			},
-		},
+	expect(userDefinedConfig?.rules?.["no-var"]).toEqual("error");
+
+	// Verify that the typescript-eslint user-defined config is included in the configuration.
+	const typescripteslintUserDefinedConfig = eslintConfig.find(
+		(configObj) => configObj.name === "typescript-eslint/user-defined-config",
+	);
+	expect(typeof typescripteslintUserDefinedConfig?.rules).toEqual("object");
+
+	// Verify that the user-defined overrides for test files are correct.
+	const userDefinedTestOverrides = eslintConfig.find(
+		(configObj) => configObj.name === "eslintjs/user-defined-test-overrides",
+	);
+	expect(userDefinedTestOverrides?.files).toStrictEqual([
+		"**/*.test.+(js|jsx|ts|tsx)",
 	]);
+	expect(userDefinedTestOverrides?.rules).toStrictEqual({
+		"no-magic-numbers": "off",
+	});
 });
