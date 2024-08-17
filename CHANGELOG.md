@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.4.0](https://github.com/dustin-ruetz/devdeps/compare/v1.3.1...v1.4.0) (2024-08-17)
+
+### Features
+
+* upgrade ESLint from v8 to v9 ([#52](https://github.com/dustin-ruetz/devdeps/issues/52)) ([6246dba](https://github.com/dustin-ruetz/devdeps/commit/6246dba9dfd60b014abfa0c38aa101fac67aca35))
+
 ## [1.3.1](https://github.com/dustin-ruetz/devdeps/compare/v1.3.0...v1.3.1) (2024-08-15)
 
 ### Bug Fixes
