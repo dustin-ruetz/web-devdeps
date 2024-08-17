@@ -217,7 +217,9 @@ test("writeTsConfig", async () => {
 
 describe("writeVsCodeSettings", () => {
 	test("it *does not* configure Stylelint", async () => {
-		await writeVsCodeSettings(false);
+		const configureStylelint = false;
+
+		await writeVsCodeSettings(configureStylelint);
 
 		expect(writeFile).toHaveBeenCalledTimes(1);
 		expect(writeFile).toHaveBeenCalledWith(
@@ -227,7 +229,9 @@ describe("writeVsCodeSettings", () => {
 	});
 
 	test("it *does* configure Stylelint", async () => {
-		await writeVsCodeSettings(true);
+		const configureStylelint = true;
+
+		await writeVsCodeSettings(configureStylelint);
 
 		expect(mkdir).toHaveBeenCalledTimes(1);
 		expect(mkdir).toHaveBeenCalledWith(expect.stringContaining(".vscode/"));
