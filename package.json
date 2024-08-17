@@ -28,7 +28,7 @@
 		"format": "prettier --config ./lib/prettier.config.js --cache --cache-location ./.caches/.prettiercache --ignore-path ./.gitignore",
 		"init": "git config core.hooksPath ./.githooks/_/ && npm install && npm run validate",
 		"init-repo": "rimraf ./.initRepoScriptTestOutput/ && mkdir ./.initRepoScriptTestOutput/ && node ./lib/ init-repo",
-		"lint/js-ts": "eslint --config ./lib/eslint.config.cjs --cache --cache-location ./.caches/.eslintcache --ignore-path ./.gitignore",
+		"lint/js-ts": "eslint --config ./lib/eslint.config.js --cache --cache-location ./.caches/.eslintcache",
 		"prepublishOnly": "npm run build",
 		"test/unit": "jest --config ./lib/jest.config.js --cache",
 		"test/unit/coverage": "npm run test/unit -- --coverage",
@@ -61,6 +61,8 @@
 	"dependencies": {
 		"@commitlint/cli": "19.4.0",
 		"@commitlint/config-conventional": "19.2.2",
+		"@eslint/compat": "1.1.1",
+		"@eslint/js": "9.9.0",
 		"@prettier/plugin-pug": "3.0.0",
 		"@prettier/plugin-xml": "3.4.1",
 		"@semantic-release/changelog": "6.0.3",
@@ -68,14 +70,14 @@
 		"@swc/core": "1.7.11",
 		"@swc/jest": "0.2.36",
 		"@tsconfig/strictest": "2.0.5",
-		"@types/eslint": "8.56.10",
+		"@types/eslint": "9.6.0",
+		"@types/eslint__js": "8.42.3",
 		"@types/jest": "29.5.12",
 		"@types/lint-staged": "13.3.0",
 		"@types/node": "22.3.0",
-		"@typescript-eslint/eslint-plugin": "7.17.0",
-		"@typescript-eslint/parser": "7.17.0",
 		"conventional-changelog-conventionalcommits": "8.0.0",
-		"eslint": "8.57.0",
+		"eslint": "9.9.0",
+		"globals": "15.9.0",
 		"jest": "29.7.0",
 		"jest-environment-jsdom": "29.7.0",
 		"lint-staged": "15.2.9",
@@ -87,7 +89,8 @@
 		"semantic-release": "24.0.0",
 		"stylelint": "16.8.1",
 		"stylelint-config-standard-scss": "13.1.0",
-		"typescript": "5.5.4"
+		"typescript": "5.5.4",
+		"typescript-eslint": "8.1.0"
 	},
 	"devDependencies": {
 		"husky": "9.1.4"

@@ -1,7 +1,6 @@
 {
 	"eslint.options": {
-		"ignorePath": ".gitignore",
-		"overrideConfigFile": "lib/eslint.config.cjs"
+		"overrideConfigFile": "lib/eslint.config.js"
 	},
 	"files.associations": {
 		"**/.githooks/**": "shellscript",

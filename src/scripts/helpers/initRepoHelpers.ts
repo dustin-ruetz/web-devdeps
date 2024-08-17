@@ -111,10 +111,7 @@ export const writePackageJson = async (
 	packageJson.description = "";
 
 	packageJson.scripts = Object.entries(packageJson.scripts).reduce(
-		(
-			scriptsObject: {[scriptKey: string]: string},
-			[scriptKey, scriptValue],
-		) => {
+		(scriptsObject: Record<string, string>, [scriptKey, scriptValue]) => {
 			/**
 			 * The following `String` conversion prevents TypeScript from reporting the following error:
 			 * > `"scriptValue" is of type "unknown". ts(18046)`
@@ -185,10 +182,9 @@ export const writeTsConfig = async () => {
 
 /** Write a new `.vscode/` folder to disk, then write a new `settings.json` file to it. */
 export const writeVsCodeSettings = async (configureStylelint: boolean) => {
-	const vsCodeSettingsJson: {[key: string]: unknown} = {
+	const vsCodeSettingsJson: Record<string, unknown> = {
 		"eslint.options": {
-			ignorePath: ".gitignore",
-			overrideConfigFile: `${dependencyPartialPath}/lib/eslint.config.cjs`,
+			overrideConfigFile: `${dependencyPartialPath}/lib/eslint.config.js`,
 		},
 		"prettier.configPath": `${dependencyPartialPath}/lib/prettier.config.js`,
 		"prettier.ignorePath": ".gitignore",

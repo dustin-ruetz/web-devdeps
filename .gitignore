@@ -8,9 +8,6 @@
 coverage/
 lib/
 node_modules/
-# Related file: src/eslint.config.cts (specifically `eslintConfig.ignorePatterns`)
-!*.*.js
-!*.*.ts
 # Ignore the changelog file since:
 # 1. It's auto-generated; and
 # 2. To prevent Prettier from checking its formatting and then warning about code style issues.
