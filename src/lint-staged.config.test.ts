@@ -36,7 +36,7 @@ describe("it runs the correct commands for", () => {
 	});
 
 	test("unit testing", () => {
-		/** @ts-expect-error @todo See above comment. */
+		/** @ts-expect-error @todo See above to-do comment. */
 		expect(lintstagedConfig["*.{js,jsx,json,ts,tsx}"](relativePaths)).toEqual(
 			`npm run test/unit/coverage -- --findRelatedTests --collectCoverageFrom= ${relativePath}`,
 		);

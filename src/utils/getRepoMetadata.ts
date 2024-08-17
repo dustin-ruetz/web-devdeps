@@ -55,10 +55,7 @@ export const getRepoMetadata = () => {
 		`${dependencyPartialPath}/${relativePath.source}`,
 	);
 	let absoluteRootDir = "";
-	/**
-	 * @todo Figure out why the following conditional logic (which _is_ in fact covered in the unit test)
-	 *       erroneously and flakily reports "Uncovered Line #s" errors in the test coverage report.
-	 */
+	/** @todo See above to-do comment. */
 	/* v8 ignore next 5 */
 	if (absolutePath.includes(dependencyPartialPath)) {
 		absoluteRootDir = absolutePath.replace(dependencyRelativePath, "");
