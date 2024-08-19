@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.5.0](https://github.com/dustin-ruetz/devdeps/compare/v1.4.1...v1.5.0) (2024-08-19)
+
+### Features
+
+* remove CommonJS (.cjs) and CommonTS (.cts) file extensions from Jest config ([#53](https://github.com/dustin-ruetz/devdeps/issues/53)) ([4d8d197](https://github.com/dustin-ruetz/devdeps/commit/4d8d1975d4a66b57bcb747dd58ac5e02cba8a4bc))
+
 ## [1.4.1](https://github.com/dustin-ruetz/devdeps/compare/v1.4.0...v1.4.1) (2024-08-17)
 
 ### Bug Fixes
