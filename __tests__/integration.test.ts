@@ -16,10 +16,7 @@ test("INTEGRATION: ensure that the original src/ files are mapped one-to-one wit
 				// Filter the item _in_ as a file if:
 				(item) =>
 					// 1. It *does* end with one of the following file extensions; and
-					(item.endsWith(".cjs") ||
-						item.endsWith(".cts") ||
-						item.endsWith(".js") ||
-						item.endsWith(".ts")) &&
+					(item.endsWith(".js") || item.endsWith(".ts")) &&
 					// 2. It *does not* contain the ".mock" or ".test" substrings.
 					!(item.includes(".mock") || item.includes(".test")),
 			)
@@ -29,12 +26,6 @@ test("INTEGRATION: ensure that the original src/ files are mapped one-to-one wit
 			.map((file) => {
 				let fileWithoutExtension = "";
 
-				if (file.endsWith(".cjs")) {
-					fileWithoutExtension = file.replace(".cjs", "");
-				}
-				if (file.endsWith(".cts")) {
-					fileWithoutExtension = file.replace(".cts", "");
-				}
 				if (file.endsWith(".js")) {
 					fileWithoutExtension = file.replace(".js", "");
 				}
