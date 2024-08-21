@@ -1,4 +1,4 @@
-import {dependsOnMock} from "./utils/dependsOn.mock.js";
+import {dependsOnMock} from "../utils/dependsOn.mock.js";
 import {makeStylelintConfig} from "./stylelint.config.js";
 
 describe("it exports a configuration object and the most important config options are correct", () => {

@@ -135,7 +135,7 @@ export const writePackageJson = async (
 	);
 	if (configureStylelint) {
 		packageJson.scripts["lint/styles"] =
-			`stylelint --config ./${dependencyPartialPath}/lib/stylelint.config.js --cache --cache-location ./.caches/.stylelintcache --ignore-path ./.gitignore`;
+			`stylelint --config ./${dependencyPartialPath}/lib/config/stylelint.config.js --cache --cache-location ./.caches/.stylelintcache --ignore-path ./.gitignore`;
 		packageJson.scripts["check/lint/styles"] =
 			"npm run lint/styles -- '**/*.{css,scss,jsx,tsx}'";
 		packageJson.scripts["fix/lint/styles"] =
@@ -184,15 +184,15 @@ export const writeTsConfig = async () => {
 export const writeVsCodeSettings = async (configureStylelint: boolean) => {
 	const vsCodeSettingsJson: Record<string, unknown> = {
 		"eslint.options": {
-			overrideConfigFile: `${dependencyPartialPath}/lib/eslint.config.js`,
+			overrideConfigFile: `${dependencyPartialPath}/lib/config/eslint.config.js`,
 		},
-		"prettier.configPath": `${dependencyPartialPath}/lib/prettier.config.js`,
+		"prettier.configPath": `${dependencyPartialPath}/lib/config/prettier.config.js`,
 		"prettier.ignorePath": ".gitignore",
 	};
 
 	if (configureStylelint) {
 		vsCodeSettingsJson["stylelint.configFile"] =
-			`${dependencyPartialPath}/lib/stylelint.config.js`;
+			`${dependencyPartialPath}/lib/config/stylelint.config.js`;
 		vsCodeSettingsJson["stylelint.validate"] = [
 			"css",
 			"javascriptreact",

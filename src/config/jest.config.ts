@@ -1,6 +1,6 @@
 import type {Config} from "jest";
-import {dependsOn} from "./utils/dependsOn.js";
-import {getRepoMetadata} from "./utils/getRepoMetadata.js";
+import {dependsOn} from "../utils/dependsOn.js";
+import {getRepoMetadata} from "../utils/getRepoMetadata.js";
 
 /** https://jestjs.io/docs/configuration */
 export const makeJestConfig = async (): Promise<Config> => {
@@ -100,7 +100,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// > Jest runs the code of your project as JavaScript, hence a transformer is needed if you use some syntax
 		// > not supported by Node out of the box (such as JSX, TypeScript, Vue templates).
 		transform: {
-			[binaryFileExtensions.makeTransformRegExp()]: `${transformerBasePath}/lib/jest-transformers/binaryFile.js`,
+			[binaryFileExtensions.makeTransformRegExp()]: `${transformerBasePath}/lib/config/jest-transformers/binaryFile.js`,
 			/**
 			 * Both Babel and `ts-jest` are cumbersome to use for transforming TypeScript, so use `@swc/jest` instead for its simplicity.
 			 * @link https://github.com/swc-project/pkgs/tree/main/packages/jest
@@ -123,7 +123,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 					},
 				},
 			],
-			".svg": `${transformerBasePath}/lib/jest-transformers/svgFile.js`,
+			".svg": `${transformerBasePath}/lib/config/jest-transformers/svgFile.js`,
 		},
 		// Don't transform anything in node_modules/ and don't transform .json files.
 		transformIgnorePatterns: ["<rootDir>/node_modules/", ".json"],

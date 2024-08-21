@@ -5,12 +5,12 @@ test("it is a configuration object and the most important config options are cor
 
 	// https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 	expect(vscodeSettingsJSON["eslint.options"].overrideConfigFile).toEqual(
-		"lib/eslint.config.js",
+		"lib/config/eslint.config.js",
 	);
 
 	// https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
 	expect(vscodeSettingsJSON["prettier.configPath"]).toEqual(
-		"lib/prettier.config.js",
+		"lib/config/prettier.config.js",
 	);
 	expect(vscodeSettingsJSON["prettier.ignorePath"]).toEqual(".gitignore");
 });

@@ -25,7 +25,7 @@ test("it exports a configuration array and the most important config options are
 		"error",
 	);
 
-	// Verify the user-defined configuration is correct.
+	// Verify that the user-defined configuration is correct.
 	const userDefinedConfig = typescripteslintPlugin.find(
 		(configObj) => configObj.name === "typescript-eslint/user-defined-config",
 	);

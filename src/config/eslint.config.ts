@@ -3,7 +3,7 @@ import eslintjs from "@eslint/js";
 import globals from "globals";
 import typescripteslint from "typescript-eslint";
 import {typescripteslintPlugin} from "./eslint-plugins/typescript-eslint.js";
-import {getRepoMetadata} from "./utils/getRepoMetadata.js";
+import {getRepoMetadata} from "../utils/getRepoMetadata.js";
 
 const {absoluteRootDir} = getRepoMetadata();
 const gitignorePath = `${absoluteRootDir}/.gitignore`;

@@ -1,5 +1,5 @@
 import type {Config} from "stylelint";
-import {dependsOn} from "./utils/dependsOn.js";
+import {dependsOn} from "../utils/dependsOn.js";
 
 /** https://stylelint.io/user-guide/configure */
 export const makeStylelintConfig = async (): Promise<Config> => {

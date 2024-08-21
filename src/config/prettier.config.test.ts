@@ -1,4 +1,4 @@
-import {dependsOnMock} from "./utils/dependsOn.mock.js";
+import {dependsOnMock} from "../utils/dependsOn.mock.js";
 import {makePrettierConfig} from "./prettier.config.js";
 import {pugPrettierPlugin} from "./prettier-plugins/pug.js";
 import {xmlPrettierPlugin} from "./prettier-plugins/xml.js";

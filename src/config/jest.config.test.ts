@@ -1,8 +1,8 @@
-import {dependsOnMock} from "./utils/dependsOn.mock.js";
-import {getRepoMetadata} from "./utils/getRepoMetadata.js";
+import {dependsOnMock} from "../utils/dependsOn.mock.js";
+import {getRepoMetadata} from "../utils/getRepoMetadata.js";
 import {makeJestConfig} from "./jest.config.js";
 
-jest.mock("./utils/getRepoMetadata.js", () => ({
+jest.mock("../utils/getRepoMetadata.js", () => ({
 	// Initialize the mock to return an empty object to prevent the following error from being thrown in the test run:
 	// > TypeError: Cannot destructure property 'absoluteRootDir' of 'getRepoMetadata(...)' as it is undefined.
 	getRepoMetadata: jest.fn(() => ({})),
@@ -62,7 +62,7 @@ describe("it exports a configuration object and the most important config option
 		expect(jestConfig.testEnvironment).toEqual("node");
 		// Sample the transform config object to verify that the paths to the transformer files are correct.
 		expect(jestConfig.transform?.[".svg"]).toEqual(
-			"<rootDir>/lib/jest-transformers/svgFile.js",
+			"<rootDir>/lib/config/jest-transformers/svgFile.js",
 		);
 	});
 
@@ -81,7 +81,7 @@ describe("it exports a configuration object and the most important config option
 		expect(jestConfig.testEnvironment).toEqual("jsdom");
 		// Sample the transform config object to verify that the paths to the transformer files are correct.
 		expect(jestConfig.transform?.[".svg"]).toEqual(
-			"<rootDir>/node_modules/@dustin-ruetz/devdeps/lib/jest-transformers/svgFile.js",
+			"<rootDir>/node_modules/@dustin-ruetz/devdeps/lib/config/jest-transformers/svgFile.js",
 		);
 	});
 });

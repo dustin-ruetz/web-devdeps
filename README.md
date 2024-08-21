@@ -34,24 +34,55 @@ Note that `@dustin-ruetz/devdeps` requires the project to have the following com
 📂 the-project
 ┣ 📂 node_modules
 ┃ ┗ 📂 @dustin-ruetz/devdeps
-┃ ┃ ┗ 📂 lib
+┃ ┃ ┗ 📂 lib/config
 ┃ ┃ ┃ ┗ 📄 *.config.js
 ┃ ┃ ┗ 📄 tsconfig.json
 ┗ 📄 package.json
 ┗ 📄 tsconfig.json
 ```
 
-1. Use `npx` to execute this package's `init-repo` script to write the initial files needed for web-/Node.js-based projects when creating a new Git repository. Pass the `--help` flag to print the documentation for the command:
+<details>
+<summary>Starting a New Project</summary>
 
-   ```sh
-   npx @dustin-ruetz/devdeps init-repo --help
-   ```
+**Important:** Replace the `repo-name` placeholder in the commands below with the actual name of the repository.
 
-2. Execute `npm install` to install the version of this `@dustin-ruetz/devdeps` package listed in the written `package.json` file.
+```sh
+# 1. Create and initialize a new Git repository:
+mkdir repo-name && cd repo-name && git init
 
-3. Execute `npm run fix/format` to automatically format all of the written files.
+# 2. Use `npx` to execute this package's `init-repo` script to write the initial files needed for web-/Node.js-based projects
+#    when creating a new Git repository. Pass the `--help` flag to print the documentation for the command:
+npx @dustin-ruetz/devdeps init-repo repo-name --help
 
-4. Note how the key files (`package.json`, `README.md`, `tsconfig.json`, etc.) and folders (`.githooks/`, `.vscode/`) have all been initialized. Open each file and make changes as needed.
+# 3. Configure the repo to use the Git hooks files in the written `.githooks/` directory:
+git config core.hooksPath ./.githooks/
+
+# 4. Install the version of `@dustin-ruetz/devdeps` listed in the written `package.json` file:
+npm install
+
+# 5. Automatically fix the formatting for all of the written files:
+npm run fix/format
+
+# 6. Note how the key files (`package.json`, `README.md`, `tsconfig.json`, etc.) and folders (`.githooks/`, `.vscode/`)
+#    have all been initialized. Open each file and make updates as needed, then add and commit everything:
+git add --all && git commit -m "feat: initial commit"
+
+# 7. Verify that the Git hooks ran automatically and the relevant checks (formatting, linting, testing, etc.) were successful.
+```
+
+</details>
+
+<details>
+<summary>Adding to an Existing Project</summary>
+
+```sh
+# 1. Install the package as a development dependency:
+npm install --save-dev --save-exact @dustin-ruetz/devdeps
+
+# 2. Go through the `packageJSON.scripts` and make updates as needed.
+```
+
+</details>
 
 ### Local Development
 

@@ -118,7 +118,7 @@ describe("writePackageJson", () => {
 		"version": "",
 		"description": "",
 		"scripts": {
-			"script": "package --config ./lib/package.config.js"
+			"script": "package --config ./lib/config/package.config.js"
 		},
 		"files": [],
 		"repository": {
@@ -131,10 +131,10 @@ describe("writePackageJson", () => {
 `;
 	/** Generic script representing a library named `package` that is called with its associated `package.config.js` configuration file. */
 	const genericScript =
-		"package --config ./node_modules/@dustin-ruetz/devdeps/lib/package.config.js";
+		"package --config ./node_modules/@dustin-ruetz/devdeps/lib/config/package.config.js";
 	/** Script representing the Stylelint library getting called with its associated configuration file. */
 	const lintStylesScript =
-		"stylelint --config ./node_modules/@dustin-ruetz/devdeps/lib/stylelint.config.js";
+		"stylelint --config ./node_modules/@dustin-ruetz/devdeps/lib/config/stylelint.config.js";
 
 	test("it *does not* configure Stylelint", async () => {
 		mockReadFile.mockResolvedValue(mockPackageJsonContents);

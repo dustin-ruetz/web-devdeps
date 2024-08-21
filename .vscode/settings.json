@@ -1,6 +1,6 @@
 {
 	"eslint.options": {
-		"overrideConfigFile": "lib/eslint.config.js"
+		"overrideConfigFile": "lib/config/eslint.config.js"
 	},
 	"files.associations": {
 		"**/.githooks/**": "shellscript",
@@ -14,6 +14,6 @@
 		".caches": "Temp",
 		".caches/.jestcache": "Test"
 	},
-	"prettier.configPath": "lib/prettier.config.js",
+	"prettier.configPath": "lib/config/prettier.config.js",
 	"prettier.ignorePath": ".gitignore"
 }
