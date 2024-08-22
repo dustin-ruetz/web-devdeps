@@ -14,7 +14,7 @@ const mockFileURLToPath = fileURLToPath as jest.MockedFunction<
 const absolutePaths = {
 	// Start by defining the static partials that comprise the absolute paths.
 	base: "/Users/username/repos",
-	namespace: "@dustin-ruetz",
+	scope: "@dustin-ruetz",
 	name: "devdeps",
 	partial: "utils/getRepoMetadata",
 	// Combine the static partials in the return values of the methods.
@@ -23,7 +23,7 @@ const absolutePaths = {
 	 * - Rationale: Test the value of `getRepoMetadata().absoluteRootDir` when used by a repository that depends on the `devdeps` package.
 	 */
 	asDependency() {
-		return `${this.base}/consuming-repo/node_modules/${this.namespace}/${this.name}/lib/${this.partial}.js`;
+		return `${this.base}/consuming-repo/node_modules/${this.scope}/${this.name}/lib/${this.partial}.js`;
 	},
 	/**
 	 * - Simulates path of this devdeps repo running a compiled `.js` file.
