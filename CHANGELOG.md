@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## [1.6.0](https://github.com/dustin-ruetz/devdeps/compare/v1.5.0...v1.6.0) (2024-08-22)
+
+### Features
+
+* **constants:** initial constants file and unit test ([aa391d8](https://github.com/dustin-ruetz/devdeps/commit/aa391d8f343c2f0eb69697a8bf297aac2e67799d))
+* move all configuration files into dedicated 'config/' directory ([a81f942](https://github.com/dustin-ruetz/devdeps/commit/a81f9426dd3353fa4c432bb9584d5bf87f951f19))
+* **utils/getIsDevDepsRepo:** initial function and unit test ([c5b77ca](https://github.com/dustin-ruetz/devdeps/commit/c5b77caa96700141b186c4b947c6c6840b15be3a))
+
+### Bug Fixes
+
+* add 'v8 ignore next #' comments to work around erroneous 'Uncovered Line [#s](https://github.com/dustin-ruetz/devdeps/issues/s)' errors ([83633c6](https://github.com/dustin-ruetz/devdeps/commit/83633c677fc046e7b33c9c733c0d162c685f03b4))
+* **dependencies:** update packages to latest versions ([84e2d6c](https://github.com/dustin-ruetz/devdeps/commit/84e2d6c353c6b60a238912e004129d10ff0fd994))
+* **scripts/helpers/getRootPaths:** switch from 'absoluteRootDir' to 'cwd' of Node.js process ([0035a1c](https://github.com/dustin-ruetz/devdeps/commit/0035a1cfe3cd4f72c6f8cff5ca9d2e2972f12af6))
+
 ## [1.5.0](https://github.com/dustin-ruetz/devdeps/compare/v1.4.1...v1.5.0) (2024-08-19)
 
 ### Features
