@@ -37,7 +37,7 @@ describe("it correctly identifies matches for the semantic version format", () =
 		${"10.20.30-prerelease"} | ${false}
 		${"10.20.30-rc1"}        | ${false}
 	`(
-		"semVerRegExp($semVer).isMatch === $isMatch",
+		`semVerRegExp("$semVer").isMatch === $isMatch`,
 		(testRow: {semVer: string; isMatch: boolean}) => {
 			expect(semVerRegExp(testRow.semVer).isMatch).toEqual(testRow.isMatch);
 		},
