@@ -1,9 +1,9 @@
 import {getRepoMetadata} from "../../utils/getRepoMetadata.js";
+import {nodeModulesPackagePath} from "../../constants.js";
 
 /** Determines the root paths when running the `init-repo` script and its associated helper functions. */
 export const getRootPaths = () => {
-	const {absoluteRootDir, dependencyPartialPath, isDevDepsRepo} =
-		getRepoMetadata();
+	const {absoluteRootDir, isDevDepsRepo} = getRepoMetadata();
 
 	const rootPaths = {
 		readFrom: "",
@@ -26,7 +26,7 @@ export const getRootPaths = () => {
 	// 1. Read from the `node_modules/@dustin-ruetz/devdeps/` directory, and
 	// 2. Write to the root of the consuming repo.
 	else {
-		rootPaths.readFrom = `${absoluteRootDir}/${dependencyPartialPath}`;
+		rootPaths.readFrom = `${absoluteRootDir}/${nodeModulesPackagePath}`;
 		rootPaths.writeTo = absoluteRootDir;
 	}
 

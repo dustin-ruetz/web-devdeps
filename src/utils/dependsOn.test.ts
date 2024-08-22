@@ -12,7 +12,6 @@ const mockReadFile = readFile as jest.MockedFunction<typeof readFile>;
 jest.mock("./getRepoMetadata.js", () => ({
 	getRepoMetadata: jest.fn(() => ({
 		absoluteRootDir: "/Users/username/repos/devdeps",
-		dependencyPartialPath: "node_modules/@dustin-ruetz/devdeps",
 		isDevDepsRepo: true,
 	})),
 }));

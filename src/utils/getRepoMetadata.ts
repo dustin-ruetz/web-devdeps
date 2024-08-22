@@ -1,4 +1,5 @@
 import {fileURLToPath} from "node:url";
+import {nodeModulesPackagePath} from "../constants.js";
 import {ValidationError} from "./ValidationError.js";
 
 /**
@@ -42,8 +43,7 @@ export const getRepoMetadata = () => {
 			},
 		);
 	}
-	/** `dependencyPartialPath` is known and stable; it's the location where the `devdeps` package is installed as a dependency. */
-	const dependencyPartialPath = "node_modules/@dustin-ruetz/devdeps";
+
 	/**
 	 * `relativePath` is defined as a regular expression so that it covers two types of paths:
 	 * 1. A compiled JavaScript file in the lib/ directory; and
@@ -52,12 +52,12 @@ export const getRepoMetadata = () => {
 	const relativePath = new RegExp(`(lib|src)/${partialPath}.(js|ts)`);
 	/** `dependencyRelativePath` is defined as a regular expression built from the previous variables. */
 	const dependencyRelativePath = new RegExp(
-		`${dependencyPartialPath}/${relativePath.source}`,
+		`${nodeModulesPackagePath}/${relativePath.source}`,
 	);
 	let absoluteRootDir = "";
 	/** @todo See above to-do comment. */
 	/* v8 ignore next 5 */
-	if (absolutePath.includes(dependencyPartialPath)) {
+	if (absolutePath.includes(nodeModulesPackagePath)) {
 		absoluteRootDir = absolutePath.replace(dependencyRelativePath, "");
 	} else {
 		absoluteRootDir = absolutePath.replace(relativePath, "");
@@ -67,5 +67,5 @@ export const getRepoMetadata = () => {
 
 	const isDevDepsRepo = absoluteRootDir.endsWith("/devdeps");
 
-	return {absoluteRootDir, dependencyPartialPath, isDevDepsRepo} as const;
+	return {absoluteRootDir, isDevDepsRepo} as const;
 };

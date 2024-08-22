@@ -10,14 +10,6 @@ jest.mock("../utils/getRepoMetadata.js", () => ({
 const mockGetRepoMetadata = getRepoMetadata as jest.MockedFunction<
 	typeof getRepoMetadata
 >;
-/**
- * Mirror the actual implementation of `getRepoMetadata().dependencyPartialPath`
- * here since its value is always equal to the same string constant.
- */
-const actualGetRepoMetadata = () =>
-	({
-		dependencyPartialPath: "node_modules/@dustin-ruetz/devdeps",
-	}) as const;
 
 afterEach(() => {
 	jest.clearAllMocks();
@@ -29,7 +21,6 @@ describe("it exports a configuration object and the most important config option
 		dependsOnMock.mockResolvedValue(hasFrontendDependencies);
 		mockGetRepoMetadata.mockReturnValue({
 			absoluteRootDir: "/Users/username/repos/devdeps",
-			dependencyPartialPath: actualGetRepoMetadata().dependencyPartialPath,
 			isDevDepsRepo: true,
 		});
 
@@ -52,7 +43,6 @@ describe("it exports a configuration object and the most important config option
 		dependsOnMock.mockResolvedValue(hasFrontendDependencies);
 		mockGetRepoMetadata.mockReturnValue({
 			absoluteRootDir: "/Users/username/repos/devdeps",
-			dependencyPartialPath: actualGetRepoMetadata().dependencyPartialPath,
 			isDevDepsRepo: true,
 		});
 
@@ -71,7 +61,6 @@ describe("it exports a configuration object and the most important config option
 		dependsOnMock.mockResolvedValue(hasFrontendDependencies);
 		mockGetRepoMetadata.mockReturnValue({
 			absoluteRootDir: "/Users/username/repos/consuming-repo",
-			dependencyPartialPath: actualGetRepoMetadata().dependencyPartialPath,
 			isDevDepsRepo: false,
 		});
 

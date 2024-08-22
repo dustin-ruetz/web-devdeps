@@ -55,11 +55,9 @@ describe("it determines the correct absolute root directory", () => {
 		const absolutePath = absolutePaths.asDependency();
 		mockFileURLToPath.mockReturnValue(absolutePath);
 
-		const {absoluteRootDir, dependencyPartialPath, isDevDepsRepo} =
-			getRepoMetadata();
+		const {absoluteRootDir, isDevDepsRepo} = getRepoMetadata();
 
 		expect(absoluteRootDir).toEqual("/Users/username/repos/consuming-repo");
-		expect(dependencyPartialPath).toEqual("node_modules/@dustin-ruetz/devdeps");
 		expect(isDevDepsRepo).toBe(false);
 	});
 

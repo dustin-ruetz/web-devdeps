@@ -1,6 +1,7 @@
 import type {Config} from "jest";
 import {dependsOn} from "../utils/dependsOn.js";
 import {getRepoMetadata} from "../utils/getRepoMetadata.js";
+import {nodeModulesPackagePath} from "../constants.js";
 
 /** https://jestjs.io/docs/configuration */
 export const makeJestConfig = async (): Promise<Config> => {
@@ -9,8 +10,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		? "jsdom"
 		: "node";
 
-	const {absoluteRootDir, dependencyPartialPath, isDevDepsRepo} =
-		getRepoMetadata();
+	const {absoluteRootDir, isDevDepsRepo} = getRepoMetadata();
 
 	/** Binary file extensions 1) to ignore in test coverage, and 2) to transform the imported values to filenames. */
 	const binaryFileExtensions = {
@@ -33,7 +33,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		? // If running tests on this `devdeps` repo, set the path relative to the Jest <rootDir>.
 			("<rootDir>" as const)
 		: // If running tests on a `consuming-repo`, set the path relative to its `devdeps` dependency.
-			(`<rootDir>/${dependencyPartialPath}` as const);
+			(`<rootDir>/${nodeModulesPackagePath}` as const);
 
 	return {
 		// Excerpt from https://jestjs.io/docs/configuration#cachedirectory-string:
