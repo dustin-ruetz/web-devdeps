@@ -25,12 +25,13 @@ import {semVerRegExp} from "./helpers/semVerRegExp.js";
 
 /** Defines the information about the arguments (both required and optional) for running the `init-repo` script. */
 const getInitRepoArgs = async () => {
-	const rootPathToRead = getRootPaths().readFrom;
+	const rootPathToReadFrom = getRootPaths().readFrom;
 
 	/** Parse the `.node-version` file and use its value to determine the default version of Node.js to use. */
-	let defaultNodeVersion = await readFile(`${rootPathToRead}/.node-version`, {
-		encoding: "utf-8",
-	});
+	let defaultNodeVersion = await readFile(
+		`${rootPathToReadFrom}/.node-version`,
+		{encoding: "utf-8"},
+	);
 	defaultNodeVersion = defaultNodeVersion.trim();
 
 	/** Each child objects's keys are ordered in the way that they should be printed in the `console.table` help text. */
