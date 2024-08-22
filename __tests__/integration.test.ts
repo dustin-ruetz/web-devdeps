@@ -1,6 +1,12 @@
 import {readdir} from "node:fs/promises";
+import {packageName, packageScope} from "../src/constants.js";
+import packageJSON from "../package.json";
 
-test("INTEGRATION: ensure that the original src/ files are mapped one-to-one with the compiled lib/ files", async () => {
+test("INTEGRATION: ensure that `packageJSON.name` matches the exported package scope and name from the `constants` file", () => {
+	expect(packageJSON.name).toEqual(`${packageScope}/${packageName}`);
+});
+
+test("INTEGRATION: ensure that the original `src/` files are mapped one-to-one with the compiled `lib/` files", async () => {
 	/** Normalizes the contents of a directory by reading it, filtering out items as needed, sorting it, and removing the file extensions. */
 	const getDirectoryFiles = async (directory: string) => {
 		/** Contents of passed `directory` (includes its subdirectory folders/files due to the `recursive: true` option). */
@@ -22,7 +28,7 @@ test("INTEGRATION: ensure that the original src/ files are mapped one-to-one wit
 			)
 			// Sort the array in alphabetical order.
 			.sort()
-			// Trim off the file extensions to easily compare files between the src/ and lib/ directories.
+			// Trim off the file extensions to easily compare files between the `src/` and `lib/` directories.
 			.map((file) => {
 				let fileWithoutExtension = "";
 

@@ -1,4 +1,4 @@
-/** NPM User-scoped namespace. */
+/** NPM user-scoped namespace. */
 export const packageScope = "@dustin-ruetz";
 
 /** NPM package name. */
