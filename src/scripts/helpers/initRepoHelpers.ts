@@ -1,5 +1,9 @@
 import {mkdir, readdir, readFile, writeFile} from "node:fs/promises";
-import {nodeModulesPackagePath} from "../../constants.js";
+import {
+	nodeModulesPackagePath,
+	packageName,
+	packageScope,
+} from "../../constants.js";
 import {getRootPaths} from "./getRootPaths.js";
 
 const rootPathToReadFrom = getRootPaths().readFrom;
@@ -142,13 +146,13 @@ export const writePackageJson = async (
 
 	packageJson.files = [];
 	packageJson.repository.url = packageJson.repository.url.replace(
-		"devdeps",
+		packageName,
 		repoName,
 	);
 	delete packageJson.publishConfig;
 	packageJson.dependencies = {};
 	packageJson.devDependencies = {
-		"@dustin-ruetz/devdeps": devdepsVersion,
+		[`${packageScope}/${packageName}`]: devdepsVersion,
 	};
 
 	await writeFile(
