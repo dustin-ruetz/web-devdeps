@@ -1,5 +1,6 @@
 import type {Config} from "jest";
 import {dependsOn} from "../utils/dependsOn.js";
+import {getIsDevDepsRepo} from "../utils/getIsDevDepsRepo.js";
 import {getRepoMetadata} from "../utils/getRepoMetadata.js";
 import {nodeModulesPackagePath} from "../constants.js";
 
@@ -10,7 +11,8 @@ export const makeJestConfig = async (): Promise<Config> => {
 		? "jsdom"
 		: "node";
 
-	const {absoluteRootDir, isDevDepsRepo} = getRepoMetadata();
+	const {absoluteRootDir} = getRepoMetadata();
+	const isDevDepsRepo = getIsDevDepsRepo(absoluteRootDir);
 
 	/** Binary file extensions 1) to ignore in test coverage, and 2) to transform the imported values to filenames. */
 	const binaryFileExtensions = {

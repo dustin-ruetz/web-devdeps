@@ -1,5 +1,5 @@
 import {fileURLToPath} from "node:url";
-import {nodeModulesPackagePath, packageName} from "../constants.js";
+import {nodeModulesPackagePath} from "../constants.js";
 import {ValidationError} from "./ValidationError.js";
 
 /**
@@ -65,7 +65,5 @@ export const getRepoMetadata = () => {
 	// Remove the last character in the string, i.e. the path's trailing slash.
 	absoluteRootDir = absoluteRootDir.slice(0, -1);
 
-	const isDevDepsRepo = absoluteRootDir.endsWith(`/${packageName}`);
-
-	return {absoluteRootDir, isDevDepsRepo} as const;
+	return {absoluteRootDir} as const;
 };

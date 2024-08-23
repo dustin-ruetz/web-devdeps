@@ -55,29 +55,26 @@ describe("it determines the correct absolute root directory", () => {
 		const absolutePath = absolutePaths.asDependency();
 		mockFileURLToPath.mockReturnValue(absolutePath);
 
-		const {absoluteRootDir, isDevDepsRepo} = getRepoMetadata();
+		const {absoluteRootDir} = getRepoMetadata();
 
 		expect(absoluteRootDir).toEqual("/Users/username/repos/consuming-repo");
-		expect(isDevDepsRepo).toBe(false);
 	});
 
 	test("when run as a JavaScript file inside the lib/ folder", () => {
 		const absolutePath = absolutePaths.asLibraryJavaScriptFile();
 		mockFileURLToPath.mockReturnValue(absolutePath);
 
-		const {absoluteRootDir, isDevDepsRepo} = getRepoMetadata();
+		const {absoluteRootDir} = getRepoMetadata();
 
 		expect(absoluteRootDir).toEqual("/Users/username/repos/devdeps");
-		expect(isDevDepsRepo).toBe(true);
 	});
 
 	test("when run as a TypeScript file inside the src/ folder", () => {
 		const absolutePath = absolutePaths.asSourceTypeScriptFile();
 		mockFileURLToPath.mockReturnValue(absolutePath);
 
-		const {absoluteRootDir, isDevDepsRepo} = getRepoMetadata();
+		const {absoluteRootDir} = getRepoMetadata();
 
 		expect(absoluteRootDir).toEqual("/Users/username/repos/devdeps");
-		expect(isDevDepsRepo).toBe(true);
 	});
 });

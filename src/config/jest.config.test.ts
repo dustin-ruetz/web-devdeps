@@ -3,9 +3,9 @@ import {getRepoMetadata} from "../utils/getRepoMetadata.js";
 import {makeJestConfig} from "./jest.config.js";
 
 jest.mock("../utils/getRepoMetadata.js", () => ({
-	// Initialize the mock to return an empty object to prevent the following error from being thrown in the test run:
-	// > TypeError: Cannot destructure property 'absoluteRootDir' of 'getRepoMetadata(...)' as it is undefined.
-	getRepoMetadata: jest.fn(() => ({})),
+	getRepoMetadata: jest.fn(() => ({
+		absoluteRootDir: "",
+	})),
 }));
 const mockGetRepoMetadata = getRepoMetadata as jest.MockedFunction<
 	typeof getRepoMetadata
@@ -21,7 +21,6 @@ describe("it exports a configuration object and the most important config option
 		dependsOnMock.mockResolvedValue(hasFrontendDependencies);
 		mockGetRepoMetadata.mockReturnValue({
 			absoluteRootDir: "/Users/username/repos/devdeps",
-			isDevDepsRepo: true,
 		});
 
 		const jestConfig = await makeJestConfig();
@@ -43,7 +42,6 @@ describe("it exports a configuration object and the most important config option
 		dependsOnMock.mockResolvedValue(hasFrontendDependencies);
 		mockGetRepoMetadata.mockReturnValue({
 			absoluteRootDir: "/Users/username/repos/devdeps",
-			isDevDepsRepo: true,
 		});
 
 		const jestConfig = await makeJestConfig();
@@ -61,7 +59,6 @@ describe("it exports a configuration object and the most important config option
 		dependsOnMock.mockResolvedValue(hasFrontendDependencies);
 		mockGetRepoMetadata.mockReturnValue({
 			absoluteRootDir: "/Users/username/repos/consuming-repo",
-			isDevDepsRepo: false,
 		});
 
 		const jestConfig = await makeJestConfig();
