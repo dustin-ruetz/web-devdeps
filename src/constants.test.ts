@@ -1,6 +1,6 @@
 import {
-	packageName,
 	nodeModulesPackagePath,
+	packageName,
 	packageScope,
 } from "./constants.js";
 
