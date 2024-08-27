@@ -4,7 +4,7 @@
 # since everything that's excluded from repo source control shouldn't be checked.
 
 .caches/
-.initRepoScriptTestOutput/
+.init-repo-script-test-output/
 coverage/
 lib/
 node_modules/
