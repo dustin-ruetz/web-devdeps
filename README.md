@@ -50,24 +50,29 @@ Note that `@dustin-ruetz/devdeps` requires the project to have the following com
 # 1. Create and initialize a new Git repository:
 mkdir repo-name && cd repo-name && git init
 
-# 2. Use `npx` to execute this package's `init-repo` script to write the initial files needed for web-/Node.js-based projects
-#    when creating a new Git repository. Pass the `--help` flag to print the documentation for the command:
-npx @dustin-ruetz/devdeps init-repo repo-name --help
+# 2. Use `npx` to execute this package's `init-repo` script to write the initial files
+#    needed for web-/Node.js-based projects when creating a new Git repository.
+#
+#    **Tip:** Pass the `--help` flag to print the documentation for the command's flags.
+npx @dustin-ruetz/devdeps init-repo repo-name
 
-# 3. Configure the repo to use the Git hooks files in the written `.githooks/` directory:
-git config core.hooksPath ./.githooks/
+# 3. Configure the repo to use the Git hooks files in the written `.githooks/` directory
+#    and modify their permissions to make all files executable:
+git config core.hooksPath ./.githooks/ && chmod u+x ./.githooks/*
 
-# 4. Install the version of `@dustin-ruetz/devdeps` listed in the written `package.json` file:
+# 4. Install the `@dustin-ruetz/devdeps` version listed in the written `package.json` file:
 npm install
 
-# 5. Automatically fix the formatting for all of the written files:
+# 5. (optional) Automatically fix the formatting for all of the written files:
 npm run fix/format
 
-# 6. Note how the key files (`package.json`, `README.md`, `tsconfig.json`, etc.) and folders (`.githooks/`, `.vscode/`)
-#    have all been initialized. Open each file and make updates as needed, then add and commit everything:
+# 6. Note how the key files (`package.json`, `README.md`, `tsconfig.json`, etc.)
+#    and folders (`.githooks/`, `.vscode/`) have all been initialized. Open each
+#    file and make updates as needed, then add and commit everything:
 git add --all && git commit -m "feat: initial commit"
 
-# 7. Verify that the Git hooks ran automatically and the relevant checks (formatting, linting, testing, etc.) were successful.
+# 7. Verify that the Git hooks ran automatically and the relevant checks
+#    (formatting, linting, testing, etc.) were successful.
 ```
 
 </details>
