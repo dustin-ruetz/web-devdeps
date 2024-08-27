@@ -106,6 +106,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 			/**
 			 * Both Babel and `ts-jest` are cumbersome to use for transforming TypeScript, so use `@swc/jest` instead for its simplicity.
 			 * @link https://github.com/swc-project/pkgs/tree/main/packages/jest
+			 * @link https://swc.rs/docs/configuration/compilation
 			 * @link Transform configuration adapted from [this comment](https://github.com/swc-project/jest/issues/40#issuecomment-1557659699).
 			 */
 			".(js|jsx|ts|tsx)": [
