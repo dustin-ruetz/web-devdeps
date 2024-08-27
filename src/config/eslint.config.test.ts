@@ -18,7 +18,7 @@ test("it exports a configuration array and the most important config options are
 	);
 	expect(recommendedConfig?.rules?.["no-const-assign"]).toEqual("error");
 
-	// Verify the user-defined configuration is correct.
+	// Verify that the user-defined configuration is correct.
 	const userDefinedConfig = eslintConfig.find(
 		(configObj) => configObj.name === "eslintjs/user-defined-config",
 	);
