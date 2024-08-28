@@ -9,7 +9,7 @@ jest.mock("node:fs/promises", () => ({
 }));
 // Paraphrased excerpt from https://www.mikeborozdin.com/post/changing-jest-mocks-between-tests:
 // > Typecast the imported mocked module into a mocked function with writeable properties.
-const mockReadFile = readFile as jest.MockedFunction<typeof readFile>;
+const readFileMock = readFile as jest.MockedFunction<typeof readFile>;
 
 afterEach(() => {
 	jest.clearAllMocks();
@@ -51,12 +51,12 @@ test("returns `false` if the repo *does not* depend on the package", async () =>
 	}
 }
 `;
-	mockReadFile.mockResolvedValue(packageJsonContents);
+	readFileMock.mockResolvedValue(packageJsonContents);
 
 	const dependsOnDep0 = await dependsOn(["dep0"]);
 
 	expect(getAbsoluteRepoRootPathMock).toHaveBeenCalledTimes(1);
-	expect(mockReadFile).toHaveBeenCalledWith(
+	expect(readFileMock).toHaveBeenCalledWith(
 		"/Users/username/repos/devdeps/package.json",
 		{encoding: "utf-8"},
 	);
@@ -71,12 +71,12 @@ test("returns `true` if the repo *does* depend on the package", async () => {
 	}
 }
 `;
-	mockReadFile.mockResolvedValue(packageJsonContents);
+	readFileMock.mockResolvedValue(packageJsonContents);
 
 	const dependsOnDevDep1 = await dependsOn(["devDep1"]);
 
 	expect(getAbsoluteRepoRootPathMock).toHaveBeenCalledTimes(1);
-	expect(mockReadFile).toHaveBeenCalledTimes(1);
+	expect(readFileMock).toHaveBeenCalledTimes(1);
 	expect(dependsOnDevDep1).toBe(true);
 });
 
@@ -94,11 +94,11 @@ test("returns `true` if the repo depends on at least one of the passed packages"
 	}
 }
 `;
-	mockReadFile.mockResolvedValue(packageJsonContents);
+	readFileMock.mockResolvedValue(packageJsonContents);
 
 	const dependsOnPeerDep1 = await dependsOn(["dep0", "devDep0", "peerDep1"]);
 
 	expect(getAbsoluteRepoRootPathMock).toHaveBeenCalledTimes(1);
-	expect(mockReadFile).toHaveBeenCalledTimes(1);
+	expect(readFileMock).toHaveBeenCalledTimes(1);
 	expect(dependsOnPeerDep1).toBe(true);
 });

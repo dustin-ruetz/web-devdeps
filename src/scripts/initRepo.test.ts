@@ -16,12 +16,12 @@ import {initRepo, logInitRepoHelpText} from "./initRepo.js";
 jest.mock("node:fs/promises");
 // Paraphrased excerpt from https://www.mikeborozdin.com/post/changing-jest-mocks-between-tests:
 // > Typecast the imported mocked module into a mocked function with writeable properties.
-const mockReadFile = readFile as jest.MockedFunction<typeof readFile>;
+const readFileMock = readFile as jest.MockedFunction<typeof readFile>;
 
 jest.mock("./helpers/initRepoHelpers.js");
 
 beforeAll(() => {
-	mockReadFile.mockResolvedValue("20");
+	readFileMock.mockResolvedValue("20");
 
 	jest.spyOn(console, "log").mockImplementation();
 	jest.spyOn(console, "table").mockImplementation();
