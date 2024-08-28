@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## [1.7.0](https://github.com/dustin-ruetz/devdeps/compare/v1.6.0...v1.7.0) (2024-08-28)
+
+### Features
+
+* **.actrc:** initial 'act' configuration file ([fa55478](https://github.com/dustin-ruetz/devdeps/commit/fa55478fe70aad9307e5281af1733ab487f9b301)), closes [/github.com/nektos/act/issues/2239#issuecomment-1979819940](https://github.com/dustin-ruetz//github.com/nektos/act/issues/2239/issues/issuecomment-1979819940)
+* **package.json:** run 'npx jest --clearCache' command as part of 'clean/caches' NPM script ([0f1dfd5](https://github.com/dustin-ruetz/devdeps/commit/0f1dfd5b2f0284eb1c5c470257de24981a1a2b35))
+
+### Bug Fixes
+
+* correct 'getRootPaths' and rename test output folder for 'init-repo' script ([f7e5a39](https://github.com/dustin-ruetz/devdeps/commit/f7e5a3927b4a2e0c15f91c4a02997063601eb7f4))
+* **dependencies:** update packages to latest versions ([db4b4fc](https://github.com/dustin-ruetz/devdeps/commit/db4b4fca6b4a978bb3ec46adec4c666fbd1ae269))
+* npm audit issue(s) ([77125aa](https://github.com/dustin-ruetz/devdeps/commit/77125aa4603cad7e5d969cc862acab8109b144fc))
+
 ## [1.6.0](https://github.com/dustin-ruetz/devdeps/compare/v1.5.0...v1.6.0) (2024-08-22)
 
 ### Features
