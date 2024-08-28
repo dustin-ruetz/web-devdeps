@@ -32,11 +32,6 @@ export const getAbsoluteRepoRootPath = () => {
 	 */
 	const partialPath = "utils/getAbsoluteRepoRootPath";
 
-	/**
-	 * @todo Figure out why the following conditional logic (which _is_ in fact covered in the unit test)
-	 *       erroneously and flakily reports "Uncovered Line #s" errors in the test coverage report.
-	 */
-	/* v8 ignore next 14 */
 	// This function depends on its path being known (i.e. the folder being `/utils/` and the
 	// filename being `getRepoMetadata`), so throw an early error if these don't align.
 	if (!absolutePath.includes(partialPath)) {
@@ -63,8 +58,6 @@ export const getAbsoluteRepoRootPath = () => {
 		`${nodeModulesPackagePath}/${relativePath.source}`,
 	);
 	let absoluteRepoRootPath = "";
-	/** @todo See above to-do comment. */
-	/* v8 ignore next 5 */
 	if (absolutePath.includes(nodeModulesPackagePath)) {
 		absoluteRepoRootPath = absolutePath.replace(dependencyRelativePath, "");
 	} else {
