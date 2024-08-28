@@ -1,7 +1,7 @@
 import type {Config} from "jest";
 import {dependsOn} from "../utils/dependsOn.js";
-import {getIsDevDepsRepo} from "../utils/getIsDevDepsRepo.js";
 import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.js";
+import {getIsDevDepsRepo} from "../utils/getIsDevDepsRepo.js";
 import {nodeModulesPackagePath} from "../constants.js";
 
 /** https://jestjs.io/docs/configuration */
