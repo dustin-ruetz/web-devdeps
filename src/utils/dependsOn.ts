@@ -1,5 +1,5 @@
 import {readFile} from "node:fs/promises";
-import {getRepoMetadata} from "./getRepoMetadata.js";
+import {getAbsoluteRepoRootPath} from "./getAbsoluteRepoRootPath.js";
 import {ValidationError} from "./ValidationError.js";
 
 /**
@@ -36,7 +36,7 @@ export const dependsOn = async (deps: string[]) => {
 
 	// Read the package.json file and parse its string contents into an object,
 	// then merge its three dependency objects into one combined object.
-	const packageJsonPath = `${getRepoMetadata().absoluteRootDir}/package.json`;
+	const packageJsonPath = `${getAbsoluteRepoRootPath()}/package.json`;
 	const packageJsonContents = await readFile(packageJsonPath, {
 		encoding: "utf-8",
 	});

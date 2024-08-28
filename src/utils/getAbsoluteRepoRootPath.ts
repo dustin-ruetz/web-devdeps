@@ -7,23 +7,25 @@ import {ValidationError} from "./ValidationError.js";
  * the Node.js documentation on https://nodejs.org/docs/latest-v20.x/api/process.html#processcwd:
  * > The `process.cwd()` method returns the current working directory of the Node.js process.
  *
- * The problem with relying on this method is that it's dependent on the directory where the Node.js process was started from;
+ * The problem with relying on `process.cwd()` is that it's dependent on the directory where the Node.js process was started from;
  * if it's run from anywhere but the root of the repository then it will not return the desired path.
  *
- * This function uses the known location of the `utils/getRepoMetadata` file within the repo's structure and uses it as an anchor point
- * to determine the absolute root directory of the repo where it's being called from. It can return the absolute path of either:
+ * This function uses the known location of this `utils/absoluteRepoRootPath` file within the repo's structure and uses it as an anchor point
+ * to determine the absolute root path of the repo where it's being called from. It's intended to return the absolute path of either:
  * 1. The consuming repository where the `devdeps` package is installed as a dependency; or
  * 2. This `devdeps` repo itself.
  *
- * **Important:** Note that the `absoluteRootDir` path is intentionally returned _without_ a trailing slash.
+ * **Important:** Note that the `absoluteRepoRootPath` path is intentionally returned _without_ a trailing slash.
+ *
+ * @todo Simplify this function if/when the `import.meta.resolve()` function can be used within Jest.
  */
-export const getRepoMetadata = () => {
+export const getAbsoluteRepoRootPath = () => {
 	const absolutePath = fileURLToPath(import.meta.url);
 	/**
 	 * `partialPath` is known and stable; it's agnostic of differences between
 	 * folder locations (`lib` or `src`) and file extensions (`.js` or `.ts`).
 	 */
-	const partialPath = "utils/getRepoMetadata";
+	const partialPath = "utils/getAbsoluteRepoRootPath";
 
 	/**
 	 * @todo Figure out why the following conditional logic (which _is_ in fact covered in the unit test)
@@ -54,16 +56,16 @@ export const getRepoMetadata = () => {
 	const dependencyRelativePath = new RegExp(
 		`${nodeModulesPackagePath}/${relativePath.source}`,
 	);
-	let absoluteRootDir = "";
+	let absoluteRepoRootPath = "";
 	/** @todo See above to-do comment. */
 	/* v8 ignore next 5 */
 	if (absolutePath.includes(nodeModulesPackagePath)) {
-		absoluteRootDir = absolutePath.replace(dependencyRelativePath, "");
+		absoluteRepoRootPath = absolutePath.replace(dependencyRelativePath, "");
 	} else {
-		absoluteRootDir = absolutePath.replace(relativePath, "");
+		absoluteRepoRootPath = absolutePath.replace(relativePath, "");
 	}
 	// Remove the last character in the string, i.e. the path's trailing slash.
-	absoluteRootDir = absoluteRootDir.slice(0, -1);
+	absoluteRepoRootPath = absoluteRepoRootPath.slice(0, -1);
 
-	return {absoluteRootDir} as const;
+	return absoluteRepoRootPath;
 };

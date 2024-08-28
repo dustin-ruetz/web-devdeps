@@ -1,5 +1,5 @@
 import {fileURLToPath} from "node:url";
-import {getRepoMetadata} from "./getRepoMetadata.js";
+import {getAbsoluteRepoRootPath} from "./getAbsoluteRepoRootPath.js";
 
 jest.mock("node:url", () => ({
 	fileURLToPath: jest.fn(),
@@ -16,28 +16,28 @@ const absolutePaths = {
 	base: "/Users/username/repos",
 	scope: "@dustin-ruetz",
 	name: "devdeps",
-	partial: "utils/getRepoMetadata",
+	relativeFilePath: "utils/getAbsoluteRepoRootPath",
 	// Combine the static partials in the return values of the methods.
 	/**
 	 * - Simulates path of devdeps being installed as a dependency running from a `node_modules/` folder.
-	 * - Rationale: Test the value of `getRepoMetadata().absoluteRootDir` when used by a repository that depends on the `devdeps` package.
+	 * - Rationale: Test the value of `getAbsoluteRepoRootPath()` when used by a repository that depends on the `devdeps` package.
 	 */
 	asDependency() {
-		return `${this.base}/consuming-repo/node_modules/${this.scope}/${this.name}/lib/${this.partial}.js`;
+		return `${this.base}/consuming-repo/node_modules/${this.scope}/${this.name}/lib/${this.relativeFilePath}.js`;
 	},
 	/**
 	 * - Simulates path of this devdeps repo running a compiled `.js` file.
-	 * - Rationale: Test the value of `getRepoMetadata().absoluteRootDir` when used in a `lib/*.js` file.
+	 * - Rationale: Test the value of `getAbsoluteRepoRootPath()` when used in a `lib/*.js` file.
 	 */
 	asLibraryJavaScriptFile() {
-		return `${this.base}/${this.name}/lib/${this.partial}.js`;
+		return `${this.base}/${this.name}/lib/${this.relativeFilePath}.js`;
 	},
 	/**
 	 * - Simulates path of this devdeps repo running a source `.ts` file.
-	 * - Rationale: Test the value of `getRepoMetadata().absoluteRootDir` during a test run in a `src/*.ts` test file.
+	 * - Rationale: Test the value of `getAbsoluteRepoRootPath()` during a test run in a `src/*.ts` test file.
 	 */
 	asSourceTypeScriptFile() {
-		return `${this.base}/${this.name}/src/${this.partial}.ts`;
+		return `${this.base}/${this.name}/src/${this.relativeFilePath}.ts`;
 	},
 } as const;
 
@@ -46,7 +46,7 @@ test("throws an error if partialPath is not present within absolutePath", () => 
 	mockFileURLToPath.mockReturnValue(absolutePath);
 
 	expect(() => {
-		getRepoMetadata();
+		getAbsoluteRepoRootPath();
 	}).toThrow(/ERR_PATH_MISMATCH/);
 });
 
@@ -55,26 +55,28 @@ describe("it determines the correct absolute root directory", () => {
 		const absolutePath = absolutePaths.asDependency();
 		mockFileURLToPath.mockReturnValue(absolutePath);
 
-		const {absoluteRootDir} = getRepoMetadata();
+		const absoluteRepoRootPath = getAbsoluteRepoRootPath();
 
-		expect(absoluteRootDir).toEqual("/Users/username/repos/consuming-repo");
+		expect(absoluteRepoRootPath).toEqual(
+			"/Users/username/repos/consuming-repo",
+		);
 	});
 
 	test("when run as a JavaScript file inside the lib/ folder", () => {
 		const absolutePath = absolutePaths.asLibraryJavaScriptFile();
 		mockFileURLToPath.mockReturnValue(absolutePath);
 
-		const {absoluteRootDir} = getRepoMetadata();
+		const absoluteRepoRootPath = getAbsoluteRepoRootPath();
 
-		expect(absoluteRootDir).toEqual("/Users/username/repos/devdeps");
+		expect(absoluteRepoRootPath).toEqual("/Users/username/repos/devdeps");
 	});
 
 	test("when run as a TypeScript file inside the src/ folder", () => {
 		const absolutePath = absolutePaths.asSourceTypeScriptFile();
 		mockFileURLToPath.mockReturnValue(absolutePath);
 
-		const {absoluteRootDir} = getRepoMetadata();
+		const absoluteRepoRootPath = getAbsoluteRepoRootPath();
 
-		expect(absoluteRootDir).toEqual("/Users/username/repos/devdeps");
+		expect(absoluteRepoRootPath).toEqual("/Users/username/repos/devdeps");
 	});
 });

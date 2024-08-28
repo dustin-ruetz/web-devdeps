@@ -1,6 +1,6 @@
 import {readFile} from "node:fs/promises";
 import {dependsOn} from "./dependsOn.js";
-import {getRepoMetadata} from "./getRepoMetadata.js";
+import {getAbsoluteRepoRootPath} from "./getAbsoluteRepoRootPath.js";
 
 jest.mock("node:fs/promises", () => ({
 	readFile: jest.fn(),
@@ -9,10 +9,8 @@ jest.mock("node:fs/promises", () => ({
 // > Typecast the imported mocked module into a mocked function with writeable properties.
 const mockReadFile = readFile as jest.MockedFunction<typeof readFile>;
 
-jest.mock("./getRepoMetadata.js", () => ({
-	getRepoMetadata: jest.fn(() => ({
-		absoluteRootDir: "/Users/username/repos/devdeps",
-	})),
+jest.mock("./getAbsoluteRepoRootPath.js", () => ({
+	getAbsoluteRepoRootPath: jest.fn(() => "/Users/username/repos/devdeps"),
 }));
 
 afterEach(() => {
@@ -58,7 +56,7 @@ test("returns `false` if the repo *does not* depend on the package", async () =>
 
 	const dependsOnDep0 = await dependsOn(["dep0"]);
 
-	expect(getRepoMetadata).toHaveBeenCalledTimes(1);
+	expect(getAbsoluteRepoRootPath).toHaveBeenCalledTimes(1);
 	expect(mockReadFile).toHaveBeenCalledWith(
 		"/Users/username/repos/devdeps/package.json",
 		{encoding: "utf-8"},
@@ -78,7 +76,7 @@ test("returns `true` if the repo *does* depend on the package", async () => {
 
 	const dependsOnDevDep1 = await dependsOn(["devDep1"]);
 
-	expect(getRepoMetadata).toHaveBeenCalledTimes(1);
+	expect(getAbsoluteRepoRootPath).toHaveBeenCalledTimes(1);
 	expect(mockReadFile).toHaveBeenCalledTimes(1);
 	expect(dependsOnDevDep1).toBe(true);
 });
@@ -101,7 +99,7 @@ test("returns `true` if the repo depends on at least one of the passed packages"
 
 	const dependsOnPeerDep1 = await dependsOn(["dep0", "devDep0", "peerDep1"]);
 
-	expect(getRepoMetadata).toHaveBeenCalledTimes(1);
+	expect(getAbsoluteRepoRootPath).toHaveBeenCalledTimes(1);
 	expect(mockReadFile).toHaveBeenCalledTimes(1);
 	expect(dependsOnPeerDep1).toBe(true);
 });

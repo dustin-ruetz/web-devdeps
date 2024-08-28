@@ -2,11 +2,11 @@ import {includeIgnoreFile} from "@eslint/compat";
 import eslintjs from "@eslint/js";
 import globals from "globals";
 import typescripteslint from "typescript-eslint";
+import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.js";
 import {typescripteslintPlugin} from "./eslint-plugins/typescript-eslint.js";
-import {getRepoMetadata} from "../utils/getRepoMetadata.js";
 
-const {absoluteRootDir} = getRepoMetadata();
-const gitignorePath = `${absoluteRootDir}/.gitignore`;
+const absoluteRepoRootPath = getAbsoluteRepoRootPath();
+const gitignorePath = `${absoluteRepoRootPath}/.gitignore`;
 
 /**
  * @description "ESLint statically analyzes your code to quickly find problems."

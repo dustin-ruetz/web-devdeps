@@ -1,14 +1,13 @@
-import {getRepoMetadata} from "../../utils/getRepoMetadata.js";
+import {getAbsoluteRepoRootPath} from "../../utils/getAbsoluteRepoRootPath.js";
 import {getRootPaths} from "./getRootPaths.js";
 
-jest.mock("../../utils/getRepoMetadata.js", () => ({
-	getRepoMetadata: jest.fn(() => ({
-		absoluteRootDir: "",
-	})),
+jest.mock("../../utils/getAbsoluteRepoRootPath.js", () => ({
+	getAbsoluteRepoRootPath: jest.fn(() => ""),
 }));
-const mockGetRepoMetadata = getRepoMetadata as jest.MockedFunction<
-	typeof getRepoMetadata
->;
+const mockGetAbsoluteRepoRootPath =
+	getAbsoluteRepoRootPath as jest.MockedFunction<
+		typeof getAbsoluteRepoRootPath
+	>;
 
 afterEach(() => {
 	jest.clearAllMocks();
@@ -21,9 +20,9 @@ afterAll(() => {
 
 describe("the returned root paths (1. to read from, and 2. to write to) are correct when called from", () => {
 	test("this devdeps repo", () => {
-		mockGetRepoMetadata.mockReturnValue({
-			absoluteRootDir: "/Users/username/repos/devdeps",
-		});
+		mockGetAbsoluteRepoRootPath.mockReturnValue(
+			"/Users/username/repos/devdeps",
+		);
 
 		const rootPaths = getRootPaths();
 
@@ -35,9 +34,8 @@ describe("the returned root paths (1. to read from, and 2. to write to) are corr
 
 	test("a consuming repo that has installed the devdeps package", () => {
 		const consumingRepoAbsoluteRootDir = "/Users/username/repos/consuming-repo";
-		mockGetRepoMetadata.mockReturnValue({
-			absoluteRootDir: consumingRepoAbsoluteRootDir,
-		});
+		mockGetAbsoluteRepoRootPath.mockReturnValue(consumingRepoAbsoluteRootDir);
+
 		process.cwd = () => consumingRepoAbsoluteRootDir;
 
 		const rootPaths = getRootPaths();
