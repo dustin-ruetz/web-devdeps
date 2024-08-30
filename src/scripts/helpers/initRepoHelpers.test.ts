@@ -85,7 +85,7 @@ test("writeGitIgnore", async () => {
 
 test("writeLicense", async () => {
 	readFileMock.mockResolvedValue("Copyright (c) 1999 Dustin Ruetz");
-	const currentYear = new Date().getFullYear();
+	const currentYear = new Date().getFullYear().toString();
 
 	await writeLicense();
 

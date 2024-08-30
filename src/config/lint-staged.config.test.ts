@@ -21,8 +21,14 @@ describe("it runs the correct commands for", () => {
 		);
 	});
 
+	/**
+	 * @todo Figure out how to correctly type the objects on `lintstagedConfig`, then
+	 *       remove the `eslint-disable` and `@ts-expect-error` comments below.
+	 */
+
+	/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call */
 	const [lintJavaScriptTypeScriptCommand, typecheckCommand] =
-		/** @ts-expect-error @todo Figure out how to correctly type the function on this configuration object. */
+		/** @ts-expect-error - See above to-do comment. */
 		lintstagedConfig["*.{js,jsx,ts,tsx}"](relativePaths);
 
 	test("linting JS and TS files", () => {
@@ -36,9 +42,10 @@ describe("it runs the correct commands for", () => {
 	});
 
 	test("unit testing", () => {
-		/** @ts-expect-error @todo See above to-do comment. */
+		/** @ts-expect-error - See above to-do comment. */
 		expect(lintstagedConfig["*.{js,jsx,json,ts,tsx}"](relativePaths)).toEqual(
 			`npm run test/unit/coverage -- --findRelatedTests --collectCoverageFrom= ${relativePath}`,
 		);
 	});
+	/* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call */
 });

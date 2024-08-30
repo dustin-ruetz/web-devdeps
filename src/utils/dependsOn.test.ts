@@ -16,27 +16,27 @@ afterEach(() => {
 });
 
 test("throws errors if the required `deps` argument is invalid", () => {
-	expect(async () => {
+	void expect(async () => {
 		// @ts-expect-error if `deps` is not passed.
 		await dependsOn();
 	}).rejects.toThrow(/ERR_INVALID_DEPS_ARRAY/);
 
-	expect(async () => {
+	void expect(async () => {
 		// @ts-expect-error if `deps` is not an array.
 		await dependsOn("package1");
 	}).rejects.toThrow(/ERR_INVALID_DEPS_ARRAY/);
 
-	expect(async () => {
+	void expect(async () => {
 		// Expect an error if `deps` is an empty array.
 		await dependsOn([]);
 	}).rejects.toThrow(/ERR_INVALID_DEPS_ARRAY/);
 
-	expect(async () => {
+	void expect(async () => {
 		// Expect an error if `deps` is an array containing an empty string.
 		await dependsOn(["package1", ""]);
 	}).rejects.toThrow(/ERR_TYPEOF_DEP_NOT_STRING/);
 
-	expect(async () => {
+	void expect(async () => {
 		// @ts-expect-error if `deps` is an array containing non-string values.
 		await dependsOn(["package1", 2]);
 	}).rejects.toThrow(/ERR_TYPEOF_DEP_NOT_STRING/);
