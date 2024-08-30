@@ -9,10 +9,20 @@ export const typescripteslintPlugin = typescripteslint.config(
 	// Excerpt from https://typescript-eslint.io/getting-started/#additional-configs:
 	// > `strict` - A superset of `recommended` that includes more opinionated rules which may also catch bugs.
 	// > `stylistic` - Additional rules that enforce consistent styling without significantly catching bugs or changing logic.
-	...typescripteslint.configs.strict,
-	...typescripteslint.configs.stylistic,
+	...typescripteslint.configs.strictTypeChecked,
+	...typescripteslint.configs.stylisticTypeChecked,
 	{
 		name: "typescript-eslint/user-defined-config",
+		// https://typescript-eslint.io/getting-started/typed-linting/
+		languageOptions: {
+			parserOptions: {
+				// Excerpt from https://typescript-eslint.io/packages/parser#projectservice:
+				// > Specifies using TypeScript APIs to generate type information for rules. It will automatically detect
+				// > the TSConfig for each file (like `project: true`), and will also allow type information to be
+				// > computed for JavaScript files without the `allowJs` compiler option (unlike `project: true`).
+				projectService: true,
+			},
+		},
 		rules: {
 			// https://typescript-eslint.io/rules/#extension-rules
 			// Excerpt from https://typescript-eslint.io/rules/no-unused-vars/#how-to-use:
