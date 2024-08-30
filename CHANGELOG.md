@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.9.1](https://github.com/dustin-ruetz/devdeps/compare/v1.9.0...v1.9.1) (2024-08-30)
+
+### Bug Fixes
+
+* **dependencies:** update packages to latest versions ([f8148a5](https://github.com/dustin-ruetz/devdeps/commit/f8148a5ee016a63219227964803d0015ef5a8f6c))
+
 ## [1.9.0](https://github.com/dustin-ruetz/devdeps/compare/v1.8.0...v1.9.0) (2024-08-30)
 
 ### Features
