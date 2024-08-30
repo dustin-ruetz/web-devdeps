@@ -114,6 +114,11 @@ const eslintConfig = typescripteslint.config(
 			"no-undef-init": "error",
 			"no-unneeded-ternary": "error",
 			"no-unused-expressions": "error",
+			/**
+			 * Refer to the `typescript-eslint` configuration file to see how this `no-unused-vars` rule is overridden.
+			 * @see [typescript-eslint.ts](./eslint-plugins/typescript-eslint.ts)
+			 */
+			"no-unused-vars": "error",
 			"no-useless-call": "error",
 			"no-useless-computed-key": "error",
 			"no-useless-concat": "error",
