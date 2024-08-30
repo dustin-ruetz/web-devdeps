@@ -62,12 +62,12 @@ describe("initRepo", () => {
 	test("throws an error if the required `repoName` argument is invalid", () => {
 		const invalidRepoNameErrorCode = /ERR_INVALID_REPONAME/;
 
-		expect(async () => {
+		void expect(async () => {
 			// @ts-expect-error if `repoName` is not passed.
 			await initRepo();
 		}).rejects.toThrow(invalidRepoNameErrorCode);
 
-		expect(async () => {
+		void expect(async () => {
 			// Expect an error if `repoName` is an empty string.
 			await initRepo("");
 		}).rejects.toThrow(invalidRepoNameErrorCode);
@@ -83,7 +83,7 @@ describe("initRepo", () => {
 		`(
 			`initRepo("${testRepoName}", $argsArray) throws ${invalidFlagPassedErrorCode} error`,
 			(testRow: {argsArray: string[]}) => {
-				expect(async () => {
+				void expect(async () => {
 					await initRepo(testRepoName, testRow.argsArray);
 				}).rejects.toThrow(new RegExp(invalidFlagPassedErrorCode));
 			},
@@ -105,7 +105,7 @@ describe("initRepo", () => {
 		`(
 			`initRepo("${testRepoName}", $argsArray) throws ${optionalFlagPassedMultipleTimesErrorCode} error`,
 			(testRow: {argsArray: string[]}) => {
-				expect(async () => {
+				void expect(async () => {
 					await initRepo(testRepoName, testRow.argsArray);
 				}).rejects.toThrow(
 					new RegExp(optionalFlagPassedMultipleTimesErrorCode),
@@ -128,7 +128,7 @@ describe("initRepo", () => {
 		`(
 			`initRepo("${testRepoName}", $argsArray) throws ${invalidNodeVersionErrorCode} error`,
 			(testRow: {argsArray: string[]}) => {
-				expect(async () => {
+				void expect(async () => {
 					await initRepo(testRepoName, testRow.argsArray);
 				}).rejects.toThrow(new RegExp(invalidNodeVersionErrorCode));
 			},

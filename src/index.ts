@@ -27,7 +27,7 @@ export const runScript = async () => {
 			// If either 1) no arguments are passed, or 2) one of the `help` flags are passed, then:
 			if (args.length === 0 || hasHelpFlag) {
 				// 1. Log the help text for the command.
-				logInitRepoHelpText();
+				void logInitRepoHelpText();
 				// 2. Terminate the script.
 				break;
 			}
@@ -63,5 +63,5 @@ export const runScript = async () => {
 //
 /* v8 ignore next 3 */
 if (process.env["NODE_ENV"] !== "test") {
-	runScript();
+	void runScript();
 }

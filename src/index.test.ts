@@ -94,7 +94,7 @@ describe("throws an error", () => {
 	});
 
 	test("when no script name is passed", () => {
-		expect(async () => {
+		void expect(async () => {
 			await runScript();
 		}).rejects.toThrow(/ERR_UNKNOWN_SCRIPT/);
 	});
@@ -102,7 +102,7 @@ describe("throws an error", () => {
 	test("when an unknown script is passed", () => {
 		process.argv.push("unknown-script");
 
-		expect(async () => {
+		void expect(async () => {
 			await runScript();
 		}).rejects.toThrow(/ERR_UNKNOWN_SCRIPT/);
 	});
