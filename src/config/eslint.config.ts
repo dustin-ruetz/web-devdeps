@@ -36,7 +36,7 @@ const eslintConfig = typescripteslint.config(
 				 * @todo Ideally the `browser` global variables would be included conditionally in the configuration
 				 *       only if/when the consuming repository depends on a frontend-specific package. This check
 				 *       could be done easily if either 1) ESLint supported functions in its config, or 2) if Jest
-				 *       supported top-level `await`; revisit this if/when these limitations are removed.
+				 *       supported top-level `await`; revisit this if/when these limitations can be overcome.
 				 */
 				...globals.browser,
 				...globals.jest,
