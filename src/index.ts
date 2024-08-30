@@ -35,13 +35,13 @@ export const runScript = async () => {
 			// The repository name is the only required argument and it has to be the first one, so:
 			// 1. `shift` it out of the `args` array if it's defined; or
 			// 2. Set it to an empty string if it's `undefined` and let the `initRepo` function throw an error.
-			const repoName = args.shift() || "";
+			const repoName = args.shift() ?? "";
 			await initRepo(repoName, args);
 			break;
 		}
 		default: {
 			throw new ValidationError(
-				`Unknown script: ${script}. Known scripts are: [${Object.values(scripts).join(", ")}]`,
+				`Unknown script. Known scripts are: [${Object.values(scripts).join(", ")}]`,
 				{
 					cause: {
 						code: "ERR_UNKNOWN_SCRIPT",
