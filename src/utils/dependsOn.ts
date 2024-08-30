@@ -1,4 +1,5 @@
 import {readFile} from "node:fs/promises";
+import type {PackageJsonTypes} from "../types.js";
 import {getAbsoluteRepoRootPath} from "./getAbsoluteRepoRootPath.js";
 import {ValidationError} from "./ValidationError.js";
 
@@ -47,7 +48,7 @@ export const dependsOn = async (deps: string[]) => {
 	const packageJsonContents = await readFile(packageJsonPath, {
 		encoding: "utf-8",
 	});
-	const packageJson = JSON.parse(packageJsonContents);
+	const packageJson = JSON.parse(packageJsonContents) as PackageJsonTypes;
 	const allDependencies = {
 		...packageJson.dependencies,
 		...packageJson.devDependencies,
