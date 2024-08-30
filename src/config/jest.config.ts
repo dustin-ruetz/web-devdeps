@@ -28,6 +28,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		"<rootDir>/node_modules/",
 		"<rootDir>/www/",
 		".mock.(js|ts)",
+		"types.ts",
 	] as const;
 
 	/** The base path to the files/packages used as Jest transformers. */
