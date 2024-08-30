@@ -35,10 +35,15 @@ test("it exports a configuration array and the most important config options are
 			projectService: true,
 		},
 	});
+	expect(
+		userDefinedConfig?.rules?.[
+			"@typescript-eslint/consistent-type-definitions"
+		],
+	).toStrictEqual(["error", "type"]);
 	expect(userDefinedConfig?.rules?.["no-unused-vars"]).toEqual("off");
 	expect(
 		userDefinedConfig?.rules?.["@typescript-eslint/no-unused-vars"],
-	).toEqual([
+	).toStrictEqual([
 		"error",
 		{
 			args: "all",

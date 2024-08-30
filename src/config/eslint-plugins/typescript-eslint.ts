@@ -26,6 +26,16 @@ export const typescripteslintPlugin = typescripteslint.config(
 		rules: {
 			// https://typescript-eslint.io/rules/#extension-rules
 
+			/**
+			 * @description Prefer the `type` keyword over `interface` because it displays the full type information
+			 *              in the IntelliSense hint when the mouse cursor is hovered over the type definition.
+			 * @todo Consider removing this rule from the config if this issues is addressed when TypeScript 5.6.0 is released.
+			 * @link https://github.com/microsoft/TypeScript/issues/38040
+			 * @link https://github.com/microsoft/TypeScript/issues/59029
+			 * @link https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces
+			 */
+			"@typescript-eslint/consistent-type-definitions": ["error", "type"],
+
 			// Excerpt from https://typescript-eslint.io/rules/dot-notation/:
 			// > Extending `"plugin:@typescript-eslint/stylistic-type-checked"` in an ESLint configuration enables this rule.
 			// > This rule extends the base `eslint/dot-notation` rule. It adds:
