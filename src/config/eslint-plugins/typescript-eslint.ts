@@ -25,6 +25,13 @@ export const typescripteslintPlugin = typescripteslint.config(
 		},
 		rules: {
 			// https://typescript-eslint.io/rules/#extension-rules
+
+			// Excerpt from https://typescript-eslint.io/rules/dot-notation/:
+			// > Extending `"plugin:@typescript-eslint/stylistic-type-checked"` in an ESLint configuration enables this rule.
+			// > This rule extends the base `eslint/dot-notation` rule. It adds:
+			// > - Support for optionally ignoring computed `private` and/or `protected` member access.
+			// > - Compatibility with TypeScript's `noPropertyAccessFromIndexSignature` option.
+
 			// Excerpt from https://typescript-eslint.io/rules/no-unused-vars/#how-to-use:
 			// > Note: You must disable the base rule as it can report incorrect errors.
 			"no-unused-vars": "off",

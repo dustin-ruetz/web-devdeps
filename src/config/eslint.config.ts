@@ -65,10 +65,11 @@ const eslintConfig = typescripteslint.config(
 			"arrow-body-style": "error",
 			camelcase: "error",
 			curly: "error",
-			// Ideally the "dot-notation" rule would be set to "error" below, but this rule often conflicts with the strictest tsconfig
-			// `"compilerOptions"` setting the `"noPropertyAccessFromIndexSignature"` option to `true`. Having these errors typechecked
-			// is valuable and constantly disabling the `"dot-notation"` rule is tedious, so just don't enable this rule.
-			// "dot-notation": "error",
+			/**
+			 * Refer to the `typescript-eslint` configuration file to see how this `dot-notation` rule is overridden.
+			 * @see [typescript-eslint.ts](./eslint-plugins/typescript-eslint.ts)
+			 */
+			"dot-notation": "error",
 			eqeqeq: "error",
 			"guard-for-in": "error",
 			"no-array-constructor": "error",
