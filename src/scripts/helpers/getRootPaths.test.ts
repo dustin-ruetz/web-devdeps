@@ -5,6 +5,11 @@ afterEach(() => {
 	jest.clearAllMocks();
 });
 
+/**
+ * @todo Ideally this `unbound-method` lint error should be handled by the `eslint-plugin-jest` package.
+ * @link https://github.com/jest-community/eslint-plugin-jest/blob/main/docs/rules/unbound-method.md
+ */
+// eslint-disable-next-line @typescript-eslint/unbound-method
 const initialProcessCwd = process.cwd;
 afterAll(() => {
 	process.cwd = initialProcessCwd;
