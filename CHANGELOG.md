@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.8.0](https://github.com/dustin-ruetz/devdeps/compare/v1.7.0...v1.8.0) (2024-08-30)
+
+### Features
+
+* enable typed linting feature of `typescript-eslint` ([#59](https://github.com/dustin-ruetz/devdeps/issues/59)) ([4a0026d](https://github.com/dustin-ruetz/devdeps/commit/4a0026da15483df7946d530c0aa0404069f414be))
+
 ## [1.7.0](https://github.com/dustin-ruetz/devdeps/compare/v1.6.0...v1.7.0) (2024-08-28)
 
 ### Features
