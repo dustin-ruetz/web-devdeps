@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.9.2](https://github.com/dustin-ruetz/devdeps/compare/v1.9.1...v1.9.2) (2024-09-04)
+
+### Bug Fixes
+
+* **dependencies:** update husky to latest version ([00f7b77](https://github.com/dustin-ruetz/devdeps/commit/00f7b77953578489ab63f6402013ba097c27ae2c))
+* **dependencies:** update packages to latest versions ([644084a](https://github.com/dustin-ruetz/devdeps/commit/644084a4492401d06eb6a5508cddd4ea73db424b))
+
 ## [1.9.1](https://github.com/dustin-ruetz/devdeps/compare/v1.9.0...v1.9.1) (2024-08-30)
 
 ### Bug Fixes
