@@ -5,7 +5,7 @@
 - Description: husky shell script adapted from the original husky template for Git hooks.
 - Documentation: https://typicode.github.io/husky/
 - Repository: https://github.com/typicode/husky
-- Version: 9.1.4
+- Version: 9.1.5
 
 ## Upgrading the husky version
 
@@ -19,7 +19,7 @@ npm install --save-dev --save-exact husky@latest
 npx husky init
 ```
 
-2. Open the `package.json` file and delete the unneeded `prepare` script that was added by the previous `husky init` command.
+2. Open the `package.json` file and delete the unneeded `prepare` script that was added after running the `husky init` command.
 
 3. Execute the `npm run init` command to re-configure the Git hooks path back to the `.githooks/` directory.
 
