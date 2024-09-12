@@ -91,6 +91,6 @@
 		"typescript-eslint": "8.5.0"
 	},
 	"devDependencies": {
-		"husky": "9.1.5"
+		"husky": "9.1.6"
 	}
 }
