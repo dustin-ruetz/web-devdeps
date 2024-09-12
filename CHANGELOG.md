@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [1.9.3](https://github.com/dustin-ruetz/devdeps/compare/v1.9.2...v1.9.3) (2024-09-12)
+
+### Bug Fixes
+
+* **dependencies:** update '@prettier/plugin-pug' package to latest version ([1eeaa3c](https://github.com/dustin-ruetz/devdeps/commit/1eeaa3cd1b0376ac93927bda471f4695431b85e7))
+* **dependencies:** update 'eslint' packages to latest versions ([12fd88b](https://github.com/dustin-ruetz/devdeps/commit/12fd88b444ab3a7bee309c3ba43bee837f7c7e2a))
+* **dependencies:** update 'husky' to latest version ([7842c13](https://github.com/dustin-ruetz/devdeps/commit/7842c13ef0cffe27f7edc8d31ab0dd6e4f490f0b))
+* **dependencies:** update 'typescript' package to latest version ([cc31f5a](https://github.com/dustin-ruetz/devdeps/commit/cc31f5a6225834dfd26126c801dadd727864ea64))
+* **dependencies:** update packages to latest versions ([06cde88](https://github.com/dustin-ruetz/devdeps/commit/06cde88e6c17187e579906495cb1f97e09f805c6))
+
 ## [1.9.2](https://github.com/dustin-ruetz/devdeps/compare/v1.9.1...v1.9.2) (2024-09-04)
 
 ### Bug Fixes
