@@ -1,5 +1,5 @@
 import {mkdir, readdir, readFile, writeFile} from "node:fs/promises";
-import type {PackageJsonTypes} from "../../types.js";
+import type {PackageJsonTypes} from "../../types.d.js";
 import {
 	nodeModulesPackagePath,
 	packageName,

@@ -1,5 +1,5 @@
 import {readFile} from "node:fs/promises";
-import type {PackageJsonTypes} from "../types.js";
+import type {PackageJsonTypes} from "../types.d.js";
 import {getAbsoluteRepoRootPath} from "./getAbsoluteRepoRootPath.js";
 import {ValidationError} from "./ValidationError.js";
 
