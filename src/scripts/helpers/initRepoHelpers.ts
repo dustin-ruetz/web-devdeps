@@ -3,7 +3,7 @@ import type {PackageJsonTypes} from "../../types.d.js";
 import {
 	nodeModulesPackagePath,
 	packageName,
-	packageScope,
+	packageScopeAndName,
 } from "../../constants.js";
 import {getRootPaths} from "./getRootPaths.js";
 
@@ -151,7 +151,7 @@ export const writePackageJson = async (
 	);
 	packageJson.dependencies = {};
 	packageJson.devDependencies = {
-		[`${packageScope}/${packageName}`]: devdepsVersion,
+		[packageScopeAndName]: devdepsVersion,
 	};
 
 	await writeFile(
