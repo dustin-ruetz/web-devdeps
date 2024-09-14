@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [1.10.0](https://github.com/dustin-ruetz/devdeps/compare/v1.9.3...v1.10.0) (2024-09-14)
+
+### Features
+
+* **config/lint-staged.config:** do not pass untestable files to lint-staged unit test command ([25bde56](https://github.com/dustin-ruetz/devdeps/commit/25bde562065ae076e2eb009d932bbf66388234b1))
+
+### Bug Fixes
+
+* **declarations.d.ts:** improve '@eslint/js' type declaration ([4932808](https://github.com/dustin-ruetz/devdeps/commit/4932808c5bf2fa909fca4a17f00edfd737b668ad))
+* rename shared types file (from 'types.ts' to 'types.d.ts') ([c35bcea](https://github.com/dustin-ruetz/devdeps/commit/c35bcea245b38f16709fe9729df674927eb0a53f))
+
 ## [1.9.3](https://github.com/dustin-ruetz/devdeps/compare/v1.9.2...v1.9.3) (2024-09-12)
 
 ### Bug Fixes
