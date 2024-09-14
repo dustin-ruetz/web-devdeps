@@ -15,26 +15,41 @@ const lintstagedConfig: Config = {
 		/**
 		 * The "check/types" script runs the TypeScript compiler (`tsc`), but `tsc` ignores the `tsconfig.json` file
 		 * due to the file paths that are appended to the command by `lint-staged`. Work around this limitation by
-		 * typechecking the entire codebase, i.e. not just the staged files.
+		 * typechecking the entire codebase, i.e. not just the relative paths of the staged files.
 		 *
 		 * @link https://github.com/lint-staged/lint-staged/issues/825
 		 * @link https://github.com/microsoft/TypeScript/issues/27379
 		 */
 		const typecheckCommand = "npm run check/types";
 
-		const unitTestCommand =
-			"npm run test/unit/coverage --" +
-			// Excerpt from https://jestjs.io/docs/cli#--findrelatedtests-spaceseparatedlistofsourcefiles:
-			// > Find and run the tests that cover a space-separated list of source files that were passed in as arguments.
-			// > Useful for pre-commit hook integration to run the minimal amount of tests necessary.
-			" --findRelatedTests" +
-			// Excerpt from https://jestjs.io/docs/cli#--collectcoveragefromglob:
-			// > A glob pattern relative to `rootDir` matching the files that coverage info needs to be collected from.
-			" --collectCoverageFrom=" +
-			// Important: Add a space between `--collectCoverageFrom=` and the relative paths to properly scope the coverage report.
-			` ${relativePaths.join(" ")}`;
+		const commandsToRun = [lintJavaScriptTypeScriptCommand, typecheckCommand];
 
-		return [lintJavaScriptTypeScriptCommand, typecheckCommand, unitTestCommand];
+		/**
+		 * Array of relative paths to find related tests for (with TypeScript declaration files
+		 * and file mocks filtered out, since they don't require unit tests).
+		 */
+		const relativePathsToFindRelatedTestsFor = relativePaths.filter(
+			(relativePath) =>
+				!(relativePath.endsWith(".d.ts") || relativePath.includes(".mock")),
+		);
+
+		if (relativePathsToFindRelatedTestsFor.length >= 1) {
+			const unitTestCommand =
+				"npm run test/unit/coverage --" +
+				// Excerpt from https://jestjs.io/docs/cli#--findrelatedtests-spaceseparatedlistofsourcefiles:
+				// > Find and run the tests that cover a space-separated list of source files that were passed in as arguments.
+				// > Useful for pre-commit hook integration to run the minimal amount of tests necessary.
+				" --findRelatedTests" +
+				// Excerpt from https://jestjs.io/docs/cli#--collectcoveragefromglob:
+				// > A glob pattern relative to `rootDir` matching the files that coverage info needs to be collected from.
+				" --collectCoverageFrom=" +
+				// Important: Add a space between `--collectCoverageFrom=` and the relative paths to properly scope the coverage report.
+				` ${relativePathsToFindRelatedTestsFor.join(" ")}`;
+
+			commandsToRun.push(unitTestCommand);
+		}
+
+		return commandsToRun;
 	},
 } as const;
 
