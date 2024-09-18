@@ -1,6 +1,6 @@
 import {getIsDevDepsRepo} from "./getIsDevDepsRepo.js";
 
-describe("it correctly identifies whether or not the path indicates ", () => {
+describe("it correctly identifies whether or not the passed path represents the `devdeps` repo", () => {
 	test.each`
 		path                                       | isDevDepsRepo
 		${""}                                      | ${false}
