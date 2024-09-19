@@ -111,6 +111,11 @@ export const writePackageJson = async (
 	packageJson.version = "0.0.0";
 	packageJson.description = "";
 
+	// Remove the "JSON code comment" entries and the scripts that aren't needed for the initialized repo.
+	delete packageJson.scripts["// .githooks/"];
+	delete packageJson.scripts["// .github/"];
+	delete packageJson.scripts["init-repo"];
+
 	packageJson.scripts = Object.entries(packageJson.scripts).reduce(
 		(scriptsObject: PackageJsonTypes["scripts"], [scriptKey, scriptValue]) => {
 			/**
@@ -141,6 +146,12 @@ export const writePackageJson = async (
 			"npm run lint/styles -- '**/*.{css,scss,jsx,tsx}'";
 		packageJson.scripts["fix/lint/styles"] =
 			"npm run lint/styles -- --fix '**/*.{css,scss,jsx,tsx}'";
+
+		// The object's keys are no longer in alphabetical order now that the above scripts
+		// have been added, so sort them then rewrite the object with the new values.
+		packageJson.scripts = Object.fromEntries(
+			Object.entries(packageJson.scripts).sort(),
+		);
 	}
 
 	packageJson.files = [];

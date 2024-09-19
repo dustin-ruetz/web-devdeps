@@ -175,7 +175,7 @@ describe("writePackageJson", () => {
 			expect.stringMatching(
 				// Regular expression adapted from Michael Socha's 2014-Nov-18 answer to the following question posted on Stack Overflow:
 				// https://stackoverflow.com/questions/2219830/regular-expression-to-find-two-strings-anywhere-in-input/27005678#27005678
-				new RegExp(`(${genericScript}(.|\n)*${lintStylesScript})`),
+				new RegExp(`(${lintStylesScript}(.|\n)*${genericScript})`),
 			),
 		);
 	});
