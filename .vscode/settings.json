@@ -3,7 +3,8 @@
 		"overrideConfigFile": "lib/config/eslint.config.js"
 	},
 	"files.associations": {
-		"husky": "shellscript"
+		"**/.githooks/*": "shellscript",
+		"**/.githooks/_/husky": "shellscript"
 	},
 	"material-icon-theme.files.associations": {
 		".caches/.prettiercache": "Prettier",
