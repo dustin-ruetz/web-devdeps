@@ -17,6 +17,7 @@ export const runScript = async () => {
 	/* eslint sort-keys: ["error", "asc"] */
 	const scripts = {
 		format: "format",
+		githooksCommitMsg: "githooks/commit-msg",
 		initRepo: "init-repo",
 		lintJsTs: "lint/js-ts",
 		testUnit: "test/unit",
@@ -25,6 +26,10 @@ export const runScript = async () => {
 	switch (script) {
 		case scripts.format: {
 			runCLI("prettier", args);
+			return;
+		}
+		case scripts.githooksCommitMsg: {
+			runCLI("commitlint", args);
 			return;
 		}
 		case scripts.initRepo: {

@@ -19,10 +19,11 @@ afterEach(() => {
 
 describe("the CLI programs are spawned correctly with their expected `args` when passed the `--config` flag", () => {
 	test.each`
-		cli           | configArgs                              | autoAddedArgs
-		${"eslint"}   | ${["--config", "./eslint.config.js"]}   | ${["--cache", "--cache-location", "./.caches/.eslintcache"]}
-		${"jest"}     | ${["--config", "./jest.config.js"]}     | ${["--cache"]}
-		${"prettier"} | ${["--config", "./prettier.config.js"]} | ${["--cache", "--cache-location", "./.caches/.prettiercache", "--ignore-path", "./.gitignore"]}
+		cli             | configArgs                                | autoAddedArgs
+		${"commitlint"} | ${["--config", "./commitlint.config.js"]} | ${["--edit"]}
+		${"eslint"}     | ${["--config", "./eslint.config.js"]}     | ${["--cache", "--cache-location", "./.caches/.eslintcache"]}
+		${"jest"}       | ${["--config", "./jest.config.js"]}       | ${["--cache"]}
+		${"prettier"}   | ${["--config", "./prettier.config.js"]}   | ${["--cache", "--cache-location", "./.caches/.prettiercache", "--ignore-path", "./.gitignore"]}
 	`(
 		`$cli`,
 		(testRow: {cli: cli; configArgs: string[]; autoAddedArgs: string[]}) => {
@@ -49,6 +50,7 @@ describe("the CLI programs automatically  passes the correct argument to the `--
 	describe("is being run from this `devdeps` repo", () => {
 		test.each`
 			cli
+			${"commitlint"}
 			${"eslint"}
 			${"jest"}
 			${"prettier"}
@@ -74,6 +76,7 @@ describe("the CLI programs automatically  passes the correct argument to the `--
 	describe("is being run from a `consuming-repo`", () => {
 		test.each`
 			cli
+			${"commitlint"}
 			${"eslint"}
 			${"jest"}
 			${"prettier"}
@@ -99,7 +102,13 @@ describe("the CLI programs automatically  passes the correct argument to the `--
 
 test("the command to run the CLI program receives all of the arbitrary flags and arguments that are passed", () => {
 	// @ts-expect-error since the `"cli"` argument is just a mock value in order to keep this test generic.
-	runCLI("cli", ["--config", "./cli.config.js", "--flag-name", "flag-arg"]);
+	runCLI("cli", [
+		"--config",
+		"./cli.config.js",
+		"--flag-name",
+		"flag-arg",
+		"./",
+	]);
 
 	expect(spawn).toHaveBeenCalledTimes(1);
 	expect(spawn).toHaveBeenCalledWith(
@@ -109,6 +118,7 @@ test("the command to run the CLI program receives all of the arbitrary flags and
 			"./cli.config.js",
 			"--flag-name",
 			"flag-arg",
+			"./",
 		]),
 		{stdio: "inherit"},
 	);

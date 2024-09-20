@@ -4,7 +4,7 @@ import {getIsDevDepsRepo} from "../utils/getIsDevDepsRepo.js";
 import {makeCachePath} from "../utils/makeCachePath.js";
 import {nodeModulesPackagePath} from "../constants.js";
 
-export type cli = "eslint" | "jest" | "prettier";
+export type cli = "commitlint" | "eslint" | "jest" | "prettier";
 
 /**
  * @description Executes the CLI program of an installed `devDependencies` package and determines the path to its configuration file.
@@ -18,13 +18,18 @@ export const runCLI = (cli: cli, args: string[]) => {
 	const cacheLocationFlag = "--cache-location";
 	let cliEmoji = "";
 
-	// case "commitlint":
-	// cliEmoji = "💬"
-	//
 	// case "lint-staged":
 	// cliEmoji = "🛡️"
 
 	switch (cli) {
+		// https://commitlint.js.org/reference/cli.html
+		case "commitlint": {
+			cliEmoji = "💬";
+			// Excerpt from documentation:
+			// > --edit - read last commit message from the specified file or fallback to `.git/COMMIT_EDITMSG`
+			args.unshift("--edit");
+			break;
+		}
 		// https://eslint.org/docs/latest/use/command-line-interface
 		case "eslint": {
 			cliEmoji = "📚";

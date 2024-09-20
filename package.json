@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"// .githooks/": "Refer to the files in the ./.githooks/ folder for documentation on these commands.",
-		".githooks/commit-msg": "commitlint --config ./lib/config/commitlint.config.js --edit",
+		".githooks/commit-msg": "node ./lib/ githooks/commit-msg",
 		".githooks/pre-commit": "npm run build && lint-staged --config ./lib/config/lint-staged.config.js --relative",
 		".githooks/pre-push": "npm run validate",
 		"// .github/": "Use the `act` tool to test GitHub Actions workflows locally.",

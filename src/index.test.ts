@@ -105,10 +105,11 @@ describe("`runCLI` script", () => {
 	});
 
 	test.each`
-		script          | cli           | args
-		${"format"}     | ${"prettier"} | ${["--flag-name", "flag-arg"]}
-		${"lint/js-ts"} | ${"eslint"}   | ${["--flag-name", "flag-arg"]}
-		${"test/unit"}  | ${"jest"}     | ${["--flag-name", "flag-arg"]}
+		script                   | cli             | args
+		${"format"}              | ${"prettier"}   | ${["--flag-name", "flag-arg"]}
+		${"githooks/commit-msg"} | ${"commitlint"} | ${["--flag-name", "flag-arg"]}
+		${"lint/js-ts"}          | ${"eslint"}     | ${["--flag-name", "flag-arg"]}
+		${"test/unit"}           | ${"jest"}       | ${["--flag-name", "flag-arg"]}
 	`(
 		`Executing "npm run $script" script results in a call of runCLI("$cli", $args)`,
 		async (testRow: {script: string; cli: string; args: string[]}) => {
