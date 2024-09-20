@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## [1.11.0](https://github.com/dustin-ruetz/devdeps/compare/v1.10.0...v1.11.0) (2024-09-20)
+
+### Features
+
+* **config/jest.config:** use 'makeCachePath' to set the value of 'cacheDirectory' ([9577158](https://github.com/dustin-ruetz/devdeps/commit/9577158f595997286e50ffc86b7de4166ff1fe23))
+* **scripts/helpers/initRepoHelpers:** remove unneeded scripts and sort them in written package.json ([54cf42f](https://github.com/dustin-ruetz/devdeps/commit/54cf42ff4d74fd881f7867f5cf389b32d00de525))
+* **utils/makeCachePath:** initial function and unit test ([4988c96](https://github.com/dustin-ruetz/devdeps/commit/4988c96812eb644d06650900c4446c60f9807f32))
+
+### Bug Fixes
+
+* correct misidentified 'Languages' percentages for repo on GitHub.com UI ([42d2f25](https://github.com/dustin-ruetz/devdeps/commit/42d2f2527d67ae9a4eebba016a57076edbca5aae))
+* **dependencies:** update packages to latest versions ([c116313](https://github.com/dustin-ruetz/devdeps/commit/c11631376a26436044c24e5b2dc43336a859ee7d))
+
 ## [1.10.0](https://github.com/dustin-ruetz/devdeps/compare/v1.9.3...v1.10.0) (2024-09-14)
 
 ### Features
