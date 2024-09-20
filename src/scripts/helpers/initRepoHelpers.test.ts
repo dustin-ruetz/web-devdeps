@@ -118,7 +118,7 @@ describe("writePackageJson", () => {
 		"version": "",
 		"description": "",
 		"scripts": {
-			"script": "package --config ./lib/config/package.config.js"
+			"example": "node ./lib/ example"
 		},
 		"files": [],
 		"repository": {
@@ -129,12 +129,8 @@ describe("writePackageJson", () => {
 		"devDependencies": {}
 }
 `;
-	/** Generic script representing a library named `package` that is called with its associated `package.config.js` configuration file. */
-	const genericScript =
-		"package --config ./node_modules/@dustin-ruetz/devdeps/lib/config/package.config.js";
-	/** Script representing the Stylelint library getting called with its associated configuration file. */
-	const lintStylesScript =
-		"stylelint --config ./node_modules/@dustin-ruetz/devdeps/lib/config/stylelint.config.js";
+	const exampleScript = "@dustin-ruetz/devdeps example";
+	const lintStylesScript = "@dustin-ruetz/devdeps lint/styles";
 
 	test("it *does not* configure Stylelint", async () => {
 		readFileMock.mockResolvedValue(mockPackageJsonContents);
@@ -150,7 +146,7 @@ describe("writePackageJson", () => {
 		expect(writeFile).toHaveBeenCalledTimes(1);
 		expect(writeFile).toHaveBeenCalledWith(
 			expect.stringContaining("package.json"),
-			expect.stringMatching(new RegExp(genericScript)),
+			expect.stringMatching(new RegExp(exampleScript)),
 		);
 		expect(writeFile).toHaveBeenCalledWith(
 			expect.stringContaining("package.json"),
@@ -175,7 +171,7 @@ describe("writePackageJson", () => {
 			expect.stringMatching(
 				// Regular expression adapted from Michael Socha's 2014-Nov-18 answer to the following question posted on Stack Overflow:
 				// https://stackoverflow.com/questions/2219830/regular-expression-to-find-two-strings-anywhere-in-input/27005678#27005678
-				new RegExp(`(${lintStylesScript}(.|\n)*${genericScript})`),
+				new RegExp(`(${exampleScript}(.|\n)*${lintStylesScript})`),
 			),
 		);
 	});

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import {initRepo, logInitRepoHelpText} from "./scripts/initRepo.js";
+import {runCLI} from "./scripts/runCLI.js";
 import {ValidationError} from "./utils/ValidationError.js";
 
 /** Function that serves as the entrypoint file for runnable Node.js CLI scripts from this `@dustin-ruetz/devdeps` package. */
@@ -15,10 +16,28 @@ export const runScript = async () => {
 	/** List of known scripts. */
 	/* eslint sort-keys: ["error", "asc"] */
 	const scripts = {
+		format: "format",
+		githooksCommitMsg: "githooks/commit-msg",
+		githooksPreCommit: "githooks/pre-commit",
 		initRepo: "init-repo",
+		lintJsTs: "lint/js-ts",
+		lintStyles: "lint/styles",
+		testUnit: "test/unit",
 	} as const;
 
 	switch (script) {
+		case scripts.format: {
+			runCLI("prettier", args);
+			return;
+		}
+		case scripts.githooksCommitMsg: {
+			runCLI("commitlint", args);
+			return;
+		}
+		case scripts.githooksPreCommit: {
+			runCLI("lint-staged", args);
+			return;
+		}
 		case scripts.initRepo: {
 			const hasHelpFlag = Boolean(
 				args.find((arg) => arg === "--help" || arg === "-h"),
@@ -29,7 +48,7 @@ export const runScript = async () => {
 				// 1. Log the help text for the command.
 				void logInitRepoHelpText();
 				// 2. Terminate the script.
-				break;
+				return;
 			}
 
 			// The repository name is the only required argument and it has to be the first one, so:
@@ -37,7 +56,19 @@ export const runScript = async () => {
 			// 2. Set it to an empty string if it's `undefined` and let the `initRepo` function throw an error.
 			const repoName = args.shift() ?? "";
 			await initRepo(repoName, args);
-			break;
+			return;
+		}
+		case scripts.lintJsTs: {
+			runCLI("eslint", args);
+			return;
+		}
+		case scripts.lintStyles: {
+			runCLI("stylelint", args);
+			return;
+		}
+		case scripts.testUnit: {
+			runCLI("jest", args);
+			return;
 		}
 		default: {
 			throw new ValidationError(

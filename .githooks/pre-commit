@@ -1,9 +1,7 @@
-# Related file: package.json (specifically `packageJSON.scripts`)
+# Related file: `package.json` (specifically `packageJSON.scripts`)
+# Related file: `src/scripts/runCLI.ts`
 #
 # pre-commit commands to run prior to any changes being committed:
 # - `npm run build` - Build the codebase to lib/ so that all configuration files are up-to-date.
 # - `lint-staged`   - Run the validation checks scoped to just the staged files.
-#
-# Excerpt from https://github.com/lint-staged/lint-staged#command-line-flags:
-# > --relative - pass filepaths relative to `process.cwd()` (where `lint-staged` runs) to tasks; default is `false`
-npm run .githooks/pre-commit
+npm run githooks/pre-commit

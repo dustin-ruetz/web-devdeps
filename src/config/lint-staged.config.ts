@@ -4,7 +4,7 @@ import type {Config} from "lint-staged";
 const lintstagedConfig: Config = {
 	/**
 	 * Note: Run "format" and "lint/*" as their base scripts (i.e. _not_ "fix/format" and "fix/lint/*") because
-	 * lint-staged passes the staged file(s) by appending the path(s) as the last argument to the commands.
+	 * lint-staged passes the staged files by appending their paths as the last arguments to the commands.
 	 */
 	// Fix code formatting for all file types that Prettier supports.
 	"*": "npm run format -- --ignore-unknown --write",

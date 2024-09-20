@@ -112,8 +112,8 @@ export const writePackageJson = async (
 	packageJson.description = "";
 
 	// Remove the "JSON code comment" entries and the scripts that aren't needed for the initialized repo.
-	delete packageJson.scripts["// .githooks/"];
-	delete packageJson.scripts["// .github/"];
+	delete packageJson.scripts["// githooks/*"];
+	delete packageJson.scripts["// github/*"];
 	delete packageJson.scripts["init-repo"];
 
 	packageJson.scripts = Object.entries(packageJson.scripts).reduce(
@@ -128,10 +128,10 @@ export const writePackageJson = async (
 			const scriptValueString = String(scriptValue);
 
 			let updatedScriptValue = scriptValueString;
-			if (scriptValueString.includes("--config ./lib/")) {
+			if (scriptValueString.includes("node ./lib/")) {
 				updatedScriptValue = scriptValueString.replace(
-					"--config ./",
-					`--config ./${nodeModulesPackagePath}/`,
+					"node ./lib/",
+					packageScopeAndName,
 				);
 			}
 			scriptsObject[scriptKey] = updatedScriptValue;
@@ -140,8 +140,7 @@ export const writePackageJson = async (
 		{},
 	);
 	if (configureStylelint) {
-		packageJson.scripts["lint/styles"] =
-			`stylelint --config ./${nodeModulesPackagePath}/lib/config/stylelint.config.js --cache --cache-location ./.caches/.stylelintcache --ignore-path ./.gitignore`;
+		packageJson.scripts["lint/styles"] = `${packageScopeAndName} lint/styles`;
 		packageJson.scripts["check/lint/styles"] =
 			"npm run lint/styles -- '**/*.{css,scss,jsx,tsx}'";
 		packageJson.scripts["fix/lint/styles"] =

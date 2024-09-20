@@ -130,8 +130,8 @@ Note that [`act`](https://nektosact.com) can be used to locally test the GitHub 
 
 ```sh
 # Simulate a dry-run release in the CI/CD context.
-npm run .github/release
+npm run github/release
 
 # Simulate the full suite of validation checks in the CI/CD context.
-npm run .github/validate
+npm run github/validate
 ```
