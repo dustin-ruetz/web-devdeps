@@ -55,12 +55,11 @@ export const runScript = async () => {
 
 // The unit test for this file imports the `runScript` function to test it, but the problem with this
 // is that `runScript` gets called in the test just from importing it. Since Jest automatically sets
-// the `NODE_ENV=true` environment variable when the test suite is run, use this as the conditional
+// the `NODE_ENV=test` environment variable when the test suite is run, use this as the conditional
 // logic to prevent `runScript` from being automatically called when it's imported for the unit test.
 //
 // It's very difficult to test whether or not the `runScript` function is called based on the value of `NODE_ENV`,
 // so use the special `v8 ignore next #` comment to exclude these lines from the test coverage report.
-//
 /* v8 ignore next 3 */
 if (process.env["NODE_ENV"] !== "test") {
 	void runScript();
