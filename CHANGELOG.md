@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.12.0](https://github.com/dustin-ruetz/devdeps/compare/v1.11.0...v1.12.0) (2024-09-20)
+
+### Features
+
+* initial 'runCLI' script ([#62](https://github.com/dustin-ruetz/devdeps/issues/62)) ([b2d146f](https://github.com/dustin-ruetz/devdeps/commit/b2d146f4236ed8bc722c1fb9b61e1a6e205d53ff))
+
 ## [1.11.0](https://github.com/dustin-ruetz/devdeps/compare/v1.10.0...v1.11.0) (2024-09-20)
 
 ### Features
