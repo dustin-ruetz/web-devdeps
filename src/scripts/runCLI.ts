@@ -4,7 +4,7 @@ import {getIsDevDepsRepo} from "../utils/getIsDevDepsRepo.js";
 import {makeCachePath} from "../utils/makeCachePath.js";
 import {nodeModulesPackagePath} from "../constants.js";
 
-export type cli = "commitlint" | "eslint" | "jest" | "prettier";
+export type cli = "commitlint" | "eslint" | "jest" | "lint-staged" | "prettier";
 
 /**
  * @description Executes the CLI program of an installed `devDependencies` package and determines the path to its configuration file.
@@ -17,9 +17,6 @@ export const runCLI = (cli: cli, args: string[]) => {
 	const cacheFlag = "--cache";
 	const cacheLocationFlag = "--cache-location";
 	let cliEmoji = "";
-
-	// case "lint-staged":
-	// cliEmoji = "🛡️"
 
 	switch (cli) {
 		// https://commitlint.js.org/reference/cli.html
@@ -42,6 +39,14 @@ export const runCLI = (cli: cli, args: string[]) => {
 			cliEmoji = "🃏";
 			args.unshift(cacheFlag);
 			break;
+		// https://github.com/lint-staged/lint-staged#command-line-flags
+		case "lint-staged": {
+			cliEmoji = "🛡️";
+			// Excerpt from documentation:
+			// > --relative - pass filepaths relative to `process.cwd()` (where `lint-staged` runs) to tasks; default is `false`
+			args.unshift("--relative");
+			break;
+		}
 		// https://prettier.io/docs/en/cli.html
 		case "prettier": {
 			cliEmoji = "🪞";
