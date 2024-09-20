@@ -7,9 +7,10 @@
 *.ts   text
 *.yaml text
 
-# The repo's "Languages" percentages on the https://github.com/dustin-ruetz/devdeps UI misidentifies
-# the `src/index.ts` TypeScript file as JavaScript due to the fact that its first line is the
-# `#!/usr/bin/env node` shebang comment. Fix this by manually specifying the file's language.
+# The repo's "Languages" percentages on the https://github.com/dustin-ruetz/devdeps
+# repo homepage  misidentifies the `src/index.ts` TypeScript file as JavaScript
+# due to the fact that its first line is the `#!/usr/bin/env node` shebang comment.
+# Fix this by manually specifying the language for just this particular file.
 #
 # https://github.com/github-linguist/linguist/blob/main/docs/overrides.md#using-gitattributes
 src/index.ts linguist-language=TypeScript
