@@ -1,4 +1,5 @@
-# Related file: package.json (specifically `packageJSON.scripts`)
+# Related file: `package.json` (specifically `packageJSON.scripts`)
+# Related file: `src/scripts/runCLI.ts`
 #
 # pre-push commands to run prior to any branches/commits being pushed up:
 # - `npm run build`              - Build the codebase to lib/ so that all configuration files are up-to-date.
