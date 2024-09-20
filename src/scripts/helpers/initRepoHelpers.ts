@@ -112,8 +112,8 @@ export const writePackageJson = async (
 	packageJson.description = "";
 
 	// Remove the "JSON code comment" entries and the scripts that aren't needed for the initialized repo.
-	delete packageJson.scripts["// .githooks/"];
-	delete packageJson.scripts["// .github/"];
+	delete packageJson.scripts["// githooks/*"];
+	delete packageJson.scripts["// github/*"];
 	delete packageJson.scripts["init-repo"];
 
 	packageJson.scripts = Object.entries(packageJson.scripts).reduce(

@@ -3,4 +3,4 @@
 #
 # commit-msg command to run prior to saving the commit message:
 # - `commitlint` - Verify that the commit message is written in the correct format.
-npm run .githooks/commit-msg
+npm run githooks/commit-msg

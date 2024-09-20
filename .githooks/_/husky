@@ -5,9 +5,9 @@
 # If the $HUSKY environment variable is set to 2 then make the shell
 # print the commands (and their arguments) as they're executed.
 [ "$HUSKY" = "2" ] && set -x
-# n = the name of the Git hook (ex: `commit-msg`)
+# n = the name of the Git hook (ex: `githook-name`)
 n=$(basename "$0")
-# s = the path of the Git hook script (ex: `.githooks/commit-msg`)
+# s = the path of the Git hook script (ex: `.githooks/githook-script`)
 s=$(dirname "$(dirname "$0")")/$n
 
 echo "🪝-ℹ️ Executing Git hook script: $s"
