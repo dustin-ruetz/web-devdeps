@@ -4,12 +4,14 @@ import {getIsDevDepsRepo} from "../utils/getIsDevDepsRepo.js";
 import {makeCachePath} from "../utils/makeCachePath.js";
 import {nodeModulesPackagePath} from "../constants.js";
 
+export type cli = "eslint" | "jest" | "prettier";
+
 /**
  * @description Executes the CLI program of an installed `devDependencies` package and determines the path to its configuration file.
  * @param cli - The CLI program to execute. Should be a package listed in the `devDependencies` of the `package.json` file.
  * @param args - The array of args (i.e. flags and their arguments) passed to the CLI program.
  */
-export const runCLI = (cli: "eslint" | "jest" | "prettier", args: string[]) => {
+export const runCLI = (cli: cli, args: string[]) => {
 	// Automatically add specific arguments to the command based on the CLI program that is being run.
 	// #region AUTO_ADDED_ARGS
 	const cacheFlag = "--cache";

@@ -1,6 +1,6 @@
 import {spawn} from "node:child_process";
 import {getAbsoluteRepoRootPathMock} from "../utils/getAbsoluteRepoRootPath.mock.js";
-import {runCLI} from "./runCLI.js";
+import {type cli, runCLI} from "./runCLI.js";
 
 jest.mock("node:child_process", () => ({
 	spawn: jest.fn(() => ({
@@ -25,11 +25,7 @@ describe("the CLI programs are spawned correctly with their expected `args` when
 		${"prettier"} | ${["--config", "./prettier.config.js"]} | ${["--cache", "--cache-location", "./.caches/.prettiercache", "--ignore-path", "./.gitignore"]}
 	`(
 		`$cli`,
-		(testRow: {
-			cli: "eslint" | "jest" | "prettier";
-			configArgs: string[];
-			autoAddedArgs: string[];
-		}) => {
+		(testRow: {cli: cli; configArgs: string[]; autoAddedArgs: string[]}) => {
 			const args = [...testRow.configArgs, ...testRow.autoAddedArgs];
 
 			runCLI(testRow.cli, args);
@@ -56,7 +52,7 @@ describe("the CLI programs automatically  passes the correct argument to the `--
 			${"eslint"}
 			${"jest"}
 			${"prettier"}
-		`(`$cli`, (testRow: {cli: "eslint" | "jest" | "prettier"}) => {
+		`(`$cli`, (testRow: {cli: cli}) => {
 			getAbsoluteRepoRootPathMock.mockReturnValue(
 				"/Users/username/repos/devdeps",
 			);
@@ -81,7 +77,7 @@ describe("the CLI programs automatically  passes the correct argument to the `--
 			${"eslint"}
 			${"jest"}
 			${"prettier"}
-		`(`$cli`, (testRow: {cli: "eslint" | "jest" | "prettier"}) => {
+		`(`$cli`, (testRow: {cli: cli}) => {
 			getAbsoluteRepoRootPathMock.mockReturnValue(
 				"/Users/username/repos/consuming-repo",
 			);
