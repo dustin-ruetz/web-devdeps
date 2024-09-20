@@ -12,11 +12,11 @@ afterAll(() => {
 	process.argv = initialProcessArgv;
 });
 
-describe("`initRepo` script", () => {
-	const processArgv = ["_execPath", "_filePath", "init-repo"] as const;
+const processArgv = ["_execPath", "_filePath"] as const;
 
+describe("`initRepo` script", () => {
 	beforeEach(() => {
-		process.argv = [...processArgv];
+		process.argv = [...processArgv, "init-repo"];
 	});
 
 	describe("logs the help text", () => {
@@ -98,8 +98,6 @@ describe("`initRepo` script", () => {
 });
 
 describe("throws an error", () => {
-	const processArgv = ["_execPath", "_filePath"] as const;
-
 	beforeEach(() => {
 		process.argv = [...processArgv];
 	});
