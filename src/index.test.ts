@@ -1,7 +1,9 @@
 import {initRepo, logInitRepoHelpText} from "./scripts/initRepo.js";
+import {runCLI} from "./scripts/runCLI.js";
 import {runScript} from "./index.js";
 
 jest.mock("./scripts/initRepo.js");
+jest.mock("./scripts/runCLI.js");
 
 afterEach(() => {
 	jest.clearAllMocks();
@@ -95,6 +97,29 @@ describe("`initRepo` script", () => {
 			]);
 		});
 	});
+});
+
+describe("`runCLI` script", () => {
+	beforeEach(() => {
+		process.argv = [...processArgv];
+	});
+
+	test.each`
+		script          | cli           | args
+		${"format"}     | ${"prettier"} | ${["--flag-name", "flag-arg"]}
+		${"lint/js-ts"} | ${"eslint"}   | ${["--flag-name", "flag-arg"]}
+		${"test/unit"}  | ${"jest"}     | ${["--flag-name", "flag-arg"]}
+	`(
+		`Executing "npm run $script" script results in a call of runCLI("$cli", $args)`,
+		async (testRow: {script: string; cli: string; args: string[]}) => {
+			process.argv.push(testRow.script, ...testRow.args);
+
+			await runScript();
+
+			expect(runCLI).toHaveBeenCalledTimes(1);
+			expect(runCLI).toHaveBeenCalledWith(testRow.cli, testRow.args);
+		},
+	);
 });
 
 describe("throws an error", () => {
