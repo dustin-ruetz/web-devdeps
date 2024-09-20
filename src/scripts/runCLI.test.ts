@@ -25,6 +25,7 @@ describe("the CLI programs are spawned correctly with their expected `args` when
 		${"jest"}        | ${["--config", "./jest.config.js"]}        | ${["--cache"]}
 		${"lint-staged"} | ${["--config", "./lint-staged.config.js"]} | ${["--relative"]}
 		${"prettier"}    | ${["--config", "./prettier.config.js"]}    | ${["--cache", "--cache-location", "./.caches/.prettiercache", "--ignore-path", "./.gitignore"]}
+		${"stylelint"}   | ${["--config", "./stylelint.config.js"]}   | ${["--cache", "--cache-location", "./.caches/.stylelintcache", "--ignore-path", "./.gitignore"]}
 	`(
 		`$cli`,
 		(testRow: {cli: cli; configArgs: string[]; autoAddedArgs: string[]}) => {
@@ -56,6 +57,7 @@ describe("the CLI programs automatically  passes the correct argument to the `--
 			${"jest"}
 			${"lint-staged"}
 			${"prettier"}
+			${"stylelint"}
 		`(`$cli`, (testRow: {cli: cli}) => {
 			getAbsoluteRepoRootPathMock.mockReturnValue(
 				"/Users/username/repos/devdeps",
@@ -83,6 +85,7 @@ describe("the CLI programs automatically  passes the correct argument to the `--
 			${"jest"}
 			${"lint-staged"}
 			${"prettier"}
+			${"stylelint"}
 		`(`$cli`, (testRow: {cli: cli}) => {
 			getAbsoluteRepoRootPathMock.mockReturnValue(
 				"/Users/username/repos/consuming-repo",

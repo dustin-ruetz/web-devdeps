@@ -4,7 +4,13 @@ import {getIsDevDepsRepo} from "../utils/getIsDevDepsRepo.js";
 import {makeCachePath} from "../utils/makeCachePath.js";
 import {nodeModulesPackagePath} from "../constants.js";
 
-export type cli = "commitlint" | "eslint" | "jest" | "lint-staged" | "prettier";
+export type cli =
+	| "commitlint"
+	| "eslint"
+	| "jest"
+	| "lint-staged"
+	| "prettier"
+	| "stylelint";
 
 /**
  * @description Executes the CLI program of an installed `devDependencies` package and determines the path to its configuration file.
@@ -12,11 +18,14 @@ export type cli = "commitlint" | "eslint" | "jest" | "lint-staged" | "prettier";
  * @param args - The array of args (i.e. flags and their arguments) passed to the CLI program.
  */
 export const runCLI = (cli: cli, args: string[]) => {
+	let cliEmoji = "";
+
 	// Automatically add specific arguments to the command based on the CLI program that is being run.
 	// #region AUTO_ADDED_ARGS
 	const cacheFlag = "--cache";
 	const cacheLocationFlag = "--cache-location";
-	let cliEmoji = "";
+	const ignorePathFlag = "--ignore-path";
+	const ignorePathArg = "./.gitignore";
 
 	switch (cli) {
 		// https://commitlint.js.org/reference/cli.html
@@ -55,8 +64,20 @@ export const runCLI = (cli: cli, args: string[]) => {
 				cacheFlag,
 				cacheLocationFlag,
 				cacheLocationArg,
-				"--ignore-path",
-				"./.gitignore",
+				ignorePathFlag,
+				ignorePathArg,
+			);
+			break;
+		}
+		case "stylelint": {
+			cliEmoji = "📐";
+			const cacheLocationArg = `./${makeCachePath(".stylelintcache")}`;
+			args.unshift(
+				cacheFlag,
+				cacheLocationFlag,
+				cacheLocationArg,
+				ignorePathFlag,
+				ignorePathArg,
 			);
 			break;
 		}

@@ -21,6 +21,7 @@ export const runScript = async () => {
 		githooksPreCommit: "githooks/pre-commit",
 		initRepo: "init-repo",
 		lintJsTs: "lint/js-ts",
+		lintStyles: "lint/styles",
 		testUnit: "test/unit",
 	} as const;
 
@@ -59,6 +60,10 @@ export const runScript = async () => {
 		}
 		case scripts.lintJsTs: {
 			runCLI("eslint", args);
+			return;
+		}
+		case scripts.lintStyles: {
+			runCLI("stylelint", args);
 			return;
 		}
 		case scripts.testUnit: {

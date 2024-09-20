@@ -110,6 +110,7 @@ describe("`runCLI` script", () => {
 		${"githooks/commit-msg"} | ${"commitlint"}  | ${["--flag-name", "flag-arg"]}
 		${"githooks/pre-commit"} | ${"lint-staged"} | ${["--flag-name", "flag-arg"]}
 		${"lint/js-ts"}          | ${"eslint"}      | ${["--flag-name", "flag-arg"]}
+		${"lint/styles"}         | ${"stylelint"}   | ${["--flag-name", "flag-arg"]}
 		${"test/unit"}           | ${"jest"}        | ${["--flag-name", "flag-arg"]}
 	`(
 		`Executing "npm run $script" script results in a call of runCLI("$cli", $args)`,
