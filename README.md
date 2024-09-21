@@ -19,7 +19,7 @@ Package that provides development dependencies and standardized configurations f
 Additional details:
 
 - The idea for this package was inspired by Kent C. Dodds' [kcd-scripts](https://github.com/kentcdodds/kcd-scripts) CLI toolbox, with a key difference being the preference for a fully-TypeScript codebase using modern ES Module syntax.
-- This project bootstraps and dogfoods its own configuration files by 1) using `tsc` to compile the `src/` directory's `*.ts` files to the `lib/` directory's `*.js` files, and 2) pointing all config paths to the compiled `lib/\*.js` files.
+- This project bootstraps and dogfoods its own configuration files by 1) using `tsc` to compile the `src/` directory's `*.ts` files to the `lib/` directory's `*.js` files, and 2) pointing all configuration paths to the compiled `lib/config/*.js` files.
 
 ## Usage and Development
 
