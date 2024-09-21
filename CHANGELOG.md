@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [1.13.0](https://github.com/dustin-ruetz/devdeps/compare/v1.12.0...v1.13.0) (2024-09-21)
+
+### Features
+
+* initial exports file ([9b0843c](https://github.com/dustin-ruetz/devdeps/commit/9b0843ce8aa9f21df51ab74fb4c95ebb7151540f))
+* **package.json:** initial 'dev/link' and 'dev/unlink' NPM helper scripts ([d20d86a](https://github.com/dustin-ruetz/devdeps/commit/d20d86a0c0161fcd6dfa1fdb9e4c63875372de97))
+
+### Bug Fixes
+
+* **package.json:** correct 'dev/unlink' NPM script ([ddbd5ad](https://github.com/dustin-ruetz/devdeps/commit/ddbd5ad7b2645e4b778f00ed5e61a8750c96fdf8))
+
 ## [1.12.0](https://github.com/dustin-ruetz/devdeps/compare/v1.11.0...v1.12.0) (2024-09-20)
 
 ### Features
