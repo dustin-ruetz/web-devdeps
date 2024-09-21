@@ -15,6 +15,8 @@
 		"clean/deps": "rimraf ./node_modules/ ./package-lock.json",
 		"clean/lib": "rimraf ./lib/",
 		"dev": "npm run build -- --watch",
+		"dev/link": "npm link",
+		"dev/unlink": "npm unlink",
 		"fix": "npm-run-all2 --parallel fix/*",
 		"fix/format": "npm run format -- --write ./",
 		"fix/lint/js-ts": "npm run lint/js-ts -- --fix ./",
