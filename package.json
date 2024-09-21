@@ -2,7 +2,7 @@
 	"name": "@dustin-ruetz/devdeps",
 	"version": "1.12.0",
 	"description": "Package that provides development dependencies and standardized configurations for other JavaScript/TypeScript projects (both web and Node.js) to consume.",
-	"main": "index.js",
+	"main": "./lib/exports.js",
 	"scripts": {
 		"prebuild": "npm run clean/lib",
 		"build": "tsc --project ./tsconfig.build.json",
