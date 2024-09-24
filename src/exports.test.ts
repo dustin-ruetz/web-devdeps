@@ -1,19 +1,11 @@
-import {
-	commitlintConfig,
-	eslintConfig,
-	jestConfig,
-	lintstagedConfig,
-	prettierConfig,
-	semanticReleaseConfig,
-	stylelintConfig,
-} from "./exports.js";
+import {exports} from "./exports.js";
 
 test("abc", () => {
-	expect(typeof commitlintConfig).toEqual("object");
-	expect(typeof eslintConfig).toEqual("object");
-	expect(typeof jestConfig).toEqual("object");
-	expect(typeof lintstagedConfig).toEqual("object");
-	expect(typeof prettierConfig).toEqual("object");
-	expect(typeof semanticReleaseConfig).toEqual("object");
-	expect(typeof stylelintConfig).toEqual("object");
+	expect(typeof exports.commitlintConfig).toEqual("object");
+	expect(typeof exports.eslintConfig).toEqual("object");
+	expect(typeof exports.jestConfig).toEqual("object");
+	expect(typeof exports.lintstagedConfig).toEqual("object");
+	expect(typeof exports.prettierConfig).toEqual("object");
+	expect(typeof exports.semanticReleaseConfig).toEqual("object");
+	expect(typeof exports.stylelintConfig).toEqual("object");
 });

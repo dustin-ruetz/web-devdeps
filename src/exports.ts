@@ -6,7 +6,11 @@ import prettierConfig from "./config/prettier.config.js";
 import semanticReleaseConfig from "./config/semantic-release.config.js";
 import stylelintConfig from "./config/stylelint.config.js";
 
-export {
+/**
+ * @description The module's primary export of configuration objects.
+ * @see [package.json](../package.json) (specifically the `packageJSON.main` field)
+ */
+export const exports = {
 	commitlintConfig,
 	eslintConfig,
 	jestConfig,
@@ -14,4 +18,4 @@ export {
 	prettierConfig,
 	semanticReleaseConfig,
 	stylelintConfig,
-};
+} as const;
