@@ -1,7 +1,7 @@
-# Related file: `package.json` (specifically `packageJSON.scripts`)
-# Related file: `src/scripts/runCLI.ts`
+# Related file: `package.json` (specifically the `packageJSON.scripts["githooks/pre-commit"]` field)
+# Related file: `src/scripts/runCLI.ts` (specifically the `lint-staged` CLI)
 #
-# pre-commit commands to run prior to any changes being committed:
-# - `npm run build` - Build the codebase to lib/ so that all configuration files are up-to-date.
+# pre-commit Git hook commands run prior to any changes being committed. Details:
+# - `npm run build` - Build the codebase to `lib/` so that all configuration files are up-to-date.
 # - `lint-staged`   - Run the validation checks scoped to just the staged files.
 npm run githooks/pre-commit

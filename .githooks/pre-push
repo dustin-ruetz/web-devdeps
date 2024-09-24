@@ -1,8 +1,7 @@
-# Related file: `package.json` (specifically `packageJSON.scripts`)
-# Related file: `src/scripts/runCLI.ts`
+# Related file: `package.json` (specifically the `packageJSON.scripts["githooks/pre-push"]` field)
 #
-# pre-push commands to run prior to any branches/commits being pushed up:
-# - `npm run build`              - Build the codebase to lib/ so that all configuration files are up-to-date.
+# pre-push Git hook commands run prior to any branches/commits being pushed up. Details:
+# - `npm run build`              - Build the codebase to `lib/` so that all configuration files are up-to-date.
 # - `npm run check`              - Run the validation checks on the entire codebase.
 # - `npm run test/unit/coverage` - Ensure unit tests pass and test coverage is valid.
 npm run githooks/pre-push
