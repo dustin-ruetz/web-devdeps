@@ -63,4 +63,5 @@ export const makeStylelintConfig = async (): Promise<Config> => {
 	};
 };
 
-export default makeStylelintConfig();
+const stylelintConfig = makeStylelintConfig();
+export default stylelintConfig;
