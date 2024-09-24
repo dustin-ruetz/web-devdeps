@@ -1,6 +1,9 @@
 import type {Options} from "semantic-release";
 
-/** https://semantic-release.gitbook.io/semantic-release/usage/configuration */
+/**
+ * @description "Fully automated version management and package publishing."
+ * @link https://semantic-release.gitbook.io/semantic-release/usage/configuration
+ */
 const semanticReleaseConfig: Options = {
 	plugins: [
 		"@semantic-release/commit-analyzer",

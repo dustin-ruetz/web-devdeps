@@ -4,7 +4,11 @@ import {initRepo, logInitRepoHelpText} from "./scripts/initRepo.js";
 import {runCLI} from "./scripts/runCLI.js";
 import {ValidationError} from "./utils/ValidationError.js";
 
-/** Function that serves as the entrypoint file for runnable Node.js CLI scripts from this `@dustin-ruetz/devdeps` package. */
+/**
+ *
+ * @description Function that serves as the entrypoint file for the runnable Node.js CLI scripts provided by `@dustin-ruetz/devdeps`.
+ * @see [package.json](../package.json) (specifically the `packageJSON.bin` field)
+ * */
 export const runScript = async () => {
 	const [
 		_execPath, // executor - the Node.js executable

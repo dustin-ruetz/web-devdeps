@@ -5,7 +5,10 @@ import {getIsDevDepsRepo} from "../utils/getIsDevDepsRepo.js";
 import {makeCachePath} from "../utils/makeCachePath.js";
 import {nodeModulesPackagePath} from "../constants.js";
 
-/** https://jestjs.io/docs/configuration */
+/**
+ * @description "Jest is a delightful JavaScript Testing Framework with a focus on simplicity."
+ * @link https://jestjs.io/docs/configuration
+ */
 export const makeJestConfig = async (): Promise<Config> => {
 	/** Set the test environment based on whether or not the repo has any frontend dependencies. */
 	const testEnvironment = (await dependsOn(["pug", "react"]))

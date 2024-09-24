@@ -3,7 +3,11 @@ import {dependsOn} from "../utils/dependsOn.js";
 import {pugPrettierPlugin} from "./prettier-plugins/pug.js";
 import {xmlPrettierPlugin} from "./prettier-plugins/xml.js";
 
-/** https://prettier.io/docs/en/options.html */
+/**
+ * @description "Prettier is an opinionated code formatter. It removes all original styling
+ *               and ensures that all outputted code conforms to a consistent style."
+ * @link https://prettier.io/docs/en/options.html
+ */
 export const makePrettierConfig = async (): Promise<Config> => {
 	const hasPugDependency = await dependsOn(["pug"]);
 

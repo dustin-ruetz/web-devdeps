@@ -1,6 +1,9 @@
 import type {UserConfig} from "@commitlint/types";
 
-/** https://commitlint.js.org/#/reference-configuration */
+/**
+ * @description "Lint commit messages so that they adhere to a commit convention."
+ * @link https://commitlint.js.org/reference/configuration.html
+ */
 const commitlintConfig: UserConfig = {
 	extends: ["@commitlint/config-conventional"],
 } as const;

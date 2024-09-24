@@ -1,7 +1,10 @@
 import type {Config} from "stylelint";
 import {dependsOn} from "../utils/dependsOn.js";
 
-/** https://stylelint.io/user-guide/configure */
+/**
+ * @description "A mighty CSS linter that helps you avoid errors and enforce conventions."
+ * @link https://stylelint.io/user-guide/configure
+ */
 export const makeStylelintConfig = async (): Promise<Config> => {
 	const hasSassDependency = await dependsOn(["sass"]);
 	const hasStyledComponentsDependency = await dependsOn(["styled-components"]);

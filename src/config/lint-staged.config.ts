@@ -1,6 +1,9 @@
 import type {Config} from "lint-staged";
 
-/** https://github.com/lint-staged/lint-staged */
+/**
+ * @description "Run linters on Git staged files."
+ * @link https://github.com/lint-staged/lint-staged
+ */
 const lintstagedConfig: Config = {
 	/**
 	 * Note: Run "format" and "lint/*" as their base scripts (i.e. _not_ "fix/format" and "fix/lint/*") because
