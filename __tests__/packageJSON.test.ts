@@ -3,6 +3,12 @@ import packageJSON from "../package.json";
 test("the most important configuration options are correct", () => {
 	expect(packageJSON.name).toEqual("@dustin-ruetz/devdeps");
 	expect(packageJSON.author).toEqual("Dustin Ruetz");
+	// Excerpt from https://docs.npmjs.com/cli/v6/configuring-npm/package-json#main:
+	// > The main field is a module ID that is the primary entry point to your program.
+	// > That is, if your package is named `foo`, and a user installs it, and then does
+	// > `require("foo")`, then your main module's exports object will be returned.
+	// > This should be a module ID relative to the root of your package folder.
+	expect(packageJSON.main).toEqual("./lib/exports.js");
 	// Excerpt from https://docs.npmjs.com/cli/v6/configuring-npm/package-json#bin:
 	// > A lot of packages have one or more executable files that they'd like to install into the PATH.
 	// > To use this, supply a `bin` field in your package.json which is a map of command name to local file name. On install,
