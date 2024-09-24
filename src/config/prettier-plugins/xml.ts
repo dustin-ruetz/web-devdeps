@@ -1,4 +1,7 @@
-/** https://github.com/prettier/plugin-xml */
+/**
+ * @description Prettier plugin for XML (and, by extension, SVG) files.
+ * @link https://github.com/prettier/plugin-xml
+ */
 export const xmlPrettierPlugin = {
 	config: {
 		// Excerpts from https://github.com/prettier/plugin-xml#configuration:

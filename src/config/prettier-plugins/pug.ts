@@ -1,4 +1,7 @@
-/** https://prettier.github.io/plugin-pug/guide/ */
+/**
+ * @description "Format your Pug code with Prettier."
+ * @link https://prettier.github.io/plugin-pug/guide/
+ */
 export const pugPrettierPlugin = {
 	config: {
 		// > Choose when to use commas to separate attributes in tags.

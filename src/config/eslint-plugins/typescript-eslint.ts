@@ -7,7 +7,7 @@ import typescripteslint from "typescript-eslint";
  */
 export const typescripteslintPlugin = typescripteslint.config(
 	// Excerpt from https://typescript-eslint.io/getting-started/#additional-configs:
-	// > `strict` - A superset of `recommended` that includes more opinionated rules which may also catch bugs.
+	// > `strict`    - A superset of `recommended` that includes more opinionated rules which may also catch bugs.
 	// > `stylistic` - Additional rules that enforce consistent styling without significantly catching bugs or changing logic.
 	...typescripteslint.configs.strictTypeChecked,
 	...typescripteslint.configs.stylisticTypeChecked,
@@ -23,13 +23,12 @@ export const typescripteslintPlugin = typescripteslint.config(
 				projectService: true,
 			},
 		},
+		// https://typescript-eslint.io/rules/#extension-rules
 		rules: {
-			// https://typescript-eslint.io/rules/#extension-rules
-
 			/**
 			 * @description Prefer the `type` keyword over `interface` because it displays the full type information
 			 *              in the IntelliSense hint when the mouse cursor is hovered over the type definition.
-			 * @todo Consider removing this rule from the config if this issues is addressed when TypeScript 5.6.0 is released.
+			 * @todo Consider removing this rule from the config if this issue is addressed in a future TypeScript release.
 			 * @link https://github.com/microsoft/TypeScript/issues/38040
 			 * @link https://github.com/microsoft/TypeScript/issues/59029
 			 * @link https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces
