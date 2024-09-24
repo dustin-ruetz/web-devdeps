@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.13.1](https://github.com/dustin-ruetz/devdeps/compare/v1.13.0...v1.13.1) (2024-09-24)
+
+### Bug Fixes
+
+* **dependencies:** update packages to latest versions ([c15269a](https://github.com/dustin-ruetz/devdeps/commit/c15269a6c0fef475074be985501794217ed8beb5))
+
 ## [1.13.0](https://github.com/dustin-ruetz/devdeps/compare/v1.12.0...v1.13.0) (2024-09-21)
 
 ### Features
