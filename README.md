@@ -9,7 +9,7 @@ Package that provides development dependencies and standardized configurations f
 - Building and typechecking using [`typescript`](https://www.typescriptlang.org).
 - Cleaning using [`rimraf`](https://github.com/isaacs/rimraf).
 - Formatting using [`prettier`](https://prettier.io).
-- Linting using [`eslint`](https://eslint.org) for JavaScript and TypeScript.
+- Linting using [`eslint`](https://eslint.org) (and its [`typescript-eslint`](https://typescript-eslint.io) plugin) for JavaScript and TypeScript.
 - Linting using [`stylelint`](https://stylelint.io) for CSS/SCSS/JSX/TSX (the latter two file types being relevant for "CSS-in-JS" solutions like `styled-components`).
 - Releasing using [`semantic-release`](https://semantic-release.gitbook.io/semantic-release).
 - Testing using [`jest`](https://jestjs.io) for unit and integration tests.
