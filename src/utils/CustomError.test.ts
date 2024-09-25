@@ -16,7 +16,7 @@ describe("CustomError throws errors", () => {
 		}).toThrow(/ERR_INVALID_ERROR_CODE/);
 	});
 
-	test("when the error code is not solely comprised of UPPERCASE characters", () => {
+	test("when the error code contains lowercase characters", () => {
 		expect(() => {
 			const customError = () =>
 				new CustomError(errorMessage, {

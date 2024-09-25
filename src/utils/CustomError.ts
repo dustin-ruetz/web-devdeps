@@ -40,7 +40,7 @@ export class CustomError extends Error {
 		}
 		if (options.cause.code !== options.cause.code.toUpperCase()) {
 			throw new Error(
-				`${invalidErrorCode} - \`options.cause.code\` must be solely comprised of UPPERCASE characters.`,
+				`${invalidErrorCode} - \`options.cause.code\` must not contain lowercase characters.`,
 				{
 					cause: {
 						code: invalidErrorCode,
