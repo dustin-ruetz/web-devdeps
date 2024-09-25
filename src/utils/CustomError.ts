@@ -4,7 +4,7 @@
  * @param message - (required) The human-readable description of the error.
  * @param options.cause.code - (required) The machine-parsable cause of the error (ex: `ERR_CODE`).
  * @param options.cause.values - (optional) An object of any relevant value(s) that caused the error.
- * @param options.name - (required) Represents the name for the type of error.
+ * @param options.name - (required) Represents the name for the type of error (ex: `CustomError`).
  *
  * @returns A new `CustomError` instance.
  */
@@ -19,6 +19,55 @@ export class CustomError extends Error {
 			name: "InvalidInputError" | "PathMismatchError";
 		},
 	) {
+		// Error codes and names should follow a consistent pattern, so throw early in-error errors
+		// (meta-errors? 😅) if certain `options` strings are passed with invalid values.
+		const invalidErrorCode = "ERR_INVALID_ERROR_CODE";
+
+		if (!options.cause.code.startsWith("ERR_")) {
+			throw new Error(
+				`${invalidErrorCode} - \`options.cause.code\` must start with the "ERR_" substring.`,
+				{
+					cause: {
+						code: invalidErrorCode,
+						values: {
+							cause: {
+								code: options.cause.code,
+							},
+						},
+					},
+				},
+			);
+		}
+		if (options.cause.code !== options.cause.code.toUpperCase()) {
+			throw new Error(
+				`${invalidErrorCode} - \`options.cause.code\` must be solely comprised of UPPERCASE characters.`,
+				{
+					cause: {
+						code: invalidErrorCode,
+						values: {
+							cause: {
+								code: options.cause.code,
+							},
+						},
+					},
+				},
+			);
+		}
+		if (!options.name.endsWith("Error")) {
+			const errorCode = "ERR_INVALID_ERROR_NAME";
+			throw new Error(
+				`${errorCode} - \`options.name\` must end with the "Error" substring.`,
+				{
+					cause: {
+						code: errorCode,
+						values: {
+							name: options.name,
+						},
+					},
+				},
+			);
+		}
+
 		// Combine the error's code and message so that all of the most useful information (including the stack trace) is thrown.
 		super(`${options.cause.code} - ${message}`);
 		// Excerpt from https://github.com/microsoft/TypeScript-wiki/blob/main/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work:
