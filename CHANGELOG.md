@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [1.14.0](https://github.com/dustin-ruetz/devdeps/compare/v1.13.1...v1.14.0) (2024-09-25)
+
+### Features
+
+* **config/eslint.config:** conditionally include 'globals.browser' and 'typescript-eslint' configurations ([5ac6768](https://github.com/dustin-ruetz/devdeps/commit/5ac67687fa13c7e7a891cd76f1cc1cb6f6a781c9))
+
+### Bug Fixes
+
+* **dependencies:** update packages to latest versions ([56d1497](https://github.com/dustin-ruetz/devdeps/commit/56d1497388485a20d9ae8fa90d934d2bea6a5a73))
+
 ## [1.13.1](https://github.com/dustin-ruetz/devdeps/compare/v1.13.0...v1.13.1) (2024-09-24)
 
 ### Bug Fixes
