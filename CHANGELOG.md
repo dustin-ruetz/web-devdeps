@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [1.15.0](https://github.com/dustin-ruetz/devdeps/compare/v1.14.0...v1.15.0) (2024-09-25)
+
+### Features
+
+* change 'ValidationError' to 'CustomError' and make it more flexible/generic ([05f9613](https://github.com/dustin-ruetz/devdeps/commit/05f9613bdb7965689bd2cab57b6d6e08f539df8e))
+* **utils/CustomError:** throw errors if 'code' or 'name' strings are invalid ([dae5701](https://github.com/dustin-ruetz/devdeps/commit/dae57013a8fe023c4e8d6c08d790dd130caedd6a))
+
+### Bug Fixes
+
+* **utils/CustomError:** clarify error message when error 'code' contains lowercase characters ([9a9907e](https://github.com/dustin-ruetz/devdeps/commit/9a9907e82a2ecff75c5327d6e9df29c8246e3f97))
+* **utils/CustomError:** work around erronerous 'uncovered line [#s](https://github.com/dustin-ruetz/devdeps/issues/s)' test coverage error ([84e9231](https://github.com/dustin-ruetz/devdeps/commit/84e9231e02542a29a7f9466e57d284e2daa86d7a))
+
 ## [1.14.0](https://github.com/dustin-ruetz/devdeps/compare/v1.13.1...v1.14.0) (2024-09-25)
 
 ### Features

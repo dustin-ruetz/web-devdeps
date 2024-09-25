@@ -1,6 +1,6 @@
 {
 	"name": "@dustin-ruetz/devdeps",
-	"version": "1.14.0",
+	"version": "1.15.0",
 	"description": "Package that provides development dependencies and standardized configurations for other JavaScript/TypeScript projects (both web and Node.js) to consume.",
 	"main": "./lib/exports.js",
 	"scripts": {
