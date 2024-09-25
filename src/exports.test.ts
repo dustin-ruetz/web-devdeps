@@ -1,6 +1,6 @@
 import {exports} from "./exports.js";
 
-test("abc", () => {
+test("the configuration objects are all available on the module's primary `exports` object", () => {
 	expect(typeof exports.commitlintConfig).toEqual("object");
 	expect(typeof exports.eslintConfig).toEqual("object");
 	expect(typeof exports.jestConfig).toEqual("object");
