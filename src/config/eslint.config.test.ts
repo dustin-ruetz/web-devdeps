@@ -1,63 +1,137 @@
+import type {TSESLint} from "@typescript-eslint/utils";
 import globals from "globals";
-import eslintConfig from "./eslint.config.js";
+import {access} from "node:fs/promises";
+import {dependsOnMock} from "../utils/dependsOn.mock.js";
+import {makeESLintConfig} from "./eslint.config.js";
 
-test("it exports a configuration array and the most important config options are correct", () => {
-	expect(Array.isArray(eslintConfig)).toBe(true);
+jest.mock("node:fs/promises");
+// Paraphrased excerpt from https://www.mikeborozdin.com/post/changing-jest-mocks-between-tests:
+// > Typecast the imported mocked module into a mocked function with writeable properties.
+const accessMock = access as jest.MockedFunction<typeof access>;
 
-	// Verify that the contents of the `.gitignore` file are successfully read and included as patterns.
-	const importedGitignorePatterns = eslintConfig.find(
-		(configObj) => configObj.name === "Imported .gitignore patterns",
-	);
-	expect(importedGitignorePatterns?.ignores).toEqual(
-		expect.arrayContaining(["**/lib/", "**/node_modules/"]),
-	);
+afterEach(() => {
+	jest.clearAllMocks();
+});
 
-	// Verify that one of the recommended rules is included in the configuration.
-	const recommendedConfig = eslintConfig.find(
-		(configObj) => configObj.name === "eslintjs/recommended",
-	);
-	expect(recommendedConfig?.rules?.["no-const-assign"]).toEqual("error");
+const findConfigObjectByName = (
+	eslintConfig: TSESLint.FlatConfig.ConfigArray,
+	name: string,
+) => eslintConfig.find((configObj) => configObj.name === name);
 
-	// Verify that the user-defined configuration is correct.
-	const userDefinedConfig = eslintConfig.find(
-		(configObj) => configObj.name === "eslintjs/user-defined-config",
-	);
-	expect(userDefinedConfig?.languageOptions).toStrictEqual({
-		globals: {
-			...globals.browser,
-			...globals.jest,
-			...globals.node,
-		},
+describe("it exports a configuration array and the most important config options are correct", () => {
+	test("for the parts of the config that *are not* affected by conditional logic", async () => {
+		const eslintConfig = await makeESLintConfig();
+
+		expect(Array.isArray(eslintConfig)).toBe(true);
+
+		// Verify that the contents of the `.gitignore` file are successfully read and included as patterns.
+		const importedGitignorePatterns = findConfigObjectByName(
+			eslintConfig,
+			"Imported .gitignore patterns",
+		);
+		expect(importedGitignorePatterns?.ignores).toEqual(
+			expect.arrayContaining(["**/lib/", "**/node_modules/"]),
+		);
+
+		// Verify that one of the recommended rules is included in the configuration.
+		const recommendedConfig = findConfigObjectByName(
+			eslintConfig,
+			"eslintjs/recommended",
+		);
+		expect(recommendedConfig?.rules?.["no-const-assign"]).toEqual("error");
+
+		// Verify that the user-defined configuration is correct.
+		const userDefinedConfig = findConfigObjectByName(
+			eslintConfig,
+			"eslintjs/user-defined-config",
+		);
+		expect(userDefinedConfig?.languageOptions).toStrictEqual({
+			globals: {
+				...globals.jest,
+				...globals.node,
+			},
+		});
+		expect(userDefinedConfig?.linterOptions).toStrictEqual({
+			reportUnusedDisableDirectives: "error",
+		});
+		expect(userDefinedConfig?.rules?.["camelcase"]).toEqual("error");
+		expect(userDefinedConfig?.rules?.["no-console"]).toEqual("warn");
+		expect(userDefinedConfig?.rules?.["no-magic-numbers"]).toStrictEqual([
+			"error",
+			{
+				enforceConst: true,
+				ignore: [-1, 0, 1],
+				ignoreArrayIndexes: true,
+			},
+		]);
+		expect(userDefinedConfig?.rules?.["no-var"]).toEqual("error");
+
+		// Verify that the user-defined overrides for test files are correct.
+		const userDefinedTestOverrides = findConfigObjectByName(
+			eslintConfig,
+			"eslintjs/user-defined-test-overrides",
+		);
+		expect(userDefinedTestOverrides?.files).toStrictEqual([
+			"**/*.test.+(js|jsx|ts|tsx)",
+		]);
+		expect(userDefinedTestOverrides?.rules).toStrictEqual({
+			"no-magic-numbers": "off",
+		});
 	});
-	expect(userDefinedConfig?.linterOptions).toStrictEqual({
-		reportUnusedDisableDirectives: "error",
+
+	test("when linting this devdeps repo (which *does not* have frontend dependencies and *does* depend on TypeScript)", async () => {
+		const eslintConfig = await makeESLintConfig();
+
+		const userDefinedConfig = findConfigObjectByName(
+			eslintConfig,
+			"eslintjs/user-defined-config",
+		);
+		// Verify that the browser-provided globals *are not* included.
+		expect(userDefinedConfig?.languageOptions?.globals).toEqual(
+			expect.not.objectContaining(globals.browser),
+		);
+
+		// Verify that the `typescript-eslint` user-defined config *is* included.
+		const typescripteslintUserDefinedConfig = findConfigObjectByName(
+			eslintConfig,
+			"typescript-eslint/user-defined-config",
+		);
+		expect(typeof typescripteslintUserDefinedConfig?.rules).toEqual("object");
+		expect(eslintConfig).toContain(typescripteslintUserDefinedConfig);
 	});
-	expect(userDefinedConfig?.rules?.["camelcase"]).toEqual("error");
-	expect(userDefinedConfig?.rules?.["no-console"]).toEqual("warn");
-	expect(userDefinedConfig?.rules?.["no-magic-numbers"]).toStrictEqual([
-		"error",
-		{
-			enforceConst: true,
-			ignore: [-1, 0, 1],
-			ignoreArrayIndexes: true,
-		},
-	]);
-	expect(userDefinedConfig?.rules?.["no-var"]).toEqual("error");
 
-	// Verify that the typescript-eslint user-defined config is included in the configuration.
-	const typescripteslintUserDefinedConfig = eslintConfig.find(
-		(configObj) => configObj.name === "typescript-eslint/user-defined-config",
-	);
-	expect(typeof typescripteslintUserDefinedConfig?.rules).toEqual("object");
+	describe("when linting a repo that has installed the devdeps package", () => {
+		test("which *does* have frontend dependencies", async () => {
+			const hasFrontendDependencies = true;
+			dependsOnMock.mockResolvedValue(hasFrontendDependencies);
 
-	// Verify that the user-defined overrides for test files are correct.
-	const userDefinedTestOverrides = eslintConfig.find(
-		(configObj) => configObj.name === "eslintjs/user-defined-test-overrides",
-	);
-	expect(userDefinedTestOverrides?.files).toStrictEqual([
-		"**/*.test.+(js|jsx|ts|tsx)",
-	]);
-	expect(userDefinedTestOverrides?.rules).toStrictEqual({
-		"no-magic-numbers": "off",
+			const eslintConfig = await makeESLintConfig();
+
+			const userDefinedConfig = findConfigObjectByName(
+				eslintConfig,
+				"eslintjs/user-defined-config",
+			);
+			// Verify that the browser-provided globals *are* included.
+			expect(userDefinedConfig?.languageOptions?.globals).toEqual(
+				expect.objectContaining(globals.browser),
+			);
+		});
+
+		test("which *does not* have a `tsconfig.json` file", async () => {
+			accessMock.mockRejectedValue(
+				new Error(
+					"ENOENT: no such file or directory, access '/Users/username/repos/consuming-repo/tsconfig.json'",
+				),
+			);
+
+			const eslintConfig = await makeESLintConfig();
+
+			const typescripteslintUserDefinedConfigIndex = eslintConfig.findIndex(
+				(configObj) =>
+					configObj.name === "typescript-eslint/user-defined-config",
+			);
+			// Verify that the `typescript-eslint` user-defined config *is not* included.
+			expect(typescripteslintUserDefinedConfigIndex).toEqual(-1);
+		});
 	});
 });
