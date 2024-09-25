@@ -6,7 +6,7 @@
 //    ```
 
 import {readFile} from "node:fs/promises";
-import {ValidationError} from "../utils/ValidationError.js";
+import {CustomError} from "../utils/CustomError.js";
 import {packageScopeAndName} from "../constants.js";
 import {getRootPaths} from "./helpers/getRootPaths.js";
 import {
@@ -118,13 +118,14 @@ export const logInitRepoHelpText = async () => {
 export const initRepo = async (repoName: string, args?: string[]) => {
 	if (!repoName || repoName.length < 1) {
 		logErrorIntro();
-		throw new ValidationError(
+		throw new CustomError(
 			"Argument for the required `repoName` parameter must be a string with a length >= 1.",
 			{
 				cause: {
 					code: "ERR_INVALID_REPONAME",
 					values: {repoName},
 				},
+				name: "InvalidInputError",
 			},
 		);
 	}
@@ -144,11 +145,12 @@ export const initRepo = async (repoName: string, args?: string[]) => {
 	args?.forEach((arg) => {
 		const [flag] = arg.split("=") as typeof optionalFlags;
 		if (flag && !optionalFlags.includes(flag)) {
-			throw new ValidationError(`Invalid flag passed: ${flag}`, {
+			throw new CustomError(`Invalid flag passed: ${flag}`, {
 				cause: {
 					code: "ERR_INVALID_FLAG_PASSED",
 					values: {flags: args, invalidFlag: flag},
 				},
+				name: "InvalidInputError",
 			});
 		}
 	});
@@ -163,13 +165,14 @@ export const initRepo = async (repoName: string, args?: string[]) => {
 			arg === initRepoArgs.configureStylelint.shortFlag,
 	);
 	if (configureStylelintFlag && configureStylelintFlag.length > 1) {
-		throw new ValidationError(
+		throw new CustomError(
 			"Multiple `configureStylelint` flags received; only one may be passed.",
 			{
 				cause: {
 					code: "ERR_OPTIONAL_FLAG_PASSED_MULTIPLE_TIMES",
 					values: {configureStylelintFlag},
 				},
+				name: "InvalidInputError",
 			},
 		);
 	}
@@ -187,13 +190,14 @@ export const initRepo = async (repoName: string, args?: string[]) => {
 		);
 	});
 	if (nodeVersionFlagAndArg && nodeVersionFlagAndArg.length > 1) {
-		throw new ValidationError(
+		throw new CustomError(
 			"Multiple `nodeVersion` flags received; only one may be passed.",
 			{
 				cause: {
 					code: "ERR_OPTIONAL_FLAG_PASSED_MULTIPLE_TIMES",
 					values: {nodeVersionFlagAndArg},
 				},
+				name: "InvalidInputError",
 			},
 		);
 	}
@@ -204,7 +208,7 @@ export const initRepo = async (repoName: string, args?: string[]) => {
 		const isValidSemanticVersion = semVerRegExp(version).isMatch;
 		if (!isValidSemanticVersion) {
 			logErrorIntro();
-			throw new ValidationError(
+			throw new CustomError(
 				"Argument for the optional" +
 					` \`${initRepoArgs.nodeVersion.longFlag}\`/\`${initRepoArgs.nodeVersion.shortFlag}\` ` +
 					"flag must be a valid semantic version number.",
@@ -213,6 +217,7 @@ export const initRepo = async (repoName: string, args?: string[]) => {
 						code: "ERR_INVALID_NODEVERSION",
 						values: {flag, version},
 					},
+					name: "InvalidInputError",
 				},
 			);
 		}

@@ -1,5 +1,14 @@
-/** Custom class that 1) requires an error `message` and `code`, and 2) supports an optional `values` object. */
-export class ValidationError extends Error {
+/**
+ * @description A custom error class that extends the base `Error` object.
+ *
+ * @param message - (required) The human-readable description of the error.
+ * @param options.cause.code - (required) The machine-parsable cause of the error (ex: `ERR_CODE`).
+ * @param options.cause.values - (optional) An object of any relevant value(s) that caused the error.
+ * @param options.name - (required) Represents the name for the type of error.
+ *
+ * @returns A new `CustomError` instance.
+ */
+export class CustomError extends Error {
 	constructor(
 		message: string,
 		options: {
@@ -7,6 +16,7 @@ export class ValidationError extends Error {
 				code: string;
 				values?: Record<string, unknown>;
 			};
+			name: "InvalidInputError" | "PathMismatchError";
 		},
 	) {
 		// Combine the error's code and message so that all of the most useful information (including the stack trace) is thrown.
@@ -24,7 +34,7 @@ export class ValidationError extends Error {
 		// > limitation by default.
 		// >
 		// > As a recommendation, you can manually adjust the prototype immediately after any `super(...)` calls.
-		Object.setPrototypeOf(this, ValidationError.prototype);
+		Object.setPrototypeOf(this, CustomError.prototype);
 
 		// Note 1: The practice of throwing errors with both a human-readable `message` and a machine-readable `cause` object is taken directly from MDN.
 		// Excerpt from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause#providing_structured_data_as_the_error_cause:
@@ -37,7 +47,7 @@ export class ValidationError extends Error {
 		// `options` and `options.cause` are optional properties, so set `this.cause` to ensure that they're included on the thrown Error.
 		this.cause = options.cause;
 		// Set `this.name` to ensure that the error name is set correctly; not setting it here will result
-		// in `error.name` being set to the generic `Error` instead of the specific `ValidationError`.
-		this.name = this.constructor.name;
+		// in `error.name` being set to the generic `CustomError` instead of the specific `options.name`.
+		this.name = options.name;
 	}
 }

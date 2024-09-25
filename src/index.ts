@@ -2,7 +2,7 @@
 
 import {initRepo, logInitRepoHelpText} from "./scripts/initRepo.js";
 import {runCLI} from "./scripts/runCLI.js";
-import {ValidationError} from "./utils/ValidationError.js";
+import {CustomError} from "./utils/CustomError.js";
 
 /**
  *
@@ -75,13 +75,14 @@ export const runScript = async () => {
 			return;
 		}
 		default: {
-			throw new ValidationError(
+			throw new CustomError(
 				`Unknown script. Known scripts are: [${Object.values(scripts).join(", ")}]`,
 				{
 					cause: {
 						code: "ERR_UNKNOWN_SCRIPT",
 						values: {script},
 					},
+					name: "InvalidInputError",
 				},
 			);
 		}

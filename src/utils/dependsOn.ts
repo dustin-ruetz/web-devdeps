@@ -1,7 +1,7 @@
 import {readFile} from "node:fs/promises";
 import type {PackageJsonTypes} from "../types.d.js";
 import {getAbsoluteRepoRootPath} from "./getAbsoluteRepoRootPath.js";
-import {ValidationError} from "./ValidationError.js";
+import {CustomError} from "./CustomError.js";
 
 /**
  * @description Given a list of dependencies, check the repository's `package.json` file
@@ -18,25 +18,27 @@ export const dependsOn = async (deps: string[]) => {
 	// It's possible to use this function directly from the compiled lib/ .js file,
 	// so start with validation checks and throw errors early if needed.
 	if (!Array.isArray(deps) || deps.length < 1) {
-		throw new ValidationError(
+		throw new CustomError(
 			"Argument for the `deps` parameter must be an array of strings with a length >= 1.",
 			{
 				cause: {
 					code: "ERR_INVALID_DEPS_ARRAY",
 					values: {deps, "typeof deps": typeof deps},
 				},
+				name: "InvalidInputError",
 			},
 		);
 	}
 	deps.forEach((dep) => {
 		if (dep === "" || typeof dep !== "string") {
-			throw new ValidationError(
+			throw new CustomError(
 				"All values in the `deps` array argument must be non-empty strings.",
 				{
 					cause: {
 						code: "ERR_TYPEOF_DEP_NOT_STRING",
 						values: {deps, dep, "typeof dep": typeof dep},
 					},
+					name: "InvalidInputError",
 				},
 			);
 		}

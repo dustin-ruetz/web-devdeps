@@ -1,6 +1,6 @@
 import {fileURLToPath} from "node:url";
 import {nodeModulesPackagePath} from "../constants.js";
-import {ValidationError} from "./ValidationError.js";
+import {CustomError} from "./CustomError.js";
 
 /**
  * The purpose of this function is to provide a more robust alternative to `process.cwd()`. As per
@@ -33,17 +33,18 @@ export const getAbsoluteRepoRootPath = () => {
 	 * @todo Figure out why the following conditional logic (which _is_ in fact covered in the unit test)
 	 *       erroneously and flakily reports "Uncovered Line #s" errors in the test coverage report.
 	 */
-	/* v8 ignore next 13 */
+	/* v8 ignore next 14 */
 	// This function depends on its path being known (i.e. the folder being `/utils/` and the
 	// filename being `getRepoMetadata`), so throw an early error if these don't align.
 	if (!absolutePath.includes(partialPath)) {
-		throw new ValidationError(
+		throw new CustomError(
 			"`partialPath` string is not present within `absolutePath` string.",
 			{
 				cause: {
 					code: "ERR_PATH_MISMATCH",
 					values: {absolutePath, partialPath},
 				},
+				name: "PathMismatchError",
 			},
 		);
 	}
