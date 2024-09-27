@@ -7,15 +7,18 @@ import {CustomError} from "./CustomError.js";
  * the Node.js documentation on https://nodejs.org/docs/latest-v20.x/api/process.html#processcwd:
  * > The `process.cwd()` method returns the current working directory of the Node.js process.
  *
- * The problem with relying on `process.cwd()` is that it's dependent on the directory where the Node.js process was started from;
- * if it's run from anywhere but the root of the repository then it will not return the desired path.
+ * The problem with relying on `process.cwd()` is that it's dependent on the directory where the Node.js process was
+ * started from; if it's run from anywhere but the root of the repository then it will not return the desired path.
  *
- * This function uses the known location of this `utils/absoluteRepoRootPath` file within the repo's structure and uses it as an anchor point
- * to determine the absolute root path of the repo where it's being called from. It's intended to return the absolute path of either:
+ * This function uses the known location of this `utils/absoluteRepoRootPath` file within the repo's structure and
+ * uses it as an anchor point to determine the absolute root path of the repo where it's being called from.
+ * It's intended to return the absolute path of either:
  * 1. The consuming repository where the `devdeps` package is installed as a dependency; or
  * 2. This `devdeps` repo itself.
  *
  * **Important:** Note that the `absoluteRepoRootPath` path is intentionally returned _without_ a trailing slash.
+ * @returns The absolute root path of the repo where this specific file is being accessed from.
+ * @throws An error in the unexpected event of a path mismatch.
  */
 export const getAbsoluteRepoRootPath = () => {
 	/**

@@ -7,7 +7,6 @@ jest.mock("./getAbsoluteRepoRootPath.js", () => ({
 
 /**
  * @description Reusable mock for the `getAbsoluteRepoRootPath` utility function.
- *
  * @example
  * ```js
  * getAbsoluteRepoRootPathMock.mockReturnValue("/Users/username/repos/repo-name")

@@ -15,7 +15,7 @@ export type cli =
 /**
  * @description Executes the CLI program of an installed `devDependencies` package and determines the path to its configuration file.
  * @param cli - The CLI program to execute. Should be a package listed in the `devDependencies` of the `package.json` file.
- * @param args - The array of args (i.e. flags and their arguments) passed to the CLI program.
+ * @param args - The array of `args` (i.e. flags and their arguments) passed to the CLI program.
  */
 export const runCLI = (cli: cli, args: string[]) => {
 	let cliEmoji = "";
@@ -87,11 +87,9 @@ export const runCLI = (cli: cli, args: string[]) => {
 	// #region CONFIG_ARGS
 	const configFlag = "--config";
 	const configFlagIndex = args.findIndex(
-		/**
-		 * Ideally the below function would also check for the presence of the short-form `-c` flag as well,
-		 * but unfortunately the `commitlint` CLI uses `-c` as its short syntax for the `--color` flag.
-		 * @link https://commitlint.js.org/reference/cli.html#cli
-		 */
+		// - Ideally the below function would also check for the presence of the short-form `-c` flag as well,
+		//   but unfortunately the `commitlint` CLI uses `-c` as its short syntax for the `--color` flag.
+		// - https://commitlint.js.org/reference/cli.html#cli
 		(arg) => arg === configFlag,
 	);
 	const configArg = args[configFlagIndex + 1];

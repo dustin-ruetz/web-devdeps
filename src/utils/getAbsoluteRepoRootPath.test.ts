@@ -19,22 +19,22 @@ const absolutePaths = {
 	relativeFilePath: "utils/getAbsoluteRepoRootPath",
 	// Combine the static partials in the return values of the methods.
 	/**
-	 * - Simulates path of devdeps being installed as a dependency running from a `node_modules/` folder.
-	 * - Rationale: Test the value of `getAbsoluteRepoRootPath()` when used by a repository that depends on the `devdeps` package.
+	 * @description Test the value of `getAbsoluteRepoRootPath()` when used by a repository that depends on the `devdeps` package.
+	 * @returns Simulated path of devdeps being installed as a dependency running from a `node_modules/` folder.
 	 */
 	asDependency() {
 		return `${this.base}/consuming-repo/node_modules/${this.scope}/${this.name}/lib/${this.relativeFilePath}.js`;
 	},
 	/**
-	 * - Simulates path of this devdeps repo running a compiled `.js` file.
-	 * - Rationale: Test the value of `getAbsoluteRepoRootPath()` when used in a `lib/*.js` file.
+	 * @description Test the value of `getAbsoluteRepoRootPath()` when used in a `lib/*.js` file.
+	 * @returns Simulated path of this devdeps repo running a compiled `.js` file.
 	 */
 	asLibraryJavaScriptFile() {
 		return `${this.base}/${this.name}/lib/${this.relativeFilePath}.js`;
 	},
 	/**
-	 * - Simulates path of this devdeps repo running a source `.ts` file.
-	 * - Rationale: Test the value of `getAbsoluteRepoRootPath()` during a test run in a `src/*.ts` test file.
+	 * @description Test the value of `getAbsoluteRepoRootPath()` during a test run in a `src/*.ts` test file.
+	 * @returns Simulated path of this devdeps repo running a source `.ts` file.
 	 */
 	asSourceTypeScriptFile() {
 		return `${this.base}/${this.name}/src/${this.relativeFilePath}.ts`;

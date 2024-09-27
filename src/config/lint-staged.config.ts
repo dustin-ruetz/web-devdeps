@@ -2,7 +2,7 @@ import type {Config} from "lint-staged";
 
 /**
  * @description "Run linters on Git staged files."
- * @link https://github.com/lint-staged/lint-staged
+ * @see {@link https://github.com/lint-staged/lint-staged}
  */
 const lintstagedConfig: Config = {
 	/**
@@ -19,9 +19,8 @@ const lintstagedConfig: Config = {
 		 * The "check/types" script runs the TypeScript compiler (`tsc`), but `tsc` ignores the `tsconfig.json` file
 		 * due to the file paths that are appended to the command by `lint-staged`. Work around this limitation by
 		 * typechecking the entire codebase, i.e. not just the relative paths of the staged files.
-		 *
-		 * @link https://github.com/lint-staged/lint-staged/issues/825
-		 * @link https://github.com/microsoft/TypeScript/issues/27379
+		 * @see {@link https://github.com/lint-staged/lint-staged/issues/825}
+		 * @see {@link https://github.com/microsoft/TypeScript/issues/27379}
 		 */
 		const typecheckCommand = "npm run check/types";
 

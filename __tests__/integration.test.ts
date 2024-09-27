@@ -9,7 +9,12 @@ test("INTEGRATION: the NPM package name matches the exported package scope and n
 });
 
 test("INTEGRATION: the original `src/` files are mapped one-to-one with the compiled `lib/` files", async () => {
-	/** Normalizes the contents of a directory by reading it, filtering out items as needed, sorting it, and removing the file extensions. */
+	/**
+	 * @description Normalizes the contents of a directory by reading it, filtering out
+	 *              items as needed, sorting it, and removing the file extensions.
+	 * @param directory - The directory of files to read.
+	 * @returns Normalized array of strings representing the directory's files.
+	 */
 	const getDirectoryFiles = async (directory: string) => {
 		/** Contents of passed `directory` (includes its subdirectory folders/files due to the `recursive: true` option). */
 		const directoryContents = await readdir(directory, {

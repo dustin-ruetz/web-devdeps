@@ -3,7 +3,8 @@ import typescripteslint from "typescript-eslint";
 /**
  * @description "**`typescript-eslint` enables ESLint to run on TypeScript code.** It brings in the best of
  *              both tools to help you write the best JavaScript or TypeScript code you possibly can."
- * @link https://typescript-eslint.io/getting-started/
+ * @returns Configuration for the TypeScript ESLint plugin.
+ * @see {@link https://typescript-eslint.io/getting-started/}
  */
 export const typescripteslintPlugin = typescripteslint.config(
 	// Excerpt from https://typescript-eslint.io/getting-started/#additional-configs:
@@ -28,10 +29,10 @@ export const typescripteslintPlugin = typescripteslint.config(
 			/**
 			 * @description Prefer the `type` keyword over `interface` because it displays the full type information
 			 *              in the IntelliSense hint when the mouse cursor is hovered over the type definition.
+			 * @see {@link https://github.com/microsoft/TypeScript/issues/38040}
+			 * @see {@link https://github.com/microsoft/TypeScript/issues/59029}
+			 * @see {@link https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces}
 			 * @todo Consider removing this rule from the config if this issue is addressed in a future TypeScript release.
-			 * @link https://github.com/microsoft/TypeScript/issues/38040
-			 * @link https://github.com/microsoft/TypeScript/issues/59029
-			 * @link https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces
 			 */
 			"@typescript-eslint/consistent-type-definitions": ["error", "type"],
 

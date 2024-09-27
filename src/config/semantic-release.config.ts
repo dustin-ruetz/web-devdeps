@@ -2,7 +2,7 @@ import type {Options} from "semantic-release";
 
 /**
  * @description "Fully automated version management and package publishing."
- * @link https://semantic-release.gitbook.io/semantic-release/usage/configuration
+ * @see {@link https://semantic-release.gitbook.io/semantic-release/usage/configuration}
  */
 const semanticReleaseConfig: Options = {
 	plugins: [

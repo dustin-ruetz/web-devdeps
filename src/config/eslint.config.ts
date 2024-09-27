@@ -5,11 +5,13 @@ import {access, constants} from "node:fs/promises";
 import typescripteslint from "typescript-eslint";
 import {dependsOn} from "../utils/dependsOn.js";
 import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.js";
+import {makeJSDocPlugin} from "./eslint-plugins/jsdoc.js";
 import {typescripteslintPlugin} from "./eslint-plugins/typescript-eslint.js";
 
 /**
  * @description "ESLint statically analyzes your code to quickly find problems."
- * @link https://eslint.org/docs/latest/use/configure/
+ * @returns Configuration for ESLint.
+ * @see {@link https://eslint.org/docs/latest/use/configure/}
  */
 export const makeESLintConfig = async () => {
 	const absoluteRepoRootPath = getAbsoluteRepoRootPath();

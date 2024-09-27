@@ -2,7 +2,10 @@ import {getAbsoluteRepoRootPath} from "../../utils/getAbsoluteRepoRootPath.js";
 import {getIsDevDepsRepo} from "../../utils/getIsDevDepsRepo.js";
 import {nodeModulesPackagePath} from "../../constants.js";
 
-/** Determines the root paths when running the `init-repo` script and its associated helper functions. */
+/**
+ * @description Determines the root paths when running the `init-repo` script and its associated helper functions.
+ * @returns The root paths for the `init-repo` script to read from and write to.
+ */
 export const getRootPaths = () => {
 	const absoluteRepoRootPath = getAbsoluteRepoRootPath();
 	const isDevDepsRepo = getIsDevDepsRepo(absoluteRepoRootPath);

@@ -23,7 +23,10 @@ import {
 } from "./helpers/initRepoHelpers.js";
 import {semVerRegExp} from "./helpers/semVerRegExp.js";
 
-/** Defines the information about the arguments (both required and optional) for running the `init-repo` script. */
+/**
+ * @description Defines the information about the arguments for running the `init-repo` script.
+ * @returns Object of information about the arguments (both required and optional) for the `init-repo` script.
+ */
 const getInitRepoArgs = async () => {
 	const rootPathToReadFrom = getRootPaths().readFrom;
 

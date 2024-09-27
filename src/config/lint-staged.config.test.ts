@@ -28,7 +28,7 @@ describe("it runs the correct commands for", () => {
 	});
 
 	const [lintJavaScriptTypeScriptCommand, typecheckCommand, unitTestCommand] =
-		/** @ts-expect-error - See above to-do comment. */
+		// @ts-expect-error - See above to-do comment.
 		lintstagedConfig["*.{js,jsx,ts,tsx}"](relativePaths);
 
 	test("linting JS and TS files", () => {
@@ -57,7 +57,7 @@ describe("when the staged changes include untestable TypeScript declaration file
 
 	test("_is not_ executed when there are no other staged files", () => {
 		const [, , unitTestCommand] =
-			/** @ts-expect-error - See above to-do comment. */
+			// @ts-expect-error - See above to-do comment.
 			lintstagedConfig["*.{js,jsx,ts,tsx}"](untestableRelativePaths);
 
 		expect(unitTestCommand).toEqual(undefined);
@@ -76,7 +76,7 @@ describe("when the staged changes include untestable TypeScript declaration file
 		] = relativePaths;
 
 		const [, , unitTestCommand] =
-			/** @ts-expect-error - See above to-do comment. */
+			// @ts-expect-error - See above to-do comment.
 			lintstagedConfig["*.{js,jsx,ts,tsx}"](relativePaths);
 
 		expect(unitTestCommand).toEqual(

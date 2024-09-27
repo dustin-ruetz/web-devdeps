@@ -91,12 +91,19 @@ export const writeLicense = async () => {
 	await writeFile(`${rootPathToWriteTo}/LICENSE`, fileContentsWithCurrentYear);
 };
 
-/** Write a new `.node-version` file to disk. */
+/**
+ * @description Write a new `.node-version` file to disk.
+ * @param nodeVersion - The Node.js semantic version (semver) number.
+ */
 export const writeNodeVersion = async (nodeVersion: string) => {
 	await writeFile(`${rootPathToWriteTo}/.node-version`, nodeVersion);
 };
 
-/** Read the `package.json` file, update its contents, then write the file to disk. */
+/**
+ * @description Read the `package.json` file, update its contents, then write the file to disk.
+ * @param repoName - The name of the repository.
+ * @param configureStylelint - Whether or not to configure Stylelint.
+ */
 export const writePackageJson = async (
 	repoName: string,
 	configureStylelint: boolean,
@@ -170,7 +177,10 @@ export const writePackageJson = async (
 	);
 };
 
-/** Write a new `README.md` file to disk and set the header to the name of the repository. */
+/**
+ * @description Write a new `README.md` file to disk and set the header to the name of the repository.
+ * @param repoName - The name of the repository.
+ */
 export const writeReadme = async (repoName: string) => {
 	await writeFile(`${rootPathToWriteTo}/README.md`, `# ${repoName}`);
 };
@@ -191,7 +201,10 @@ export const writeTsConfig = async () => {
 	);
 };
 
-/** Write a new `.vscode/` folder to disk, then write a new `settings.json` file to it. */
+/**
+ * @description Write a new `.vscode/` folder to disk, then write a new `settings.json` file to it.
+ * @param configureStylelint - Whether or not to configure Stylelint.
+ */
 export const writeVsCodeSettings = async (configureStylelint: boolean) => {
 	const vsCodeSettingsJson: Record<string, unknown> = {
 		"eslint.options": {

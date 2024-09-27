@@ -6,7 +6,6 @@ jest.mock("./dependsOn.js", () => ({
 
 /**
  * @description Reusable mock for the `dependsOn` utility function.
- *
  * @example
  * ```js
  * // Use the mocked implementation of `dependsOn` by resolving its promise to the value needed for the test.

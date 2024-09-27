@@ -8,7 +8,7 @@ import {CustomError} from "./utils/CustomError.js";
  *
  * @description Function that serves as the entrypoint file for the runnable Node.js CLI scripts provided by `@dustin-ruetz/devdeps`.
  * @see [package.json](../package.json) (specifically the `packageJSON.bin` field)
- * */
+ */
 export const runScript = async () => {
 	const [
 		_execPath, // executor - the Node.js executable

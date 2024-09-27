@@ -6,8 +6,9 @@ import {makeCachePath} from "../utils/makeCachePath.js";
 import {nodeModulesPackagePath} from "../constants.js";
 
 /**
- * @description "Jest is a delightful JavaScript Testing Framework with a focus on simplicity."
- * @link https://jestjs.io/docs/configuration
+ * @description "Jest is a delightful JavaScript testing framework with a focus on simplicity."
+ * @returns Configuration for Jest.
+ * @see {@link https://jestjs.io/docs/configuration}
  */
 export const makeJestConfig = async (): Promise<Config> => {
 	/** Set the test environment based on whether or not the repo has any frontend dependencies. */
@@ -109,10 +110,10 @@ export const makeJestConfig = async (): Promise<Config> => {
 		transform: {
 			[binaryFileExtensions.makeTransformRegExp()]: `${transformerBasePath}/lib/config/jest-transformers/binaryFile.js`,
 			/**
-			 * Both Babel and `ts-jest` are cumbersome to use for transforming TypeScript, so use `@swc/jest` instead for its simplicity.
-			 * @link https://github.com/swc-project/pkgs/tree/main/packages/jest
-			 * @link https://swc.rs/docs/configuration/compilation
-			 * @link Transform configuration adapted from [this comment](https://github.com/swc-project/jest/issues/40#issuecomment-1557659699).
+			 * - Both Babel and `ts-jest` are cumbersome to use for transforming TypeScript, so use `@swc/jest` instead for its simplicity.
+			 * - Transform configuration adapted from [this comment](https://github.com/swc-project/jest/issues/40#issuecomment-1557659699).
+			 * @see {@link https://github.com/swc-project/pkgs/tree/main/packages/jest}
+			 * @see {@link https://swc.rs/docs/configuration/compilation}
 			 */
 			".(js|jsx|ts|tsx)": [
 				"@swc/jest",

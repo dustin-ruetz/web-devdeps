@@ -1,11 +1,9 @@
 /**
  * @description A custom error class that extends the base `Error` object.
- *
  * @param message - (required) The human-readable description of the error.
  * @param options.cause.code - (required) The machine-parsable cause of the error (ex: `ERR_CODE`).
  * @param options.cause.values - (optional) An object of any relevant value(s) that caused the error.
  * @param options.name - (required) Represents the name for the type of error (ex: `CustomError`).
- *
  * @returns A new `CustomError` instance.
  */
 export class CustomError extends Error {

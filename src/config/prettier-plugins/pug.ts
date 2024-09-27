@@ -1,6 +1,6 @@
 /**
  * @description "Format your Pug code with Prettier."
- * @link https://prettier.github.io/plugin-pug/guide/
+ * @see {@link https://prettier.github.io/plugin-pug/guide/}
  */
 export const pugPrettierPlugin = {
 	config: {

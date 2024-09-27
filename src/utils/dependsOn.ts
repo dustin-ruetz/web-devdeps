@@ -6,7 +6,8 @@ import {CustomError} from "./CustomError.js";
 /**
  * @description Given a list of dependencies, check the repository's `package.json` file
  *              and determine whether or not the project depends on any of them.
- *
+ * @param deps - Names of packages to check the various `dependencies` objects for.
+ * @returns Boolean indicating whether or not the repo depends on the passed package(s).
  * @example
  * ```js
  * // The following line of code checks the repository's `package.json` file to determine

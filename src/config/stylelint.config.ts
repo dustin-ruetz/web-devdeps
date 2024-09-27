@@ -3,7 +3,8 @@ import {dependsOn} from "../utils/dependsOn.js";
 
 /**
  * @description "A mighty CSS linter that helps you avoid errors and enforce conventions."
- * @link https://stylelint.io/user-guide/configure
+ * @returns Configuration for Stylelint.
+ * @see {@link https://stylelint.io/user-guide/configure}
  */
 export const makeStylelintConfig = async (): Promise<Config> => {
 	const hasSassDependency = await dependsOn(["sass"]);
