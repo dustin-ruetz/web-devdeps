@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [1.16.0](https://github.com/dustin-ruetz/devdeps/compare/v1.15.0...v1.16.0) (2024-09-27)
+
+### Features
+
+* **config/eslint-plugins/jsdoc:** initial configuration and unit test ([18ecd0b](https://github.com/dustin-ruetz/devdeps/commit/18ecd0b8761e6f047bb53927b136c91db151159b))
+* **config/eslint.config:** implement configuration for JSDoc plugin ([ff59db3](https://github.com/dustin-ruetz/devdeps/commit/ff59db3cb2e64b142526187f78c2a86474344834))
+* **dependencies:** install the 'eslint-plugin-jsdoc' package ([4de3138](https://github.com/dustin-ruetz/devdeps/commit/4de3138195f261e1d81323a74e39953b6806300d))
+
+### Bug Fixes
+
+* errors identified in JSDoc code comments ([dcd9f7f](https://github.com/dustin-ruetz/devdeps/commit/dcd9f7f3fa65bb122fc83f3184a35e1e1556a446))
+
 ## [1.15.0](https://github.com/dustin-ruetz/devdeps/compare/v1.14.0...v1.15.0) (2024-09-25)
 
 ### Features
