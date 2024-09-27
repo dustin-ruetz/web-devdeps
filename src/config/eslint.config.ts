@@ -160,6 +160,7 @@ export const makeESLintConfig = async () => {
 				yoda: "error",
 			},
 		},
+		...makeJSDocPlugin(hasTSConfigFile),
 		// Only include the `typescript-eslint` configuration object when the repo has a `tsconfig.json` file.
 		...(hasTSConfigFile ? typescripteslintPlugin : []),
 		// Overrides for test files.

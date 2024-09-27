@@ -66,6 +66,14 @@ describe("it exports a configuration array and the most important config options
 		]);
 		expect(userDefinedConfig?.rules?.["no-var"]).toEqual("error");
 
+		// Verify that the `jsdoc` user-defined config *is* included.
+		const jsdocUserDefinedConfig = findConfigObjectByName(
+			eslintConfig,
+			"jsdoc/user-defined-config",
+		);
+		expect(eslintConfig).toContain(jsdocUserDefinedConfig);
+		expect(typeof jsdocUserDefinedConfig?.rules).toEqual("object");
+
 		// Verify that the user-defined overrides for test files are correct.
 		const userDefinedTestOverrides = findConfigObjectByName(
 			eslintConfig,
@@ -91,13 +99,23 @@ describe("it exports a configuration array and the most important config options
 			expect.not.objectContaining(globals.browser),
 		);
 
+		// Verify that the `jsdoc` TypeScript-specific config *is* included.
+		const jsdocRecommendedTypeScriptErrorConfig = findConfigObjectByName(
+			eslintConfig,
+			"jsdoc/flat/recommended-typescript-error",
+		);
+		expect(eslintConfig).toContain(jsdocRecommendedTypeScriptErrorConfig);
+		expect(typeof jsdocRecommendedTypeScriptErrorConfig?.rules).toEqual(
+			"object",
+		);
+
 		// Verify that the `typescript-eslint` user-defined config *is* included.
 		const typescripteslintUserDefinedConfig = findConfigObjectByName(
 			eslintConfig,
 			"typescript-eslint/user-defined-config",
 		);
-		expect(typeof typescripteslintUserDefinedConfig?.rules).toEqual("object");
 		expect(eslintConfig).toContain(typescripteslintUserDefinedConfig);
+		expect(typeof typescripteslintUserDefinedConfig?.rules).toEqual("object");
 	});
 
 	describe("when linting a repo that has installed the devdeps package", () => {
@@ -125,6 +143,14 @@ describe("it exports a configuration array and the most important config options
 			);
 
 			const eslintConfig = await makeESLintConfig();
+
+			// Verify that the `jsdoc` JavaScript-specific config *is* included.
+			const jsdocRecommendedErrorConfig = findConfigObjectByName(
+				eslintConfig,
+				"jsdoc/flat/recommended-error",
+			);
+			expect(eslintConfig).toContain(jsdocRecommendedErrorConfig);
+			expect(typeof jsdocRecommendedErrorConfig?.rules).toEqual("object");
 
 			const typescripteslintUserDefinedConfigIndex = eslintConfig.findIndex(
 				(configObj) =>
