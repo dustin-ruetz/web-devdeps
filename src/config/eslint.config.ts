@@ -63,6 +63,8 @@ export const makeESLintConfig = async () => {
 				globals: {
 					...(hasFrontendDependencies ? globals.browser : {}),
 					...globals.jest,
+					// Always include the Node.js global variables since they're relevant in most repos since
+					// even frontend-only projects often still have a need for runnable Node.js CLI scripts.
 					...globals.node,
 				},
 			},
