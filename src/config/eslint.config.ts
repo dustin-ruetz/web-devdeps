@@ -5,6 +5,7 @@ import {access, constants} from "node:fs/promises";
 import typescripteslint from "typescript-eslint";
 import {dependsOn} from "../utils/dependsOn.js";
 import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.js";
+import {jestPlugin, testFilesGlobPattern} from "./eslint-plugins/jest.js";
 import {makeJSDocPlugin} from "./eslint-plugins/jsdoc.js";
 import {typescripteslintPlugin} from "./eslint-plugins/typescript-eslint.js";
 
@@ -164,18 +165,19 @@ export const makeESLintConfig = async () => {
 				yoda: "error",
 			},
 		},
-		...makeJSDocPlugin(hasTSConfigFile),
-		// Only include the `typescript-eslint` configuration object when the repo has a `tsconfig.json` file.
-		...(hasTSConfigFile ? typescripteslintPlugin : []),
 		// Overrides for test files.
 		{
 			name: "eslintjs/user-defined-test-overrides",
-			files: ["**/*.test.+(js|jsx|ts|tsx)"],
+			files: [testFilesGlobPattern],
 			rules: {
 				// It's useful to reference arbitrary numbers directly in unit test files, so disable the "no-magic-numbers" rule for tests.
 				"no-magic-numbers": "off",
 			},
 		},
+		...jestPlugin,
+		...makeJSDocPlugin(hasTSConfigFile),
+		// Only include the `typescript-eslint` configuration object when the repo has a `tsconfig.json` file.
+		...(hasTSConfigFile ? typescripteslintPlugin : []),
 	);
 };
 

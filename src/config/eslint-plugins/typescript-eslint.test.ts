@@ -55,4 +55,12 @@ test("it exports a configuration array and the most important config options are
 			varsIgnorePattern: "^_",
 		},
 	]);
+
+	// Verify that the user-defined test overrides configuration is correct.
+	const userDefinedTestOverridesConfig = typescripteslintPlugin.find(
+		(configObj) => configObj.name === "typescript-eslint/user-defined-test-overrides",
+	);
+	expect(userDefinedTestOverridesConfig?.rules).toStrictEqual({
+		"@typescript-eslint/unbound-method": "off",
+	})
 });

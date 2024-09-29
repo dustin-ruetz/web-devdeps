@@ -1,4 +1,5 @@
 import typescripteslint from "typescript-eslint";
+import {testFilesGlobPattern} from "./jest.js";
 
 /**
  * @description "**`typescript-eslint` enables ESLint to run on TypeScript code.** It brings in the best of
@@ -60,6 +61,27 @@ export const typescripteslintPlugin = typescripteslint.config(
 					varsIgnorePattern: "^_",
 				},
 			],
+		},
+	},
+	// Refer to the `jest.ts` ESLint plugin configuration file for more details about the `unbound-method` rule.
+	//
+	// Excerpt from https://typescript-eslint.io/rules/unbound-method/:
+	// > Enforce unbound methods are called with their expected scope.
+	// >
+	// > Class method functions don't preserve the class scope when passed as standalone variables ("unbound").
+	// > If your function does not access `this`, you can annotate it with `this: void`, or consider using
+	// > an arrow function instead. Otherwise, passing class methods around as values can remove type safety
+	// > by failing to capture `this`.
+	// >
+	// > This rule reports when a class method is referenced in an unbound manner.
+	// >
+	// > ℹ️ Tip: If you're working with `jest`, you can use `eslint-plugin-jest`'s version of this rule
+	// > to lint your test files, which knows when it's OK to pass an unbound method to `expect` calls.
+	{
+		name: "typescript-eslint/user-defined-test-overrides",
+		files: [testFilesGlobPattern],
+		rules: {
+			"@typescript-eslint/unbound-method": "off",
 		},
 	},
 );

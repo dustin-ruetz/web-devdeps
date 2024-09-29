@@ -66,15 +66,7 @@ describe("it exports a configuration array and the most important config options
 		]);
 		expect(userDefinedConfig?.rules?.["no-var"]).toEqual("error");
 
-		// Verify that the `jsdoc` user-defined config *is* included.
-		const jsdocUserDefinedConfig = findConfigObjectByName(
-			eslintConfig,
-			"jsdoc/user-defined-config",
-		);
-		expect(eslintConfig).toContain(jsdocUserDefinedConfig);
-		expect(typeof jsdocUserDefinedConfig?.rules).toEqual("object");
-
-		// Verify that the user-defined overrides for test files are correct.
+		// Verify that the user-defined overrides configuration for test files are correct.
 		const userDefinedTestOverrides = findConfigObjectByName(
 			eslintConfig,
 			"eslintjs/user-defined-test-overrides",
@@ -85,6 +77,22 @@ describe("it exports a configuration array and the most important config options
 		expect(userDefinedTestOverrides?.rules).toStrictEqual({
 			"no-magic-numbers": "off",
 		});
+
+		// Verify that the `jest` user-defined config *is* included.
+		const jestUserDefinedConfig = findConfigObjectByName(
+			eslintConfig,
+			"jest/user-defined-config",
+		);
+		expect(eslintConfig).toContain(jestUserDefinedConfig);
+		expect(typeof jestUserDefinedConfig?.rules).toEqual("object");
+
+		// Verify that the `jsdoc` user-defined config *is* included.
+		const jsdocUserDefinedConfig = findConfigObjectByName(
+			eslintConfig,
+			"jsdoc/user-defined-config",
+		);
+		expect(eslintConfig).toContain(jsdocUserDefinedConfig);
+		expect(typeof jsdocUserDefinedConfig?.rules).toEqual("object");
 	});
 
 	test("when linting this devdeps repo (which *does not* have frontend dependencies and *does* depend on TypeScript)", async () => {
