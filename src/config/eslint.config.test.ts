@@ -72,7 +72,7 @@ describe("it exports a configuration array and the most important config options
 			"eslintjs/user-defined-test-overrides",
 		);
 		expect(userDefinedTestOverrides?.files).toStrictEqual([
-			"**/*.test.+(js|jsx|ts|tsx)",
+			"**/*.+(mock|test).+(js|jsx|ts|tsx)",
 		]);
 		expect(userDefinedTestOverrides?.rules).toStrictEqual({
 			"no-magic-numbers": "off",

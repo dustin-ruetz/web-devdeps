@@ -1,5 +1,5 @@
 import typescripteslint from "typescript-eslint";
-import {testFilesGlobPattern} from "./jest.js";
+import {mockAndTestFilesGlobPattern} from "./jest.js";
 
 /**
  * @description "**`typescript-eslint` enables ESLint to run on TypeScript code.** It brings in the best of
@@ -79,7 +79,7 @@ export const typescripteslintPlugin = typescripteslint.config(
 	// > to lint your test files, which knows when it's OK to pass an unbound method to `expect` calls.
 	{
 		name: "typescript-eslint/user-defined-test-overrides",
-		files: [testFilesGlobPattern],
+		files: [mockAndTestFilesGlobPattern],
 		rules: {
 			"@typescript-eslint/unbound-method": "off",
 		},
