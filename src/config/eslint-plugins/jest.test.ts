@@ -17,7 +17,9 @@ test("it exports a configuration array and the most important config options are
 	expect(userDefinedConfig?.rules?.["jest/prefer-to-be"]).toBe("error");
 
 	// Verify that a sampling of the user-defined rules are correct.
-	expect(userDefinedConfig?.rules?.["jest/consistent-test-it"]).toBe("error");
+	expect(userDefinedConfig?.rules?.["jest/no-test-return-statement"]).toBe(
+		"error",
+	);
 	expect(
 		userDefinedConfig?.rules?.["jest/prefer-expect-assertions"],
 	).toStrictEqual([

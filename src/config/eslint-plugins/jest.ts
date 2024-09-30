@@ -21,7 +21,6 @@ export const jestPlugin = typescripteslint.config({
 	rules: {
 		...configs.recommended.rules,
 		...configs.style.rules,
-		"jest/consistent-test-it": "error",
 		"jest/no-conditional-in-test": "error",
 		"jest/no-confusing-set-timeout": "error",
 		"jest/no-duplicate-hooks": "error",
