@@ -10,7 +10,7 @@ n=$(basename "$0")
 # s = the path of the Git hook script (ex: `.githooks/githook-script`)
 s=$(dirname "$(dirname "$0")")/$n
 
-echo "🪝-ℹ️ Executing Git hook script: $s"
+echo "🪝 Executing Git hook script: $s"
 
 # Check if the script exists; if it doesn't exist, log a warning and terminate with a zero status code.
 [ ! -f "$s" ] && echo "🪝-⚠️ Git hook script not found: $s" && exit 0
@@ -31,6 +31,6 @@ sh -e "$s" "$@"
 c=$?
 
 # If the Git hook script exits with a non-zero status code then log the error(s) and exit with the status code.
-[ $c != 0 ] && echo "🪝-❌ ERR_HUSKY - $n script failed (code $c)"
-[ $c = 127 ] && echo "🪝-❌ ERR_HUSKY - command not found in PATH=$PATH"
+[ $c != 0 ] && echo "🪝-❌ ERR_HUSKY_GIT_HOOK - $n script failed (code $c)"
+[ $c = 127 ] && echo "🪝-❌ ERR_HUSKY_GIT_HOOK - command not found in PATH=$PATH"
 exit $c
