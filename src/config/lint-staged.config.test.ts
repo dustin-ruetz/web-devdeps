@@ -2,7 +2,7 @@ import type {Config} from "lint-staged";
 import lintstagedConfig from "./lint-staged.config.js";
 
 test("it exports a configuration object", () => {
-	expect(typeof lintstagedConfig).toEqual("object");
+	expect(typeof lintstagedConfig).toBe("object");
 });
 
 /**
@@ -16,13 +16,13 @@ describe("it runs the correct commands for", () => {
 	const [relativePath] = relativePaths;
 
 	test("formatting", () => {
-		expect(lintstagedConfig["*" as keyof Config]).toEqual(
+		expect(lintstagedConfig["*" as keyof Config]).toBe(
 			"npm run format -- --ignore-unknown --write",
 		);
 	});
 
 	test("linting files with styles", () => {
-		expect(lintstagedConfig["*.{css,scss,jsx,tsx}" as keyof Config]).toEqual(
+		expect(lintstagedConfig["*.{css,scss,jsx,tsx}" as keyof Config]).toBe(
 			"npm run lint/styles -- --fix",
 		);
 	});
@@ -32,17 +32,17 @@ describe("it runs the correct commands for", () => {
 		lintstagedConfig["*.{js,jsx,ts,tsx}"](relativePaths);
 
 	test("linting JS and TS files", () => {
-		expect(lintJavaScriptTypeScriptCommand).toEqual(
+		expect(lintJavaScriptTypeScriptCommand).toBe(
 			`npm run lint/js-ts -- --fix ${relativePath}`,
 		);
 	});
 
 	test("typechecking", () => {
-		expect(typecheckCommand).toEqual("npm run check/types");
+		expect(typecheckCommand).toBe("npm run check/types");
 	});
 
 	test("unit testing", () => {
-		expect(unitTestCommand).toEqual(
+		expect(unitTestCommand).toBe(
 			`npm run test/unit/coverage -- --findRelatedTests --collectCoverageFrom= ${relativePath}`,
 		);
 	});
@@ -60,7 +60,7 @@ describe("when the staged changes include untestable TypeScript declaration file
 			// @ts-expect-error - See above to-do comment.
 			lintstagedConfig["*.{js,jsx,ts,tsx}"](untestableRelativePaths);
 
-		expect(unitTestCommand).toEqual(undefined);
+		expect(unitTestCommand).toBeUndefined();
 	});
 
 	test("_is_ executed when there are other staged files, but does not try to find related tests for the declaration/mock files", () => {
@@ -79,7 +79,7 @@ describe("when the staged changes include untestable TypeScript declaration file
 			// @ts-expect-error - See above to-do comment.
 			lintstagedConfig["*.{js,jsx,ts,tsx}"](relativePaths);
 
-		expect(unitTestCommand).toEqual(
+		expect(unitTestCommand).toBe(
 			`npm run test/unit/coverage -- --findRelatedTests --collectCoverageFrom= ${relativePathToFindRelatedTestsFor}`,
 		);
 		expect(unitTestCommand).not.toContain(typescriptDeclarationFilePath);

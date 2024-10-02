@@ -11,7 +11,7 @@ describe("it correctly identifies whether or not the passed path represents the 
 	`(
 		`getIsDevDepsRepo("$path") === $isDevDepsRepo`,
 		(testRow: {path: string; isDevDepsRepo: boolean}) => {
-			expect(getIsDevDepsRepo(testRow.path)).toEqual(testRow.isDevDepsRepo);
+			expect(getIsDevDepsRepo(testRow.path)).toBe(testRow.isDevDepsRepo);
 		},
 	);
 });

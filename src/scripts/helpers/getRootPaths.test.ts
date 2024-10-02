@@ -11,7 +11,7 @@ afterAll(() => {
 });
 
 describe("the returned root paths (1. to read from, and 2. to write to) are correct when called from", () => {
-	it("this devdeps repo", () => {
+	test("this devdeps repo", () => {
 		getAbsoluteRepoRootPathMock.mockReturnValue(
 			"/Users/username/repos/devdeps",
 		);
@@ -24,7 +24,7 @@ describe("the returned root paths (1. to read from, and 2. to write to) are corr
 		);
 	});
 
-	it("a consuming repo that has installed the devdeps package", () => {
+	test("a consuming repo that has installed the devdeps package", () => {
 		const consumingRepoAbsoluteRootDir = "/Users/username/repos/consuming-repo";
 		getAbsoluteRepoRootPathMock.mockReturnValue(consumingRepoAbsoluteRootDir);
 

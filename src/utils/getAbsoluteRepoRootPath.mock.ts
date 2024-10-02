@@ -12,7 +12,4 @@ jest.mock("./getAbsoluteRepoRootPath.js", () => ({
  * getAbsoluteRepoRootPathMock.mockReturnValue("/Users/username/repos/repo-name")
  * ```
  */
-export const getAbsoluteRepoRootPathMock =
-	getAbsoluteRepoRootPath as jest.MockedFunction<
-		typeof getAbsoluteRepoRootPath
-	>;
+export const getAbsoluteRepoRootPathMock = jest.mocked(getAbsoluteRepoRootPath);

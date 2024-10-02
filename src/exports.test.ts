@@ -1,11 +1,11 @@
 import {exports} from "./exports.js";
 
 test("the configuration objects are all available on the module's primary `exports` object", () => {
-	expect(typeof exports.commitlintConfig).toEqual("object");
-	expect(typeof exports.eslintConfig).toEqual("object");
-	expect(typeof exports.jestConfig).toEqual("object");
-	expect(typeof exports.lintstagedConfig).toEqual("object");
-	expect(typeof exports.prettierConfig).toEqual("object");
-	expect(typeof exports.semanticReleaseConfig).toEqual("object");
-	expect(typeof exports.stylelintConfig).toEqual("object");
+	expect(typeof exports.commitlintConfig).toBe("object");
+	expect(typeof exports.eslintConfig).toBe("object");
+	expect(typeof exports.jestConfig).toBe("object");
+	expect(typeof exports.lintstagedConfig).toBe("object");
+	expect(typeof exports.prettierConfig).toBe("object");
+	expect(typeof exports.semanticReleaseConfig).toBe("object");
+	expect(typeof exports.stylelintConfig).toBe("object");
 });

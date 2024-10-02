@@ -55,8 +55,8 @@ describe("CustomError is thrown correctly", () => {
 		});
 
 		expect(customError.cause).toStrictEqual({code: "ERR_CODE"});
-		expect(customError.message).toEqual("ERR_CODE - error message");
-		expect(customError.name).toEqual("CustomError");
+		expect(customError.message).toBe("ERR_CODE - error message");
+		expect(customError.name).toBe("CustomError");
 	});
 
 	test("*with* a `values` object when it's provided", () => {

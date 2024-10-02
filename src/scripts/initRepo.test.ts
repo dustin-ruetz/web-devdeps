@@ -14,9 +14,7 @@ import {
 import {initRepo, logInitRepoHelpText} from "./initRepo.js";
 
 jest.mock("node:fs/promises");
-// Paraphrased excerpt from https://www.mikeborozdin.com/post/changing-jest-mocks-between-tests:
-// > Typecast the imported mocked module into a mocked function with writeable properties.
-const readFileMock = readFile as jest.MockedFunction<typeof readFile>;
+const readFileMock = jest.mocked(readFile);
 
 jest.mock("./helpers/initRepoHelpers.js");
 
@@ -36,6 +34,8 @@ const testNodeVersion = "10";
 
 /* eslint-disable no-console */
 test("the logInitRepoHelpText helper function logs the correct values", async () => {
+	expect.hasAssertions();
+
 	const baseCommand = "npx @dustin-ruetz/devdeps init-repo repo-name";
 
 	await logInitRepoHelpText();
@@ -59,15 +59,15 @@ test("the logInitRepoHelpText helper function logs the correct values", async ()
 /* eslint-enable no-console */
 
 describe("initRepo", () => {
-	test("throws an error if the required `repoName` argument is invalid", () => {
-		const invalidRepoNameErrorCode = /ERR_INVALID_REPONAME/;
+	test("throws an error if the required `repoName` argument is invalid", async () => {
+		expect.hasAssertions();
 
-		void expect(async () => {
+		const invalidRepoNameErrorCode = /ERR_INVALID_REPONAME/;
+		await expect(async () => {
 			// @ts-expect-error if `repoName` is not passed.
 			await initRepo();
 		}).rejects.toThrow(invalidRepoNameErrorCode);
-
-		void expect(async () => {
+		await expect(async () => {
 			// Expect an error if `repoName` is an empty string.
 			await initRepo("");
 		}).rejects.toThrow(invalidRepoNameErrorCode);
@@ -82,8 +82,10 @@ describe("initRepo", () => {
 			${["--configure-stylelint", "--node-version=20", "--invalid-flag"]}
 		`(
 			`initRepo("${testRepoName}", $argsArray) throws ${invalidFlagPassedErrorCode} error`,
-			(testRow: {argsArray: string[]}) => {
-				void expect(async () => {
+			async (testRow: {argsArray: string[]}) => {
+				expect.hasAssertions();
+
+				await expect(async () => {
 					await initRepo(testRepoName, testRow.argsArray);
 				}).rejects.toThrow(new RegExp(invalidFlagPassedErrorCode));
 			},
@@ -104,8 +106,10 @@ describe("initRepo", () => {
 			${[`-nv=${testNodeVersion}`, `-nv=${testNodeVersion}`]}
 		`(
 			`initRepo("${testRepoName}", $argsArray) throws ${optionalFlagPassedMultipleTimesErrorCode} error`,
-			(testRow: {argsArray: string[]}) => {
-				void expect(async () => {
+			async (testRow: {argsArray: string[]}) => {
+				expect.hasAssertions();
+
+				await expect(async () => {
 					await initRepo(testRepoName, testRow.argsArray);
 				}).rejects.toThrow(
 					new RegExp(optionalFlagPassedMultipleTimesErrorCode),
@@ -127,8 +131,10 @@ describe("initRepo", () => {
 			${["-nv=A"]}
 		`(
 			`initRepo("${testRepoName}", $argsArray) throws ${invalidNodeVersionErrorCode} error`,
-			(testRow: {argsArray: string[]}) => {
-				void expect(async () => {
+			async (testRow: {argsArray: string[]}) => {
+				expect.hasAssertions();
+
+				await expect(async () => {
 					await initRepo(testRepoName, testRow.argsArray);
 				}).rejects.toThrow(new RegExp(invalidNodeVersionErrorCode));
 			},
@@ -136,6 +142,8 @@ describe("initRepo", () => {
 	});
 
 	test("executes the helper functions with the correct default arguments", async () => {
+		expect.hasAssertions();
+
 		const defaultArgumentValues = {
 			configureStylelint: false,
 			nodeVersion: "20",
@@ -173,6 +181,8 @@ describe("initRepo", () => {
 		} as const;
 
 		test("with the long flags in the suggested order", async () => {
+			expect.hasAssertions();
+
 			await initRepo("repo-name", [
 				"--configure-stylelint",
 				`--node-version=${passedFlagValues.nodeVersion}`,
@@ -191,6 +201,8 @@ describe("initRepo", () => {
 		});
 
 		test("with the long flags in a different order", async () => {
+			expect.hasAssertions();
+
 			await initRepo("repo-name", [
 				`--node-version=${passedFlagValues.nodeVersion}`,
 				"--configure-stylelint",
@@ -209,6 +221,8 @@ describe("initRepo", () => {
 		});
 
 		test("with the short flags in the suggested order", async () => {
+			expect.hasAssertions();
+
 			await initRepo("repo-name", [
 				"-cs",
 				`-nv=${passedFlagValues.nodeVersion}`,
@@ -227,6 +241,8 @@ describe("initRepo", () => {
 		});
 
 		test("with the short flags in a different order", async () => {
+			expect.hasAssertions();
+
 			await initRepo("repo-name", [
 				`-nv=${passedFlagValues.nodeVersion}`,
 				"-cs",

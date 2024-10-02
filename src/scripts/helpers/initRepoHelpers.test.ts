@@ -18,10 +18,8 @@ jest.mock("node:fs/promises", () => ({
 	readFile: jest.fn(),
 	writeFile: jest.fn(),
 }));
-// Paraphrased excerpt from https://www.mikeborozdin.com/post/changing-jest-mocks-between-tests:
-// > Typecast the imported mocked module into a mocked function with writeable properties.
-const readdirMock = readdir as jest.MockedFunction<typeof readdir>;
-const readFileMock = readFile as jest.MockedFunction<typeof readFile>;
+const readdirMock = jest.mocked(readdir);
+const readFileMock = jest.mocked(readFile);
 
 beforeAll(() => {
 	jest.spyOn(console, "log").mockImplementation();
@@ -32,6 +30,8 @@ afterEach(() => {
 });
 
 test("writeGitAttributes", async () => {
+	expect.hasAssertions();
+
 	await writeGitAttributes();
 
 	expect(writeFile).toHaveBeenCalledTimes(1);
@@ -42,6 +42,8 @@ test("writeGitAttributes", async () => {
 });
 
 test("writeGitHooks", async () => {
+	expect.hasAssertions();
+
 	const githooksDirectoryContents = [
 		"_",
 		"commit-msg",
@@ -74,6 +76,8 @@ test("writeGitHooks", async () => {
 });
 
 test("writeGitIgnore", async () => {
+	expect.hasAssertions();
+
 	await writeGitIgnore();
 
 	expect(writeFile).toHaveBeenCalledTimes(1);
@@ -84,6 +88,8 @@ test("writeGitIgnore", async () => {
 });
 
 test("writeLicense", async () => {
+	expect.hasAssertions();
+
 	readFileMock.mockResolvedValue("Copyright (c) 1999 Dustin Ruetz");
 	const currentYear = new Date().getFullYear().toString();
 
@@ -101,6 +107,8 @@ test("writeLicense", async () => {
 });
 
 test("writeNodeVersion", async () => {
+	expect.hasAssertions();
+
 	await writeNodeVersion("20");
 
 	expect(writeFile).toHaveBeenCalledTimes(1);
@@ -133,6 +141,8 @@ describe("writePackageJson", () => {
 	const lintStylesScript = "@dustin-ruetz/devdeps lint/styles";
 
 	test("it *does not* configure Stylelint", async () => {
+		expect.hasAssertions();
+
 		readFileMock.mockResolvedValue(mockPackageJsonContents);
 
 		await writePackageJson("repo-name", false);
@@ -155,6 +165,8 @@ describe("writePackageJson", () => {
 	});
 
 	test("it *does* configure Stylelint", async () => {
+		expect.hasAssertions();
+
 		readFileMock.mockResolvedValue(mockPackageJsonContents);
 
 		await writePackageJson("repo-name", true);
@@ -178,6 +190,8 @@ describe("writePackageJson", () => {
 });
 
 test("writeReadme", async () => {
+	expect.hasAssertions();
+
 	await writeReadme("repo-name");
 
 	expect(writeFile).toHaveBeenCalledTimes(1);
@@ -188,6 +202,8 @@ test("writeReadme", async () => {
 });
 
 test("writeTsConfigBuild", async () => {
+	expect.hasAssertions();
+
 	await writeTsConfigBuild();
 
 	expect(writeFile).toHaveBeenCalledTimes(1);
@@ -200,6 +216,8 @@ test("writeTsConfigBuild", async () => {
 });
 
 test("writeTsConfig", async () => {
+	expect.hasAssertions();
+
 	await writeTsConfig();
 
 	expect(writeFile).toHaveBeenCalledTimes(1);
@@ -213,6 +231,8 @@ test("writeTsConfig", async () => {
 
 describe("writeVsCodeSettings", () => {
 	test("it *does not* configure Stylelint", async () => {
+		expect.hasAssertions();
+
 		const configureStylelint = false;
 
 		await writeVsCodeSettings(configureStylelint);
@@ -225,6 +245,8 @@ describe("writeVsCodeSettings", () => {
 	});
 
 	test("it *does* configure Stylelint", async () => {
+		expect.hasAssertions();
+
 		const configureStylelint = true;
 
 		await writeVsCodeSettings(configureStylelint);

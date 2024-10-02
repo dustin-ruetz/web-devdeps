@@ -12,15 +12,13 @@ describe("it exports a configuration array and the most important config options
 		);
 
 		// Verify that the user-defined configuration is correct.
-		expect(typeof userDefinedConfig?.plugins?.["jsdoc"]).toEqual("object");
-		expect(userDefinedConfig?.rules?.["jsdoc/informative-docs"]).toEqual(
-			"error",
-		);
+		expect(typeof userDefinedConfig?.plugins?.["jsdoc"]).toBe("object");
+		expect(userDefinedConfig?.rules?.["jsdoc/informative-docs"]).toBe("error");
 		expect(userDefinedConfig?.rules?.["jsdoc/require-jsdoc"]).toStrictEqual([
 			"error",
 			{publicOnly: true},
 		]);
-		expect(userDefinedConfig?.rules?.["jsdoc/sort-tags"]).toEqual("error");
+		expect(userDefinedConfig?.rules?.["jsdoc/sort-tags"]).toBe("error");
 	});
 
 	test("when the repo *does not* depend on TypeScript", () => {
@@ -32,11 +30,11 @@ describe("it exports a configuration array and the most important config options
 		);
 		// Verify that the following rules are configured correctly in the JavaScript-specific configuration:
 		// - `require-param-type` should `error` for JavaScript repos because it's helpful/relevant:
-		expect(recommendedErrorConfig?.rules?.["jsdoc/require-param-type"]).toEqual(
+		expect(recommendedErrorConfig?.rules?.["jsdoc/require-param-type"]).toBe(
 			"error",
 		);
 		// - `no-types` should be `off` for JavaScript repos because having them `error` is helpful/relevant:
-		expect(recommendedErrorConfig?.rules?.["jsdoc/no-types"]).toEqual("off");
+		expect(recommendedErrorConfig?.rules?.["jsdoc/no-types"]).toBe("off");
 	});
 
 	test("when the repo *does* depend on TypeScript", () => {
@@ -51,9 +49,9 @@ describe("it exports a configuration array and the most important config options
 		// - `require-param-type` should be `off` for TypeScript repos because specifying types in JSDoc comments would be redundant in TS:
 		expect(
 			recommendedTypeScriptErrorConfig?.rules?.["jsdoc/require-param-type"],
-		).toEqual("off");
+		).toBe("off");
 		// - `no-types` should `error` for TypeScript repos because specifying types in JSDoc comments would be redundant in TS:
-		expect(recommendedTypeScriptErrorConfig?.rules?.["jsdoc/no-types"]).toEqual(
+		expect(recommendedTypeScriptErrorConfig?.rules?.["jsdoc/no-types"]).toBe(
 			"error",
 		);
 	});

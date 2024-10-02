@@ -39,7 +39,7 @@ describe("it correctly identifies matches for the semantic version format", () =
 	`(
 		`semVerRegExp("$semVer").isMatch === $isMatch`,
 		(testRow: {semVer: string; isMatch: boolean}) => {
-			expect(semVerRegExp(testRow.semVer).isMatch).toEqual(testRow.isMatch);
+			expect(semVerRegExp(testRow.semVer).isMatch).toBe(testRow.isMatch);
 		},
 	);
 });

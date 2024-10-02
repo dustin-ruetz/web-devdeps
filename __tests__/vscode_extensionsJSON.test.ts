@@ -1,7 +1,7 @@
 import vscodeExtensionsJSON from "../.vscode/extensions.json";
 
 test("it is a configuration object and the most important config options are correct", () => {
-	expect(typeof vscodeExtensionsJSON).toEqual("object");
+	expect(typeof vscodeExtensionsJSON).toBe("object");
 
 	// > List of extensions which should be recommended for users of this workspace.
 	// > The identifier of an extension is always '${publisher}.${name}'.

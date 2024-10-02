@@ -3,9 +3,11 @@ import {makeStylelintConfig} from "./stylelint.config.js";
 
 describe("it exports a configuration object and the most important config options are correct", () => {
 	test("for the parts of the config that *are not* affected by conditional logic", async () => {
+		expect.hasAssertions();
+
 		const stylelintConfig = await makeStylelintConfig();
 
-		expect(typeof stylelintConfig).toEqual("object");
+		expect(typeof stylelintConfig).toBe("object");
 
 		expect(stylelintConfig.extends).toStrictEqual([
 			"stylelint-config-standard",
@@ -18,11 +20,13 @@ describe("it exports a configuration object and the most important config option
 		expect(stylelintConfig.rules?.["unit-disallowed-list"]).toStrictEqual([
 			"em",
 		]);
-		expect(stylelintConfig.rules?.["max-nesting-depth"]).toEqual(3);
-		expect(stylelintConfig.rules?.["font-weight-notation"]).toEqual("numeric");
+		expect(stylelintConfig.rules?.["max-nesting-depth"]).toBe(3);
+		expect(stylelintConfig.rules?.["font-weight-notation"]).toBe("numeric");
 	});
 
 	test("when testing this devdeps repo (which *does not* have frontend style-related dependencies)", async () => {
+		expect.hasAssertions();
+
 		const hasFrontendStyleDependencies = false;
 		dependsOnMock.mockResolvedValue(hasFrontendStyleDependencies);
 
@@ -34,15 +38,17 @@ describe("it exports a configuration object and the most important config option
 	});
 
 	test("when testing a repo that has the sass package installed", async () => {
+		expect.hasAssertions();
+
 		const hasSassDependency = true;
 		dependsOnMock.mockResolvedValue(hasSassDependency);
 
 		const stylelintConfig = await makeStylelintConfig();
 
-		expect(stylelintConfig.extends).toEqual(
+		expect(stylelintConfig.extends).toStrictEqual(
 			expect.arrayContaining(["stylelint-config-standard-scss"]),
 		);
-		expect(stylelintConfig.overrides).toEqual(
+		expect(stylelintConfig.overrides).toStrictEqual(
 			expect.arrayContaining([
 				{
 					customSyntax: "postcss-scss",
@@ -53,12 +59,14 @@ describe("it exports a configuration object and the most important config option
 	});
 
 	test("when testing a repo that has the styled-components package installed", async () => {
+		expect.hasAssertions();
+
 		const hasStyledComponentsDependency = true;
 		dependsOnMock.mockResolvedValue(hasStyledComponentsDependency);
 
 		const stylelintConfig = await makeStylelintConfig();
 
-		expect(stylelintConfig.overrides).toEqual(
+		expect(stylelintConfig.overrides).toStrictEqual(
 			expect.arrayContaining([
 				{
 					customSyntax: "postcss-styled-syntax",

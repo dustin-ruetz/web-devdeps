@@ -13,4 +13,4 @@ jest.mock("./dependsOn.js", () => ({
  * const doesNotDependOnFrontendPackages = dependsOnMock.mockResolvedValue(false)
  * ```
  */
-export const dependsOnMock = dependsOn as jest.MockedFunction<typeof dependsOn>;
+export const dependsOnMock = jest.mocked(dependsOn);

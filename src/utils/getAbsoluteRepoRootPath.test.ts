@@ -6,9 +6,7 @@ jest.mock("node:url", () => ({
 }));
 // Paraphrased excerpt from https://www.mikeborozdin.com/post/changing-jest-mocks-between-tests:
 // > Typecast the imported mocked module into a mocked function with writeable properties.
-const fileURLToPathMock = fileURLToPath as jest.MockedFunction<
-	typeof fileURLToPath
->;
+const fileURLToPathMock = jest.mocked(fileURLToPath);
 
 /** Object of static strings and helper methods meant to keep code DRY and organized. */
 const absolutePaths = {
@@ -57,9 +55,7 @@ describe("it determines the correct absolute root directory", () => {
 
 		const absoluteRepoRootPath = getAbsoluteRepoRootPath();
 
-		expect(absoluteRepoRootPath).toEqual(
-			"/Users/username/repos/consuming-repo",
-		);
+		expect(absoluteRepoRootPath).toBe("/Users/username/repos/consuming-repo");
 	});
 
 	test("when run as a JavaScript file inside the lib/ folder", () => {
@@ -68,7 +64,7 @@ describe("it determines the correct absolute root directory", () => {
 
 		const absoluteRepoRootPath = getAbsoluteRepoRootPath();
 
-		expect(absoluteRepoRootPath).toEqual("/Users/username/repos/devdeps");
+		expect(absoluteRepoRootPath).toBe("/Users/username/repos/devdeps");
 	});
 
 	test("when run as a TypeScript file inside the src/ folder", () => {
@@ -77,6 +73,6 @@ describe("it determines the correct absolute root directory", () => {
 
 		const absoluteRepoRootPath = getAbsoluteRepoRootPath();
 
-		expect(absoluteRepoRootPath).toEqual("/Users/username/repos/devdeps");
+		expect(absoluteRepoRootPath).toBe("/Users/username/repos/devdeps");
 	});
 });

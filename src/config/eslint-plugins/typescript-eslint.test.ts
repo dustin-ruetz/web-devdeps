@@ -7,22 +7,22 @@ test("it exports a configuration array and the most important config options are
 	const recommendedConfig = typescripteslintPlugin.find(
 		(configObj) => configObj.name === "typescript-eslint/eslint-recommended",
 	);
-	expect(recommendedConfig?.rules?.["prefer-const"]).toEqual("error");
+	expect(recommendedConfig?.rules?.["prefer-const"]).toBe("error");
 
 	// Verify that one of the strict rules is included in the configuration.
 	const strictConfig = typescripteslintPlugin.find(
 		(configObj) => configObj.name === "typescript-eslint/strict-type-checked",
 	);
-	expect(
-		strictConfig?.rules?.["@typescript-eslint/no-invalid-void-type"],
-	).toEqual("error");
+	expect(strictConfig?.rules?.["@typescript-eslint/no-invalid-void-type"]).toBe(
+		"error",
+	);
 
 	// Verify that one of the stylistic rules is included in the configuration.
 	const stylisticConfig = typescripteslintPlugin.find(
 		(configObj) =>
 			configObj.name === "typescript-eslint/stylistic-type-checked",
 	);
-	expect(stylisticConfig?.rules?.["@typescript-eslint/prefer-for-of"]).toEqual(
+	expect(stylisticConfig?.rules?.["@typescript-eslint/prefer-for-of"]).toBe(
 		"error",
 	);
 
@@ -40,7 +40,7 @@ test("it exports a configuration array and the most important config options are
 			"@typescript-eslint/consistent-type-definitions"
 		],
 	).toStrictEqual(["error", "type"]);
-	expect(userDefinedConfig?.rules?.["no-unused-vars"]).toEqual("off");
+	expect(userDefinedConfig?.rules?.["no-unused-vars"]).toBe("off");
 	expect(
 		userDefinedConfig?.rules?.["@typescript-eslint/no-unused-vars"],
 	).toStrictEqual([
@@ -58,9 +58,10 @@ test("it exports a configuration array and the most important config options are
 
 	// Verify that the user-defined test overrides configuration is correct.
 	const userDefinedTestOverridesConfig = typescripteslintPlugin.find(
-		(configObj) => configObj.name === "typescript-eslint/user-defined-test-overrides",
+		(configObj) =>
+			configObj.name === "typescript-eslint/user-defined-test-overrides",
 	);
 	expect(userDefinedTestOverridesConfig?.rules).toStrictEqual({
 		"@typescript-eslint/unbound-method": "off",
-	})
+	});
 });

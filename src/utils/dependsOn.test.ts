@@ -9,40 +9,44 @@ jest.mock("node:fs/promises", () => ({
 }));
 // Paraphrased excerpt from https://www.mikeborozdin.com/post/changing-jest-mocks-between-tests:
 // > Typecast the imported mocked module into a mocked function with writeable properties.
-const readFileMock = readFile as jest.MockedFunction<typeof readFile>;
+const readFileMock = jest.mocked(readFile);
 
 afterEach(() => {
 	jest.clearAllMocks();
 });
 
-test("throws errors if the required `deps` argument is invalid", () => {
-	void expect(async () => {
+test("throws errors if the required `deps` argument is invalid", async () => {
+	expect.hasAssertions();
+
+	await expect(async () => {
 		// @ts-expect-error if `deps` is not passed.
 		await dependsOn();
 	}).rejects.toThrow(/ERR_INVALID_DEPS_ARRAY/);
 
-	void expect(async () => {
+	await expect(async () => {
 		// @ts-expect-error if `deps` is not an array.
 		await dependsOn("package1");
 	}).rejects.toThrow(/ERR_INVALID_DEPS_ARRAY/);
 
-	void expect(async () => {
+	await expect(async () => {
 		// Expect an error if `deps` is an empty array.
 		await dependsOn([]);
 	}).rejects.toThrow(/ERR_INVALID_DEPS_ARRAY/);
 
-	void expect(async () => {
+	await expect(async () => {
 		// Expect an error if `deps` is an array containing an empty string.
 		await dependsOn(["package1", ""]);
 	}).rejects.toThrow(/ERR_TYPEOF_DEP_NOT_STRING/);
 
-	void expect(async () => {
+	await expect(async () => {
 		// @ts-expect-error if `deps` is an array containing non-string values.
 		await dependsOn(["package1", 2]);
 	}).rejects.toThrow(/ERR_TYPEOF_DEP_NOT_STRING/);
 });
 
 test("returns `false` if the repo *does not* depend on the package", async () => {
+	expect.hasAssertions();
+
 	getAbsoluteRepoRootPathMock.mockReturnValue("/Users/username/repos/devdeps");
 	const packageJsonContents = `
 {
@@ -64,6 +68,8 @@ test("returns `false` if the repo *does not* depend on the package", async () =>
 });
 
 test("returns `true` if the repo *does* depend on the package", async () => {
+	expect.hasAssertions();
+
 	const packageJsonContents = `
 {
 	"devDependencies": {
@@ -81,6 +87,8 @@ test("returns `true` if the repo *does* depend on the package", async () => {
 });
 
 test("returns `true` if the repo depends on at least one of the passed packages", async () => {
+	expect.hasAssertions();
+
 	const packageJsonContents = `
 {
 	"dependencies": {

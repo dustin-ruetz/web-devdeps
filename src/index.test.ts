@@ -23,6 +23,8 @@ describe("`initRepo` script", () => {
 
 	describe("logs the help text", () => {
 		test("when no arguments are passed", async () => {
+			expect.hasAssertions();
+
 			await runScript();
 
 			expect(logInitRepoHelpText).toHaveBeenCalledTimes(1);
@@ -30,6 +32,8 @@ describe("`initRepo` script", () => {
 		});
 
 		test("when the `--help` argument is passed", async () => {
+			expect.hasAssertions();
+
 			process.argv.push("--help");
 
 			await runScript();
@@ -39,6 +43,8 @@ describe("`initRepo` script", () => {
 		});
 
 		test("when the `-h` argument is passed", async () => {
+			expect.hasAssertions();
+
 			process.argv.push("-h");
 
 			await runScript();
@@ -50,6 +56,8 @@ describe("`initRepo` script", () => {
 
 	describe("is called with the correct arguments", () => {
 		test("when the required `repoName` argument is not passed", async () => {
+			expect.hasAssertions();
+
 			// @ts-expect-error if a non-string value is pushed into the `argv` array.
 			process.argv.push(undefined);
 
@@ -61,6 +69,8 @@ describe("`initRepo` script", () => {
 		});
 
 		test("when the required `repoName` argument is passed as an empty string", async () => {
+			expect.hasAssertions();
+
 			process.argv.push("");
 
 			await runScript();
@@ -71,6 +81,8 @@ describe("`initRepo` script", () => {
 		});
 
 		test("when the required `repoName` argument is passed *and* the optional flags are not passed", async () => {
+			expect.hasAssertions();
+
 			process.argv.push("repo-name");
 
 			await runScript();
@@ -81,6 +93,8 @@ describe("`initRepo` script", () => {
 		});
 
 		test("when the required `repoName` argument is passed *and* the optional flags are passed", async () => {
+			expect.hasAssertions();
+
 			process.argv.push(
 				"repo-name",
 				"--configure-stylelint",
@@ -115,6 +129,8 @@ describe("`runCLI` script", () => {
 	`(
 		`Executing "npm run $script" script results in a call of runCLI("$cli", $args)`,
 		async (testRow: {script: string; cli: string; args: string[]}) => {
+			expect.hasAssertions();
+
 			process.argv.push(testRow.script, ...testRow.args);
 
 			await runScript();
@@ -130,16 +146,20 @@ describe("throws an error", () => {
 		process.argv = [...processArgv];
 	});
 
-	test("when no script name is passed", () => {
-		void expect(async () => {
+	test("when no script name is passed", async () => {
+		expect.hasAssertions();
+
+		await expect(async () => {
 			await runScript();
 		}).rejects.toThrow(/ERR_UNKNOWN_SCRIPT/);
 	});
 
-	test("when an unknown script is passed", () => {
+	test("when an unknown script is passed", async () => {
+		expect.hasAssertions();
+
 		process.argv.push("unknown-script");
 
-		void expect(async () => {
+		await expect(async () => {
 			await runScript();
 		}).rejects.toThrow(/ERR_UNKNOWN_SCRIPT/);
 	});

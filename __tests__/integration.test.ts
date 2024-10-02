@@ -4,11 +4,13 @@ import packageJSON from "../package.json";
 import packageLockJSON from "../package-lock.json";
 
 test("INTEGRATION: the NPM package name matches the exported package scope and name from the `constants` file", () => {
-	expect(packageJSON.name).toEqual(packageScopeAndName);
-	expect(packageLockJSON.name).toEqual(packageScopeAndName);
+	expect(packageJSON.name).toBe(packageScopeAndName);
+	expect(packageLockJSON.name).toBe(packageScopeAndName);
 });
 
 test("INTEGRATION: the original `src/` files are mapped one-to-one with the compiled `lib/` files", async () => {
+	expect.hasAssertions();
+
 	/**
 	 * @description Normalizes the contents of a directory by reading it, filtering out
 	 *              items as needed, sorting it, and removing the file extensions.
@@ -22,6 +24,7 @@ test("INTEGRATION: the original `src/` files are mapped one-to-one with the comp
 			recursive: true,
 		});
 
+		/* eslint-disable jest/no-conditional-in-test */
 		/** Normalized array of strings representing the directory's files. */
 		const files = directoryContents
 			// Filter out all folder names as well as mock and test files (the latter two are deliberately excluded from compilation).
@@ -55,12 +58,13 @@ test("INTEGRATION: the original `src/` files are mapped one-to-one with the comp
 
 		return files;
 	};
+	/* eslint-enable jest/no-conditional-in-test */
 
 	const [srcFiles, libFiles] = await Promise.all([
 		getDirectoryFiles("src/"),
 		getDirectoryFiles("lib/"),
 	]);
 
-	expect(srcFiles.length).toEqual(libFiles.length);
+	expect(srcFiles).toHaveLength(libFiles.length);
 	expect(srcFiles).toStrictEqual(libFiles);
 });

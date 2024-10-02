@@ -1,20 +1,20 @@
 import packageJSON from "../package.json";
 
 test("the most important configuration options are correct", () => {
-	expect(packageJSON.name).toEqual("@dustin-ruetz/devdeps");
-	expect(packageJSON.author).toEqual("Dustin Ruetz");
+	expect(packageJSON.name).toBe("@dustin-ruetz/devdeps");
+	expect(packageJSON.author).toBe("Dustin Ruetz");
 	// Excerpt from https://docs.npmjs.com/cli/v6/configuring-npm/package-json#main:
 	// > The main field is a module ID that is the primary entry point to your program.
 	// > That is, if your package is named `foo`, and a user installs it, and then does
 	// > `require("foo")`, then your main module's exports object will be returned.
 	// > This should be a module ID relative to the root of your package folder.
-	expect(packageJSON.main).toEqual("./lib/exports.js");
+	expect(packageJSON.main).toBe("./lib/exports.js");
 	// Excerpt from https://docs.npmjs.com/cli/v6/configuring-npm/package-json#bin:
 	// > A lot of packages have one or more executable files that they'd like to install into the PATH.
 	// > To use this, supply a `bin` field in your package.json which is a map of command name to local file name. On install,
 	// > npm will symlink that file into `prefix/bin` for global installs, or `./node_modules/.bin/` for local installs.
 	// > If you have a single executable, and its name should be the name of the package, then you can just supply it as a string.
-	expect(packageJSON.bin).toEqual("./lib/index.js");
+	expect(packageJSON.bin).toBe("./lib/index.js");
 	// Ensure that only the following allowlisted files and folders are included in the published NPM package.
 	//
 	// Excerpt from https://docs.npmjs.com/cli/v10/using-npm/developers#keeping-files-out-of-your-package:
@@ -30,11 +30,13 @@ test("the most important configuration options are correct", () => {
 	]);
 	// Since this is a user-scoped namespaced package, set `publishConfig.access` to `public` to prevent the following NPM error:
 	// > npm error 402 Payment Required - You must sign up for private packages.
-	expect(packageJSON.publishConfig.access).toEqual("public");
-	expect(packageJSON.type).toEqual("module");
+	expect(packageJSON.publishConfig.access).toBe("public");
+	expect(packageJSON.type).toBe("module");
 });
 
 test("NPM packages are installed with exact version numbers", () => {
+	expect.hasAssertions();
+
 	const dependencyVersions = [
 		...Object.values(packageJSON.dependencies).map((version) => version),
 	];

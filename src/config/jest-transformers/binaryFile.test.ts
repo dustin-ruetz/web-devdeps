@@ -16,7 +16,7 @@ test('it transforms binary file paths into `module.exports = "name.extension"`',
 		"fonts/font.woff2",
 	);
 
-	expect(transformedJPG.code).toEqual('module.exports = "image.jpg"');
-	expect(transformedPNG.code).toEqual('module.exports = "image.png"');
-	expect(transformedWOFF2.code).toEqual('module.exports = "font.woff2"');
+	expect(transformedJPG.code).toBe('module.exports = "image.jpg"');
+	expect(transformedPNG.code).toBe('module.exports = "image.png"');
+	expect(transformedWOFF2.code).toBe('module.exports = "font.woff2"');
 });

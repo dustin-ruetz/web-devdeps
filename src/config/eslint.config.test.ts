@@ -5,9 +5,7 @@ import {dependsOnMock} from "../utils/dependsOn.mock.js";
 import {makeESLintConfig} from "./eslint.config.js";
 
 jest.mock("node:fs/promises");
-// Paraphrased excerpt from https://www.mikeborozdin.com/post/changing-jest-mocks-between-tests:
-// > Typecast the imported mocked module into a mocked function with writeable properties.
-const accessMock = access as jest.MockedFunction<typeof access>;
+const accessMock = jest.mocked(access);
 
 afterEach(() => {
 	jest.clearAllMocks();
@@ -20,6 +18,8 @@ const findConfigObjectByName = (
 
 describe("it exports a configuration array and the most important config options are correct", () => {
 	test("for the parts of the config that *are not* affected by conditional logic", async () => {
+		expect.hasAssertions();
+
 		const eslintConfig = await makeESLintConfig();
 
 		expect(Array.isArray(eslintConfig)).toBe(true);
@@ -29,7 +29,7 @@ describe("it exports a configuration array and the most important config options
 			eslintConfig,
 			"Imported .gitignore patterns",
 		);
-		expect(importedGitignorePatterns?.ignores).toEqual(
+		expect(importedGitignorePatterns?.ignores).toStrictEqual(
 			expect.arrayContaining(["**/lib/", "**/node_modules/"]),
 		);
 
@@ -38,7 +38,7 @@ describe("it exports a configuration array and the most important config options
 			eslintConfig,
 			"eslintjs/recommended",
 		);
-		expect(recommendedConfig?.rules?.["no-const-assign"]).toEqual("error");
+		expect(recommendedConfig?.rules?.["no-const-assign"]).toBe("error");
 
 		// Verify that the user-defined configuration is correct.
 		const userDefinedConfig = findConfigObjectByName(
@@ -54,8 +54,8 @@ describe("it exports a configuration array and the most important config options
 		expect(userDefinedConfig?.linterOptions).toStrictEqual({
 			reportUnusedDisableDirectives: "error",
 		});
-		expect(userDefinedConfig?.rules?.["camelcase"]).toEqual("error");
-		expect(userDefinedConfig?.rules?.["no-console"]).toEqual("warn");
+		expect(userDefinedConfig?.rules?.["camelcase"]).toBe("error");
+		expect(userDefinedConfig?.rules?.["no-console"]).toBe("warn");
 		expect(userDefinedConfig?.rules?.["no-magic-numbers"]).toStrictEqual([
 			"error",
 			{
@@ -64,7 +64,7 @@ describe("it exports a configuration array and the most important config options
 				ignoreArrayIndexes: true,
 			},
 		]);
-		expect(userDefinedConfig?.rules?.["no-var"]).toEqual("error");
+		expect(userDefinedConfig?.rules?.["no-var"]).toBe("error");
 
 		// Verify that the user-defined overrides configuration for test files are correct.
 		const userDefinedTestOverrides = findConfigObjectByName(
@@ -84,7 +84,7 @@ describe("it exports a configuration array and the most important config options
 			"jest/user-defined-config",
 		);
 		expect(eslintConfig).toContain(jestUserDefinedConfig);
-		expect(typeof jestUserDefinedConfig?.rules).toEqual("object");
+		expect(typeof jestUserDefinedConfig?.rules).toBe("object");
 
 		// Verify that the `jsdoc` user-defined config *is* included.
 		const jsdocUserDefinedConfig = findConfigObjectByName(
@@ -92,10 +92,12 @@ describe("it exports a configuration array and the most important config options
 			"jsdoc/user-defined-config",
 		);
 		expect(eslintConfig).toContain(jsdocUserDefinedConfig);
-		expect(typeof jsdocUserDefinedConfig?.rules).toEqual("object");
+		expect(typeof jsdocUserDefinedConfig?.rules).toBe("object");
 	});
 
 	test("when linting this devdeps repo (which *does not* have frontend dependencies and *does* depend on TypeScript)", async () => {
+		expect.hasAssertions();
+
 		const eslintConfig = await makeESLintConfig();
 
 		const userDefinedConfig = findConfigObjectByName(
@@ -103,7 +105,7 @@ describe("it exports a configuration array and the most important config options
 			"eslintjs/user-defined-config",
 		);
 		// Verify that the browser-provided globals *are not* included.
-		expect(userDefinedConfig?.languageOptions?.globals).toEqual(
+		expect(userDefinedConfig?.languageOptions?.globals).toStrictEqual(
 			expect.not.objectContaining(globals.browser),
 		);
 
@@ -113,9 +115,7 @@ describe("it exports a configuration array and the most important config options
 			"jsdoc/flat/recommended-typescript-error",
 		);
 		expect(eslintConfig).toContain(jsdocRecommendedTypeScriptErrorConfig);
-		expect(typeof jsdocRecommendedTypeScriptErrorConfig?.rules).toEqual(
-			"object",
-		);
+		expect(typeof jsdocRecommendedTypeScriptErrorConfig?.rules).toBe("object");
 
 		// Verify that the `typescript-eslint` user-defined config *is* included.
 		const typescripteslintUserDefinedConfig = findConfigObjectByName(
@@ -123,11 +123,13 @@ describe("it exports a configuration array and the most important config options
 			"typescript-eslint/user-defined-config",
 		);
 		expect(eslintConfig).toContain(typescripteslintUserDefinedConfig);
-		expect(typeof typescripteslintUserDefinedConfig?.rules).toEqual("object");
+		expect(typeof typescripteslintUserDefinedConfig?.rules).toBe("object");
 	});
 
 	describe("when linting a repo that has installed the devdeps package", () => {
 		test("which *does* have frontend dependencies", async () => {
+			expect.hasAssertions();
+
 			const hasFrontendDependencies = true;
 			dependsOnMock.mockResolvedValue(hasFrontendDependencies);
 
@@ -138,12 +140,14 @@ describe("it exports a configuration array and the most important config options
 				"eslintjs/user-defined-config",
 			);
 			// Verify that the browser-provided globals *are* included.
-			expect(userDefinedConfig?.languageOptions?.globals).toEqual(
+			expect(userDefinedConfig?.languageOptions?.globals).toStrictEqual(
 				expect.objectContaining(globals.browser),
 			);
 		});
 
 		test("which *does not* have a `tsconfig.json` file", async () => {
+			expect.hasAssertions();
+
 			accessMock.mockRejectedValue(
 				new Error(
 					"ENOENT: no such file or directory, access '/Users/username/repos/consuming-repo/tsconfig.json'",
@@ -158,14 +162,14 @@ describe("it exports a configuration array and the most important config options
 				"jsdoc/flat/recommended-error",
 			);
 			expect(eslintConfig).toContain(jsdocRecommendedErrorConfig);
-			expect(typeof jsdocRecommendedErrorConfig?.rules).toEqual("object");
+			expect(typeof jsdocRecommendedErrorConfig?.rules).toBe("object");
 
 			const typescripteslintUserDefinedConfigIndex = eslintConfig.findIndex(
 				(configObj) =>
 					configObj.name === "typescript-eslint/user-defined-config",
 			);
 			// Verify that the `typescript-eslint` user-defined config *is not* included.
-			expect(typescripteslintUserDefinedConfigIndex).toEqual(-1);
+			expect(typescripteslintUserDefinedConfigIndex).toBe(-1);
 		});
 	});
 });
