@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## [1.17.0](https://github.com/dustin-ruetz/devdeps/compare/v1.16.1...v1.17.0) (2024-10-02)
+
+### Features
+
+* **config/eslint-plugins/jest:** initial configuration and unit test ([7268a05](https://github.com/dustin-ruetz/devdeps/commit/7268a05e007b6455ceadf7d2de8568926113c9e1))
+* **config/eslint.config:** implement configuration for Jest plugin ([151f30c](https://github.com/dustin-ruetz/devdeps/commit/151f30cd9a88ba1443a26fba8296bedb43d8a4a1))
+* **dependencies:** install the 'eslint-plugin-jest' package ([b263fdc](https://github.com/dustin-ruetz/devdeps/commit/b263fdcdf40c4a4a00e53e9ccf530b88868ebd15))
+
+### Bug Fixes
+
+* **.githooks/_/husky:** improve 'echo' logs ([dc47f6f](https://github.com/dustin-ruetz/devdeps/commit/dc47f6f530a55e80b35ce150bd8fbef0219dc085))
+* **config/eslint-plugins/jest:** remove 'consistent-test-it' rule ([cae27fa](https://github.com/dustin-ruetz/devdeps/commit/cae27fa6160cfe86e7bbadedd9f4a2e6575137f5))
+* **dependencies:** update packages to latest versions ([dff7de6](https://github.com/dustin-ruetz/devdeps/commit/dff7de6c30517ca790986aa83a3bb52e7396fdc8))
+* errors identified in unit tests ([caf1953](https://github.com/dustin-ruetz/devdeps/commit/caf1953266192763a88354f0d9d99e116345ee54))
+* **eslint:** update test files glob pattern to include mock files as well ([7c1cfde](https://github.com/dustin-ruetz/devdeps/commit/7c1cfdeea7b8bb02c737bfbf2f9e4aef9a218778))
+
 ## [1.16.1](https://github.com/dustin-ruetz/devdeps/compare/v1.16.0...v1.16.1) (2024-09-27)
 
 ### Bug Fixes
