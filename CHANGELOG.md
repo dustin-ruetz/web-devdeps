@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.17.2](https://github.com/dustin-ruetz/devdeps/compare/v1.17.1...v1.17.2) (2024-10-18)
+
+### Bug Fixes
+
+* **dependencies:** update packages to latest versions ([ac2099b](https://github.com/dustin-ruetz/devdeps/commit/ac2099b5135c5ef917d77e34ed60d4667a677156))
+
 ## [1.17.1](https://github.com/dustin-ruetz/devdeps/compare/v1.17.0...v1.17.1) (2024-10-16)
 
 ### Bug Fixes
