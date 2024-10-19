@@ -104,22 +104,21 @@ Start by initializing the repo for local development:
 Below is a list of the most useful NPM scripts in alphabetical order (execute the `npm run` command to print the full list):
 
 ```sh
-# Compile the codebase from src/*.ts to lib/*.js.
+# Compile the codebase (from src/*.ts to lib/*.js).
 npm run build
 
 # Check the codebase for problems (formatting, linting and typechecking).
 npm run check
 
-# Run the TypeScript compiler in "watch" mode.
+# Compile the codebase and recompile files whenever they change.
 npm run dev
 
 # Check the codebase for problems and automatically fix them where possible (formatting and linting).
 npm run fix
 
-# Run the unit tests and collect code coverage.
+# Run the unit tests in various modes.
+npm run test/unit
 npm run test/unit/coverage
-
-# Run the unit tests in "watch" mode.
 npm run test/unit/watch
 
 # Run the full suite of validation checks (🛠️ build, 🧐 check, 🧪 test).
