@@ -19,7 +19,7 @@ declare module "@eslint/js" {
 	export default js;
 }
 
-/** @description The `eslint-plugin-jest` doesn't have a DefinitelyTyped entry, so declare its shape here. */
+/** @description The `eslint-plugin-jest` package doesn't have a DefinitelyTyped entry, so declare its shape here. */
 declare module "eslint-plugin-jest" {
 	const jest = {
 		configs: {
