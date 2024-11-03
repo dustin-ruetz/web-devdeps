@@ -145,6 +145,31 @@ describe("it exports a configuration array and the most important config options
 			);
 		});
 
+		test("which *does* depend on React", async () => {
+			expect.hasAssertions();
+
+			const hasReactDependency = true;
+			dependsOnMock.mockResolvedValue(hasReactDependency);
+
+			const eslintConfig = await makeESLintConfig();
+
+			const jsxA11yConfig = findConfigObjectByName(
+				eslintConfig,
+				"jsx-a11y/strict",
+			);
+			// Verify that one of the `eslint-plugin-jsx-a11y` strict rules is included in the configuration.
+			expect(jsxA11yConfig?.rules?.["jsx-a11y/alt-text"]).toBe("error");
+
+			const reactHooksConfig = findConfigObjectByName(
+				eslintConfig,
+				"react-hooks/config",
+			);
+			// Verify that one of the `eslint-plugin-react-hooks` rules is included in the configuration.
+			expect(reactHooksConfig?.rules?.["react-hooks/rules-of-hooks"]).toBe(
+				"error",
+			);
+		});
+
 		test("which *does not* have a `tsconfig.json` file", async () => {
 			expect.hasAssertions();
 

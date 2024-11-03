@@ -10,6 +10,8 @@ import {
 	mockAndTestFilesGlobPattern,
 } from "./eslint-plugins/jest.js";
 import {makeJSDocPlugin} from "./eslint-plugins/jsdoc.js";
+import {jsxA11yPlugin} from "./eslint-plugins/jsx-a11y.js";
+import {reactHooksPlugin} from "./eslint-plugins/react-hooks.js";
 import {typescripteslintPlugin} from "./eslint-plugins/typescript-eslint.js";
 
 /**
@@ -23,13 +25,14 @@ export const makeESLintConfig = async () => {
 	const gitignorePath = `${absoluteRepoRootPath}/.gitignore`;
 
 	const hasFrontendDependencies = await dependsOn(["pug", "react"]);
+	const hasReactDependency = await dependsOn(["react"]);
 
 	/**
 	 * Ideally a straightforward `dependsOn(["typescript"])` check would be sufficient for checking if
 	 * the repo uses TypeScript (whether it's this `devdeps` repo or a consuming repo that has
 	 * installed the `devdeps` package as a dependency). For TypeScript specifically this won't work
 	 * since one of the primary use cases of the `devdeps` package is to provide development dependencies
-	 * for consuming repos without requiring the consumers to specify all of them in their
+	 * (including TS) for consuming repos without requiring the consumers to specify all of them in their
 	 * `packageJSON.devDependencies` object. So rather than checking the `devDependencies` object for
 	 * the `typescript` package, check for the presence of a `tsconfig.json` file instead.
 	 */
@@ -179,7 +182,9 @@ export const makeESLintConfig = async () => {
 		},
 		...jestPlugin,
 		...makeJSDocPlugin(hasTSConfigFile),
-		// Only include the `typescript-eslint` configuration object when the repo has a `tsconfig.json` file.
+		// Conditionally-included ESLint plugins.
+		...(hasReactDependency ? jsxA11yPlugin : []),
+		...(hasReactDependency ? reactHooksPlugin : []),
 		...(hasTSConfigFile ? typescripteslintPlugin : []),
 	);
 };

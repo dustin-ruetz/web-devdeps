@@ -34,3 +34,17 @@ declare module "eslint-plugin-jest" {
 
 	export default jest;
 }
+
+/** @description The `eslint-plugin-react-hooks` package doesn't have a DefinitelyTyped entry, so declare its shape here. */
+declare module "eslint-plugin-react-hooks" {
+	const reactHooks = {
+		configs: {
+			recommended: {
+				rules: {},
+			},
+		},
+		rules: {},
+	} as const;
+
+	export default reactHooks;
+}
