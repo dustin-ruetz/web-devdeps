@@ -7,5 +7,5 @@ test("the correct version of Node.js is specified", async () => {
 		await readFile(".node-version", {encoding: "utf-8"})
 	).trim();
 
-	expect(versionNumber).toBe("20");
+	expect(versionNumber).toBe("22");
 });
