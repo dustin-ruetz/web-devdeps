@@ -1,8 +1,8 @@
 // To develop and test this script locally:
 // 1. Execute the `npm run dev` command so that `tsc` watches and auto-compiles all changes to this file.
-// 2. Execute the following command to run the script:
+// 2. Execute the following command to run the script (note the optional flags):
 //    ```sh
-//    npm run init-repo -- repo-name --configure-stylelint --node-version=20
+//    npm run init-repo -- repo-name --configure-stylelint --node-version=major.minor.patch
 //    ```
 
 import {readFile} from "node:fs/promises";
