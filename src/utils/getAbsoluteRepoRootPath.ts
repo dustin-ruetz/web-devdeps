@@ -4,7 +4,7 @@ import {CustomError} from "./CustomError.js";
 
 /**
  * The purpose of this function is to provide a more robust alternative to `process.cwd()`. As per
- * the Node.js documentation on https://nodejs.org/docs/latest-v20.x/api/process.html#processcwd:
+ * the Node.js documentation on https://nodejs.org/docs/latest/api/process.html#processcwd:
  * > The `process.cwd()` method returns the current working directory of the Node.js process.
  *
  * The problem with relying on `process.cwd()` is that it's dependent on the directory where the Node.js process was
