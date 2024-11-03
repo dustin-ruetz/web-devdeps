@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## [1.18.0](https://github.com/dustin-ruetz/devdeps/compare/v1.17.2...v1.18.0) (2024-11-03)
+
+### Features
+
+* **config/eslint:** add 'jsx-a11y' and 'react-hooks' ESLint plugins ([50ab7f8](https://github.com/dustin-ruetz/devdeps/commit/50ab7f8fbe75815fbfd441dfbb2f5ad2043e0936))
+* **modules.d.ts:** remove manual declaration of '@eslint/js' since it now provides its own types ([5663c3e](https://github.com/dustin-ruetz/devdeps/commit/5663c3e67917da226293fb334892fd87157a4054))
+
+### Bug Fixes
+
+* **dependencies:** update ESLint-related packages to latest versions ([2bf34c5](https://github.com/dustin-ruetz/devdeps/commit/2bf34c523343d9c4272a4fe038cf39df1c78a8ce))
+* **dependencies:** update packages to latest versions ([db28c52](https://github.com/dustin-ruetz/devdeps/commit/db28c52031c981f76bcf472db75c0544dd208406))
+* **dependencies:** update packages to latest versions ([9663230](https://github.com/dustin-ruetz/devdeps/commit/966323057d0913990f68c5ce3c420f7750d5c678))
+
 ## [1.17.2](https://github.com/dustin-ruetz/devdeps/compare/v1.17.1...v1.17.2) (2024-10-18)
 
 ### Bug Fixes
