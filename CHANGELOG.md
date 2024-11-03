@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.19.0](https://github.com/dustin-ruetz/devdeps/compare/v1.18.0...v1.19.0) (2024-11-03)
+
+### Features
+
+* **.node-version:** use Node.js v22 now that it's entered LTS status ([82af488](https://github.com/dustin-ruetz/devdeps/commit/82af488aa8ea97512320a8f130968f35fce95ad3))
+
 ## [1.18.0](https://github.com/dustin-ruetz/devdeps/compare/v1.17.2...v1.18.0) (2024-11-03)
 
 ### Features
