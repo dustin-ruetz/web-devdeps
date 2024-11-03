@@ -9,7 +9,7 @@ const configs = {
 } as const;
 
 /**
- * @description Jest-specific linting rules for ESLint.
+ * @description Jest-specific linting rules.
  * @returns Configuration for the Jest ESLint plugin.
  * @see {@link https://github.com/jest-community/eslint-plugin-jest}
  */
