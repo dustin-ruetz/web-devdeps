@@ -98,7 +98,7 @@ describe("`initRepo` script", () => {
 			process.argv.push(
 				"repo-name",
 				"--configure-stylelint",
-				"--node-version=20",
+				"--node-version=10",
 			);
 
 			await runScript();
@@ -107,7 +107,7 @@ describe("`initRepo` script", () => {
 			expect(initRepo).toHaveBeenCalledTimes(1);
 			expect(initRepo).toHaveBeenCalledWith("repo-name", [
 				"--configure-stylelint",
-				"--node-version=20",
+				"--node-version=10",
 			]);
 		});
 	});

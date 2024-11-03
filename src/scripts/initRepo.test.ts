@@ -18,19 +18,19 @@ const readFileMock = jest.mocked(readFile);
 
 jest.mock("./helpers/initRepoHelpers.js");
 
-beforeAll(() => {
-	readFileMock.mockResolvedValue("20");
-
-	jest.spyOn(console, "log").mockImplementation();
-	jest.spyOn(console, "table").mockImplementation();
-});
-
 const testRepoName = "repo-name";
 /**
  * Node.js version number for the purposes of this unit test; specify a very old/obviously
  * out-of-long-term-support version number to avoid any inclination to update it.
  */
 const testNodeVersion = "10";
+
+beforeAll(() => {
+	readFileMock.mockResolvedValue(testNodeVersion);
+
+	jest.spyOn(console, "log").mockImplementation();
+	jest.spyOn(console, "table").mockImplementation();
+});
 
 /* eslint-disable no-console */
 test("the logInitRepoHelpText helper function logs the correct values", async () => {
@@ -46,11 +46,11 @@ test("the logInitRepoHelpText helper function logs the correct values", async ()
 	);
 	expect(console.log).toHaveBeenCalledWith(
 		expect.stringContaining(
-			`${baseCommand} --configure-stylelint --node-version=20`,
+			`${baseCommand} --configure-stylelint --node-version=${testNodeVersion}`,
 		),
 	);
 	expect(console.log).toHaveBeenCalledWith(
-		expect.stringContaining(`${baseCommand} -cs -nv=20`),
+		expect.stringContaining(`${baseCommand} -cs -nv=${testNodeVersion}`),
 	);
 
 	// Verify that the information about the function's arguments is logged in tabular format.
@@ -79,7 +79,7 @@ describe("initRepo", () => {
 		test.each`
 			argsArray
 			${["--invalid-flag"]}
-			${["--configure-stylelint", "--node-version=20", "--invalid-flag"]}
+			${["--configure-stylelint", `--node-version=${testNodeVersion}`, "--invalid-flag"]}
 		`(
 			`initRepo("${testRepoName}", $argsArray) throws ${invalidFlagPassedErrorCode} error`,
 			async (testRow: {argsArray: string[]}) => {
@@ -146,7 +146,7 @@ describe("initRepo", () => {
 
 		const defaultArgumentValues = {
 			configureStylelint: false,
-			nodeVersion: "20",
+			nodeVersion: testNodeVersion,
 		} as const;
 
 		await initRepo("repo-name", []);

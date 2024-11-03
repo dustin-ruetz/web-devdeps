@@ -109,12 +109,12 @@ test("writeLicense", async () => {
 test("writeNodeVersion", async () => {
 	expect.hasAssertions();
 
-	await writeNodeVersion("20");
+	await writeNodeVersion("10");
 
 	expect(writeFile).toHaveBeenCalledTimes(1);
 	expect(writeFile).toHaveBeenCalledWith(
 		expect.stringContaining(".node-version"),
-		"20",
+		"10",
 	);
 });
 
