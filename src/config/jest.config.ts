@@ -62,7 +62,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		],
 		// Set coverage provider to v8 because its `/* v8 ignore next # */` comment syntax is an improvement over
 		// istanbul's comments when excluding specific lines-of-code ranges from the test coverage report.
-		coverageProvider: "v8",
+		// coverageProvider: "v8",
 		// Specify `coverageReporters` to prevent the default reporters from writing a coverage/ directory to disk.
 		coverageReporters: ["text", "text-summary"],
 		coverageThreshold: {
