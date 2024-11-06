@@ -1,4 +1,4 @@
-import {exports} from "./exports.js";
+import exports from "./exports.js";
 
 test("the configuration objects are all available on the module's primary `exports` object", () => {
 	expect(typeof exports.commitlintConfig).toBe("object");

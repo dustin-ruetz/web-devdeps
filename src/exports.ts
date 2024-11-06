@@ -10,7 +10,7 @@ import stylelintConfig from "./config/stylelint.config.js";
  * @description The module's primary export of configuration objects.
  * @see [package.json](../package.json) (specifically the `packageJSON.main` field)
  */
-export const exports = {
+export default {
 	commitlintConfig,
 	eslintConfig,
 	jestConfig,
