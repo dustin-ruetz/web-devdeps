@@ -7,7 +7,7 @@ export type PackageJsonTypes = {
 	version: string;
 	description: string;
 	scripts: Record<string, string>;
-	files: [];
+	files: string[];
 	publishConfig?: Record<string, string>;
 	repository: {
 		url: string;
