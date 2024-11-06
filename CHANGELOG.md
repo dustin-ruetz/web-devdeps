@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## [1.20.0](https://github.com/dustin-ruetz/devdeps/compare/v1.19.0...v1.20.0) (2024-11-06)
+
+### Features
+
+* **modules.d.ts:** improve type declarations for 'eslint-plugin' packages ([8fd2807](https://github.com/dustin-ruetz/devdeps/commit/8fd2807bc9ff1a33f4af93e770d1bb3dcc64b662))
+
+### Bug Fixes
+
+* **dependencies:** update packages to latest versions ([864dff7](https://github.com/dustin-ruetz/devdeps/commit/864dff7a3354d05a10360909d3a75064ecaa7b30))
+* **types.d.ts:** specify that 'PackageJsonTypes.files' is an array of strings ([93808c5](https://github.com/dustin-ruetz/devdeps/commit/93808c5ae6cd89bd6c4dadf2b78db02ef914a10d))
+* upgrade 'eslint-plugin-jest' to latest version and remove manual type declarations ([bf26269](https://github.com/dustin-ruetz/devdeps/commit/bf26269e91e91570151b32023ac1234dc347b261))
+
 ## [1.19.0](https://github.com/dustin-ruetz/devdeps/compare/v1.18.0...v1.19.0) (2024-11-03)
 
 ### Features
