@@ -48,8 +48,8 @@ describe("the CLI programs are spawned correctly with their expected `args` when
 	);
 });
 
-describe("the CLI programs automatically  passes the correct argument to the `--config` flag when the command", () => {
-	describe("is being run from this `devdeps` repo", () => {
+describe("the CLI programs automatically pass the correct argument to the `--config` flag when the command is being run from", () => {
+	describe("this `devdeps` repo", () => {
 		test.each`
 			cli
 			${"commitlint"}
@@ -77,7 +77,7 @@ describe("the CLI programs automatically  passes the correct argument to the `--
 		});
 	});
 
-	describe("is being run from a `consuming-repo`", () => {
+	describe("a `consuming-repo`", () => {
 		test.each`
 			cli
 			${"commitlint"}
