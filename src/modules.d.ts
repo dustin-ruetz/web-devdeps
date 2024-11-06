@@ -1,33 +1,49 @@
+// The following packages don't include their type definitions, nor do they have
+// entries in the `DefinitelyTyped` repo, so just declare their shapes here.
+
 /**
- * @todo Figure out how to use ESLint's `Linter.RulesRecord` type for the `rules` configuration objects.
+ * @description Type declarations for the Jest ESLint plugin.
+ * @see {@link https://github.com/jest-community/eslint-plugin-jest/issues/1469}
+ * @todo Check if these type declarations can be removed after `eslint-plugin-jest`
+ *       gets a new release that addresses the above issue.
  */
-
-/** @description The `eslint-plugin-jest` package doesn't have a DefinitelyTyped entry, so declare its shape here. */
 declare module "eslint-plugin-jest" {
-	const jest = {
-		configs: {
-			"flat/recommended": {
-				rules: {},
-			},
-			"flat/style": {
-				rules: {},
-			},
-		},
-	} as const;
+	import type {Linter} from "eslint";
 
-	export default jest;
+	declare const jest: {
+		readonly configs: {
+			readonly "flat/recommended": {
+				readonly rules: Readonly<Linter.RulesRecord>;
+			};
+			readonly "flat/style": {
+				readonly rules: Readonly<Linter.RulesRecord>;
+			};
+		};
+	};
+
+	export = jest;
 }
-
-/** @description The `eslint-plugin-react-hooks` package doesn't have a DefinitelyTyped entry, so declare its shape here. */
+/**
+ * @description Type declarations for the React Hooks ESLint plugin.
+ * @see {@link https://github.com/facebook/react/issues/30119}
+ * @todo Check if these type declarations can be removed after `eslint-plugin-react-hooks`
+ *       gets a new release that addresses the above issue.
+ */
 declare module "eslint-plugin-react-hooks" {
-	const reactHooks = {
-		configs: {
-			recommended: {
-				rules: {},
-			},
-		},
-		rules: {},
-	} as const;
+	// eslint-disable-next-line no-duplicate-imports
+	import type {Linter} from "eslint";
 
-	export default reactHooks;
+	declare const reactHooks: {
+		readonly configs: {
+			readonly recommended: {
+				readonly rules: Readonly<Linter.RulesRecord>;
+			};
+		};
+		readonly rules: {
+			"exhaustive-deps": SharedConfig.RuleEntry;
+			"rules-of-hooks": SharedConfig.RuleEntry;
+		};
+	};
+
+	export = reactHooks;
 }
