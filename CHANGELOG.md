@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [1.21.0](https://github.com/dustin-ruetz/devdeps/compare/v1.20.0...v1.21.0) (2024-11-15)
+
+### Features
+
+* **config/lint-staged.config:** remove '--collectCoverageFrom' flag from unit test command ([e1e4a17](https://github.com/dustin-ruetz/devdeps/commit/e1e4a1729e0a66071aa2e8b4f1db6519b0af0820))
+
+### Bug Fixes
+
+* **dependencies:** update packages to latest versions ([0b9a8c4](https://github.com/dustin-ruetz/devdeps/commit/0b9a8c4d6c34202488e9dc2c982d3c7f948d4337))
+* **exports:** change object from namespaced export to default export ([1e61a33](https://github.com/dustin-ruetz/devdeps/commit/1e61a330690add3e0a12e8d7ea515af9e0083d46))
+
 ## [1.20.0](https://github.com/dustin-ruetz/devdeps/compare/v1.19.0...v1.20.0) (2024-11-06)
 
 ### Features
