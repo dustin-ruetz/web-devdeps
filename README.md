@@ -119,6 +119,7 @@ npm run fix
 # Run the unit tests in various modes.
 npm run test/unit
 npm run test/unit/coverage
+npm run test/unit/coverage-watch-all
 npm run test/unit/watch
 
 # Run the full suite of validation checks (🛠️ build, 🧐 check, 🧪 test).
