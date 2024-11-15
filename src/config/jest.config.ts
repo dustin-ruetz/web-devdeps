@@ -129,10 +129,13 @@ export const makeJestConfig = async (): Promise<Config> => {
 						 * @see [tsconfig.json](../../tsconfig.json)
 						 */
 						target: "ES2023",
+						transform: {
+							decoratorMetadata: false,
+						},
 					},
 					/** @see {@link https://github.com/swc-project/swc/issues/3854} */
-					sourceMaps: "inline",
 					inlineSourcesContent: true,
+					sourceMaps: "inline",
 					// sourceMaps: true,
 				},
 			],
