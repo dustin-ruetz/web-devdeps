@@ -1,6 +1,6 @@
 # @dustin-ruetz/devdeps
 
-Package that provides development dependencies and standardized configurations for other JavaScript/TypeScript projects (both web and Node.js) to consume.
+Package that provides development dependencies, standardized configurations and CLI scripts for other web projects (both browser- and Node.js-based) to consume.
 
 ## Features and Purpose
 
