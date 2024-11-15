@@ -135,7 +135,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 						},
 					},
 					/** @see {@link https://github.com/swc-project/swc/issues/3854} */
-					inlineSourcesContent: true,
+					// inlineSourcesContent: true,
 					sourceMaps: "inline",
 					// sourceMaps: true,
 				},
