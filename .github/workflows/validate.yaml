@@ -24,4 +24,5 @@ jobs:
       #   run: npm run validate
       - run: npm run build
       - run: npm run check
+      - run: npm run clean/caches
       - run: npm run test/unit/coverage
