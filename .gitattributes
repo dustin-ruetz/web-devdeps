@@ -8,7 +8,7 @@
 *.yaml text
 
 # The repo's "Languages" percentages on the https://github.com/dustin-ruetz/devdeps
-# repo homepage  misidentifies the `src/index.ts` TypeScript file as JavaScript
+# repo homepage misidentifies the `src/index.ts` TypeScript file as JavaScript
 # due to the fact that its first line is the `#!/usr/bin/env node` shebang comment.
 # Fix this by manually specifying the language for just this particular file.
 #
