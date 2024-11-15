@@ -120,6 +120,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 				{
 					jsc: {
 						parser: {
+							externalHelpers: true,
 							jsx: true,
 							syntax: "typescript",
 							tsx: true,
