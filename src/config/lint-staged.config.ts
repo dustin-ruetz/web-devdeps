@@ -37,16 +37,11 @@ const lintstagedConfig: Config = {
 
 		if (relativePathsToFindRelatedTestsFor.length >= 1) {
 			const unitTestCommand =
-				"npm run test/unit/coverage --" +
+				"npm run test/unit --" +
 				// Excerpt from https://jestjs.io/docs/cli#--findrelatedtests-spaceseparatedlistofsourcefiles:
 				// > Find and run the tests that cover a space-separated list of source files that were passed in as arguments.
 				// > Useful for pre-commit hook integration to run the minimal amount of tests necessary.
-				" --findRelatedTests" +
-				// Excerpt from https://jestjs.io/docs/cli#--collectcoveragefromglob:
-				// > A glob pattern relative to `rootDir` matching the files that coverage info needs to be collected from.
-				" --collectCoverageFrom=" +
-				// Important: Add a space between `--collectCoverageFrom=` and the relative paths to properly scope the coverage report.
-				` ${relativePathsToFindRelatedTestsFor.join(" ")}`;
+				` --findRelatedTests ${relativePathsToFindRelatedTestsFor.join(" ")}`;
 
 			commandsToRun.push(unitTestCommand);
 		}

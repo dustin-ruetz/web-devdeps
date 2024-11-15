@@ -43,7 +43,7 @@ describe("it runs the correct commands for", () => {
 
 	test("unit testing", () => {
 		expect(unitTestCommand).toBe(
-			`npm run test/unit/coverage -- --findRelatedTests --collectCoverageFrom= ${relativePath}`,
+			`npm run test/unit -- --findRelatedTests ${relativePath}`,
 		);
 	});
 });
@@ -80,7 +80,7 @@ describe("when the staged changes include untestable TypeScript declaration file
 			lintstagedConfig["*.{js,jsx,ts,tsx}"](relativePaths);
 
 		expect(unitTestCommand).toBe(
-			`npm run test/unit/coverage -- --findRelatedTests --collectCoverageFrom= ${relativePathToFindRelatedTestsFor}`,
+			`npm run test/unit -- --findRelatedTests ${relativePathToFindRelatedTestsFor}`,
 		);
 		expect(unitTestCommand).not.toContain(typescriptDeclarationFilePath);
 		expect(unitTestCommand).not.toContain(javascriptFileMockPath);
