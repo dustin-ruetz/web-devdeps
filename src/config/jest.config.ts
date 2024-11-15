@@ -115,7 +115,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 			 * @see {@link https://github.com/swc-project/pkgs/tree/main/packages/jest}
 			 * @see {@link https://swc.rs/docs/configuration/compilation}
 			 */
-			".(js|jsx|ts|tsx)": [
+			"^.+\\.(t|j)sx?$": [
 				"@swc/jest",
 				{
 					jsc: {

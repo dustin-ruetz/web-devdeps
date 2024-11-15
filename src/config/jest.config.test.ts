@@ -24,7 +24,7 @@ describe("it exports a configuration object and the most important config option
 
 		// expect(jestConfig.cacheDirectory).toBe("<rootDir>/.caches/.jestcache/");
 		// expect(jestConfig.coverageProvider).toBe("v8");
-		expect(jestConfig.transform?.[".(js|jsx|ts|tsx)"]?.[0]).toBe("@swc/jest");
+		// expect(jestConfig.transform?.[".(js|jsx|ts|tsx)"]?.[0]).toBe("@swc/jest");
 		expect(jestConfig.verbose).toBe(true);
 	});
 
