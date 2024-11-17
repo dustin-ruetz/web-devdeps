@@ -11,7 +11,7 @@
 		"check/lint/js-ts": "npm run lint/js-ts -- ./",
 		"check/types": "tsc --noEmit",
 		"clean": "npm-run-all2 --parallel clean/*",
-		"clean/caches": "npx jest --clearCache && rimraf ./.caches/",
+		"clean/caches": "jest --clear-cache && rimraf ./.caches/",
 		"clean/deps": "rimraf ./node_modules/ ./package-lock.json",
 		"clean/lib": "rimraf ./lib/",
 		"dev": "npm run build -- --watch",
