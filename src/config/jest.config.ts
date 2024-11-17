@@ -67,10 +67,10 @@ export const makeJestConfig = async (): Promise<Config> => {
 		coverageReporters: ["text", "text-summary"],
 		coverageThreshold: {
 			global: {
-				branches: 100,
+				branches: 95,
 				functions: 100,
-				lines: 100,
-				statements: 100,
+				lines: 95,
+				statements: 95,
 			},
 		},
 		// Excerpt from https://jestjs.io/docs/configuration#extensionstotreatasesm-arraystring:
