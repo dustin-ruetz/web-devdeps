@@ -134,7 +134,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 						 * Target environment should match the value of `compilerOptions.target` in the TypeScript configuration file.
 						 * @see [tsconfig.json](../../tsconfig.json)
 						 */
-						target: "ES2022",
+						target: "ES2023",
 					},
 				},
 			],

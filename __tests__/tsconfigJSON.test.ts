@@ -16,6 +16,6 @@ test("it is a configuration object and the most important config options are cor
 	// > This setting should be used with caution, since it doesn't mean the same thing between
 	// > different TypeScript versions and can make upgrades less predictable.
 	expect(compilerOptions.target).not.toMatch(/esnext/i);
-	expect(compilerOptions.target).toBe("ES2022");
+	expect(compilerOptions.target).toBe("ES2023");
 	expect(compilerOptions.verbatimModuleSyntax).toBe(true);
 });
