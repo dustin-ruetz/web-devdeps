@@ -21,11 +21,6 @@ export class CustomError extends Error {
 		// (meta-errors? 😅) if certain `options` strings are passed with invalid values.
 		const invalidErrorCode = "ERR_INVALID_ERROR_CODE";
 
-		/**
-		 * @todo Figure out why the following conditional logic (which _is_ in fact covered in the unit test)
-		 *       erroneously and flakily reports "Uncovered Line #s" errors in the test coverage report.
-		 */
-		/* v8 ignore next 44 */
 		if (!options.cause.code.startsWith("ERR_")) {
 			throw new Error(
 				`${invalidErrorCode} - \`options.cause.code\` must start with the "ERR_" substring.`,

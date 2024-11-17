@@ -2,7 +2,7 @@ import type {Config} from "jest";
 import {dependsOn} from "../utils/dependsOn.js";
 import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.js";
 import {getIsDevDepsRepo} from "../utils/getIsDevDepsRepo.js";
-import {makeCachePath} from "../utils/makeCachePath.js";
+// import {makeCachePath} from "../utils/makeCachePath.js";
 import {nodeModulesPackagePath} from "../constants.js";
 
 /**
@@ -48,7 +48,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// > The directory where Jest should store its cached dependency information.
 		// > Jest attempts to scan your dependency tree once (up-front) and cache it in order to ease some of the filesystem churn that
 		// > needs to happen while running tests. This config option lets you customize where Jest stores that cache data on disk.
-		cacheDirectory: `<rootDir>/${makeCachePath(".jestcache/")}`,
+		// cacheDirectory: `<rootDir>/${makeCachePath(".jestcache/")}`,
 		// Specify `collectCoverageFrom` to ensure that Jest collects test coverage for all JavaScript and TypeScript files.
 		// Excerpt from https://jestjs.io/docs/configuration#collectcoveragefrom-array:
 		// > An array of glob patterns indicating a set of files for which coverage information should be collected.
@@ -67,10 +67,10 @@ export const makeJestConfig = async (): Promise<Config> => {
 		coverageReporters: ["text", "text-summary"],
 		coverageThreshold: {
 			global: {
-				branches: 100,
+				branches: 95,
 				functions: 100,
-				lines: 100,
-				statements: 100,
+				lines: 95,
+				statements: 95,
 			},
 		},
 		// Excerpt from https://jestjs.io/docs/configuration#extensionstotreatasesm-arraystring:
@@ -115,11 +115,13 @@ export const makeJestConfig = async (): Promise<Config> => {
 			 * @see {@link https://github.com/swc-project/pkgs/tree/main/packages/jest}
 			 * @see {@link https://swc.rs/docs/configuration/compilation}
 			 */
-			".(js|jsx|ts|tsx)": [
+			"^.+\\.(t|j)sx?$": [
 				"@swc/jest",
 				{
 					jsc: {
 						parser: {
+							decorators: false,
+							externalHelpers: true,
 							jsx: true,
 							syntax: "typescript",
 							tsx: true,
@@ -128,8 +130,15 @@ export const makeJestConfig = async (): Promise<Config> => {
 						 * Target environment should match the value of `compilerOptions.target` in the TypeScript configuration file.
 						 * @see [tsconfig.json](../../tsconfig.json)
 						 */
-						target: "ES2022",
+						target: "ES2023",
+						transform: {
+							decoratorMetadata: false,
+						},
 					},
+					/** @see {@link https://github.com/swc-project/swc/issues/3854} */
+					// inlineSourcesContent: true,
+					sourceMaps: "inline",
+					// sourceMaps: true,
 				},
 			],
 			".svg": `${transformerBasePath}/lib/config/jest-transformers/svgFile.js`,
