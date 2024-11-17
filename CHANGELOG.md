@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.22.0](https://github.com/dustin-ruetz/devdeps/compare/v1.21.0...v1.22.0) (2024-11-17)
+
+### Features
+
+* **config/jest:** lower 'coverageThreshold' targets and remove 'v8 ignore' code comments ([2280e03](https://github.com/dustin-ruetz/devdeps/commit/2280e038dc61c154e7344d30cf942b4f41c1202a))
+* run 'clean/caches' command as part of 'validate' ([56434ca](https://github.com/dustin-ruetz/devdeps/commit/56434caf5d8891e73a06812f38135cc756fb8d07))
+* **utils/getAbsoluteRepoRootPath:** simplify code with 'URL()' and a relative path ([30c9f21](https://github.com/dustin-ruetz/devdeps/commit/30c9f210bf09b3fd92ca855218d5b551a5452850))
+
 ## [1.21.0](https://github.com/dustin-ruetz/devdeps/compare/v1.20.0...v1.21.0) (2024-11-15)
 
 ### Features
