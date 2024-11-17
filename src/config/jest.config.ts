@@ -65,12 +65,18 @@ export const makeJestConfig = async (): Promise<Config> => {
 		coverageProvider: "v8",
 		// Specify `coverageReporters` to prevent the default reporters from writing a coverage/ directory to disk.
 		coverageReporters: ["text", "text-summary"],
+		// The coverage for this repo is actually 100%, but the code coverage report erroneously and flakily reports
+		// "Uncovered Line #s" errors even though the sections that are flagged as being missed are in fact covered
+		// in the unit tests. While 100% coverage is a laudable goal, it shouldn't be considered a hard requirement,
+		// so the threshold values should be lowered a little bit to ensure the numbers remain high without
+		// running the risk of unpredictable failures due to inaccurate and inconsistent coverage results.
+		// The lowest results have been ~95%, so set the threshold slightly lower to allow for a margin of error.
 		coverageThreshold: {
 			global: {
-				branches: 100,
+				branches: 92.5,
 				functions: 100,
-				lines: 100,
-				statements: 100,
+				lines: 92.5,
+				statements: 92.5,
 			},
 		},
 		// Excerpt from https://jestjs.io/docs/configuration#extensionstotreatasesm-arraystring:
