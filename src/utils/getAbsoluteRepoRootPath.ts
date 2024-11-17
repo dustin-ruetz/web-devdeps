@@ -1,5 +1,5 @@
 import {fileURLToPath} from "node:url";
-import {nodeModulesPackagePath} from "../constants.js";
+import {nodeModulesPackagePath, packageName} from "../constants.js";
 import {CustomError} from "./CustomError.js";
 
 /**
@@ -18,60 +18,38 @@ import {CustomError} from "./CustomError.js";
  *
  * **Important:** Note that the `absoluteRepoRootPath` path is intentionally returned _without_ a trailing slash.
  * @returns The absolute root path of the repo where this specific file is being accessed from.
- * @throws An error in the unexpected event of a path mismatch.
+ * @throws An error in the event of a path mismatch, i.e if `devdeps` is not in the path.
  */
 export const getAbsoluteRepoRootPath = () => {
 	/**
-	 * @todo Simplify this function by replacing `import.meta.url` if/when the
-	 *       `import.meta.resolve()` function becomes useable within Jest.
+	 * @description Path to the `devdeps` directory. Note the relative path to traverse two levels upwards,
+	 *              i.e. starting from this file's location in `utils/`, move up twice: `lib/ ⬆️ devdeps/`
+	 * @todo Replace `import.meta.url` if/when the `import.meta.resolve()` function becomes workable with Jest.
+	 *
+	 * Excerpt from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta/resolve#comparison_with_new_url:
+	 * > The `URL()` constructor accepts a second base _URL_ argument. When the first argument is a relative path
+	 * > and the base URL is `import.meta.url`, the effect is similar to `import.meta.resolve()`.
 	 */
-	const absolutePath = fileURLToPath(import.meta.url);
-	/**
-	 * `partialPath` is known and stable; it's agnostic of differences between
-	 * folder locations (`lib` or `src`) and file extensions (`.js` or `.ts`).
-	 */
-	const partialPath = "utils/getAbsoluteRepoRootPath";
+	const devdepsPath = fileURLToPath(new URL("../../", import.meta.url));
 
-	/**
-	 * @todo Figure out why the following conditional logic (which _is_ in fact covered in the unit test)
-	 *       erroneously and flakily reports "Uncovered Line #s" errors in the test coverage report.
-	 */
-	/* v8 ignore next 14 */
-	// This function depends on its path being known (i.e. the folder being `/utils/` and the
-	// filename being `getRepoMetadata`), so throw an early error if these don't align.
-	if (!absolutePath.includes(partialPath)) {
-		throw new CustomError(
-			"`partialPath` string is not present within `absolutePath` string.",
-			{
-				cause: {
-					code: "ERR_PATH_MISMATCH",
-					values: {absolutePath, partialPath},
-				},
-				name: "PathMismatchError",
+	const nodeModulesPackagePathWithSlashes = `/${nodeModulesPackagePath}/`;
+	if (devdepsPath.endsWith(nodeModulesPackagePathWithSlashes)) {
+		return devdepsPath.replace(nodeModulesPackagePathWithSlashes, "");
+	}
+
+	if (devdepsPath.endsWith(`/${packageName}/`)) {
+		// Remove the last character in the string, i.e. the path's trailing slash.
+		return devdepsPath.slice(0, -1);
+	}
+
+	throw new CustomError(
+		"`devdeps` subpath string is not present within the path.",
+		{
+			cause: {
+				code: "ERR_PATH_MISMATCH",
+				values: {path: devdepsPath},
 			},
-		);
-	}
-
-	/**
-	 * `relativePath` is defined as a regular expression so that it covers two types of paths:
-	 * 1. A compiled JavaScript file in the lib/ directory; and
-	 * 2. A source TypeScript file in the src/ directory.
-	 */
-	const relativePath = new RegExp(`(lib|src)/${partialPath}.(js|ts)`);
-	/** `dependencyRelativePath` is defined as a regular expression built from the previous variables. */
-	const dependencyRelativePath = new RegExp(
-		`${nodeModulesPackagePath}/${relativePath.source}`,
+			name: "PathMismatchError",
+		},
 	);
-	let absoluteRepoRootPath = "";
-	/** @todo See above to-do comment. */
-	/* v8 ignore next 5 */
-	if (absolutePath.includes(nodeModulesPackagePath)) {
-		absoluteRepoRootPath = absolutePath.replace(dependencyRelativePath, "");
-	} else {
-		absoluteRepoRootPath = absolutePath.replace(relativePath, "");
-	}
-	// Remove the last character in the string, i.e. the path's trailing slash.
-	absoluteRepoRootPath = absoluteRepoRootPath.slice(0, -1);
-
-	return absoluteRepoRootPath;
 };

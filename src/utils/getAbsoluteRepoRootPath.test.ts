@@ -14,39 +14,22 @@ const absolutePaths = {
 	base: "/Users/username/repos",
 	scope: "@dustin-ruetz",
 	name: "devdeps",
-	relativeFilePath: "utils/getAbsoluteRepoRootPath",
 	// Combine the static partials in the return values of the methods.
 	/**
 	 * @description Test the value of `getAbsoluteRepoRootPath()` when used by a repository that depends on the `devdeps` package.
-	 * @returns Simulated path of devdeps being installed as a dependency running from a `node_modules/` folder.
+	 * @returns Simulated path to `devdeps` when it's installed as a dependency running from a `node_modules/` folder.
 	 */
 	asDependency() {
-		return `${this.base}/consuming-repo/node_modules/${this.scope}/${this.name}/lib/${this.relativeFilePath}.js`;
+		return `${this.base}/consuming-repo/node_modules/${this.scope}/${this.name}/`;
 	},
 	/**
-	 * @description Test the value of `getAbsoluteRepoRootPath()` when used in a `lib/*.js` file.
-	 * @returns Simulated path of this devdeps repo running a compiled `.js` file.
+	 * @description Test the value of `getAbsoluteRepoRootPath()` when used in this `devdeps` repo.
+	 * @returns Simulated path to this `devdeps` repo.
 	 */
-	asLibraryJavaScriptFile() {
-		return `${this.base}/${this.name}/lib/${this.relativeFilePath}.js`;
-	},
-	/**
-	 * @description Test the value of `getAbsoluteRepoRootPath()` during a test run in a `src/*.ts` test file.
-	 * @returns Simulated path of this devdeps repo running a source `.ts` file.
-	 */
-	asSourceTypeScriptFile() {
-		return `${this.base}/${this.name}/src/${this.relativeFilePath}.ts`;
+	asRepo() {
+		return `${this.base}/${this.name}/`;
 	},
 } as const;
-
-test("throws an error if partialPath is not present within absolutePath", () => {
-	const absolutePath = `${absolutePaths.base}/bad-path`;
-	fileURLToPathMock.mockReturnValue(absolutePath);
-
-	expect(() => {
-		getAbsoluteRepoRootPath();
-	}).toThrow(/ERR_PATH_MISMATCH/);
-});
 
 describe("it determines the correct absolute root directory", () => {
 	test("when installed as a dependency running from a `node_modules/` folder", () => {
@@ -58,21 +41,21 @@ describe("it determines the correct absolute root directory", () => {
 		expect(absoluteRepoRootPath).toBe("/Users/username/repos/consuming-repo");
 	});
 
-	test("when run as a JavaScript file inside the lib/ folder", () => {
-		const absolutePath = absolutePaths.asLibraryJavaScriptFile();
+	test("when run from this `devdeps` repo", () => {
+		const absolutePath = absolutePaths.asRepo();
 		fileURLToPathMock.mockReturnValue(absolutePath);
 
 		const absoluteRepoRootPath = getAbsoluteRepoRootPath();
 
 		expect(absoluteRepoRootPath).toBe("/Users/username/repos/devdeps");
 	});
+});
 
-	test("when run as a TypeScript file inside the src/ folder", () => {
-		const absolutePath = absolutePaths.asSourceTypeScriptFile();
-		fileURLToPathMock.mockReturnValue(absolutePath);
+test("throws an error if path does not end with either `/node_modules/@dustin-ruetz/devdeps/` or `/devdeps/`", () => {
+	const absolutePath = `${absolutePaths.base}/bad-path`;
+	fileURLToPathMock.mockReturnValue(absolutePath);
 
-		const absoluteRepoRootPath = getAbsoluteRepoRootPath();
-
-		expect(absoluteRepoRootPath).toBe("/Users/username/repos/devdeps");
-	});
+	expect(() => {
+		getAbsoluteRepoRootPath();
+	}).toThrow(/ERR_PATH_MISMATCH/);
 });
