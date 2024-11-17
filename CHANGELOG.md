@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.23.0](https://github.com/dustin-ruetz/devdeps/compare/v1.22.0...v1.23.0) (2024-11-17)
+
+### Features
+
+* **tsconfig:** change 'compilerOptions.target' to 'ES2023' ([019e7e6](https://github.com/dustin-ruetz/devdeps/commit/019e7e62ddfbfe3e07216ee8267452a5b629f0c0))
+
 ## [1.22.0](https://github.com/dustin-ruetz/devdeps/compare/v1.21.0...v1.22.0) (2024-11-17)
 
 ### Features
