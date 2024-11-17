@@ -32,7 +32,7 @@ jobs:
           node-version-file: .node-version
       # Note that while `validate` is configured to run on PRs, these commands should also
       # be run prior to releasing if/when commits are pushed directly to the `main` branch.
-      - name: 📋 Validate codebase (🛠️ build, 🧐 check, 🧪 test)
+      - name: 📋 Validate codebase (🛠️ build, 🕰️ clean caches, 🧐 check, 🧪 test)
         run: npm run validate
       # https://developer.1password.com/docs/ci-cd/github-actions
       # https://github.com/1Password/load-secrets-action
