@@ -1,6 +1,9 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
-  ]
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["config:recommended"],
+	"branchNameStrict": true,
+	"reviewers": ["dustin-ruetz"],
+	"semanticCommits": "enabled",
+	"semanticCommitType": "fix",
+	"semanticCommitScope": "🤖 dependencies"
 }
