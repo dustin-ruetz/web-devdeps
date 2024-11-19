@@ -12,6 +12,20 @@ test("the most important configuration options are correct", () => {
 	// > The default `false` behavior will mean that special characters like `.` and `/` may end up in the branch name.
 	expect(renovateJSON.branchNameStrict).toBe(true);
 
+	// Configure Renovate to upgrade multiple dependencies in pull requests as long as they are non-major version updates.
+	expect(renovateJSON.packageRules).toStrictEqual([
+		{
+			matchDepTypes: ["dependencies"],
+			matchUpdateTypes: ["minor", "patch"],
+			groupName: "dependencies (non-major)",
+		},
+		{
+			matchDepTypes: ["devDependencies"],
+			matchUpdateTypes: ["minor", "patch"],
+			groupName: "devDependencies (non-major)",
+		},
+	]);
+
 	// Excerpt from https://docs.renovatebot.com/configuration-options/#semanticcommits:
 	// > Enable Semantic Commit prefixes for commits and PR titles.
 	// > If you are using a semantic prefix for your commits, then you will want to enable this setting.
