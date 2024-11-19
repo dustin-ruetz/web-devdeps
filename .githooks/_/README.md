@@ -5,7 +5,7 @@
 - Description: husky shell script adapted from the original husky template for Git hooks.
 - Documentation: https://typicode.github.io/husky/
 - Repository: https://github.com/typicode/husky
-- Version: 9.1.6
+- Version: 9.1.7
 
 ## Upgrading the husky version
 
