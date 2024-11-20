@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.24.1](https://github.com/dustin-ruetz/devdeps/compare/v1.24.0...v1.24.1) (2024-11-20)
+
+### Bug Fixes
+
+* **🤖 dependencies:** update dependencies (non-major versions) ([#68](https://github.com/dustin-ruetz/devdeps/issues/68)) ([9949d09](https://github.com/dustin-ruetz/devdeps/commit/9949d09e70905d3d9ccc24a48e74d9fc7bb21630))
+
 ## [1.24.0](https://github.com/dustin-ruetz/devdeps/compare/v1.23.0...v1.24.0) (2024-11-20)
 
 ### Features
