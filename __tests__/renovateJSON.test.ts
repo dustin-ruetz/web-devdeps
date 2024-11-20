@@ -17,12 +17,12 @@ test("the most important configuration options are correct", () => {
 		{
 			matchDepTypes: ["dependencies"],
 			matchUpdateTypes: ["minor", "patch"],
-			groupName: "dependencies (non-major)",
+			groupName: "dependencies (non-major versions)",
 		},
 		{
 			matchDepTypes: ["devDependencies"],
 			matchUpdateTypes: ["minor", "patch"],
-			groupName: "devDependencies (non-major)",
+			groupName: "devDependencies (non-major versions)",
 		},
 	]);
 
