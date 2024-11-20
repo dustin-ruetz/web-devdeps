@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [1.24.0](https://github.com/dustin-ruetz/devdeps/compare/v1.23.0...v1.24.0) (2024-11-20)
+
+### Features
+
+* **package-lock.json:** update 'lockfileVersion' (from 2 to 3) ([7c3ef68](https://github.com/dustin-ruetz/devdeps/commit/7c3ef682b6841d9fdf339f773f93b6be1c179e15))
+
+### Bug Fixes
+
+* **dependencies:** update 'husky' to latest version ([4db3247](https://github.com/dustin-ruetz/devdeps/commit/4db32476b5d09f95123d3ffa251a92f178f0fc7f))
+* **package-lock.json:** rebuild lockfile ([a11e039](https://github.com/dustin-ruetz/devdeps/commit/a11e039ffce7c5e980f5ed1bac959a1551b3e1ed))
+
 ## [1.23.0](https://github.com/dustin-ruetz/devdeps/compare/v1.22.0...v1.23.0) (2024-11-17)
 
 ### Features
