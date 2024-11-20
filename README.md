@@ -6,6 +6,7 @@ Package that provides development dependencies, standardized configurations and 
 
 `@dustin-ruetz/devdeps` provides `devDependencies` and configuration files for:
 
+- Automated dependency updates using [renovate](https://docs.renovatebot.com).
 - Building and typechecking using [`typescript`](https://www.typescriptlang.org).
 - Cleaning using [`rimraf`](https://github.com/isaacs/rimraf).
 - Formatting using [`prettier`](https://prettier.io) and its plugins.
