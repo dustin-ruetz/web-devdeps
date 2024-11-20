@@ -1,4 +1,4 @@
-import {readFile} from "fs/promises";
+import {readFile} from "node:fs/promises";
 
 test("the correct version of Node.js is specified", async () => {
 	expect.hasAssertions();
