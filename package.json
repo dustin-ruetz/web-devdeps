@@ -61,10 +61,10 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@commitlint/cli": "19.5.0",
-		"@commitlint/config-conventional": "19.5.0",
+		"@commitlint/cli": "19.6.0",
+		"@commitlint/config-conventional": "19.6.0",
 		"@eslint/compat": "1.2.3",
-		"@eslint/js": "9.14.0",
+		"@eslint/js": "9.15.0",
 		"@prettier/plugin-pug": "3.2.0",
 		"@prettier/plugin-xml": "3.4.1",
 		"@semantic-release/changelog": "6.0.3",
@@ -75,9 +75,9 @@
 		"@types/eslint-plugin-jsx-a11y": "6.9.0",
 		"@types/jest": "29.5.14",
 		"@types/lint-staged": "13.3.0",
-		"@types/node": "22.9.0",
+		"@types/node": "22.9.1",
 		"conventional-changelog-conventionalcommits": "8.0.0",
-		"eslint": "9.14.0",
+		"eslint": "9.15.0",
 		"eslint-plugin-jest": "28.9.0",
 		"eslint-plugin-jsdoc": "50.5.0",
 		"eslint-plugin-jsx-a11y": "6.10.2",
@@ -95,7 +95,7 @@
 		"stylelint": "16.10.0",
 		"stylelint-config-standard-scss": "13.1.0",
 		"typescript": "5.6.3",
-		"typescript-eslint": "8.14.0"
+		"typescript-eslint": "8.15.0"
 	},
 	"devDependencies": {
 		"husky": "9.1.7"
