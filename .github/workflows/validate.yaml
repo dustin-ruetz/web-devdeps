@@ -20,5 +20,5 @@ jobs:
         uses: ./.github/composite-actions/setup/
         with:
           node-version: ${{ matrix.node-version }}
-      - name: 📋 Validate codebase (🛠️ build, 🕰️ clean caches, 🧐 check, 🧪 test)
+      - name: 📋 Validate codebase (🛠️ build, 🧐 check, 🧪 test)
         run: npm run validate

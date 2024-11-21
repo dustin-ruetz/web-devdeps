@@ -123,7 +123,7 @@ npm run test/unit/coverage
 npm run test/unit/coverage-watch-all
 npm run test/unit/watch
 
-# Run the full suite of validation checks (🛠️ build, 🕰️ clean caches, 🧐 check, 🧪 test).
+# Run the full suite of validation checks (🛠️ build, 🧐 check, 🧪 test).
 npm run validate
 ```
 
