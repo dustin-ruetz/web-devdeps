@@ -2,9 +2,10 @@ import type {Config} from "lint-staged";
 
 /**
  * @description "Run linters on Git staged files."
+ * @returns Configuration for lint-staged.
  * @see {@link https://github.com/lint-staged/lint-staged}
  */
-const lintstagedConfig: Config = {
+export const makeLintstagedConfig = (): Config => ({
 	/**
 	 * Note: Run "format" and "lint/*" as their base scripts (i.e. _not_ "fix/format" and "fix/lint/*") because
 	 * lint-staged passes the staged files by appending their paths as the last arguments to the commands.
@@ -48,6 +49,6 @@ const lintstagedConfig: Config = {
 
 		return commandsToRun;
 	},
-} as const;
+});
 
-export default lintstagedConfig;
+export default makeLintstagedConfig();

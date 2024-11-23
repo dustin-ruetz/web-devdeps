@@ -1,7 +1,9 @@
 import type {Config} from "lint-staged";
-import lintstagedConfig from "./lint-staged.config.js";
+import {makeLintstagedConfig} from "./lint-staged.config.js";
 
 test("it exports a configuration object", () => {
+	const lintstagedConfig = makeLintstagedConfig();
+
 	expect(typeof lintstagedConfig).toBe("object");
 });
 
@@ -12,6 +14,7 @@ test("it exports a configuration object", () => {
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call */
 describe("it runs the correct commands for", () => {
+	const lintstagedConfig = makeLintstagedConfig();
 	const relativePaths = ["src/lint-staged.config.ts"] as const;
 	const [relativePath] = relativePaths;
 
@@ -56,6 +59,7 @@ describe("when the staged changes include untestable TypeScript declaration file
 	] as const;
 
 	test("_is not_ executed when there are no other staged files", () => {
+		const lintstagedConfig = makeLintstagedConfig();
 		const [, , unitTestCommand] =
 			// @ts-expect-error - See above to-do comment.
 			lintstagedConfig["*.{js,jsx,ts,tsx}"](untestableRelativePaths);
@@ -64,6 +68,7 @@ describe("when the staged changes include untestable TypeScript declaration file
 	});
 
 	test("_is_ executed when there are other staged files, but does not try to find related tests for the declaration/mock files", () => {
+		const lintstagedConfig = makeLintstagedConfig();
 		const relativePaths = [
 			"src/lint-staged.config.ts",
 			...untestableRelativePaths,

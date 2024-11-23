@@ -143,7 +143,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// Don't transform anything in node_modules/ and don't transform .json files.
 		transformIgnorePatterns: ["<rootDir>/node_modules/", ".json"],
 		verbose: true,
-	} as const;
+	};
 };
 
 /** @todo Figure out how avoid the need to typecast this default export. */

@@ -2,9 +2,10 @@ import type {Options} from "semantic-release";
 
 /**
  * @description "Fully automated version management and package publishing."
+ * @returns Configuration for semantic-release.
  * @see {@link https://semantic-release.gitbook.io/semantic-release/usage/configuration}
  */
-const semanticReleaseConfig: Options = {
+export const makeSemanticReleaseConfig = (): Options => ({
 	plugins: [
 		"@semantic-release/commit-analyzer",
 		// https://github.com/semantic-release/release-notes-generator
@@ -40,6 +41,6 @@ const semanticReleaseConfig: Options = {
 		],
 		"@semantic-release/github",
 	],
-} as const;
+});
 
-export default semanticReleaseConfig;
+export default makeSemanticReleaseConfig();

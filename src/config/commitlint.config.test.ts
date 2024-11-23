@@ -1,6 +1,8 @@
-import commitlintConfig from "./commitlint.config.js";
+import {makeCommitlintConfig} from "./commitlint.config.js";
 
 test("it exports a configuration object and the most important config options are correct", () => {
+	const commitlintConfig = makeCommitlintConfig();
+
 	expect(typeof commitlintConfig).toBe("object");
 
 	expect(commitlintConfig.extends).toStrictEqual([
