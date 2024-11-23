@@ -1,5 +1,4 @@
 import {
-	CustomError,
 	makeCommitlintConfig,
 	makeESLintConfig,
 	makeJestConfig,
@@ -10,7 +9,6 @@ import {
 } from "./exports.js";
 
 test("all of the module's exports are available from the primary `exports` file", () => {
-	expect(typeof CustomError).toBe("function");
 	expect(typeof makeCommitlintConfig).toBe("function");
 	expect(typeof makeESLintConfig).toBe("function");
 	expect(typeof makeJestConfig).toBe("function");

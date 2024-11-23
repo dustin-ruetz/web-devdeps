@@ -1,4 +1,4 @@
-// - This is the main file for exporting everything needed by consuming repos that depend on the `devdeps` package.
+// - This is the main file for exporting everything that consuming repos can use from the `devdeps` package.
 // - This file's compiled `lib/exports.js` path is the value of the `main` field of the `package.json` file.
 
 export {makeCommitlintConfig} from "./config/commitlint.config.js";
@@ -8,4 +8,3 @@ export {makeLintstagedConfig} from "./config/lint-staged.config.js";
 export {makePrettierConfig} from "./config/prettier.config.js";
 export {makeSemanticReleaseConfig} from "./config/semantic-release.config.js";
 export {makeStylelintConfig} from "./config/stylelint.config.js";
-export {CustomError} from "./utils/CustomError.js";
