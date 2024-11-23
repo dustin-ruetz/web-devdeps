@@ -10,6 +10,7 @@ test("it is a configuration object and the most important config options are cor
 	]);
 
 	const {compilerOptions} = tsconfigBuildJSON;
+	expect(compilerOptions.declaration).toBe(true);
 	expect(compilerOptions.noEmitOnError).toBe(true);
 	expect(compilerOptions.outDir).toBe("./lib/");
 	expect(compilerOptions.removeComments).toBe(true);
