@@ -14,7 +14,7 @@ export class CustomError extends Error {
 				code: string;
 				values?: Record<string, unknown>;
 			};
-			name: "InvalidInputError" | "PathMismatchError";
+			name: string;
 		},
 	) {
 		// Error codes and names should follow a consistent pattern, so throw early in-error errors
