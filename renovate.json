@@ -15,7 +15,6 @@
 			"groupName": "devDependencies (non-major versions)"
 		}
 	],
-	"reviewers": ["dustin-ruetz"],
 	"semanticCommits": "enabled",
 	"semanticCommitType": "fix",
 	"semanticCommitScope": "🤖 dependencies"
