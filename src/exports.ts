@@ -1,21 +1,11 @@
-import commitlintConfig from "./config/commitlint.config.js";
-import eslintConfig from "./config/eslint.config.js";
-import jestConfig from "./config/jest.config.js";
-import lintstagedConfig from "./config/lint-staged.config.js";
-import prettierConfig from "./config/prettier.config.js";
-import semanticReleaseConfig from "./config/semantic-release.config.js";
-import stylelintConfig from "./config/stylelint.config.js";
+// - This is the main file for exporting everything needed by consuming repos that depend on the `devdeps` package.
+// - This file's compiled `lib/exports.js` path is the value of the `main` field of the `package.json` file.
 
-/**
- * @description The module's primary export of configuration objects.
- * @see [package.json](../package.json) (specifically the `packageJSON.main` field)
- */
-export default {
-	commitlintConfig,
-	eslintConfig,
-	jestConfig,
-	lintstagedConfig,
-	prettierConfig,
-	semanticReleaseConfig,
-	stylelintConfig,
-} as const;
+export {makeCommitlintConfig} from "./config/commitlint.config.js";
+export {makeESLintConfig} from "./config/eslint.config.js";
+export {makeJestConfig} from "./config/jest.config.js";
+export {makeLintstagedConfig} from "./config/lint-staged.config.js";
+export {makePrettierConfig} from "./config/prettier.config.js";
+export {makeSemanticReleaseConfig} from "./config/semantic-release.config.js";
+export {makeStylelintConfig} from "./config/stylelint.config.js";
+export {CustomError} from "./utils/CustomError.js";
