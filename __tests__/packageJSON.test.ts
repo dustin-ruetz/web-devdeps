@@ -23,8 +23,8 @@ test("the most important configuration options are correct", () => {
 	// > in your package. Sometimes manually picking which items to allow is easier to manage than building a block list.
 	expect(packageJSON.files).toStrictEqual([
 		".githooks/",
-		".node-version",
 		"lib/",
+		".node-version",
 		"tsconfig.build.json",
 		"tsconfig.json",
 	]);
