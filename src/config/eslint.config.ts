@@ -2,7 +2,7 @@ import {includeIgnoreFile} from "@eslint/compat";
 import eslintjs from "@eslint/js";
 import globals from "globals";
 import {access, constants} from "node:fs/promises";
-import typescripteslint from "typescript-eslint";
+import typescripteslint, {type Config} from "typescript-eslint";
 import {dependsOn} from "../utils/dependsOn.js";
 import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.js";
 import {
@@ -19,7 +19,7 @@ import {typescripteslintPlugin} from "./eslint-plugins/typescript-eslint.js";
  * @returns Configuration for ESLint.
  * @see {@link https://eslint.org/docs/latest/use/configure/}
  */
-export const makeESLintConfig = async () => {
+export const makeESLintConfig = async (): Promise<Config> => {
 	const absoluteRepoRootPath = getAbsoluteRepoRootPath();
 
 	const gitignorePath = `${absoluteRepoRootPath}/.gitignore`;
