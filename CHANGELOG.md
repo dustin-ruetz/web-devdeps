@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## [1.25.0](https://github.com/dustin-ruetz/devdeps/compare/v1.24.1...v1.25.0) (2024-11-23)
+
+### Features
+
+* **tsconfig.build.json:** set 'declaration: true' in order to emit '.d.ts' files ([519f15d](https://github.com/dustin-ruetz/devdeps/commit/519f15d78b3ebcee88ff7457557f8062ee9ab8eb))
+
+### Bug Fixes
+
+* **config/eslint:** specify return type from 'makeESLintConfig' function ([b2e0ff4](https://github.com/dustin-ruetz/devdeps/commit/b2e0ff43d5b96c3d15b1eb68fc034f295d302ae8))
+* **config:** standardize all configuration files to export 'make' functions ([cc94689](https://github.com/dustin-ruetz/devdeps/commit/cc9468924a848d29d3bcd039883aca8134c5cd1d))
+* **exports:** simplify package's exports file ([cafc6d9](https://github.com/dustin-ruetz/devdeps/commit/cafc6d90111be6d649da825732b40bf2f22d30c6))
+* **utils/CustomError:** allow error 'name' to be any string ([dfa0207](https://github.com/dustin-ruetz/devdeps/commit/dfa020760d608b9665cdb5df8ecebe12ddb1aa07))
+
 ## [1.24.1](https://github.com/dustin-ruetz/devdeps/compare/v1.24.0...v1.24.1) (2024-11-20)
 
 ### Bug Fixes
