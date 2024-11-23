@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.25.1](https://github.com/dustin-ruetz/devdeps/compare/v1.25.0...v1.25.1) (2024-11-23)
+
+### Bug Fixes
+
+* **exports:** remove 'CustomError' from package exports ([33e2c90](https://github.com/dustin-ruetz/devdeps/commit/33e2c907636bc294b87cd0183e324418bc0a5c6a))
+* **renovate:** remove 'reviewers' field ([a470289](https://github.com/dustin-ruetz/devdeps/commit/a47028940831908eebe6d9591c3de905db88c73e))
+
 ## [1.25.0](https://github.com/dustin-ruetz/devdeps/compare/v1.24.1...v1.25.0) (2024-11-23)
 
 ### Features
