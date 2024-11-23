@@ -70,7 +70,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// in the unit tests. While 100% coverage is a laudable goal, it shouldn't be considered a hard requirement,
 		// so the threshold values should be lowered a little bit to ensure the numbers remain high without
 		// running the risk of unpredictable failures due to inaccurate and inconsistent coverage results.
-		// The lowest results have been ~95%, so set the threshold slightly lower to allow for a margin of error.
+		// The lowest results have been ~95%, so set the threshold slightly lower than that to allow for a margin of error.
 		coverageThreshold: {
 			global: {
 				branches: 92.5,
@@ -146,5 +146,5 @@ export const makeJestConfig = async (): Promise<Config> => {
 	} as const;
 };
 
-const jestConfig = makeJestConfig();
-export default jestConfig;
+/** @todo Figure out how avoid the need to typecast this default export. */
+export default makeJestConfig() as Config;

@@ -189,5 +189,4 @@ export const makeESLintConfig = async () => {
 	);
 };
 
-const eslintConfig = makeESLintConfig();
-export default eslintConfig;
+export default makeESLintConfig();

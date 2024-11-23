@@ -76,5 +76,4 @@ export const makePrettierConfig = async (): Promise<Config> => {
 	};
 };
 
-const prettierConfig = makePrettierConfig();
-export default prettierConfig;
+export default makePrettierConfig();
