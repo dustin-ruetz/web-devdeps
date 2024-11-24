@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.25.3](https://github.com/dustin-ruetz/devdeps/compare/v1.25.2...v1.25.3) (2024-11-24)
+
+### Bug Fixes
+
+* **__tests__:** add 'with type json' import assertions to all imported JSON files ([a01f9d8](https://github.com/dustin-ruetz/devdeps/commit/a01f9d8cd3b252d832b78c722d15fc8d546e499b))
+* **dependencies:** update 'typescript' to latest version ([c804352](https://github.com/dustin-ruetz/devdeps/commit/c80435242a48dd179d2d787d00cbac78be21762d))
+
 ## [1.25.2](https://github.com/dustin-ruetz/devdeps/compare/v1.25.1...v1.25.2) (2024-11-24)
 
 ### Bug Fixes
