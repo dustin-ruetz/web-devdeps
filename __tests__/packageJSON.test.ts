@@ -1,4 +1,4 @@
-import packageJSON from "../package.json";
+import packageJSON from "../package.json" with {type: "json"};
 
 test("the most important configuration options are correct", () => {
 	expect(packageJSON.name).toBe("@dustin-ruetz/devdeps");

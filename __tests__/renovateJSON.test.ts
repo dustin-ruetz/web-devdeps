@@ -1,4 +1,4 @@
-import renovateJSON from "../renovate.json";
+import renovateJSON from "../renovate.json" with {type: "json"};
 
 test("the most important configuration options are correct", () => {
 	expect(renovateJSON.extends).toStrictEqual(["config:recommended"]);

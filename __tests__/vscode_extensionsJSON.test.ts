@@ -1,4 +1,4 @@
-import vscodeExtensionsJSON from "../.vscode/extensions.json";
+import vscodeExtensionsJSON from "../.vscode/extensions.json" with {type: "json"};
 
 test("it is a configuration object and the most important config options are correct", () => {
 	expect(typeof vscodeExtensionsJSON).toBe("object");

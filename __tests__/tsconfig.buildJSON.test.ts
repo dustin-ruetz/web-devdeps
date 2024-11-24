@@ -1,4 +1,4 @@
-import tsconfigBuildJSON from "../tsconfig.build.json";
+import tsconfigBuildJSON from "../tsconfig.build.json" with {type: "json"};
 
 test("it is a configuration object and the most important config options are correct", () => {
 	expect(typeof tsconfigBuildJSON).toBe("object");

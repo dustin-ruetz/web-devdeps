@@ -1,7 +1,7 @@
 import {readdir} from "node:fs/promises";
 import {packageScopeAndName} from "../src/constants.js";
-import packageJSON from "../package.json";
-import packageLockJSON from "../package-lock.json";
+import packageJSON from "../package.json" with {type: "json"};
+import packageLockJSON from "../package-lock.json" with {type: "json"};
 
 test("INTEGRATION: the NPM package name matches the exported package scope and name from the `constants` file", () => {
 	expect(packageJSON.name).toBe(packageScopeAndName);
