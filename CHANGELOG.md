@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.25.2](https://github.com/dustin-ruetz/devdeps/compare/v1.25.1...v1.25.2) (2024-11-24)
+
+### Bug Fixes
+
+* **dependencies:** update packages to latest versions ([3b697c2](https://github.com/dustin-ruetz/devdeps/commit/3b697c2d17a79b76b9cf8f976b1ed786a17c0ef5))
+
 ## [1.25.1](https://github.com/dustin-ruetz/devdeps/compare/v1.25.0...v1.25.1) (2024-11-23)
 
 ### Bug Fixes
