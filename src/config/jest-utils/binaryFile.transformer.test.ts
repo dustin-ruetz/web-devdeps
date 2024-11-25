@@ -1,17 +1,17 @@
-import jestTransformerBinaryFile from "./binaryFile.js";
+import binaryFileTransformer from "./binaryFile.transformer.js";
 
 test('it transforms binary file paths into `module.exports = "name.extension"`', () => {
 	const sourceText = "";
 
-	const transformedJPG = jestTransformerBinaryFile.process(
+	const transformedJPG = binaryFileTransformer.process(
 		sourceText,
 		"images/image.jpg",
 	);
-	const transformedPNG = jestTransformerBinaryFile.process(
+	const transformedPNG = binaryFileTransformer.process(
 		sourceText,
 		"images/image.png",
 	);
-	const transformedWOFF2 = jestTransformerBinaryFile.process(
+	const transformedWOFF2 = binaryFileTransformer.process(
 		sourceText,
 		"fonts/font.woff2",
 	);

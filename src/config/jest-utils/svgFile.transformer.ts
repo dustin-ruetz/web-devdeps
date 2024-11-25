@@ -1,5 +1,5 @@
 /** Replace the SVG file import with its file contents. */
-const jestTransformerSVGFile = {
+const svgFileTransformer = {
 	process(sourceText: string) {
 		return {
 			code: `module.exports = ${JSON.stringify(sourceText)}`,
@@ -7,4 +7,4 @@ const jestTransformerSVGFile = {
 	},
 } as const;
 
-export default jestTransformerSVGFile;
+export default svgFileTransformer;

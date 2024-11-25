@@ -1,4 +1,4 @@
-import jestTransformerSVGFile from "./svgFile.js";
+import svgFileTransformer from "./svgFile.transformer.js";
 
 test('it transforms SVG files into `module.exports = "<svg>{...}</svg>"`', () => {
 	const sourceText = `
@@ -11,7 +11,7 @@ test('it transforms SVG files into `module.exports = "<svg>{...}</svg>"`', () =>
 </svg>
 `;
 
-	const transformedSVG = jestTransformerSVGFile.process(sourceText);
+	const transformedSVG = svgFileTransformer.process(sourceText);
 
 	expect(transformedSVG.code).toContain("module.exports =");
 	expect(transformedSVG.code).toContain("<svg");

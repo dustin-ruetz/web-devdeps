@@ -1,7 +1,7 @@
 import path from "node:path";
 
 /** Replace the binary file import with its filename. */
-const jestTransformerBinaryFile = {
+const binaryFileTransformer = {
 	process(_sourceText: string, sourcePath: string) {
 		return {
 			// Excerpt from https://jestjs.io/docs/code-transformation#transforming-images-to-their-path:
@@ -12,4 +12,4 @@ const jestTransformerBinaryFile = {
 	},
 } as const;
 
-export default jestTransformerBinaryFile;
+export default binaryFileTransformer;

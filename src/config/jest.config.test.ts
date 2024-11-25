@@ -43,7 +43,7 @@ describe("it exports a configuration object and the most important config option
 		expect(jestConfig.testEnvironment).toBe("node");
 		// Sample the transform config object to verify that the paths to the transformer files are correct.
 		expect(jestConfig.transform?.[".svg"]).toBe(
-			"<rootDir>/lib/config/jest-transformers/svgFile.js",
+			"<rootDir>/lib/config/jest-utils/svgFile.transformer.js",
 		);
 	});
 
@@ -62,7 +62,7 @@ describe("it exports a configuration object and the most important config option
 		expect(jestConfig.testEnvironment).toBe("jsdom");
 		// Sample the transform config object to verify that the paths to the transformer files are correct.
 		expect(jestConfig.transform?.[".svg"]).toBe(
-			"<rootDir>/node_modules/@dustin-ruetz/devdeps/lib/config/jest-transformers/svgFile.js",
+			"<rootDir>/node_modules/@dustin-ruetz/devdeps/lib/config/jest-utils/svgFile.transformer.js",
 		);
 	});
 });

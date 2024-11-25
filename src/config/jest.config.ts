@@ -19,6 +19,15 @@ export const makeJestConfig = async (): Promise<Config> => {
 	const absoluteRepoRootPath = getAbsoluteRepoRootPath();
 	const isDevDepsRepo = getIsDevDepsRepo(absoluteRepoRootPath);
 
+	const relativePathToJestUtils = "lib/config/jest-utils";
+
+	/** The absolute base path to the supporting utility files used by Jest. */
+	const absoluteBasePath = isDevDepsRepo
+		? // If running tests on this `devdeps` repo, set the path relative to the Jest <rootDir>.
+			`<rootDir>/${relativePathToJestUtils}`
+		: // If running tests on a `consuming-repo`, set the path relative to its `devdeps` dependency.
+			`<rootDir>/${nodeModulesPackagePath}/${relativePathToJestUtils}`;
+
 	/** Binary file extensions 1) to ignore in test coverage, and 2) to transform the imported values to filenames. */
 	const binaryFileExtensions = {
 		list: [".jpg", ".png", ".woff2"],
@@ -114,7 +123,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// > Jest runs the code of your project as JavaScript, hence a transformer is needed if you use some syntax
 		// > not supported by Node out of the box (such as JSX, TypeScript, Vue templates).
 		transform: {
-			[binaryFileExtensions.makeTransformRegExp()]: `${transformerBasePath}/lib/config/jest-transformers/binaryFile.js`,
+			[binaryFileExtensions.makeTransformRegExp()]: `${absoluteBasePath}/binaryFile.transformer.js`,
 			/**
 			 * - Both Babel and `ts-jest` are cumbersome to use for transforming TypeScript, so use `@swc/jest` instead for its simplicity.
 			 * - Transform configuration adapted from [this comment](https://github.com/swc-project/jest/issues/40#issuecomment-1557659699).
@@ -138,7 +147,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 					},
 				},
 			],
-			".svg": `${transformerBasePath}/lib/config/jest-transformers/svgFile.js`,
+			".svg": `${absoluteBasePath}/svgFile.transformer.js`,
 		},
 		// Don't transform anything in node_modules/ and don't transform .json files.
 		transformIgnorePatterns: ["<rootDir>/node_modules/", ".json"],
