@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.26.0](https://github.com/dustin-ruetz/devdeps/compare/v1.25.3...v1.26.0) (2024-11-25)
+
+### Features
+
+* **config/jest:** specify 'setupFilesAfterEnv' file to extend '@testing-library/jest-dom' matchers ([7eae6e0](https://github.com/dustin-ruetz/devdeps/commit/7eae6e0cc3c48983efa190a985e992a2122e50be))
+* **dependencies:** add '@testing-library/jest-dom' package ([d8ea288](https://github.com/dustin-ruetz/devdeps/commit/d8ea288787261f6ff4b4a17e91d40616d237a4ac))
+
 ## [1.25.3](https://github.com/dustin-ruetz/devdeps/compare/v1.25.2...v1.25.3) (2024-11-24)
 
 ### Bug Fixes
