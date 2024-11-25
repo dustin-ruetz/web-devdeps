@@ -11,10 +11,8 @@ import {nodeModulesPackagePath} from "../constants.js";
  * @see {@link https://jestjs.io/docs/configuration}
  */
 export const makeJestConfig = async (): Promise<Config> => {
-	/** Set the test environment based on whether or not the repo has any frontend dependencies. */
-	const testEnvironment = (await dependsOn(["pug", "react"]))
-		? "jsdom"
-		: "node";
+	/** Set certain Jest configuration options based on whether or not the repo has any frontend dependencies. */
+	const hasFrontendDependencies = await dependsOn(["pug", "react"]);
 
 	const absoluteRepoRootPath = getAbsoluteRepoRootPath();
 	const isDevDepsRepo = getIsDevDepsRepo(absoluteRepoRootPath);
@@ -43,14 +41,15 @@ export const makeJestConfig = async (): Promise<Config> => {
 		"<rootDir>/www/",
 		".d.ts",
 		".mock.(js|ts)",
+		// Ignore the `setupFilesAfterEnv` file since it's only purpose is to perform
+		// an import side effect, i.e. it doesn't export anything that can be tested.
+		"setupFilesAfterEnv.*",
 	] as const;
 
-	/** The base path to the files/packages used as Jest transformers. */
-	const transformerBasePath = isDevDepsRepo
-		? // If running tests on this `devdeps` repo, set the path relative to the Jest <rootDir>.
-			("<rootDir>" as const)
-		: // If running tests on a `consuming-repo`, set the path relative to its `devdeps` dependency.
-			(`<rootDir>/${nodeModulesPackagePath}` as const);
+	const setupFilesAfterEnv = hasFrontendDependencies
+		? [`${absoluteBasePath}/setupFilesAfterEnv.cjs`]
+		: [];
+	const testEnvironment = hasFrontendDependencies ? "jsdom" : "node";
 
 	return {
 		// Excerpt from https://jestjs.io/docs/configuration#cachedirectory-string:
@@ -113,6 +112,14 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// > The root directory that Jest should scan for tests and modules within.
 		// > Oftentimes, you'll want to set this to `"src"` or `"lib"`, corresponding to where in your repository the code is stored.
 		rootDir: absoluteRepoRootPath,
+		// Excerpt from https://jestjs.io/docs/configuration#setupfilesafterenv-array:
+		// > A list of paths to modules that run some code to configure or set up the testing framework before each test file
+		// >in the suite is executed. Since `setupFiles` executes before the test framework is installed in the environment,
+		// > this script file presents you the opportunity of running some code immediately after the test framework
+		// > has been installed in the environment but before the test code itself.
+		// >
+		// > In other words, `setupFilesAfterEnv` modules are meant for code which is repeating in each test file.
+		setupFilesAfterEnv,
 		// Excerpt from https://jestjs.io/docs/configuration#testenvironment-string:
 		// > The test environment that will be used for testing. The default environment in Jest is a Node.js environment.
 		// > If you are building a web app, you can use a browser-like environment through `jsdom` instead.

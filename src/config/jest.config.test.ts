@@ -40,6 +40,7 @@ describe("it exports a configuration object and the most important config option
 		const jestConfig = await makeJestConfig();
 
 		expect(jestConfig.rootDir).toBe("/Users/username/repos/devdeps");
+		expect(jestConfig.setupFilesAfterEnv).toStrictEqual([]);
 		expect(jestConfig.testEnvironment).toBe("node");
 		// Sample the transform config object to verify that the paths to the transformer files are correct.
 		expect(jestConfig.transform?.[".svg"]).toBe(
@@ -59,6 +60,9 @@ describe("it exports a configuration object and the most important config option
 		const jestConfig = await makeJestConfig();
 
 		expect(jestConfig.rootDir).toBe("/Users/username/repos/consuming-repo");
+		expect(jestConfig.setupFilesAfterEnv).toStrictEqual([
+			"<rootDir>/node_modules/@dustin-ruetz/devdeps/lib/config/jest-utils/setupFilesAfterEnv.cjs",
+		]);
 		expect(jestConfig.testEnvironment).toBe("jsdom");
 		// Sample the transform config object to verify that the paths to the transformer files are correct.
 		expect(jestConfig.transform?.[".svg"]).toBe(
