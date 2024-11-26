@@ -63,6 +63,14 @@ const getInitRepoArgs = async () => {
 			description:
 				"Node.js version number in SemVer (semantic version) format to use for the repo.",
 		},
+		writeJestSetupFile: {
+			type: "optional",
+			defaultValue: false,
+			longFlag: "--write-jest-setup",
+			shortFlag: "-wjs",
+			description:
+				"Whether or not to write the Jest setup file in the outputted code.",
+		},
 	} as const;
 };
 
@@ -119,6 +127,7 @@ export const logInitRepoHelpText = async () => {
  * @param args - The array of arguments passed to the `init-repo` script. Refer to the arg descriptions in `getInitRepoArgs` for more information.
  */
 export const initRepo = async (repoName: string, args?: string[]) => {
+	// #region ❝ repoName
 	if (!repoName || repoName.length < 1) {
 		logErrorIntro();
 		throw new CustomError(
@@ -132,6 +141,7 @@ export const initRepo = async (repoName: string, args?: string[]) => {
 			},
 		);
 	}
+	// #endregion repoName
 
 	const initRepoArgs = await getInitRepoArgs();
 
@@ -158,6 +168,7 @@ export const initRepo = async (repoName: string, args?: string[]) => {
 		}
 	});
 
+	// #region 📐 configureStylelint
 	// Determine whether or not to configure Stylelint.
 	let configureStylelint = Boolean(
 		initRepoArgs.configureStylelint.defaultValue,
@@ -182,7 +193,9 @@ export const initRepo = async (repoName: string, args?: string[]) => {
 	if (configureStylelintFlag && configureStylelintFlag.length === 1) {
 		configureStylelint = true;
 	}
+	// #endregion 📐 configureStylelint
 
+	// #region ⬢ nodeVersion
 	// Determine whether or not to use the default Node.js version or the passed one.
 	let nodeVersion = initRepoArgs.nodeVersion.defaultValue;
 	const nodeVersionFlagAndArg = args?.filter((arg) => {
@@ -226,6 +239,7 @@ export const initRepo = async (repoName: string, args?: string[]) => {
 		}
 		nodeVersion = version;
 	}
+	// #endregion ⬢ nodeVersion
 
 	await Promise.all([
 		writeGitAttributes(),
