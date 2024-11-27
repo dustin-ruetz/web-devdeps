@@ -1,8 +1,8 @@
 // **Important:** This file is CommonJS because Jest fails to parse it as an ES module.
 
 // Excerpt from https://github.com/testing-library/jest-dom/releases/tag/v6.0.0:
-// > Users can now use the following import paths to automatically extend
-// > "expect" for their chosen test platform:
+// > Users can now use the following import paths to automatically
+// > extend "expect" for their chosen test platform:
 // >
 // > - @testing-library/jest-dom - jest (@types/jest)
 // > - @testing-library/jest-dom/jest-globals - @jest/globals
