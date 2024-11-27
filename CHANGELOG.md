@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## [1.27.0](https://github.com/dustin-ruetz/devdeps/compare/v1.26.0...v1.27.0) (2024-11-27)
+
+### Features
+
+* **scripts/helpers/initRepoHelpers:** initial 'writeJestSetupFile' helper function ([db35b0c](https://github.com/dustin-ruetz/devdeps/commit/db35b0cdbc6b1b656842fb0b447d41db35c351c3))
+* **scripts/initRepo:** handle the '--configure-frontend-testing' flag ([bd62c6d](https://github.com/dustin-ruetz/devdeps/commit/bd62c6d55fca11cf09e5c00402fb0f1406dca663))
+* **utils/CustomError:** remove the silly in-error meta-errors ([0e62987](https://github.com/dustin-ruetz/devdeps/commit/0e62987d77e718b3ed53688d00a0bc503959e1fa))
+
 ## [1.26.0](https://github.com/dustin-ruetz/devdeps/compare/v1.25.3...v1.26.0) (2024-11-25)
 
 ### Features
