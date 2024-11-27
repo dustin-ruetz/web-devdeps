@@ -3,6 +3,7 @@ import {
 	writeGitAttributes,
 	writeGitHooks,
 	writeGitIgnore,
+	writeJestSetupFile,
 	writeLicense,
 	writeNodeVersion,
 	writePackageJson,
@@ -33,7 +34,7 @@ beforeAll(() => {
 });
 
 /* eslint-disable no-console */
-test("the logInitRepoHelpText helper function logs the correct values", async () => {
+test("the `logInitRepoHelpText` helper function logs the correct values", async () => {
 	expect.hasAssertions();
 
 	const baseCommand = "npx @dustin-ruetz/devdeps init-repo repo-name";
@@ -46,11 +47,11 @@ test("the logInitRepoHelpText helper function logs the correct values", async ()
 	);
 	expect(console.log).toHaveBeenCalledWith(
 		expect.stringContaining(
-			`${baseCommand} --configure-stylelint --node-version=${testNodeVersion}`,
+			`${baseCommand} --configure-frontend-testing --configure-stylelint --node-version=${testNodeVersion}`,
 		),
 	);
 	expect(console.log).toHaveBeenCalledWith(
-		expect.stringContaining(`${baseCommand} -cs -nv=${testNodeVersion}`),
+		expect.stringContaining(`${baseCommand} -cft -cs -nv=${testNodeVersion}`),
 	);
 
 	// Verify that the information about the function's arguments is logged in tabular format.
@@ -98,6 +99,9 @@ describe("initRepo", () => {
 
 		test.each`
 			argsArray
+			${["--configure-frontend-testing", "-cft"]}
+			${["--configure-frontend-testing", "--configure-frontend-testing"]}
+			${["-cft", "-cft"]}
 			${["--configure-stylelint", "-cs"]}
 			${["--configure-stylelint", "--configure-stylelint"]}
 			${["-cs", "-cs"]}
@@ -145,6 +149,7 @@ describe("initRepo", () => {
 		expect.hasAssertions();
 
 		const defaultArgumentValues = {
+			configureFrontendTesting: false,
 			configureStylelint: false,
 			nodeVersion: testNodeVersion,
 		} as const;
@@ -154,6 +159,7 @@ describe("initRepo", () => {
 		expect(writeGitAttributes).toHaveBeenCalledTimes(1);
 		expect(writeGitIgnore).toHaveBeenCalledTimes(1);
 		expect(writeGitHooks).toHaveBeenCalledTimes(1);
+		expect(writeJestSetupFile).not.toHaveBeenCalled();
 		expect(writeLicense).toHaveBeenCalledTimes(1);
 		expect(writeNodeVersion).toHaveBeenCalledTimes(1);
 		expect(writeNodeVersion).toHaveBeenCalledWith(
@@ -176,6 +182,7 @@ describe("initRepo", () => {
 
 	describe("executes the helper functions with the correct arguments when passed", () => {
 		const passedFlagValues = {
+			configureFrontendTesting: true,
 			configureStylelint: true,
 			nodeVersion: testNodeVersion,
 		} as const;
@@ -184,10 +191,12 @@ describe("initRepo", () => {
 			expect.hasAssertions();
 
 			await initRepo("repo-name", [
+				"--configure-frontend-testing",
 				"--configure-stylelint",
 				`--node-version=${passedFlagValues.nodeVersion}`,
 			]);
 
+			expect(writeJestSetupFile).toHaveBeenCalledWith();
 			expect(writeNodeVersion).toHaveBeenCalledWith(
 				passedFlagValues.nodeVersion,
 			);
@@ -206,8 +215,10 @@ describe("initRepo", () => {
 			await initRepo("repo-name", [
 				`--node-version=${passedFlagValues.nodeVersion}`,
 				"--configure-stylelint",
+				"--configure-frontend-testing",
 			]);
 
+			expect(writeJestSetupFile).toHaveBeenCalledWith();
 			expect(writeNodeVersion).toHaveBeenCalledWith(
 				passedFlagValues.nodeVersion,
 			);
@@ -224,10 +235,12 @@ describe("initRepo", () => {
 			expect.hasAssertions();
 
 			await initRepo("repo-name", [
+				"-cft",
 				"-cs",
 				`-nv=${passedFlagValues.nodeVersion}`,
 			]);
 
+			expect(writeJestSetupFile).toHaveBeenCalledWith();
 			expect(writeNodeVersion).toHaveBeenCalledWith(
 				passedFlagValues.nodeVersion,
 			);
@@ -246,8 +259,10 @@ describe("initRepo", () => {
 			await initRepo("repo-name", [
 				`-nv=${passedFlagValues.nodeVersion}`,
 				"-cs",
+				"-cft",
 			]);
 
+			expect(writeJestSetupFile).toHaveBeenCalledWith();
 			expect(writeNodeVersion).toHaveBeenCalledWith(
 				passedFlagValues.nodeVersion,
 			);

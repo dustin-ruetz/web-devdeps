@@ -2,7 +2,7 @@
 // 1. Execute the `npm run dev` command so that `tsc` watches and auto-compiles all changes to this file.
 // 2. Execute the following command to run the script (note the optional flags):
 //    ```sh
-//    npm run init-repo -- repo-name --configure-stylelint --node-version=major.minor.patch
+//    npm run init-repo -- repo-name --configure-frontend-testing --configure-stylelint --node-version=major.minor.patch
 //    ```
 
 import {readFile} from "node:fs/promises";
@@ -13,6 +13,7 @@ import {
 	writeGitAttributes,
 	writeGitHooks,
 	writeGitIgnore,
+	writeJestSetupFile,
 	writeLicense,
 	writeNodeVersion,
 	writePackageJson,
@@ -39,13 +40,23 @@ const getInitRepoArgs = async () => {
 
 	/** Each child objects's keys are ordered in the way that they should be printed in the `console.table` help text. */
 	return {
+		// Required args:
 		repoName: {
 			type: "required",
 			defaultValue: undefined,
 			longFlag: null,
 			shortFlag: null,
 			description:
-				"The name of the repository. Written to the `package.json` and `README.md` files.",
+				"The name of the repository. Written to `package.json` and `README.md`.",
+		},
+		// Optional args:
+		configureFrontendTesting: {
+			type: "optional",
+			defaultValue: false,
+			longFlag: "--configure-frontend-testing",
+			shortFlag: "-cft",
+			description:
+				"Includes the `jest.setupFilesAfterEnv.ts` file in the output.",
 		},
 		configureStylelint: {
 			type: "optional",
@@ -53,7 +64,7 @@ const getInitRepoArgs = async () => {
 			longFlag: "--configure-stylelint",
 			shortFlag: "-cs",
 			description:
-				"Whether or not to include the Stylelint configuration and scripts in the outputted code.",
+				"Includes the Stylelint configuration and scripts in the output.",
 		},
 		nodeVersion: {
 			type: "optional",
@@ -62,14 +73,6 @@ const getInitRepoArgs = async () => {
 			shortFlag: "-nv",
 			description:
 				"Node.js version number in SemVer (semantic version) format to use for the repo.",
-		},
-		writeJestSetupFile: {
-			type: "optional",
-			defaultValue: false,
-			longFlag: "--write-jest-setup",
-			shortFlag: "-wjs",
-			description:
-				"Whether or not to write the Jest setup file in the outputted code.",
 		},
 	} as const;
 };
@@ -108,10 +111,12 @@ export const logInitRepoHelpText = async () => {
 		"Command examples with optional flags:",
 		// First command example using the `--long-flag` format.
 		`  ${baseCommand}` +
+			` ${initRepoArgs.configureFrontendTesting.longFlag}` +
 			` ${initRepoArgs.configureStylelint.longFlag}` +
 			` ${initRepoArgs.nodeVersion.longFlag}=${initRepoArgs.nodeVersion.defaultValue}`,
 		// Second command example using the `-shortflag` format.
 		`  ${baseCommand}` +
+			` ${initRepoArgs.configureFrontendTesting.shortFlag}` +
 			` ${initRepoArgs.configureStylelint.shortFlag}` +
 			` ${initRepoArgs.nodeVersion.shortFlag}=${initRepoArgs.nodeVersion.defaultValue}`,
 	]);
@@ -167,6 +172,36 @@ export const initRepo = async (repoName: string, args?: string[]) => {
 			});
 		}
 	});
+
+	// #region 🃏 configureFrontendTesting
+	// Determine whether or not to write the `config/jest.setupFilesAfterEnv.ts` file.
+	let configureFrontendTesting = Boolean(
+		initRepoArgs.configureFrontendTesting.defaultValue,
+	);
+	const configureFrontendTestingFlag = args?.filter(
+		(arg) =>
+			arg === initRepoArgs.configureFrontendTesting.longFlag ||
+			arg === initRepoArgs.configureFrontendTesting.shortFlag,
+	);
+	if (configureFrontendTestingFlag && configureFrontendTestingFlag.length > 1) {
+		throw new CustomError(
+			"Multiple `configureFrontendTesting` flags received; only one may be passed.",
+			{
+				cause: {
+					code: "ERR_OPTIONAL_FLAG_PASSED_MULTIPLE_TIMES",
+					values: {configureFrontendTestingFlag},
+				},
+				name: "InvalidInputError",
+			},
+		);
+	}
+	if (
+		configureFrontendTestingFlag &&
+		configureFrontendTestingFlag.length === 1
+	) {
+		configureFrontendTesting = true;
+	}
+	// #endregion 🃏 configureFrontendTesting
 
 	// #region 📐 configureStylelint
 	// Determine whether or not to configure Stylelint.
@@ -245,6 +280,7 @@ export const initRepo = async (repoName: string, args?: string[]) => {
 		writeGitAttributes(),
 		writeGitHooks(),
 		writeGitIgnore(),
+		configureFrontendTesting && writeJestSetupFile(),
 		writeLicense(),
 		writeNodeVersion(nodeVersion),
 		writePackageJson(repoName, configureStylelint),
