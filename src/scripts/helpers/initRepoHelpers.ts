@@ -77,6 +77,25 @@ node_modules/
 	);
 };
 
+/** Write a new `config/` folder to disk, then write a new `jest.setupFilesAfterEnv.ts` file to it. */
+export const writeJestSetupFile = async () => {
+	await mkdir(`${rootPathToWriteTo}/config/`);
+	await writeFile(
+		`${rootPathToWriteTo}/config/jest.setupFilesAfterEnv.ts`,
+		`
+// **Important**: This file tells TypeScript to load the type definitions for extending
+//                Jest's \`expect\` API. This is required to prevent type errors in the
+//                IDE when writing frontend tests; see the related files below for how
+//                this functionality is actually implemented in the Jest environment.
+
+// Related file: node_modules/@dustin-ruetz/devdeps/lib/config/jest-utils/setupFilesAfterEnv.cjs
+// Related file: node_modules/@dustin-ruetz/devdeps/lib/config/jest.config.js
+
+import "@testing-library/jest-dom";
+`.trimStart(),
+	);
+};
+
 /** Read the `LICENSE` file, update the copyright year, then write the file to disk. */
 export const writeLicense = async () => {
 	const fileContents = await readFile(

@@ -3,6 +3,7 @@ import {
 	writeGitAttributes,
 	writeGitHooks,
 	writeGitIgnore,
+	writeJestSetupFile,
 	writeLicense,
 	writeNodeVersion,
 	writePackageJson,
@@ -84,6 +85,20 @@ test("writeGitIgnore", async () => {
 	expect(writeFile).toHaveBeenCalledWith(
 		expect.stringContaining(".gitignore"),
 		expect.stringContaining("node_modules/"),
+	);
+});
+
+test("writeJestSetupFile", async () => {
+	expect.hasAssertions();
+
+	await writeJestSetupFile();
+
+	expect(mkdir).toHaveBeenCalledTimes(1);
+	expect(mkdir).toHaveBeenCalledWith(expect.stringContaining("config/"));
+	expect(writeFile).toHaveBeenCalledTimes(1);
+	expect(writeFile).toHaveBeenCalledWith(
+		expect.stringContaining("config/jest.setupFilesAfterEnv.ts"),
+		expect.stringContaining('import "@testing-library/jest-dom";'),
 	);
 });
 
