@@ -9,9 +9,9 @@ import typescripteslint from "typescript-eslint";
  */
 export const makeJSDocPlugin = (hasTSConfigFile: boolean) =>
 	typescripteslint.config(
-		!hasTSConfigFile
-			? jsdoc.configs["flat/recommended-error"]
-			: jsdoc.configs["flat/recommended-typescript-error"],
+		hasTSConfigFile
+			? jsdoc.configs["flat/recommended-typescript-error"]
+			: jsdoc.configs["flat/recommended-error"],
 		{
 			name: "jsdoc/user-defined-config",
 			plugins: {

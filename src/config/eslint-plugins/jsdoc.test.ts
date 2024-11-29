@@ -21,22 +21,6 @@ describe("it exports a configuration array and the most important config options
 		expect(userDefinedConfig?.rules?.["jsdoc/sort-tags"]).toBe("error");
 	});
 
-	test("when the repo *does not* depend on TypeScript", () => {
-		const hasTSConfigFile = false;
-		const jsdocPlugin = makeJSDocPlugin(hasTSConfigFile);
-
-		const recommendedErrorConfig = jsdocPlugin.find(
-			(configObj) => configObj.name === "jsdoc/flat/recommended-error",
-		);
-		// Verify that the following rules are configured correctly in the JavaScript-specific configuration:
-		// - `require-param-type` should `error` for JavaScript repos because it's helpful/relevant:
-		expect(recommendedErrorConfig?.rules?.["jsdoc/require-param-type"]).toBe(
-			"error",
-		);
-		// - `no-types` should be `off` for JavaScript repos because having them `error` is helpful/relevant:
-		expect(recommendedErrorConfig?.rules?.["jsdoc/no-types"]).toBe("off");
-	});
-
 	test("when the repo *does* depend on TypeScript", () => {
 		const hasTSConfigFile = true;
 		const jsdocPlugin = makeJSDocPlugin(hasTSConfigFile);
@@ -54,5 +38,21 @@ describe("it exports a configuration array and the most important config options
 		expect(recommendedTypeScriptErrorConfig?.rules?.["jsdoc/no-types"]).toBe(
 			"error",
 		);
+	});
+
+	test("when the repo *does not* depend on TypeScript", () => {
+		const hasTSConfigFile = false;
+		const jsdocPlugin = makeJSDocPlugin(hasTSConfigFile);
+
+		const recommendedErrorConfig = jsdocPlugin.find(
+			(configObj) => configObj.name === "jsdoc/flat/recommended-error",
+		);
+		// Verify that the following rules are configured correctly in the JavaScript-specific configuration:
+		// - `require-param-type` should `error` for JavaScript repos because it's helpful/relevant:
+		expect(recommendedErrorConfig?.rules?.["jsdoc/require-param-type"]).toBe(
+			"error",
+		);
+		// - `no-types` should be `off` for JavaScript repos because having them `error` is helpful/relevant:
+		expect(recommendedErrorConfig?.rules?.["jsdoc/no-types"]).toBe("off");
 	});
 });
