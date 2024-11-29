@@ -114,7 +114,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		rootDir: absoluteRepoRootPath,
 		// Excerpt from https://jestjs.io/docs/configuration#setupfilesafterenv-array:
 		// > A list of paths to modules that run some code to configure or set up the testing framework before each test file
-		// >in the suite is executed. Since `setupFiles` executes before the test framework is installed in the environment,
+		// > in the suite is executed. Since `setupFiles` executes before the test framework is installed in the environment,
 		// > this script file presents you the opportunity of running some code immediately after the test framework
 		// > has been installed in the environment but before the test code itself.
 		// >
