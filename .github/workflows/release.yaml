@@ -28,7 +28,7 @@ jobs:
       - name: 🔁 Run `setup` composite action
         uses: ./.github/composite-actions/setup/
         with:
-          # Specify the Node.js version number by referencing the .node-version file that's located in the root of the repo.
+          # Specify the Node.js version number by referencing the `.node-version` file that's located in the root of the repo.
           node-version-file: .node-version
       # Note that while `validate` is configured to run on PRs, these commands should also
       # be run prior to releasing if/when commits are pushed directly to the `main` branch.
