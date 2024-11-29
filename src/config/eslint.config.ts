@@ -24,8 +24,9 @@ export const makeESLintConfig = async (): Promise<Config> => {
 
 	const gitignorePath = `${absoluteRepoRootPath}/.gitignore`;
 
-	const hasFrontendDependencies = await dependsOn(["pug", "react"]);
 	const hasReactDependency = await dependsOn(["react"]);
+	const hasFrontendDependencies =
+		hasReactDependency || (await dependsOn(["pug"]));
 
 	/**
 	 * Ideally a straightforward `dependsOn(["typescript"])` check would be sufficient for checking if
