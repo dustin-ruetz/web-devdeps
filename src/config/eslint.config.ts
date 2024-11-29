@@ -6,7 +6,7 @@ import typescripteslint, {type Config} from "typescript-eslint";
 import {dependsOn} from "../utils/dependsOn.js";
 import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.js";
 import {
-	jestPlugin,
+	makeJestPlugin,
 	mockAndTestFilesGlobPattern,
 } from "./eslint-plugins/jest.js";
 import {makeJSDocPlugin} from "./eslint-plugins/jsdoc.js";
@@ -181,7 +181,7 @@ export const makeESLintConfig = async (): Promise<Config> => {
 				"no-magic-numbers": "off",
 			},
 		},
-		...jestPlugin,
+		...makeJestPlugin(hasTSConfigFile),
 		...makeJSDocPlugin(hasTSConfigFile),
 		// Conditionally-included ESLint plugins.
 		...(hasReactDependency ? jsxA11yPlugin : []),
