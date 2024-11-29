@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.27.2](https://github.com/dustin-ruetz/devdeps/compare/v1.27.1...v1.27.2) (2024-11-29)
+
+### Bug Fixes
+
+* **config/eslint-plugins/jest:** conditionally configure 'jest/unbound-method' rule ([00a8d0c](https://github.com/dustin-ruetz/devdeps/commit/00a8d0c822f3e0ebf01cff6e783109826862a3e4))
+
 ## [1.27.1](https://github.com/dustin-ruetz/devdeps/compare/v1.27.0...v1.27.1) (2024-11-27)
 
 ### Bug Fixes
