@@ -1,6 +1,13 @@
 # @dustin-ruetz/devdeps
 
-Package that provides development dependencies, standardized configurations and CLI scripts for other web projects (both browser- and Node.js-based) to consume.
+Package that provides development dependencies for other web projects (both browser- and Node.js-based) to consume.
+
+## Goals
+
+1. Avoid having to repeatedly install the same development dependencies in web projects that all use the same foundational tooling. With a small number of exceptions, these are generally CLI-based `devDependencies` that aren't typically `import`ed in the `src/` files of an application.
+1. Provide [standardized configuration files](./src/config/) that work with both CLI programs and IDE extensions while also preventing the repetitive cluttering up of repository roots with the same boilerplate `*.config.js` files over-and-over again.
+1. Provide [standardized scripts](./src/scripts/) that automatically add useful arguments and determine the path to their configuration files.
+1. Provide [`make*Config`](./src/exports.ts) that allow for the standardized configurations to be extended and customized to suit the specific requirements of the consuming project.
 
 ## Features and Purpose
 
