@@ -19,7 +19,7 @@ Package that provides development dependencies, standardized configurations and 
 
 Additional details:
 
-- The idea for this package was inspired by Kent C. Dodds' [kcd-scripts](https://github.com/kentcdodds/kcd-scripts) CLI toolbox, with a key difference being the preference for a fully-tested TypeScript codebase using modern ES Module syntax.
+- The idea for this package was inspired by Kent C. Dodds' [`kcd-scripts`][kcd-scripts] CLI toolbox, with a key difference being the preference for a fully-tested TypeScript codebase using modern ES Module syntax.
 - This project bootstraps and dogfoods its own configuration files by 1) using `tsc` to compile the `src/` directory's `*.ts` files to the `lib/` directory's `*.js` files, and 2) pointing all configuration paths to the compiled `lib/config/*.js` files.
 
 ## Usage and Development
@@ -136,3 +136,5 @@ npm run github/release
 # Simulate the full suite of validation checks in the CI/CD context.
 npm run github/validate
 ```
+
+[kcd-scripts]: https://github.com/kentcdodds/kcd-scripts
