@@ -56,11 +56,13 @@ export const makeJestPlugin = (hasTSConfigFile: boolean) =>
 			// > `typescript-eslint` for it to work. It adds support for understanding when it's OK to pass
 			// > an unbound method to `expect` calls.
 			// >
-			// > Note that while this rule requires type information to work, it will fail silently when not available
-			// > allowing you to safely enable it on projects that are not using TypeScript.
-			// >
 			// > This rule should be applied to your test files in place of the original rule,
 			// > which should be applied to the rest of your codebase.
+
+			// Note: Ideally the `unbound-method` rule would fail silently when used in a non-TypeScript project where
+			//       typed linting is not available, since this is the described behavior on its docs page.
+			//       This doesn't appear to be the case in actual usage when linting a JavaScript project,
+			//       so configure this rule conditionally based on the presence of a `tsconfig.json` file.
 			"jest/unbound-method": hasTSConfigFile ? "error" : "off",
 		},
 	});
