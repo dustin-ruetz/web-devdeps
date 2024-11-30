@@ -49,8 +49,9 @@ Note that `@dustin-ruetz/devdeps` requires the project to have the following com
 ┗ 📄 tsconfig.json
 ```
 
+#### Starting a New Project
+
 <details>
-<summary>Starting a New Project</summary>
 
 **Important:** Replace the `repo-name` placeholder in the commands below with the actual name of the repository.
 
@@ -80,10 +81,12 @@ npm run fix/format
 git add --all && git commit -m "feat: initial commit"
 
 # 7. Verify that the Git hooks ran automatically and the relevant checks
-#    (formatting, linting, testing, etc.) were successful.
+#    (formatting, linting, testing, typechecking, etc.) were successful.
 ```
 
 </details>
+
+#### Adding to an Existing Project
 
 <details>
 <summary>Adding to an Existing Project</summary>
