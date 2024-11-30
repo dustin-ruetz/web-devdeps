@@ -204,6 +204,19 @@ export const writeReadme = async (repoName: string) => {
 	await writeFile(`${rootPathToWriteTo}/README.md`, `# ${repoName}`);
 };
 
+/** Write a new `renovate.json` file to disk and make it extend this repo's configuration. */
+export const writeRenovate = async () => {
+	await writeFile(
+		`${rootPathToWriteTo}/renovate.json`,
+		`
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["github>dustin-ruetz/devdeps:renovate.json"]
+}
+`.trimStart(),
+	);
+};
+
 /** Write a new `tsconfig.build.json` file to disk and make it extend this repo's configuration. */
 export const writeTsConfigBuild = async () => {
 	await writeFile(

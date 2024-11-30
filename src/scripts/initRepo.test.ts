@@ -8,6 +8,7 @@ import {
 	writeNodeVersion,
 	writePackageJson,
 	writeReadme,
+	writeRenovate,
 	writeTsConfig,
 	writeTsConfigBuild,
 	writeVsCodeSettings,
@@ -172,6 +173,7 @@ describe("initRepo", () => {
 		);
 		expect(writeReadme).toHaveBeenCalledTimes(1);
 		expect(writeReadme).toHaveBeenCalledWith("repo-name");
+		expect(writeRenovate).toHaveBeenCalledTimes(1);
 		expect(writeTsConfig).toHaveBeenCalledTimes(1);
 		expect(writeTsConfigBuild).toHaveBeenCalledTimes(1);
 		expect(writeVsCodeSettings).toHaveBeenCalledTimes(1);

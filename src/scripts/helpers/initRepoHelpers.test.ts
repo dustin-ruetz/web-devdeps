@@ -8,6 +8,7 @@ import {
 	writeNodeVersion,
 	writePackageJson,
 	writeReadme,
+	writeRenovate,
 	writeTsConfig,
 	writeTsConfigBuild,
 	writeVsCodeSettings,
@@ -213,6 +214,20 @@ test("writeReadme", async () => {
 	expect(writeFile).toHaveBeenCalledWith(
 		expect.stringContaining("README.md"),
 		"# repo-name",
+	);
+});
+
+test("writeRenovate", async () => {
+	expect.hasAssertions();
+
+	await writeRenovate();
+
+	expect(writeFile).toHaveBeenCalledTimes(1);
+	expect(writeFile).toHaveBeenCalledWith(
+		expect.stringContaining("renovate.json"),
+		expect.stringContaining(
+			'"extends": ["github>dustin-ruetz/devdeps:renovate.json"]',
+		),
 	);
 });
 
