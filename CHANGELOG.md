@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [1.28.0](https://github.com/dustin-ruetz/devdeps/compare/v1.27.2...v1.28.0) (2024-11-30)
+
+### Features
+
+* **scripts/helpers/initRepoHelpers:** add more file extensions to 'writeGitAttributes' function ([3b49a45](https://github.com/dustin-ruetz/devdeps/commit/3b49a4589510143eb1b6edc9ba9c8219cafd3386))
+* **scripts/initRepo:** add 'writeRenovate' helper function to 'init-repo' script ([cca69e9](https://github.com/dustin-ruetz/devdeps/commit/cca69e9ad434818aedfdd0447276bc66fd79f060))
+
+### Bug Fixes
+
+* **package.json:** use 'npx' to run 'rimraf' in 'clean/deps' NPM script ([23c7258](https://github.com/dustin-ruetz/devdeps/commit/23c72583874be3ca0497b8f5d9769b8f6a0d89bd))
+
 ## [1.27.2](https://github.com/dustin-ruetz/devdeps/compare/v1.27.1...v1.27.2) (2024-11-29)
 
 ### Bug Fixes
