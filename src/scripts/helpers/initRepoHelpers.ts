@@ -24,6 +24,7 @@ export const writeGitAttributes = async () => {
 * text=auto
 
 *.css  text
+*.html text
 *.js   text
 *.jsx  text
 *.json text
@@ -34,8 +35,9 @@ export const writeGitAttributes = async () => {
 *.tsx  text
 *.yaml text
 
-*.jpg binary
-*.png binary
+*.jpg   binary
+*.png   binary
+*.woff2 binary
 `.trimStart(),
 	);
 };
