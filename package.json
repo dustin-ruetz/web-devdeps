@@ -12,7 +12,7 @@
 		"check/types": "tsc --noEmit",
 		"clean": "npm-run-all2 --parallel clean/*",
 		"clean/caches": "jest --clear-cache && rimraf ./.caches/",
-		"clean/deps": "rimraf ./node_modules/ ./package-lock.json",
+		"clean/deps": "npx rimraf ./node_modules/ ./package-lock.json",
 		"clean/lib": "rimraf ./lib/",
 		"dev": "npm run build -- --watch",
 		"dev/link": "npm link",
