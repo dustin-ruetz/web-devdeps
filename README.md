@@ -4,6 +4,8 @@ Package that provides development dependencies for other web projects (both brow
 
 ## Goals
 
+`tl;dr` version: make web dev dependencies DRY, like a cocktail in a desert 🍸 🏜️
+
 1. Avoid having to repeatedly install the same development dependencies in web projects that all use the same foundational tooling. With a small number of exceptions, these are generally CLI-based `devDependencies` that aren't typically `import`ed in the `src/` files of an application.
 1. Provide [standardized configuration files](./src/config/) that work with both CLI programs and IDE extensions while also preventing the repetitive cluttering up of repository roots with the same boilerplate `*.config.js` files over-and-over again.
 1. Provide [standardized scripts](./src/scripts/) that automatically add useful arguments and determine the path to their configuration files.
