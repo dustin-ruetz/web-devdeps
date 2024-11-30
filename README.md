@@ -220,9 +220,9 @@ npm uninstall --save-dev eslint jest prettier stylelint (etc.)
 
 #### Customizing Configurations
 
-Similar to [`kcd-scripts`][kcd-scripts], the `@dustin-ruetz/devdeps` package defaults to supplying standardized configuration files for all of the development dependency tooling that it offers. Both packages also pass along any additional flags and arguments to their respective CLI scripts.
+Similar to [`kcd-scripts`][kcd-scripts], this `@dustin-ruetz/devdeps` package defaults to supplying standardized configuration files for all of the development dependency tooling that it offers. Both packages also pass along any additional flags and arguments to their respective CLI scripts.
 
-Where it diverges from the `kcd-scripts` approach is that it doesn't do any automatic detection of configuration files or config overrides based on the files that are present in the repo. This difference is _intentional_ in order to both 1) reduce code complexity, and 2) avoid any perceived attempts at "magic" (i.e. hiding key details instead of surfacing them to make them clearer).
+Where it diverges from the `kcd-scripts` approach is that it doesn't do any automatic detection of configuration files or config overrides based on the files that are present in the repo. This difference is _intentional_ in order to both 1) reduce code complexity, and 2) avoid any perceived attempts at "magic" (i.e. hiding key details instead of surfacing them to make it clearer as to what's happening).
 
 So, in the scenario where a repo wants to both 1) use the `@dustin-ruetz/devdeps` CLI scripts, and 2) extend its built-in configurations and customize them in order to suit the project's specific requirements, this can be achieved in a very straightforward and transparent way.
 
