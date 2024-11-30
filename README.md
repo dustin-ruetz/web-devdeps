@@ -89,13 +89,132 @@ git add --all && git commit -m "feat: initial commit"
 #### Adding to an Existing Project
 
 <details>
-<summary>Adding to an Existing Project</summary>
+
+1. Create the `.githooks/` directory and populate it with the following three files:
+
+A. `.githooks/commit-msg`
 
 ```sh
-# 1. Install the package as a development dependency:
-npm install --save-dev --save-exact @dustin-ruetz/devdeps
+#!/usr/bin/env sh
+./node_modules/@dustin-ruetz/devdeps/.githooks/_/commit-msg
+```
 
-# 2. Go through the `packageJSON.scripts` and make updates as needed.
+B. `.githooks/pre-commit`
+
+```sh
+#!/usr/bin/env sh
+./node_modules/@dustin-ruetz/devdeps/.githooks/_/pre-commit
+```
+
+C. `.githooks/pre-push`
+
+```sh
+#!/usr/bin/env sh
+./node_modules/@dustin-ruetz/devdeps/.githooks/_/pre-push
+```
+
+2. Create the `.vscode/` directory and populate it with the `settings.json` file:
+
+```json
+{
+	"eslint.options": {
+		"overrideConfigFile": "node_modules/@dustin-ruetz/devdeps/lib/config/eslint.config.js"
+	},
+	"prettier.configPath": "node_modules/@dustin-ruetz/devdeps/lib/config/prettier.config.js",
+	"prettier.ignorePath": ".gitignore",
+	// (optional) Modify or remove the Stylelint-related lines below as per the tooling needs of the project.
+	"stylelint.configFile": "node_modules/@dustin-ruetz/devdeps/lib/config/stylelint.config.js",
+	"stylelint.validate": ["css", "javascriptreact", "scss", "typescriptreact"]
+}
+```
+
+3. (optional) If it's a frontend project that uses TypeScript, create the `config/` directory and populate it with the `jest.setupFilesAfterEnv.ts` file:
+
+```ts
+import "@testing-library/jest-dom";
+```
+
+4. Create the `.node-version` file:
+
+```
+22
+```
+
+5. Install the package as a development dependency:
+
+```sh
+npm install --save-dev --save-exact @dustin-ruetz/devdeps
+```
+
+6. Go through the `package.json` file and add the following `scripts`, making modifications as needed (i.e. a non-TypeScript project has no use for the `check/types` script, a non-frontend project has no use for the `lint/styles` scripts, a React project that doesn't use a CSS-in-JS runtime library like `styled-components` doesn't need to check `.jsx` or `.tsx` files for linting issues with the styling, etc.):
+
+```json
+{
+	"scripts": {
+		"build": "...",
+		"check": "npm-run-all2 --parallel check/*",
+		"check/format": "npm run format -- --check ./",
+		"check/lint/js-ts": "npm run lint/js-ts -- ./",
+		"check/lint/styles": "npm run lint/styles -- '**/*.{css,scss,jsx,tsx}'",
+		"check/types": "tsc --noEmit",
+		"clean": "npm-run-all2 --parallel clean/*",
+		"clean/caches": "jest --clear-cache && rimraf .caches/",
+		"clean/deps": "npx rimraf ./node_modules/ ./package-lock.json",
+		"format": "devdeps format",
+		"fix": "npm-run-all2 --parallel fix/*",
+		"fix/format": "npm run format -- --write ./",
+		"fix/lint/js-ts": "npm run lint/js-ts -- --fix ./",
+		"fix/lint/styles": "npm run lint/styles -- --fix '**/*.{css,scss,jsx,tsx}'",
+		"githooks/commit-msg": "devdeps githooks/commit-msg",
+		"githooks/pre-commit": "devdeps githooks/pre-commit",
+		"githooks/pre-push": "npm run validate",
+		"init": "git config core.hooksPath ./.githooks/ && npm install && npm run validate",
+		"lint/js-ts": "devdeps lint/js-ts",
+		"lint/styles": "devdeps lint/styles",
+		"test/unit": "devdeps test/unit",
+		"test/unit/coverage": "npm run test/unit -- --coverage",
+		"test/unit/coverage-watch-all": "npm run test/unit/coverage -- --watch-all",
+		"test/unit/watch": "npm run test/unit/coverage -- --watch",
+		"validate": "npm-run-all2 --sequential build check test/unit/coverage"
+	}
+}
+```
+
+7. Create the `renovate.json` file:
+
+```json
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["github>dustin-ruetz/devdeps:renovate.json"]
+}
+```
+
+8. (optional) If it's a TypeScript project, create the `tsconfig.json` file and make modifications as needed:
+
+```json
+{
+	"extends": "./node_modules/@dustin-ruetz/devdeps/tsconfig.json",
+	"include": ["./config/", "./src/"],
+	"exclude": ["..."],
+	"compilerOptions": {
+		"outDir": "..."
+	}
+}
+```
+
+9. Try running the validation script:
+
+```sh
+npm run validate
+```
+
+10. Remove any previous development dependencies and configuration files that are no longer needed now that they're being provided by the `@dustin-ruetz/devdeps` package:
+
+```sh
+npm uninstall --save-dev eslint jest prettier stylelint (etc.)
+```
+
+</details>
 ```
 
 </details>
