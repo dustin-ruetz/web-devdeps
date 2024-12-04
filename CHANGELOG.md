@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.28.1](https://github.com/dustin-ruetz/devdeps/compare/v1.28.0...v1.28.1) (2024-12-04)
+
+### Bug Fixes
+
+* **🤖 dependencies:** update dependencies (non-major versions) ([28352be](https://github.com/dustin-ruetz/devdeps/commit/28352be54e5c83aed7c0b13341d2e6b9c88d14fb))
+
 ## [1.28.0](https://github.com/dustin-ruetz/devdeps/compare/v1.27.2...v1.28.0) (2024-11-30)
 
 ### Features
