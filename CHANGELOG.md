@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [1.29.0](https://github.com/dustin-ruetz/devdeps/compare/v1.28.1...v1.29.0) (2024-12-04)
+
+### Features
+
+* **config/stylelint:** enable 'reportUnscopedDisables' option ([cb94e18](https://github.com/dustin-ruetz/devdeps/commit/cb94e181de98f40cce60d24572547b0c50cc3db3))
+
+### Bug Fixes
+
+* **dependencies:** update packages to latest versions ([8fb491c](https://github.com/dustin-ruetz/devdeps/commit/8fb491c225d2395bdc6a6e2f5497ee82e6b9e605))
+
 ## [1.28.1](https://github.com/dustin-ruetz/devdeps/compare/v1.28.0...v1.28.1) (2024-12-04)
 
 ### Bug Fixes
