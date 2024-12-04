@@ -40,6 +40,7 @@ export const makeStylelintConfig = async (): Promise<Config> => {
 		reportDescriptionlessDisables: true,
 		reportInvalidScopeDisables: true,
 		reportNeedlessDisables: true,
+		reportUnscopedDisables: true,
 		rules: {
 			// https://stylelint.io/user-guide/rules#avoid-errors
 			// > This rule considers the identifiers of `@keyframes` rules defined within the same source to be known.

@@ -15,6 +15,7 @@ describe("it exports a configuration object and the most important config option
 		expect(stylelintConfig.reportDescriptionlessDisables).toBe(true);
 		expect(stylelintConfig.reportInvalidScopeDisables).toBe(true);
 		expect(stylelintConfig.reportNeedlessDisables).toBe(true);
+		expect(stylelintConfig.reportUnscopedDisables).toBe(true);
 		expect(stylelintConfig.rules?.["no-unknown-custom-properties"]).toBe(true);
 		expect(stylelintConfig.rules?.["declaration-no-important"]).toBe(true);
 		expect(stylelintConfig.rules?.["unit-disallowed-list"]).toStrictEqual([
