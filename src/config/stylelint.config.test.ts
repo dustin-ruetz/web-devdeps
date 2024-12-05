@@ -38,7 +38,7 @@ describe("it exports a configuration object and the most important config option
 		expect(stylelintConfig.overrides).toStrictEqual([]);
 	});
 
-	test("when testing a repo that has the sass package installed", async () => {
+	test("when testing a repo that has the `sass` package installed", async () => {
 		expect.hasAssertions();
 
 		const hasSassDependency = true;
@@ -59,7 +59,7 @@ describe("it exports a configuration object and the most important config option
 		);
 	});
 
-	test("when testing a repo that has the styled-components package installed", async () => {
+	test("when testing a repo that has the `styled-components` package installed", async () => {
 		expect.hasAssertions();
 
 		const hasStyledComponentsDependency = true;
