@@ -54,6 +54,9 @@ describe("it exports a configuration object and the most important config option
 				{
 					customSyntax: "postcss-scss",
 					files: ["**/*.scss"],
+					rules: {
+						"scss/load-partial-extension": "always",
+					},
 				},
 			]),
 		);

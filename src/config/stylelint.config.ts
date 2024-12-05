@@ -18,6 +18,11 @@ export const makeStylelintConfig = async (): Promise<Config> => {
 		overrides.push({
 			customSyntax: "postcss-scss",
 			files: ["**/*.scss"],
+			rules: {
+				// https://github.com/stylelint-scss/stylelint-scss/blob/master/src/rules/load-partial-extension/README.md
+				// > Require or disallow extension in `@import`, `@use`, `@forward`, and `[meta.load-css]` commands.
+				"scss/load-partial-extension": "always",
+			},
 		});
 	}
 	if (hasStyledComponentsDependency) {
