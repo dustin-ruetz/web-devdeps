@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.30.0](https://github.com/dustin-ruetz/devdeps/compare/v1.29.1...v1.30.0) (2024-12-05)
+
+### Features
+
+* **config/stylelint:** configure 'scss/load-partial-extension' rule to 'always' ([9e584dc](https://github.com/dustin-ruetz/devdeps/commit/9e584dc6d8dbcea3827bd2652e5cddb7c296db7f))
+
 ## [1.29.1](https://github.com/dustin-ruetz/devdeps/compare/v1.29.0...v1.29.1) (2024-12-05)
 
 ### Bug Fixes
