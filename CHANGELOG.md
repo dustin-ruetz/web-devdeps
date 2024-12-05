@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.29.1](https://github.com/dustin-ruetz/devdeps/compare/v1.29.0...v1.29.1) (2024-12-05)
+
+### Bug Fixes
+
+* **🤖 dependencies:** update dependencies (non-major versions) ([e7ed439](https://github.com/dustin-ruetz/devdeps/commit/e7ed439d5a0ec1a4e86f289e30eaa2f91baaf6a4))
+
 ## [1.29.0](https://github.com/dustin-ruetz/devdeps/compare/v1.28.1...v1.29.0) (2024-12-04)
 
 ### Features
