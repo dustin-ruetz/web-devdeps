@@ -17,5 +17,5 @@
 	],
 	"semanticCommits": "enabled",
 	"semanticCommitType": "fix",
-	"semanticCommitScope": "🤖 dependencies"
+	"semanticCommitScope": "🤖 packages"
 }
