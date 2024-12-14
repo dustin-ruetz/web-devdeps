@@ -1,6 +1,6 @@
 {
 	"name": "@dustin-ruetz/devdeps",
-	"version": "1.30.0",
+	"version": "1.30.1",
 	"description": "Package that provides development dependencies for other web projects (both browser- and Node.js-based) to consume.",
 	"main": "./lib/exports.js",
 	"scripts": {

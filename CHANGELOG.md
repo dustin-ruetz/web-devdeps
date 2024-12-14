@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.30.1](https://github.com/dustin-ruetz/devdeps/compare/v1.30.0...v1.30.1) (2024-12-14)
+
+### Bug Fixes
+
+* **renovate.json:** clarify 'semanticCommitScope' string ([a11a26e](https://github.com/dustin-ruetz/devdeps/commit/a11a26e63254fdf36f330308630eaedadcc09abf))
+
 ## [1.30.0](https://github.com/dustin-ruetz/devdeps/compare/v1.29.1...v1.30.0) (2024-12-05)
 
 ### Features
