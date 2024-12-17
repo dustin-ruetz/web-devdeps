@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.30.2](https://github.com/dustin-ruetz/devdeps/compare/v1.30.1...v1.30.2) (2024-12-17)
+
+### Bug Fixes
+
+* **🤖 packages:** update dependencies (non-major versions) ([db835e8](https://github.com/dustin-ruetz/devdeps/commit/db835e8f3e9797b6ccdedab3ff9c753b32ab737f))
+
 ## [1.30.1](https://github.com/dustin-ruetz/devdeps/compare/v1.30.0...v1.30.1) (2024-12-14)
 
 ### Bug Fixes
