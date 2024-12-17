@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.30.3](https://github.com/dustin-ruetz/devdeps/compare/v1.30.2...v1.30.3) (2024-12-17)
+
+### Bug Fixes
+
+* npm audit issue(s) ([9570b1b](https://github.com/dustin-ruetz/devdeps/commit/9570b1bce0144e1abc13bd54657d8b0e08ce76f2))
+
 ## [1.30.2](https://github.com/dustin-ruetz/devdeps/compare/v1.30.1...v1.30.2) (2024-12-17)
 
 ### Bug Fixes
