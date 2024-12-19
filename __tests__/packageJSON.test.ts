@@ -1,7 +1,7 @@
 import packageJSON from "../package.json" with {type: "json"};
 
 test("the most important configuration options are correct", () => {
-	expect(packageJSON.name).toBe("@dustin-ruetz/devdeps");
+	expect(packageJSON.name).toBe("web-devdeps");
 	expect(packageJSON.author).toBe("Dustin Ruetz");
 	// Excerpt from https://docs.npmjs.com/cli/v6/configuring-npm/package-json#main:
 	// > The main field is a module ID that is the primary entry point to your program.
@@ -13,8 +13,9 @@ test("the most important configuration options are correct", () => {
 	// > A lot of packages have one or more executable files that they'd like to install into the PATH.
 	// > To use this, supply a `bin` field in your package.json which is a map of command name to local file name. On install,
 	// > npm will symlink that file into `prefix/bin` for global installs, or `./node_modules/.bin/` for local installs.
-	// > If you have a single executable, and its name should be the name of the package, then you can just supply it as a string.
-	expect(packageJSON.bin).toBe("./lib/index.js");
+	expect(packageJSON.bin).toStrictEqual({
+		"web-devdeps": "lib/index.js",
+	});
 	// Ensure that only the following allowlisted files and folders are included in the published NPM package.
 	//
 	// Excerpt from https://docs.npmjs.com/cli/v10/using-npm/developers#keeping-files-out-of-your-package:
@@ -28,9 +29,9 @@ test("the most important configuration options are correct", () => {
 		"tsconfig.build.json",
 		"tsconfig.json",
 	]);
-	// Since this is a user-scoped namespaced package, set `publishConfig.access` to `public` to prevent the following NPM error:
-	// > npm error 402 Payment Required - You must sign up for private packages.
-	expect(packageJSON.publishConfig.access).toBe("public");
+	expect(packageJSON.repository.url).toContain(
+		"github.com/dustin-ruetz/web-devdeps",
+	);
 	expect(packageJSON.type).toBe("module");
 });
 

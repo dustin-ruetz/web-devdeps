@@ -95,7 +95,7 @@ describe("it exports a configuration array and the most important config options
 		expect(typeof jsdocUserDefinedConfig?.rules).toBe("object");
 	});
 
-	test("when linting this devdeps repo (which *does not* have frontend dependencies and *does* depend on TypeScript)", async () => {
+	test("when linting this `web-devdeps` repo (which *does not* have frontend dependencies and *does* depend on TypeScript)", async () => {
 		expect.hasAssertions();
 
 		const eslintConfig = await makeESLintConfig();
@@ -126,7 +126,7 @@ describe("it exports a configuration array and the most important config options
 		expect(typeof typescripteslintUserDefinedConfig?.rules).toBe("object");
 	});
 
-	describe("when linting a repo that has installed the devdeps package", () => {
+	describe("when linting a repo that has installed the `web-devdeps` package", () => {
 		test("which *does* have frontend dependencies", async () => {
 			expect.hasAssertions();
 

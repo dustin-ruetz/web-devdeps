@@ -7,7 +7,7 @@
 
 import {readFile} from "node:fs/promises";
 import {CustomError} from "../utils/CustomError.js";
-import {packageScopeAndName} from "../constants.js";
+import {packageName} from "../constants.js";
 import {getRootPaths} from "./helpers/getRootPaths.js";
 import {
 	writeGitAttributes,
@@ -94,7 +94,7 @@ const logSection = (messages: string[]) => {
 const logErrorIntro = () => {
 	logSection([
 		"❌ An error occurred; see below for details.",
-		`ℹ️ Run \`npx ${packageScopeAndName} init-repo --help\` for documentation on this command.`,
+		`ℹ️ Run \`npx ${packageName} init-repo --help\` for documentation on this command.`,
 	]);
 };
 
@@ -104,7 +104,7 @@ export const logInitRepoHelpText = async () => {
 
 	logSection(["The `init-repo` script initializes a new repository."]);
 
-	const baseCommand = `npx ${packageScopeAndName} init-repo repo-name`;
+	const baseCommand = `npx ${packageName} init-repo repo-name`;
 
 	logSection(["Command example:", `  ${baseCommand}`]);
 

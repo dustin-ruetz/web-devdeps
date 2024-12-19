@@ -30,9 +30,9 @@ export const makeESLintConfig = async (): Promise<Config> => {
 
 	/**
 	 * Ideally a straightforward `dependsOn(["typescript"])` check would be sufficient for checking if
-	 * the repo uses TypeScript (whether it's this `devdeps` repo or a consuming repo that has
-	 * installed the `devdeps` package as a dependency). For TypeScript specifically this won't work
-	 * since one of the primary use cases of the `devdeps` package is to provide development dependencies
+	 * the repo uses TypeScript (whether it's this `web-devdeps` repo or a consuming repo that has
+	 * installed the `web-devdeps` package as a dependency). For TypeScript specifically this won't work
+	 * since one of the primary use cases of the `web-devdeps` package is to provide development dependencies
 	 * (including TS) for consuming repos without requiring the consumers to specify all of them in their
 	 * `packageJSON.devDependencies` object. So rather than checking the `devDependencies` object for
 	 * the `typescript` package, check for the presence of a `tsconfig.json` file instead.

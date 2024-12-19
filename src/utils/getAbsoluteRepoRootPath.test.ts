@@ -12,19 +12,18 @@ const fileURLToPathMock = jest.mocked(fileURLToPath);
 const absolutePaths = {
 	// Start by defining the static partials that comprise the absolute paths.
 	base: "/Users/username/repos",
-	scope: "@dustin-ruetz",
-	name: "devdeps",
+	name: "web-devdeps",
 	// Combine the static partials in the return values of the methods.
 	/**
-	 * @description Test the value of `getAbsoluteRepoRootPath()` when used by a repository that depends on the `devdeps` package.
-	 * @returns Simulated path to `devdeps` when it's installed as a dependency running from a `node_modules/` folder.
+	 * @description Test the value of `getAbsoluteRepoRootPath()` when used by a repository that depends on the `web-devdeps` package.
+	 * @returns Simulated path to `web-devdeps` when it's installed as a dependency running from a `node_modules/` folder.
 	 */
 	asDependency() {
-		return `${this.base}/consuming-repo/node_modules/${this.scope}/${this.name}/`;
+		return `${this.base}/consuming-repo/node_modules/${this.name}/`;
 	},
 	/**
-	 * @description Test the value of `getAbsoluteRepoRootPath()` when used in this `devdeps` repo.
-	 * @returns Simulated path to this `devdeps` repo.
+	 * @description Test the value of `getAbsoluteRepoRootPath()` when used in this `web-devdeps` repo.
+	 * @returns Simulated path to this `web-devdeps` repo.
 	 */
 	asRepo() {
 		return `${this.base}/${this.name}/`;
@@ -41,17 +40,17 @@ describe("it determines the correct absolute root directory", () => {
 		expect(absoluteRepoRootPath).toBe("/Users/username/repos/consuming-repo");
 	});
 
-	test("when run from this `devdeps` repo", () => {
+	test("when run from this `web-devdeps` repo", () => {
 		const absolutePath = absolutePaths.asRepo();
 		fileURLToPathMock.mockReturnValue(absolutePath);
 
 		const absoluteRepoRootPath = getAbsoluteRepoRootPath();
 
-		expect(absoluteRepoRootPath).toBe("/Users/username/repos/devdeps");
+		expect(absoluteRepoRootPath).toBe("/Users/username/repos/web-devdeps");
 	});
 });
 
-test("throws an error if path does not end with either `/node_modules/@dustin-ruetz/devdeps/` or `/devdeps/`", () => {
+test("throws an error if path does not end with either `/node_modules/web-devdeps/` or `/web-devdeps/`", () => {
 	const absolutePath = `${absolutePaths.base}/bad-path`;
 	fileURLToPathMock.mockReturnValue(absolutePath);
 

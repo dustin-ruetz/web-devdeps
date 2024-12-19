@@ -1,5 +1,5 @@
 import {getAbsoluteRepoRootPath} from "../../utils/getAbsoluteRepoRootPath.js";
-import {getIsDevDepsRepo} from "../../utils/getIsDevDepsRepo.js";
+import {getIsWebDevdepsRepo} from "../../utils/getIsWebDevdepsRepo.js";
 import {nodeModulesPackagePath} from "../../constants.js";
 
 /**
@@ -8,22 +8,22 @@ import {nodeModulesPackagePath} from "../../constants.js";
  */
 export const getRootPaths = () => {
 	const absoluteRepoRootPath = getAbsoluteRepoRootPath();
-	const isDevDepsRepo = getIsDevDepsRepo(absoluteRepoRootPath);
+	const isWebDevdepsRepo = getIsWebDevdepsRepo(absoluteRepoRootPath);
 
 	const rootPaths = {
 		readFrom: "",
 		writeTo: "",
 	};
 
-	// *If* developing/testing locally from this `devdeps` repo:
+	// *If* developing/testing locally from this `web-devdeps` repo:
 	// 1. Read from the root of the repo, and
 	// 2. Write to the .gitignore'd `.init-repo-script-test-output/` directory.
-	if (isDevDepsRepo) {
+	if (isWebDevdepsRepo) {
 		rootPaths.readFrom = absoluteRepoRootPath;
 		rootPaths.writeTo = `${absoluteRepoRootPath}/.init-repo-script-test-output`;
 	}
 	// *Else* the script is being run from a consuming repo, so:
-	// 1. Read from the `node_modules/@dustin-ruetz/devdeps/` directory, and
+	// 1. Read from the `node_modules/web-devdeps/` directory, and
 	// 2. Write to the root of the consuming repo, i.e. the current working directory of the Node.js process.
 	else {
 		rootPaths.readFrom = `${absoluteRepoRootPath}/${nodeModulesPackagePath}`;

@@ -1,6 +1,6 @@
 {
-	"name": "@dustin-ruetz/devdeps",
-	"version": "1.30.3",
+	"name": "web-devdeps",
+	"version": "0.0.0",
 	"description": "Package that provides development dependencies for other web projects (both browser- and Node.js-based) to consume.",
 	"main": "./lib/exports.js",
 	"scripts": {
@@ -16,7 +16,7 @@
 		"clean/lib": "rimraf ./lib/",
 		"dev": "npm run build -- --watch",
 		"dev/link": "npm link",
-		"dev/unlink": "npm unlink devdeps",
+		"dev/unlink": "npm unlink web-devdeps",
 		"fix": "npm-run-all2 --parallel fix/*",
 		"fix/format": "npm run format -- --write ./",
 		"fix/lint/js-ts": "npm run lint/js-ts -- --fix ./",
@@ -41,7 +41,9 @@
 	"keywords": [],
 	"author": "Dustin Ruetz",
 	"license": "MIT",
-	"bin": "./lib/index.js",
+	"bin": {
+		"web-devdeps": "lib/index.js"
+	},
 	"engines": {
 		"node": ">=18",
 		"npm": ">=10"
@@ -53,11 +55,8 @@
 		"tsconfig.build.json",
 		"tsconfig.json"
 	],
-	"publishConfig": {
-		"access": "public"
-	},
 	"repository": {
-		"url": "git+ssh://git@github.com/dustin-ruetz/devdeps.git"
+		"url": "git+ssh://git@github.com/dustin-ruetz/web-devdeps.git"
 	},
 	"type": "module",
 	"dependencies": {

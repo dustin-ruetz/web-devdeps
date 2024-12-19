@@ -25,7 +25,7 @@ describe("it exports a configuration object and the most important config option
 		expect(stylelintConfig.rules?.["font-weight-notation"]).toBe("numeric");
 	});
 
-	test("when testing this devdeps repo (which *does not* have frontend style-related dependencies)", async () => {
+	test("when testing this `web-devdeps` repo (which *does not* have frontend style-related dependencies)", async () => {
 		expect.hasAssertions();
 
 		const hasFrontendStyleDependencies = false;

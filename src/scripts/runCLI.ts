@@ -1,6 +1,6 @@
 import {spawn} from "node:child_process";
 import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.js";
-import {getIsDevDepsRepo} from "../utils/getIsDevDepsRepo.js";
+import {getIsWebDevdepsRepo} from "../utils/getIsWebDevdepsRepo.js";
 import {makeCachePath} from "../utils/makeCachePath.js";
 import {nodeModulesPackagePath} from "../constants.js";
 
@@ -97,7 +97,7 @@ export const runCLI = (cli: cli, args: string[]) => {
 	const hasConfigArg = configArg !== undefined;
 
 	const absoluteRepoRootPath = getAbsoluteRepoRootPath();
-	const isDevDepsRepo = getIsDevDepsRepo(absoluteRepoRootPath);
+	const isWebDevdepsRepo = getIsWebDevdepsRepo(absoluteRepoRootPath);
 
 	/**
 	 * Normalize how the `--config` flag and its argument are passed to the CLI program,
@@ -116,7 +116,7 @@ export const runCLI = (cli: cli, args: string[]) => {
 		const configFilePath = `lib/config/${cli}.config.js`;
 
 		// 2a. Determine the path to the configuration file depending on the repo.
-		const configArg = isDevDepsRepo
+		const configArg = isWebDevdepsRepo
 			? `./${configFilePath}`
 			: `./${nodeModulesPackagePath}/${configFilePath}`;
 		// 2b. Prepend the `--config` flag and its argument to the existing `args` array.
@@ -126,7 +126,7 @@ export const runCLI = (cli: cli, args: string[]) => {
 
 	// #region ℹ️ log command
 	let runCLIpath = "lib/scripts/runCLI.js";
-	runCLIpath = isDevDepsRepo
+	runCLIpath = isWebDevdepsRepo
 		? `./${runCLIpath}`
 		: `./${nodeModulesPackagePath}/${runCLIpath}`;
 	// Log out the command that is being run (and all of the flags/arguments passed to it)

@@ -47,7 +47,9 @@ test("throws errors if the required `deps` argument is invalid", async () => {
 test("returns `false` if the repo *does not* depend on the package", async () => {
 	expect.hasAssertions();
 
-	getAbsoluteRepoRootPathMock.mockReturnValue("/Users/username/repos/devdeps");
+	getAbsoluteRepoRootPathMock.mockReturnValue(
+		"/Users/username/repos/web-devdeps",
+	);
 	const packageJsonContents = `
 {
 	"dependencies": {
@@ -61,7 +63,7 @@ test("returns `false` if the repo *does not* depend on the package", async () =>
 
 	expect(getAbsoluteRepoRootPathMock).toHaveBeenCalledTimes(1);
 	expect(readFileMock).toHaveBeenCalledWith(
-		"/Users/username/repos/devdeps/package.json",
+		"/Users/username/repos/web-devdeps/package.json",
 		{encoding: "utf-8"},
 	);
 	expect(dependsOnDep0).toBe(false);

@@ -65,7 +65,7 @@ test("writeGitHooks", async () => {
 		/** The path of the filename to write. */
 		const file = `.githooks/${githook}`;
 		/** The contents to write to the file. */
-		const contents = `./node_modules/@dustin-ruetz/devdeps/.githooks/_/${githook}`;
+		const contents = `./node_modules/web-devdeps/.githooks/_/${githook}`;
 
 		expect(mkdir).toHaveBeenCalledTimes(1);
 		expect(mkdir).toHaveBeenCalledWith(expect.stringContaining(".githooks/"));
@@ -153,8 +153,8 @@ describe("writePackageJson", () => {
 		"devDependencies": {}
 }
 `;
-	const exampleScript = "@dustin-ruetz/devdeps example";
-	const lintStylesScript = "@dustin-ruetz/devdeps lint/styles";
+	const exampleScript = "web-devdeps example";
+	const lintStylesScript = "web-devdeps lint/styles";
 
 	test("it *does not* configure Stylelint", async () => {
 		expect.hasAssertions();
@@ -226,7 +226,7 @@ test("writeRenovate", async () => {
 	expect(writeFile).toHaveBeenCalledWith(
 		expect.stringContaining("renovate.json"),
 		expect.stringContaining(
-			'"extends": ["github>dustin-ruetz/devdeps:renovate.json"]',
+			'"extends": ["github>dustin-ruetz/web-devdeps:renovate.json"]',
 		),
 	);
 });
@@ -239,9 +239,7 @@ test("writeTsConfigBuild", async () => {
 	expect(writeFile).toHaveBeenCalledTimes(1);
 	expect(writeFile).toHaveBeenCalledWith(
 		expect.stringContaining("tsconfig.build.json"),
-		expect.stringContaining(
-			"./node_modules/@dustin-ruetz/devdeps/tsconfig.build.json",
-		),
+		expect.stringContaining("./node_modules/web-devdeps/tsconfig.build.json"),
 	);
 });
 
@@ -253,9 +251,7 @@ test("writeTsConfig", async () => {
 	expect(writeFile).toHaveBeenCalledTimes(1);
 	expect(writeFile).toHaveBeenCalledWith(
 		expect.stringContaining("tsconfig.json"),
-		expect.stringContaining(
-			"./node_modules/@dustin-ruetz/devdeps/tsconfig.json",
-		),
+		expect.stringContaining("./node_modules/web-devdeps/tsconfig.json"),
 	);
 });
 

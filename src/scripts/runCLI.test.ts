@@ -49,7 +49,7 @@ describe("the CLI programs are spawned correctly with their expected `args` when
 });
 
 describe("the CLI programs automatically pass the correct argument to the `--config` flag when the command is being run from", () => {
-	describe("this `devdeps` repo", () => {
+	describe("this `web-devdeps` repo", () => {
 		test.each`
 			cli
 			${"commitlint"}
@@ -60,7 +60,7 @@ describe("the CLI programs automatically pass the correct argument to the `--con
 			${"stylelint"}
 		`(`$cli`, (testRow: {cli: cli}) => {
 			getAbsoluteRepoRootPathMock.mockReturnValue(
-				"/Users/username/repos/devdeps",
+				"/Users/username/repos/web-devdeps",
 			);
 
 			runCLI(testRow.cli, []);
@@ -98,7 +98,7 @@ describe("the CLI programs automatically pass the correct argument to the `--con
 				testRow.cli,
 				expect.arrayContaining([
 					"--config",
-					`./node_modules/@dustin-ruetz/devdeps/lib/config/${testRow.cli}.config.js`,
+					`./node_modules/web-devdeps/lib/config/${testRow.cli}.config.js`,
 				]),
 				{stdio: "inherit"},
 			);
