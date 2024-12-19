@@ -1,7 +1,7 @@
 import type {Config} from "jest";
 import {dependsOn} from "../utils/dependsOn.js";
 import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.js";
-import {getIsDevDepsRepo} from "../utils/getIsDevDepsRepo.js";
+import {getIsWebDevdepsRepo} from "../utils/getIsWebDevdepsRepo.js";
 import {makeCachePath} from "../utils/makeCachePath.js";
 import {nodeModulesPackagePath} from "../constants.js";
 
@@ -15,15 +15,15 @@ export const makeJestConfig = async (): Promise<Config> => {
 	const hasFrontendDependencies = await dependsOn(["pug", "react"]);
 
 	const absoluteRepoRootPath = getAbsoluteRepoRootPath();
-	const isDevDepsRepo = getIsDevDepsRepo(absoluteRepoRootPath);
+	const isWebDevdepsRepo = getIsWebDevdepsRepo(absoluteRepoRootPath);
 
 	const relativePathToJestUtils = "lib/config/jest-utils";
 
 	/** The absolute base path to the supporting utility files used by Jest. */
-	const absoluteBasePath = isDevDepsRepo
-		? // If running tests on this `devdeps` repo, set the path relative to the Jest <rootDir>.
+	const absoluteBasePath = isWebDevdepsRepo
+		? // If running tests on this `web-devdeps` repo, set the path relative to the Jest <rootDir>.
 			`<rootDir>/${relativePathToJestUtils}`
-		: // If running tests on a `consuming-repo`, set the path relative to its `devdeps` dependency.
+		: // If running tests on a `consuming-repo`, set the path relative to its `web-devdeps` dependency.
 			`<rootDir>/${nodeModulesPackagePath}/${relativePathToJestUtils}`;
 
 	/** Binary file extensions 1) to ignore in test coverage, and 2) to transform the imported values to filenames. */
@@ -105,9 +105,9 @@ export const makeJestConfig = async (): Promise<Config> => {
 			"^(\\.\\.?\\/.+)\\.(js|jsx)": "$1",
 		},
 		// Note that while `rootDir` is set to an absolute path here, Jest also knows how to interpret relative paths.
-		// For example, a consuming repo depending on `devdeps` could use "../../../../../" as the path to traverse
-		// five levels upwards to reach the root. (i.e. starting from `config/`, move upwards five times:
-		// lib/ ⬆️ devdeps/ ⬆️ @dustin-ruetz/ ⬆️ node_modules/ ⬆️ consuming-repo/)
+		// For example, a consuming repo depending on `web-devdeps` could use "../../../../" as the path to traverse
+		// four levels upwards to reach the root. (i.e. starting from `config/`, move upwards four times:
+		// lib/ ⬆️ web-devdeps/ ⬆️ node_modules/ ⬆️ consuming-repo/)
 		// Excerpt from https://jestjs.io/docs/configuration#rootdir-string:
 		// > The root directory that Jest should scan for tests and modules within.
 		// > Oftentimes, you'll want to set this to `"src"` or `"lib"`, corresponding to where in your repository the code is stored.

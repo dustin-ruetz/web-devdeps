@@ -1,10 +1,6 @@
 import {mkdir, readdir, readFile, writeFile} from "node:fs/promises";
 import type {PackageJsonTypes} from "../../types.d.js";
-import {
-	nodeModulesPackagePath,
-	packageName,
-	packageScopeAndName,
-} from "../../constants.js";
+import {nodeModulesPackagePath, packageName} from "../../constants.js";
 import {getRootPaths} from "./getRootPaths.js";
 
 const rootPathToReadFrom = getRootPaths().readFrom;
@@ -90,8 +86,8 @@ export const writeJestSetupFile = async () => {
 //                IDE when writing frontend tests; see the related files below for how
 //                this functionality is actually implemented in the Jest environment.
 
-// Related file: node_modules/@dustin-ruetz/devdeps/lib/config/jest-utils/setupFilesAfterEnv.cjs
-// Related file: node_modules/@dustin-ruetz/devdeps/lib/config/jest.config.js
+// Related file: node_modules/web-devdeps/lib/config/jest-utils/setupFilesAfterEnv.cjs
+// Related file: node_modules/web-devdeps/lib/config/jest.config.js
 
 import "@testing-library/jest-dom";
 `.trimStart(),
@@ -133,7 +129,7 @@ export const writePackageJson = async (
 	const packageJsonContents = await readFile(packageJsonPath, encoding);
 	const packageJson = JSON.parse(packageJsonContents) as PackageJsonTypes;
 
-	const devdepsVersion = packageJson.version;
+	const webDevdepsVersion = packageJson.version;
 
 	packageJson.name = repoName;
 	packageJson.version = "0.0.0";
@@ -159,7 +155,7 @@ export const writePackageJson = async (
 			if (scriptValueString.includes("node ./lib/")) {
 				updatedScriptValue = scriptValueString.replace(
 					"node ./lib/",
-					packageScopeAndName,
+					packageName,
 				);
 			}
 			scriptsObject[scriptKey] = updatedScriptValue;
@@ -168,7 +164,7 @@ export const writePackageJson = async (
 		{},
 	);
 	if (configureStylelint) {
-		packageJson.scripts["lint/styles"] = `${packageScopeAndName} lint/styles`;
+		packageJson.scripts["lint/styles"] = `${packageName} lint/styles`;
 		packageJson.scripts["check/lint/styles"] =
 			"npm run lint/styles -- '**/*.{css,scss,jsx,tsx}'";
 		packageJson.scripts["fix/lint/styles"] =
@@ -189,7 +185,7 @@ export const writePackageJson = async (
 	);
 	packageJson.dependencies = {};
 	packageJson.devDependencies = {
-		[packageScopeAndName]: devdepsVersion,
+		[packageName]: webDevdepsVersion,
 	};
 
 	await writeFile(
@@ -213,7 +209,7 @@ export const writeRenovate = async () => {
 		`
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["github>dustin-ruetz/devdeps:renovate.json"]
+	"extends": ["github>dustin-ruetz/web-devdeps:renovate.json"]
 }
 `.trimStart(),
 	);

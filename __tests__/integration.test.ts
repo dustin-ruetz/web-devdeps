@@ -1,11 +1,11 @@
 import {readdir} from "node:fs/promises";
-import {packageScopeAndName} from "../src/constants.js";
+import {packageName} from "../src/constants.js";
 import packageJSON from "../package.json" with {type: "json"};
 import packageLockJSON from "../package-lock.json" with {type: "json"};
 
-test("INTEGRATION: the NPM package name matches the exported package scope and name from the `constants` file", () => {
-	expect(packageJSON.name).toBe(packageScopeAndName);
-	expect(packageLockJSON.name).toBe(packageScopeAndName);
+test("INTEGRATION: the NPM package name matches the one exported from the `constants` file", () => {
+	expect(packageJSON.name).toBe(packageName);
+	expect(packageLockJSON.name).toBe(packageName);
 });
 
 test("INTEGRATION: the original `src/` files are mapped one-to-one with the compiled `lib/` files", async () => {

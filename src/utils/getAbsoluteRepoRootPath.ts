@@ -13,41 +13,41 @@ import {CustomError} from "./CustomError.js";
  * This function uses the known location of this `utils/absoluteRepoRootPath` file within the repo's structure and
  * uses it as an anchor point to determine the absolute root path of the repo where it's being called from.
  * It's intended to return the absolute path of either:
- * 1. The consuming repository where the `devdeps` package is installed as a dependency; or
- * 2. This `devdeps` repo itself.
+ * 1. The consuming repository where the `web-devdeps` package is installed as a dependency; or
+ * 2. This `web-devdeps` repo itself.
  *
  * **Important:** Note that the `absoluteRepoRootPath` path is intentionally returned _without_ a trailing slash.
  * @returns The absolute root path of the repo where this specific file is being accessed from.
- * @throws An error in the event of a path mismatch, i.e if `devdeps` is not in the path.
+ * @throws An error in the event of a path mismatch, i.e if `web-devdeps` is not in the path.
  */
 export const getAbsoluteRepoRootPath = () => {
 	/**
-	 * @description Path to the `devdeps` directory. Note the relative path to traverse two levels upwards,
-	 *              i.e. starting from this file's location in `utils/`, move up twice: `lib/ ⬆️ devdeps/`
+	 * @description Path to the `web-devdeps` directory. Note the relative path to traverse two levels upwards,
+	 *              i.e. starting from this file's location in `utils/`, move up twice: `lib/ ⬆️ web-devdeps/`
 	 * @todo Replace `import.meta.url` if/when the `import.meta.resolve()` function becomes workable with Jest.
 	 *
 	 * Excerpt from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta/resolve#comparison_with_new_url:
 	 * > The `URL()` constructor accepts a second base _URL_ argument. When the first argument is a relative path
 	 * > and the base URL is `import.meta.url`, the effect is similar to `import.meta.resolve()`.
 	 */
-	const devdepsPath = fileURLToPath(new URL("../../", import.meta.url));
+	const webDevdepsPath = fileURLToPath(new URL("../../", import.meta.url));
 
 	const nodeModulesPackagePathWithSlashes = `/${nodeModulesPackagePath}/`;
-	if (devdepsPath.endsWith(nodeModulesPackagePathWithSlashes)) {
-		return devdepsPath.replace(nodeModulesPackagePathWithSlashes, "");
+	if (webDevdepsPath.endsWith(nodeModulesPackagePathWithSlashes)) {
+		return webDevdepsPath.replace(nodeModulesPackagePathWithSlashes, "");
 	}
 
-	if (devdepsPath.endsWith(`/${packageName}/`)) {
+	if (webDevdepsPath.endsWith(`/${packageName}/`)) {
 		// Remove the last character in the string, i.e. the path's trailing slash.
-		return devdepsPath.slice(0, -1);
+		return webDevdepsPath.slice(0, -1);
 	}
 
 	throw new CustomError(
-		"`devdeps` subpath string is not present within the path.",
+		"`web-devdeps` subpath string is not present within the path.",
 		{
 			cause: {
 				code: "ERR_PATH_MISMATCH",
-				values: {path: devdepsPath},
+				values: {path: webDevdepsPath},
 			},
 			name: "PathMismatchError",
 		},

@@ -1,4 +1,4 @@
-// - This is the main file for exporting everything that consuming repos can use from the `devdeps` package.
+// - This is the main file for exporting everything that consuming repos can use from the `web-devdeps` package.
 // - This file's compiled `lib/exports.js` path is the value of the `main` field of the `package.json` file.
 
 export {makeCommitlintConfig} from "./config/commitlint.config.js";
