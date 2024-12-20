@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.1.0](https://github.com/dustin-ruetz/web-devdeps/compare/v1.0.1...v1.1.0) (2024-12-20)
+
+### Features
+
+* **package.json:** enable NPM provenance statements ([9f9986b](https://github.com/dustin-ruetz/web-devdeps/commit/9f9986b3e17e80bbefb0acdc092ec8aeb6f37154))
+
 ## [1.0.1](https://github.com/dustin-ruetz/web-devdeps/compare/v1.0.0...v1.0.1) (2024-12-20)
 
 ### Bug Fixes
