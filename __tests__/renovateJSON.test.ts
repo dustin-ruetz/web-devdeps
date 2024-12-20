@@ -12,7 +12,11 @@ test("the most important configuration options are correct", () => {
 	// > The default `false` behavior will mean that special characters like `.` and `/` may end up in the branch name.
 	expect(renovateJSON.branchNameStrict).toBe(true);
 
-	// Configure Renovate to upgrade multiple dependencies in pull requests as long as they are non-major version updates.
+	// Exclude the `npm` package to prevent Renovate from opening useless `chore: update npm`
+	// pull requests that only make modifications to the `package-lock.json` file.
+	expect(renovateJSON.ignoreDeps).toStrictEqual(["npm"]);
+
+	// Allow for multiple dependencies to be upgraded in PRs as long as they are non-major version updates.
 	expect(renovateJSON.packageRules).toStrictEqual([
 		{
 			matchDepTypes: ["dependencies"],

@@ -3,6 +3,7 @@
 	"extends": ["config:recommended"],
 	"assignees": ["dustin-ruetz"],
 	"branchNameStrict": true,
+	"ignoreDeps": ["npm"],
 	"packageRules": [
 		{
 			"matchDepTypes": ["dependencies"],
