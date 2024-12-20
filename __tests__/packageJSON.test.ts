@@ -29,6 +29,10 @@ test("the most important configuration options are correct", () => {
 		"tsconfig.build.json",
 		"tsconfig.json",
 	]);
+	// Excerpt from https://docs.npmjs.com/generating-provenance-statements:
+	// > You can generate provenance statements for the packages you publish. This allows you to publicly establish where
+	// > a package was built and who published a package, which can increase supply-chain security for your packages.
+	expect(packageJSON.publishConfig.provenance).toBe(true);
 	expect(packageJSON.repository.url).toContain(
 		"github.com/dustin-ruetz/web-devdeps",
 	);
