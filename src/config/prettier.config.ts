@@ -53,7 +53,7 @@ export const makePrettierConfig = async (): Promise<Config> => {
 		// - Possession: "This is Dustin's codebase."
 		// Excerpt from https://prettier.io/docs/en/options.html#quotes:
 		// > If the number of quotes outweighs the other quote, the quote which is less used will be used to format the string. Examples:
-		// > - "I'm double quoted" will result in in "I'm double quoted".
+		// > - "I'm double quoted" will result in "I'm double quoted".
 		// > - "This \"example\" is single quoted" will result in 'This "example" is single quoted'.
 		singleQuote: false,
 		tabWidth: 2,
