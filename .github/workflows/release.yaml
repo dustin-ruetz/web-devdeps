@@ -12,7 +12,7 @@ on:
         description: Perform a dry-run of the release; defaults to `false`, but set to `true` in the `github/release` NPM script.
         default: false
         type: boolean
-# Excerpt from https://github.com/semantic-release/npm#npm-provenance-on-github-actions
+# Excerpt from https://github.com/semantic-release/npm#npm-provenance-on-github-actions:
 # > For package provenance to be signed on the GitHub Actions CI the following permission is required to be enabled on the job:
 permissions:
   # > `id-token: write` enables use of OIDC for npm provenance.
