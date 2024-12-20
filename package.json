@@ -55,6 +55,9 @@
 		"tsconfig.build.json",
 		"tsconfig.json"
 	],
+	"publishConfig": {
+		"provenance": true
+	},
 	"repository": {
 		"url": "git+ssh://git@github.com/dustin-ruetz/web-devdeps.git"
 	},
