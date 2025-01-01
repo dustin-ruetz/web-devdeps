@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.1.1](https://github.com/dustin-ruetz/web-devdeps/compare/v1.1.0...v1.1.1) (2025-01-01)
+
+### Bug Fixes
+
+* **🤖 packages:** update dependencies (non-major versions) ([5c7abfe](https://github.com/dustin-ruetz/web-devdeps/commit/5c7abfee56320c2edcd07d870def6d860c750084))
+
 ## [1.1.0](https://github.com/dustin-ruetz/web-devdeps/compare/v1.0.1...v1.1.0) (2024-12-20)
 
 ### Features
