@@ -4,7 +4,7 @@ Package that provides development dependencies for other web projects (both brow
 
 ## Goals
 
-`tl;dr` version: make web dev dependencies DRY, like a cocktail in a desert 🍸 🏜️
+`TL;DR` version: make web dev dependencies DRY, like a cocktail in a desert 🍸 🏜️
 
 1. Avoid having to repeatedly install the same development dependencies in web projects that all use the same foundational tooling. With a small number of exceptions, these are generally CLI-based `devDependencies` that aren't typically `import`ed in the `src/` files of an application.
 1. Provide [standardized configuration files](./src/config/) that work with both CLI programs and IDE extensions while also preventing the repetitive cluttering up of repository roots with the same boilerplate `*.config.js` files over-and-over again.
@@ -316,7 +316,7 @@ npm run build
 # Check the codebase for problems (formatting, linting and typechecking).
 npm run check
 
-# Compile the codebase and recompile files whenever they change.
+# Compile the codebase and recompile the output whenever the source changes.
 npm run dev
 
 # Check the codebase for problems and automatically fix them where possible (formatting and linting).
@@ -328,7 +328,7 @@ npm run test/unit/coverage
 npm run test/unit/coverage-watch-all
 npm run test/unit/watch
 
-# Run the full suite of validation checks (🛠️ build, 🧐 check, 🧪 test).
+# Run the full validation suite (🛠️ build, 🧐 check, 🧪 test).
 npm run validate
 ```
 
@@ -338,7 +338,7 @@ Note that [`act`](https://nektosact.com) can be used to locally test the GitHub 
 # Simulate a dry-run release in the CI/CD context.
 npm run github/release
 
-# Simulate the full suite of validation checks in the CI/CD context.
+# Simulate the full validation suite running in the CI/CD context.
 npm run github/validate
 ```
 
