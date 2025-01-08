@@ -7,7 +7,7 @@ test("it exports a configuration object and the most important config options ar
 
 	expect(semanticReleaseConfig.branches).toStrictEqual([
 		"main",
-		{name: "test-*", prerelease: true},
+		{name: "!main", prerelease: "rc"},
 	]);
 
 	expect(semanticReleaseConfig.plugins).toStrictEqual([
