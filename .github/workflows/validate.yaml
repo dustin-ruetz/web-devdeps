@@ -6,12 +6,13 @@ on:
     types: [opened, synchronize]
 jobs:
   validate:
+    name: Validate on Node.js v${{ matrix.node-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # Run this job on both the maintenance and active Node.js LTS versions as well as the latest current version.
+        # Run this job on the maintenance and active Node.js LTS versions as well as the latest current version.
         # https://nodejs.org/en/about/previous-releases/#release-schedule
-        node-version: [lts/-1, lts/*, current]
+        node-version: [18, 20, 22, 23]
     steps:
       # https://github.com/actions/checkout
       - name: 🛒 Git checkout repository
