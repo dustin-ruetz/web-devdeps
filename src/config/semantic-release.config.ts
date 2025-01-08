@@ -8,10 +8,9 @@ import type {Options} from "semantic-release";
 export const makeSemanticReleaseConfig = (): Options => ({
 	branches: [
 		"main",
-		// - Allow for release candidate (`rc`) package versions to be published by manually triggering
-		//   the `release` GitHub Actions workflow from any branch that is not `main`.
+		// - Publish release candidate package versions on branches beginning with the `rc-` prefix.
 		// - Adapted from https://www.benmvp.com/blog/create-one-off-releases-semantic-release/
-		{name: "!main", prerelease: "rc"},
+		{name: "rc-", prerelease: true},
 	],
 	plugins: [
 		"@semantic-release/commit-analyzer",
