@@ -5,6 +5,11 @@ test("it exports a configuration object and the most important config options ar
 
 	expect(typeof semanticReleaseConfig).toBe("object");
 
+	expect(semanticReleaseConfig.branches).toStrictEqual([
+		"main",
+		{name: "test-*", prerelease: true},
+	]);
+
 	expect(semanticReleaseConfig.plugins).toStrictEqual([
 		"@semantic-release/commit-analyzer",
 		[

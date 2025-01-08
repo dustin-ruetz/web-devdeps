@@ -6,6 +6,12 @@ import type {Options} from "semantic-release";
  * @see {@link https://semantic-release.gitbook.io/semantic-release/usage/configuration}
  */
 export const makeSemanticReleaseConfig = (): Options => ({
+	branches: [
+		"main",
+		// Publish pre-release package versions on branches beginning with the `test-` prefix.
+		// https://www.benmvp.com/blog/create-one-off-releases-semantic-release/
+		{name: "test-*", prerelease: true},
+	],
 	plugins: [
 		"@semantic-release/commit-analyzer",
 		// https://github.com/semantic-release/release-notes-generator
