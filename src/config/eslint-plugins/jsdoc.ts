@@ -19,12 +19,6 @@ export const makeJSDocPlugin = (hasTSConfigFile: boolean) =>
 			},
 			// https://github.com/gajus/eslint-plugin-jsdoc#rules
 			rules: {
-				"jsdoc/check-indentation": [
-					"error",
-					// Exclude tags where arbitrary indentation is helpful, i.e. for tags that often have a
-					// lengthy amount of content and are made more readable when broken out onto new lines.
-					{excludeTags: ["description", "example", "todo"]},
-				],
 				"jsdoc/check-line-alignment": "error",
 				"jsdoc/informative-docs": "error",
 				"jsdoc/require-asterisk-prefix": "error",
