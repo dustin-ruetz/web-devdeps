@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [1.2.0](https://github.com/dustin-ruetz/web-devdeps/compare/v1.1.1...v1.2.0) (2025-01-08)
+
+### Features
+
+* **config/semantic-release:** publish pre-release package versions on 'test-' branches ([875f4bf](https://github.com/dustin-ruetz/web-devdeps/commit/875f4bf33cd49cc906cf583218d40cfffad51ff1))
+
 ## [1.1.1](https://github.com/dustin-ruetz/web-devdeps/compare/v1.1.0...v1.1.1) (2025-01-01)
 
 ### Bug Fixes
