@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       DRY_RUN:
-        description: Perform a dry-run of the release; defaults to `false`, but set to `true` in the `github/release` NPM script.
+        description: Perform a dry-run of the release.
         default: false
         type: boolean
 # Excerpt from https://github.com/semantic-release/npm#npm-provenance-on-github-actions:
