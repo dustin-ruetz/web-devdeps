@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.2.1-rc-remove-check-indentation-rule-from-eslint-plugin-jsdoc.1](https://github.com/dustin-ruetz/web-devdeps/compare/v1.2.0...v1.2.1-rc-remove-check-indentation-rule-from-eslint-plugin-jsdoc.1) (2025-01-09)
+
+### Bug Fixes
+
+* **config/eslint-plugins/jsdoc:** remove 'check-indentation' rule ([c3289fc](https://github.com/dustin-ruetz/web-devdeps/commit/c3289fc3344ab94ffc37dad57215335a1b3ca422))
+* **config/semantic-release:** use 'rc-' as the branch name prefix to publish prerelease verions ([a9b8e74](https://github.com/dustin-ruetz/web-devdeps/commit/a9b8e7497fbdedd12eeb84e26feb05a1ff7f27c7))
+
 ## [1.2.0](https://github.com/dustin-ruetz/web-devdeps/compare/v1.1.1...v1.2.0) (2025-01-08)
 
 ### Features
