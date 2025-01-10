@@ -8,7 +8,3 @@
 coverage/
 lib/
 node_modules/
-# Ignore the changelog file since:
-# 1. It's auto-generated; and
-# 2. To prevent Prettier from checking its formatting and then warning about code style issues.
-CHANGELOG.md
