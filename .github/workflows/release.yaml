@@ -12,13 +12,17 @@ on:
         description: Perform a dry-run of the release.
         default: false
         type: boolean
-# Excerpt from https://github.com/semantic-release/npm#npm-provenance-on-github-actions:
-# > For package provenance to be signed on the GitHub Actions CI the following permission is required to be enabled on the job:
 permissions:
-  # > `id-token: write` enables use of OIDC for npm provenance.
-  id-token: write
+  contents: read # Enables Git checkout.
 jobs:
   release:
+    permissions:
+      contents: write # Enables publishing of GitHub releases.
+      issues: write # Enables commenting on released issues.
+      pull-requests: write # Enables commenting on released PRs.
+      # Excerpt from https://github.com/semantic-release/npm#npm-provenance-on-github-actions:
+      # > For package provenance to be signed on the GitHub Actions CI the following permission is required to be enabled on the job:
+      id-token: write # Enables use of OIDC for npm provenance.
     runs-on: ubuntu-latest
     steps:
       # https://github.com/actions/checkout
@@ -27,9 +31,6 @@ jobs:
         with:
           # Fetch all Git history for all branches and tags.
           fetch-depth: 0
-          # Excerpt from https://semantic-release.gitbook.io/semantic-release/recipes/ci-configurations/github-actions#pushing-package.json-changes-to-your-repository:
-          # > The actions/checkout `persist-credentials` option needs to be `false`, otherwise the generated `GITHUB_TOKEN` will interfere with the custom one.
-          persist-credentials: false
       - name: 🔁 Run `setup` composite action
         uses: ./.github/composite-actions/setup/
         with:
@@ -47,17 +48,16 @@ jobs:
         env:
           # https://github.com/dustin-ruetz/web-devdeps/settings/secrets/actions
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
-          # Human-readable 1Password CLI secret reference - 'op://SA - Repos_GitHub/web-devdeps/$FIELD_LABEL'
-          WEB_DEVDEPS_GITHUB_TOKEN: op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEVDEPS_GITHUB_TOKEN
+          # Human-readable 1Password CLI secret reference - "op://SA - Repos_GitHub/web-devdeps/WEB_DEVDEPS_NPM_TOKEN"
           WEB_DEVDEPS_NPM_TOKEN: op://yhyrnlsxmxerazmg3j2rvjxzpq/bws336u3hgbaf4y6zszsiw4xw4/WEB_DEVDEPS_NPM_TOKEN
         with:
           export-env: false
           unset-previous: true
       - name: 📦 Release package
-        # semantic-release requires specific key names for environment variables.
+        # semantic-release requires specific key names for its environment variables.
         # https://semantic-release.gitbook.io/semantic-release/usage/ci-configuration#authentication
         env:
           DRY_RUN: ${{ github.event.inputs.DRY_RUN == 'true' && '--dry-run' || '' }}
-          GITHUB_TOKEN: ${{ steps.op-secrets.outputs.WEB_DEVDEPS_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ steps.op-secrets.outputs.WEB_DEVDEPS_NPM_TOKEN }}
         run: npx semantic-release $DRY_RUN --extends ./lib/config/semantic-release.config.js
