@@ -129,8 +129,6 @@ export const writePackageJson = async (
 	const packageJsonContents = await readFile(packageJsonPath, encoding);
 	const packageJson = JSON.parse(packageJsonContents) as PackageJsonTypes;
 
-	const webDevdepsVersion = packageJson.version;
-
 	packageJson.name = repoName;
 	packageJson.version = "0.0.0";
 	packageJson.description = "";
@@ -185,7 +183,7 @@ export const writePackageJson = async (
 	);
 	packageJson.dependencies = {};
 	packageJson.devDependencies = {
-		[packageName]: webDevdepsVersion,
+		[packageName]: "^1.0.0",
 	};
 
 	await writeFile(

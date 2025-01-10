@@ -1,6 +1,6 @@
 {
 	"name": "web-devdeps",
-	"version": "1.2.1",
+	"version": "0.0.0-semantically-released",
 	"description": "Package that provides development dependencies for other web projects (both browser- and Node.js-based) to consume.",
 	"main": "./lib/exports.js",
 	"scripts": {
@@ -67,8 +67,6 @@
 		"@eslint/js": "9.17.0",
 		"@prettier/plugin-pug": "3.2.0",
 		"@prettier/plugin-xml": "3.4.1",
-		"@semantic-release/changelog": "6.0.3",
-		"@semantic-release/git": "10.0.1",
 		"@swc/core": "1.10.4",
 		"@swc/jest": "0.2.37",
 		"@testing-library/jest-dom": "6.6.3",
