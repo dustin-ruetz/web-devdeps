@@ -22,7 +22,7 @@ jest.mock("./helpers/initRepoHelpers.js");
 
 const testRepoName = "repo-name";
 /**
- * Node.js version number for the purposes of this unit test; specify a very old/obviously
+ * Node.js version number for the purposes of this unit test; use a very old/obviously
  * out-of-long-term-support version number to avoid any inclination to update it.
  */
 const testNodeVersion = "10";
