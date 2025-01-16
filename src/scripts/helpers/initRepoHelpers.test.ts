@@ -14,18 +14,9 @@ import {
 	writeVsCodeSettings,
 } from "./initRepoHelpers.js";
 
-jest.mock("node:fs/promises", () => ({
-	mkdir: jest.fn(),
-	readdir: jest.fn(),
-	readFile: jest.fn(),
-	writeFile: jest.fn(),
-}));
+jest.mock("node:fs/promises");
 const readdirMock = jest.mocked(readdir);
 const readFileMock = jest.mocked(readFile);
-
-beforeAll(() => {
-	jest.spyOn(console, "log").mockImplementation();
-});
 
 afterEach(() => {
 	jest.clearAllMocks();
