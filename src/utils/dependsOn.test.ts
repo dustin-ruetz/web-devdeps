@@ -7,8 +7,6 @@ import {dependsOn} from "./dependsOn.js";
 jest.mock("node:fs/promises", () => ({
 	readFile: jest.fn(),
 }));
-// Paraphrased excerpt from https://www.mikeborozdin.com/post/changing-jest-mocks-between-tests:
-// > Typecast the imported mocked module into a mocked function with writeable properties.
 const readFileMock = jest.mocked(readFile);
 
 afterEach(() => {

@@ -4,8 +4,6 @@ import {getAbsoluteRepoRootPath} from "./getAbsoluteRepoRootPath.js";
 jest.mock("node:url", () => ({
 	fileURLToPath: jest.fn(),
 }));
-// Paraphrased excerpt from https://www.mikeborozdin.com/post/changing-jest-mocks-between-tests:
-// > Typecast the imported mocked module into a mocked function with writeable properties.
 const fileURLToPathMock = jest.mocked(fileURLToPath);
 
 /** Object of static strings and helper methods meant to keep code DRY and organized. */
