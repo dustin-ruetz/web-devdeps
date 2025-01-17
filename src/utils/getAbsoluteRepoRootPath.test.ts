@@ -16,16 +16,13 @@ const absolutePaths = {
 	 * @description Test the value of `getAbsoluteRepoRootPath()` when used by a repository that depends on the `web-devdeps` package.
 	 * @returns Simulated path to `web-devdeps` when it's installed as a dependency running from a `node_modules/` folder.
 	 */
-	asDependency() {
-		return `${this.base}/consuming-repo/node_modules/${this.name}/`;
-	},
+	asDependency: () =>
+		`${absolutePaths.base}/consuming-repo/node_modules/${absolutePaths.name}/` as const,
 	/**
 	 * @description Test the value of `getAbsoluteRepoRootPath()` when used in this `web-devdeps` repo.
 	 * @returns Simulated path to this `web-devdeps` repo.
 	 */
-	asRepo() {
-		return `${this.base}/${this.name}/`;
-	},
+	asRepo: () => `${absolutePaths.base}/${absolutePaths.name}/` as const,
 } as const;
 
 describe("it determines the correct absolute root directory", () => {

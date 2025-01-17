@@ -29,9 +29,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 	/** Binary file extensions 1) to ignore in test coverage, and 2) to transform the imported values to filenames. */
 	const binaryFileExtensions = {
 		list: [".jpg", ".png", ".woff2"],
-		makeTransformRegExp() {
-			return `(${this.list.join("|")})`;
-		},
+		makeTransformRegExp: () => `(${binaryFileExtensions.list.join("|")})`,
 	} as const;
 
 	/** Folder/file patterns to ignore for all repos. */
