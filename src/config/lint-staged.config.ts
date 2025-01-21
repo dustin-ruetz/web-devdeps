@@ -6,11 +6,9 @@ import type {Configuration} from "lint-staged";
  * @see {@link https://github.com/lint-staged/lint-staged}
  */
 export const makeLintstagedConfig = (): Configuration => ({
-	/**
-	 * Note: Run "format" and "lint/*" as their base scripts (i.e. _not_ "fix/format" and "fix/lint/*") because
-	 * lint-staged passes the staged files by appending their paths as the last arguments to the commands.
-	 */
-	// Fix code formatting for all file types that Prettier supports.
+	// Note: Run "format" and "lint/*" as their base scripts (i.e. _not_ "fix/format" and "fix/lint/*") because
+	// lint-staged passes the staged files by appending their paths as the last arguments to the commands.
+	/** Fix code formatting for all file types that Prettier supports. */
 	"*": "npm run format -- --ignore-unknown --write",
 	"*.{css,scss,jsx,tsx}": "npm run lint/styles -- --fix",
 	"*.{js,jsx,ts,tsx}": (relativePaths) => {
