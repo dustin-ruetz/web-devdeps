@@ -68,6 +68,20 @@ export const makeStylelintConfig = async (): Promise<Config> => {
 			// https://stylelint.io/user-guide/rules/#notation
 			// > Require numeric or named (where possible) `font-weight` values.
 			"font-weight-notation": "numeric",
+			// https://stylelint.io/user-guide/rules/#pattern
+			// > Specify a pattern for the selectors of rules nested within rules.
+			"selector-class-pattern": [
+				// - Regular expression for BEM-style (block, element, modifier) selectors,
+				//   which use the two underscores (__) and two hyphens (--) syntax.
+				// - Adapted from https://github.com/Darkzarich/stylelint-config-two-dash-bem/blob/main/index.js
+				"^[a-z][-a-z0-9]+(__[-a-z0-9]+)?(--[a-z0-9]+)?$",
+				{
+					/* v8 ignore next 2 */
+					message: (selector: string) =>
+						`Selector class ${selector} does not adhere to BEM conventions`,
+					resolveNestedSelectors: true,
+				},
+			],
 		},
 		overrides,
 	};
