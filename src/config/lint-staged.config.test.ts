@@ -1,4 +1,4 @@
-import type {Config} from "lint-staged";
+import type {Configuration} from "lint-staged";
 import {makeLintstagedConfig} from "./lint-staged.config.js";
 
 test("it exports a configuration object", () => {
@@ -19,15 +19,15 @@ describe("it runs the correct commands for", () => {
 	const [relativePath] = relativePaths;
 
 	test("formatting", () => {
-		expect(lintstagedConfig["*" as keyof Config]).toBe(
+		expect(lintstagedConfig["*" as keyof Configuration]).toBe(
 			"npm run format -- --ignore-unknown --write",
 		);
 	});
 
 	test("linting files with styles", () => {
-		expect(lintstagedConfig["*.{css,scss,jsx,tsx}" as keyof Config]).toBe(
-			"npm run lint/styles -- --fix",
-		);
+		expect(
+			lintstagedConfig["*.{css,scss,jsx,tsx}" as keyof Configuration],
+		).toBe("npm run lint/styles -- --fix");
 	});
 
 	const [lintJavaScriptTypeScriptCommand, typecheckCommand, unitTestCommand] =
