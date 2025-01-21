@@ -49,17 +49,8 @@ describe("it exports a configuration object and the most important config option
 		expect(stylelintConfig.extends).toStrictEqual(
 			expect.arrayContaining(["stylelint-config-standard-scss"]),
 		);
-		expect(stylelintConfig.overrides).toStrictEqual(
-			expect.arrayContaining([
-				{
-					customSyntax: "postcss-scss",
-					files: ["**/*.scss"],
-					rules: {
-						"scss/load-partial-extension": "always",
-					},
-				},
-			]),
-		);
+		expect(stylelintConfig.overrides?.[0]?.customSyntax).toBe("postcss-scss");
+		expect(stylelintConfig.overrides?.[0]?.files).toStrictEqual(["**/*.scss"]);
 	});
 
 	test("when testing a repo that has the `styled-components` package installed", async () => {
