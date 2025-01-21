@@ -55,14 +55,17 @@ export const makeStylelintConfig = async (): Promise<Config> => {
 			// > This rule considers custom properties defined within the same source to be known.
 			"no-unknown-custom-properties": true,
 			// https://stylelint.io/user-guide/rules#enforce-conventions
+			// https://stylelint.io/user-guide/rules/#allowed-disallowed--required
 			// > Disallow `!important` within declarations.
 			"declaration-no-important": true,
 			// > Specify a list of disallowed units.
 			"unit-disallowed-list": ["em"],
+			// https://stylelint.io/user-guide/rules/#max--min
 			// > Limit the depth of nesting.
 			// > **Note**: root-level at-rules will **not be included** in the nesting depth calculation, because
 			// > most users would take for granted that root-level at-rules are "free" (since they're necessary).
 			"max-nesting-depth": 3,
+			// https://stylelint.io/user-guide/rules/#notation
 			// > Require numeric or named (where possible) `font-weight` values.
 			"font-weight-notation": "numeric",
 		},
