@@ -71,13 +71,12 @@ export const makeESLintConfig = async (): Promise<Config> => {
 				globals: {
 					...(hasFrontendDependencies ? globals.browser : {}),
 					...globals.jest,
-					// Always include the Node.js global variables since they're relevant in most repos since
-					// even frontend-only projects often still have a need for runnable Node.js CLI scripts.
+					// Always include the Node.js global variables since they're relevant in most repos; even
+					// frontend-only projects often still have a need for runnable Node.js CLI scripts.
 					...globals.node,
 				},
 			},
-			// Excerpt from https://eslint.org/docs/latest/use/configure/rules#report-unused-eslint-disable-comments:
-			// > To report unused `eslint-disable` comments, use the `reportUnusedDisableDirectives` setting.
+			// https://eslint.org/docs/latest/use/configure/configuration-files#configuring-linter-options:
 			linterOptions: {
 				reportUnusedDisableDirectives: "error",
 			},
