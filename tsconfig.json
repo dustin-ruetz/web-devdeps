@@ -4,9 +4,9 @@
 	"compilerOptions": {
 		"jsx": "react",
 		"module": "NodeNext",
-		"moduleResolution": "NodeNext",
 		"noUncheckedSideEffectImports": true,
 		"resolveJsonModule": true,
+		"rewriteRelativeImportExtensions": true,
 		"target": "ES2023",
 		"verbatimModuleSyntax": true
 	}

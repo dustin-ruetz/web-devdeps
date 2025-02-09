@@ -9,8 +9,8 @@ test("it is a configuration object and the most important config options are cor
 
 	const {compilerOptions} = tsconfigJSON;
 	expect(compilerOptions.module).toBe("NodeNext");
-	expect(compilerOptions.moduleResolution).toBe("NodeNext");
 	expect(compilerOptions.resolveJsonModule).toBe(true);
+	expect(compilerOptions.rewriteRelativeImportExtensions).toBe(true);
 	// Excerpt from https://www.typescriptlang.org/tsconfig#target on not using `"target": "esnext"`:
 	// > The special `ESNext` value refers to the highest version your version of TypeScript supports.
 	// > This setting should be used with caution, since it doesn't mean the same thing between
