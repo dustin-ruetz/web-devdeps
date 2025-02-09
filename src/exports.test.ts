@@ -6,7 +6,7 @@ import {
 	makePrettierConfig,
 	makeSemanticReleaseConfig,
 	makeStylelintConfig,
-} from "./exports.js";
+} from "./exports.ts";
 
 test("all of the module's exports are available from the primary `exports` file", () => {
 	expect(typeof makeCommitlintConfig).toBe("function");

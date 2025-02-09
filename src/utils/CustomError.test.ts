@@ -1,4 +1,4 @@
-import {CustomError} from "./CustomError.js";
+import {CustomError} from "./CustomError.ts";
 
 const errorName = "CustomError";
 const errorMessage = "custom error";

@@ -1,6 +1,6 @@
-import {getAbsoluteRepoRootPath} from "./getAbsoluteRepoRootPath.js";
+import {getAbsoluteRepoRootPath} from "./getAbsoluteRepoRootPath.ts";
 
-jest.mock("./getAbsoluteRepoRootPath.js", () => ({
+jest.mock("./getAbsoluteRepoRootPath.ts", () => ({
 	// The function returns a string, so have the mock return an empty string by default.
 	getAbsoluteRepoRootPath: jest.fn(() => ""),
 }));

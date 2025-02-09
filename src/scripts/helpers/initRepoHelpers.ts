@@ -1,7 +1,7 @@
 import {mkdir, readdir, readFile, writeFile} from "node:fs/promises";
-import type {PackageJsonTypes} from "../../types.d.js";
-import {nodeModulesPackagePath, packageName} from "../../constants.js";
-import {getRootPaths} from "./getRootPaths.js";
+import type {PackageJsonTypes} from "../../types.d.ts";
+import {nodeModulesPackagePath, packageName} from "../../constants.ts";
+import {getRootPaths} from "./getRootPaths.ts";
 
 const rootPathToReadFrom = getRootPaths().readFrom;
 const rootPathToWriteTo = getRootPaths().writeTo;

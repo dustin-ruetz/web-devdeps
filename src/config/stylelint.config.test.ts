@@ -1,5 +1,5 @@
-import {dependsOnMock} from "../utils/dependsOn.mock.js";
-import {makeStylelintConfig} from "./stylelint.config.js";
+import {dependsOnMock} from "../utils/dependsOn.mock.ts";
+import {makeStylelintConfig} from "./stylelint.config.ts";
 
 describe("it exports a configuration object and the most important config options are correct", () => {
 	test("for the parts of the config that *are not* affected by conditional logic", async () => {

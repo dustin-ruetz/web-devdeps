@@ -1,7 +1,7 @@
-import {dependsOnMock} from "../utils/dependsOn.mock.js";
-import {makePrettierConfig} from "./prettier.config.js";
-import {pugPrettierPlugin} from "./prettier-plugins/pug.js";
-import {xmlPrettierPlugin} from "./prettier-plugins/xml.js";
+import {dependsOnMock} from "../utils/dependsOn.mock.ts";
+import {makePrettierConfig} from "./prettier.config.ts";
+import {pugPrettierPlugin} from "./prettier-plugins/pug.ts";
+import {xmlPrettierPlugin} from "./prettier-plugins/xml.ts";
 
 test("it exports a configuration object and the most important config options are correct", async () => {
 	expect.hasAssertions();

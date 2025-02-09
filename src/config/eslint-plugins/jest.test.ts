@@ -1,4 +1,4 @@
-import {makeJestPlugin} from "./jest.js";
+import {makeJestPlugin} from "./jest.ts";
 
 describe("it exports a configuration array and the most important config options are correct", () => {
 	test("for the parts of the config that *are not* affected by conditional logic", () => {

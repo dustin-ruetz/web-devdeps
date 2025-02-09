@@ -1,4 +1,4 @@
-import {makeCommitlintConfig} from "./commitlint.config.js";
+import {makeCommitlintConfig} from "./commitlint.config.ts";
 
 test("it exports a configuration object and the most important config options are correct", () => {
 	const commitlintConfig = makeCommitlintConfig();

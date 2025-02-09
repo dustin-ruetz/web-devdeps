@@ -1,7 +1,7 @@
 import {readFile} from "node:fs/promises";
-import type {PackageJsonTypes} from "../types.d.js";
-import {getAbsoluteRepoRootPath} from "./getAbsoluteRepoRootPath.js";
-import {CustomError} from "./CustomError.js";
+import type {PackageJsonTypes} from "../types.d.ts";
+import {getAbsoluteRepoRootPath} from "./getAbsoluteRepoRootPath.ts";
+import {CustomError} from "./CustomError.ts";
 
 /**
  * @description Given a list of dependencies, check the repository's `package.json` file

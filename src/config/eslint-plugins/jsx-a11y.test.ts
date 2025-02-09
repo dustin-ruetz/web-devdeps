@@ -1,4 +1,4 @@
-import {jsxA11yPlugin} from "./jsx-a11y.js";
+import {jsxA11yPlugin} from "./jsx-a11y.ts";
 
 test("it exports a configuration array and the most important config options are correct", () => {
 	expect(Array.isArray(jsxA11yPlugin)).toBe(true);

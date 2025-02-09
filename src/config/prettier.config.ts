@@ -1,7 +1,7 @@
 import type {Config} from "prettier";
-import {dependsOn} from "../utils/dependsOn.js";
-import {pugPrettierPlugin} from "./prettier-plugins/pug.js";
-import {xmlPrettierPlugin} from "./prettier-plugins/xml.js";
+import {dependsOn} from "../utils/dependsOn.ts";
+import {pugPrettierPlugin} from "./prettier-plugins/pug.ts";
+import {xmlPrettierPlugin} from "./prettier-plugins/xml.ts";
 
 /**
  * @description "Prettier is an opinionated code formatter. It removes all original styling

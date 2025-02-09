@@ -1,4 +1,4 @@
-import {typescripteslintPlugin} from "./typescript-eslint.js";
+import {typescripteslintPlugin} from "./typescript-eslint.ts";
 
 test("it exports a configuration array and the most important config options are correct", () => {
 	expect(Array.isArray(typescripteslintPlugin)).toBe(true);

@@ -1,4 +1,4 @@
-import {reactHooksPlugin} from "./react-hooks.js";
+import {reactHooksPlugin} from "./react-hooks.ts";
 
 test("it exports a configuration array and the most important config options are correct", () => {
 	expect(Array.isArray(reactHooksPlugin)).toBe(true);

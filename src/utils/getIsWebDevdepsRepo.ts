@@ -1,4 +1,4 @@
-import {packageName} from "../constants.js";
+import {packageName} from "../constants.ts";
 
 /**
  * @description Given a path, determine whether or not it's this `web-devdeps` repository.

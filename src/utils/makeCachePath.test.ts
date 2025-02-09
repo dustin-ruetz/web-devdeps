@@ -1,4 +1,4 @@
-import {makeCachePath} from "./makeCachePath.js";
+import {makeCachePath} from "./makeCachePath.ts";
 
 test("it makes a cache folder", () => {
 	expect(makeCachePath(".foldercache/")).toBe(".caches/.foldercache/");

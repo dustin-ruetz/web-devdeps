@@ -1,4 +1,4 @@
-import {xmlPrettierPlugin} from "./xml.js";
+import {xmlPrettierPlugin} from "./xml.ts";
 
 test("it exports a configuration object, and the most important config options and plugin name are correct", () => {
 	expect(typeof xmlPrettierPlugin).toBe("object");

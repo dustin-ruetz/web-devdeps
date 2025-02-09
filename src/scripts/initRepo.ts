@@ -6,9 +6,9 @@
 //    ```
 
 import {readFile} from "node:fs/promises";
-import {CustomError} from "../utils/CustomError.js";
-import {packageName} from "../constants.js";
-import {getRootPaths} from "./helpers/getRootPaths.js";
+import {CustomError} from "../utils/CustomError.ts";
+import {packageName} from "../constants.ts";
+import {getRootPaths} from "./helpers/getRootPaths.ts";
 import {
 	writeGitAttributes,
 	writeGitHooks,
@@ -22,8 +22,8 @@ import {
 	writeTsConfig,
 	writeTsConfigBuild,
 	writeVsCodeSettings,
-} from "./helpers/initRepoHelpers.js";
-import {semVerRegExp} from "./helpers/semVerRegExp.js";
+} from "./helpers/initRepoHelpers.ts";
+import {semVerRegExp} from "./helpers/semVerRegExp.ts";
 
 /**
  * @description Defines the information about the arguments for running the `init-repo` script.

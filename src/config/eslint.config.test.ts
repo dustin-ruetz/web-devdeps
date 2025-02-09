@@ -1,8 +1,8 @@
 import type {TSESLint} from "@typescript-eslint/utils";
 import globals from "globals";
 import {access} from "node:fs/promises";
-import {dependsOnMock} from "../utils/dependsOn.mock.js";
-import {makeESLintConfig} from "./eslint.config.js";
+import {dependsOnMock} from "../utils/dependsOn.mock.ts";
+import {makeESLintConfig} from "./eslint.config.ts";
 
 jest.mock("node:fs/promises");
 const accessMock = jest.mocked(access);
