@@ -1,4 +1,4 @@
-import {semVerRegExp} from "./semVerRegExp.js";
+import {semVerRegExp} from "./semVerRegExp.ts";
 
 describe("it correctly identifies matches for the semantic version format", () => {
 	test.each`

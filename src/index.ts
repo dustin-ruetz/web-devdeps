@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import {initRepo, logInitRepoHelpText} from "./scripts/initRepo.js";
-import {runCLI} from "./scripts/runCLI.js";
-import {CustomError} from "./utils/CustomError.js";
+import {initRepo, logInitRepoHelpText} from "./scripts/initRepo.ts";
+import {runCLI} from "./scripts/runCLI.ts";
+import {CustomError} from "./utils/CustomError.ts";
 
 /**
  *

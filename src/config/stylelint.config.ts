@@ -1,5 +1,5 @@
 import type {Config} from "stylelint";
-import {dependsOn} from "../utils/dependsOn.js";
+import {dependsOn} from "../utils/dependsOn.ts";
 
 /**
  * @description "A mighty CSS linter that helps you avoid errors and enforce conventions."

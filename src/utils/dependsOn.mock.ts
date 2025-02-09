@@ -1,6 +1,6 @@
-import {dependsOn} from "./dependsOn.js";
+import {dependsOn} from "./dependsOn.ts";
 
-jest.mock("./dependsOn.js", () => ({
+jest.mock("./dependsOn.ts", () => ({
 	dependsOn: jest.fn(),
 }));
 

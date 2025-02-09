@@ -1,4 +1,4 @@
-import {getIsWebDevdepsRepo} from "./getIsWebDevdepsRepo.js";
+import {getIsWebDevdepsRepo} from "./getIsWebDevdepsRepo.ts";
 
 describe("it correctly identifies whether or not the passed path represents the `web-devdeps` repo", () => {
 	test.each`

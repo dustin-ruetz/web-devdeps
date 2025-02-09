@@ -1,9 +1,9 @@
-import {initRepo, logInitRepoHelpText} from "./scripts/initRepo.js";
-import {runCLI} from "./scripts/runCLI.js";
-import {runScript} from "./index.js";
+import {initRepo, logInitRepoHelpText} from "./scripts/initRepo.ts";
+import {runCLI} from "./scripts/runCLI.ts";
+import {runScript} from "./index.ts";
 
-jest.mock("./scripts/initRepo.js");
-jest.mock("./scripts/runCLI.js");
+jest.mock("./scripts/initRepo.ts");
+jest.mock("./scripts/runCLI.ts");
 
 afterEach(() => {
 	jest.clearAllMocks();

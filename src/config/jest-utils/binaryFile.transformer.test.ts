@@ -1,4 +1,4 @@
-import binaryFileTransformer from "./binaryFile.transformer.js";
+import binaryFileTransformer from "./binaryFile.transformer.ts";
 
 test('it transforms binary file paths into `module.exports = "name.extension"`', () => {
 	const sourceText = "";

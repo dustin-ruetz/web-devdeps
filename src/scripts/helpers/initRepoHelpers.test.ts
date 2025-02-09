@@ -12,7 +12,7 @@ import {
 	writeTsConfig,
 	writeTsConfigBuild,
 	writeVsCodeSettings,
-} from "./initRepoHelpers.js";
+} from "./initRepoHelpers.ts";
 
 jest.mock("node:fs/promises");
 const readdirMock = jest.mocked(readdir);

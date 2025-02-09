@@ -12,13 +12,13 @@ import {
 	writeTsConfig,
 	writeTsConfigBuild,
 	writeVsCodeSettings,
-} from "./helpers/initRepoHelpers.js";
-import {initRepo, logInitRepoHelpText} from "./initRepo.js";
+} from "./helpers/initRepoHelpers.ts";
+import {initRepo, logInitRepoHelpText} from "./initRepo.ts";
 
 jest.mock("node:fs/promises");
 const readFileMock = jest.mocked(readFile);
 
-jest.mock("./helpers/initRepoHelpers.js");
+jest.mock("./helpers/initRepoHelpers.ts");
 
 const testRepoName = "repo-name";
 /**

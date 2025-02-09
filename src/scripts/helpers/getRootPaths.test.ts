@@ -1,5 +1,5 @@
-import {getAbsoluteRepoRootPathMock} from "../../utils/getAbsoluteRepoRootPath.mock.js";
-import {getRootPaths} from "./getRootPaths.js";
+import {getAbsoluteRepoRootPathMock} from "../../utils/getAbsoluteRepoRootPath.mock.ts";
+import {getRootPaths} from "./getRootPaths.ts";
 
 afterEach(() => {
 	jest.clearAllMocks();

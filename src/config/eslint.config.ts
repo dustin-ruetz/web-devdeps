@@ -3,16 +3,16 @@ import eslintjs from "@eslint/js";
 import globals from "globals";
 import {access, constants} from "node:fs/promises";
 import typescripteslint, {type Config} from "typescript-eslint";
-import {dependsOn} from "../utils/dependsOn.js";
-import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.js";
+import {dependsOn} from "../utils/dependsOn.ts";
+import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.ts";
 import {
 	makeJestPlugin,
 	mockAndTestFilesGlobPattern,
-} from "./eslint-plugins/jest.js";
-import {makeJSDocPlugin} from "./eslint-plugins/jsdoc.js";
-import {jsxA11yPlugin} from "./eslint-plugins/jsx-a11y.js";
-import {reactHooksPlugin} from "./eslint-plugins/react-hooks.js";
-import {typescripteslintPlugin} from "./eslint-plugins/typescript-eslint.js";
+} from "./eslint-plugins/jest.ts";
+import {makeJSDocPlugin} from "./eslint-plugins/jsdoc.ts";
+import {jsxA11yPlugin} from "./eslint-plugins/jsx-a11y.ts";
+import {reactHooksPlugin} from "./eslint-plugins/react-hooks.ts";
+import {typescripteslintPlugin} from "./eslint-plugins/typescript-eslint.ts";
 
 /**
  * @description "ESLint statically analyzes your code to quickly find problems."
@@ -79,6 +79,7 @@ export const makeESLintConfig = async (): Promise<Config> => {
 			// https://eslint.org/docs/latest/use/configure/configuration-files#configuring-linter-options:
 			linterOptions: {
 				reportUnusedDisableDirectives: "error",
+				// reportUnusedInlineConfigs: "error",
 			},
 			rules: {
 				// https://eslint.org/docs/latest/rules/#possible-problems

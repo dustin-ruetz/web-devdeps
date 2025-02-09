@@ -1,4 +1,4 @@
-import svgFileTransformer from "./svgFile.transformer.js";
+import svgFileTransformer from "./svgFile.transformer.ts";
 
 test('it transforms SVG files into `module.exports = "<svg>{...}</svg>"`', () => {
 	const sourceText = `

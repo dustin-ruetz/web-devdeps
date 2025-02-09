@@ -1,5 +1,5 @@
 import typescripteslint from "typescript-eslint";
-import {mockAndTestFilesGlobPattern} from "./jest.js";
+import {mockAndTestFilesGlobPattern} from "./jest.ts";
 
 /**
  * @description "**`typescript-eslint` enables ESLint to run on TypeScript code.** It brings in the best of

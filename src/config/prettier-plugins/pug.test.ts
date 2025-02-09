@@ -1,4 +1,4 @@
-import {pugPrettierPlugin} from "./pug.js";
+import {pugPrettierPlugin} from "./pug.ts";
 
 test("it exports a configuration object, and the most important config options and plugin name are correct", () => {
 	expect(typeof pugPrettierPlugin).toBe("object");

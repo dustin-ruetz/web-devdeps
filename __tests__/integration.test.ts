@@ -1,5 +1,5 @@
 import {readdir} from "node:fs/promises";
-import {packageName} from "../src/constants.js";
+import {packageName} from "../src/constants.ts";
 import packageJSON from "../package.json" with {type: "json"};
 import packageLockJSON from "../package-lock.json" with {type: "json"};
 

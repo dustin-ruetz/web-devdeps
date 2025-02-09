@@ -1,4 +1,4 @@
-import {nodeModulesPackagePath, packageName} from "./constants.js";
+import {nodeModulesPackagePath, packageName} from "./constants.ts";
 
 test("the constants are set to the correct values", () => {
 	expect(packageName).toBe("web-devdeps");

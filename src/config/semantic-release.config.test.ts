@@ -1,4 +1,4 @@
-import {makeSemanticReleaseConfig} from "./semantic-release.config.js";
+import {makeSemanticReleaseConfig} from "./semantic-release.config.ts";
 
 test("it exports a configuration object and the most important config options are correct", () => {
 	const semanticReleaseConfig = makeSemanticReleaseConfig();

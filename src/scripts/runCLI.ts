@@ -1,8 +1,8 @@
 import {spawn} from "node:child_process";
-import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.js";
-import {getIsWebDevdepsRepo} from "../utils/getIsWebDevdepsRepo.js";
-import {makeCachePath} from "../utils/makeCachePath.js";
-import {nodeModulesPackagePath} from "../constants.js";
+import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.ts";
+import {getIsWebDevdepsRepo} from "../utils/getIsWebDevdepsRepo.ts";
+import {makeCachePath} from "../utils/makeCachePath.ts";
+import {nodeModulesPackagePath} from "../constants.ts";
 
 export type cli =
 	| "commitlint"

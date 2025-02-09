@@ -1,6 +1,6 @@
-import {dependsOnMock} from "../utils/dependsOn.mock.js";
-import {getAbsoluteRepoRootPathMock} from "../utils/getAbsoluteRepoRootPath.mock.js";
-import {makeJestConfig} from "./jest.config.js";
+import {dependsOnMock} from "../utils/dependsOn.mock.ts";
+import {getAbsoluteRepoRootPathMock} from "../utils/getAbsoluteRepoRootPath.mock.ts";
+import {makeJestConfig} from "./jest.config.ts";
 
 afterEach(() => {
 	jest.clearAllMocks();

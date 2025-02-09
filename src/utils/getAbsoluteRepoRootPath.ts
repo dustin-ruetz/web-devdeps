@@ -1,6 +1,6 @@
 import {fileURLToPath} from "node:url";
-import {nodeModulesPackagePath, packageName} from "../constants.js";
-import {CustomError} from "./CustomError.js";
+import {nodeModulesPackagePath, packageName} from "../constants.ts";
+import {CustomError} from "./CustomError.ts";
 
 /**
  * The purpose of this function is to provide a more robust alternative to `process.cwd()`. As per
