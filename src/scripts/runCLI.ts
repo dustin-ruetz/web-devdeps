@@ -13,8 +13,8 @@ export type cli =
 	| "stylelint";
 
 /**
- * @description Executes the CLI program of an installed `devDependencies` package and determines the path to its configuration file.
- * @param cli - The CLI program to execute. Should be a package listed in the `devDependencies` of the `package.json` file.
+ * @description Executes the CLI program of an installed package and determines the path to its configuration file.
+ * @param cli - The CLI program to execute. Should be a package listed in the `dependencies` of the `package.json` file.
  * @param args - The array of `args` (i.e. flags and their arguments) passed to the CLI program.
  */
 export const runCLI = (cli: cli, args: string[]) => {
