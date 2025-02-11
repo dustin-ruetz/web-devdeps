@@ -9,6 +9,7 @@
 	"material-icon-theme.files.associations": {
 		".caches/.prettiercache": "Prettier",
 		"*.mock.ts": "Test-ts",
+		"semantic-release.config.js": "semantic-release",
 		"semantic-release.config.ts": "semantic-release"
 	},
 	"material-icon-theme.folders.associations": {
