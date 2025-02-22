@@ -13,7 +13,7 @@ test("the most important configuration options are correct", () => {
 	expect(renovateJSON.branchNameStrict).toBe(true);
 
 	// Exclude the `npm` package to prevent Renovate from opening useless `chore: update npm`
-	// pull requests that only make modifications to the `package-lock.json` file.
+	// pull requests that only make modifications to the lockfile.
 	expect(renovateJSON.ignoreDeps).toStrictEqual(["npm"]);
 
 	// Allow for multiple dependencies to be upgraded in PRs as long as they are non-major version updates.

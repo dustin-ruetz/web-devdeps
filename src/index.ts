@@ -12,9 +12,9 @@ import {CustomError} from "./utils/CustomError.ts";
 export const runScript = async () => {
 	const [
 		_execPath, // executor - the Node.js executable
-		_filePath, // ignoredBin - ./lib/ (i.e. the path to the JavaScript file being executed)
+		_filePath, // ignoredBin - ./lib/ (i.e. the path to the file being executed)
 		script, // the name of the script to run
-		...args // all arguments that follow the script name
+		...args // all arguments that follow
 	] = process.argv;
 
 	/** List of known scripts. */
