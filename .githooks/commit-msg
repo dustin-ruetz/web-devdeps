@@ -1,6 +1,6 @@
-# Related file: `package.json` (specifically the `packageJSON.scripts["githooks/commit-msg"]` field)
+# Related file: `package.json` (specifically the `packageJSON.scripts["githooks.commit-msg"]` field)
 # Related file: `src/scripts/runCLI.ts` (specifically the `commitlint` CLI)
 #
 # commit-msg Git hook command to run prior to saving the commit message. Details:
 # - `commitlint` - Verify that the commit message is written in the correct format.
-npm run githooks/commit-msg
+npm run githooks.commit-msg

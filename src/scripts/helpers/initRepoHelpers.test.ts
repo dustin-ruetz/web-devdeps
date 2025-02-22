@@ -145,7 +145,7 @@ describe("writePackageJson", () => {
 }
 `;
 	const exampleScript = "web-devdeps example";
-	const lintStylesScript = "web-devdeps lint/styles";
+	const lintStylesScript = "web-devdeps lint.styles";
 
 	test("it *does not* configure Stylelint", async () => {
 		expect.hasAssertions();

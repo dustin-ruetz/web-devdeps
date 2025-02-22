@@ -21,12 +21,12 @@ export const runScript = async () => {
 	/* eslint sort-keys: ["error", "asc"] */
 	const scripts = {
 		format: "format",
-		githooksCommitMsg: "githooks/commit-msg",
-		githooksPreCommit: "githooks/pre-commit",
+		githooksCommitMsg: "githooks.commit-msg",
+		githooksPreCommit: "githooks.pre-commit",
 		initRepo: "init-repo",
-		lintJsTs: "lint/js-ts",
-		lintStyles: "lint/styles",
-		testUnit: "test/unit",
+		lintJsTs: "lint.js-ts",
+		lintStyles: "lint.styles",
+		testUnit: "test.unit",
 	} as const;
 
 	switch (script) {

@@ -75,7 +75,7 @@ git config core.hooksPath ./.githooks/ && chmod u+x ./.githooks/*
 npm install
 
 # 5. (optional) Automatically fix the formatting for all of the written files:
-npm run fix/format
+npm run fix.format
 
 # 6. Note how the key files (`package.json`, `README.md`, `tsconfig.json`, etc.)
 #    and folders (`.githooks/`, `.vscode/`) have all been initialized. Open each
@@ -148,36 +148,36 @@ import "@testing-library/jest-dom";
 npm install --save-dev --save-exact web-devdeps
 ```
 
-6. Go through the `package.json` file and add the following `scripts`, making modifications as needed (i.e. a non-TypeScript project has no use for the `check/types` script, a non-frontend project has no use for the `lint/styles` scripts, a React project that doesn't use a CSS-in-JS runtime library like `styled-components` doesn't need to check `.jsx` or `.tsx` files for linting issues with the styling, etc.):
+6. Go through the `package.json` file and add the following `scripts`, making modifications as needed (i.e. a non-TypeScript project has no use for the `check.types` script, a non-frontend project has no use for the `lint.styles` scripts, a React project that doesn't use a CSS-in-JS runtime library like `styled-components` doesn't need to check `.jsx` or `.tsx` files for linting issues with the styling, etc.):
 
 ```json
 {
 	"scripts": {
 		"build": "...",
-		"check": "npm-run-all2 --parallel check/*",
-		"check/format": "npm run format -- --check ./",
-		"check/lint/js-ts": "npm run lint/js-ts -- ./",
-		"check/lint/styles": "npm run lint/styles -- '**/*.{css,scss,jsx,tsx}'",
-		"check/types": "tsc --noEmit",
-		"clean": "npm-run-all2 --parallel clean/*",
-		"clean/caches": "jest --clear-cache && rimraf .caches/",
-		"clean/deps": "npx rimraf ./node_modules/ ./package-lock.json",
+		"check": "npm-run-all2 --parallel check.*",
+		"check.format": "npm run format -- --check ./",
+		"check.lint.js-ts": "npm run lint.js-ts -- ./",
+		"check.lint.styles": "npm run lint.styles -- '**/*.{css,scss,jsx,tsx}'",
+		"check.types": "tsc --noEmit",
+		"clean": "npm-run-all2 --parallel clean.*",
+		"clean.caches": "jest --clear-cache && rimraf .caches/",
+		"clean.deps": "npx rimraf ./node_modules/ ./package-lock.json",
 		"format": "web-devdeps format",
-		"fix": "npm-run-all2 --parallel fix/*",
-		"fix/format": "npm run format -- --write ./",
-		"fix/lint/js-ts": "npm run lint/js-ts -- --fix ./",
-		"fix/lint/styles": "npm run lint/styles -- --fix '**/*.{css,scss,jsx,tsx}'",
-		"githooks/commit-msg": "web-devdeps githooks/commit-msg",
-		"githooks/pre-commit": "web-devdeps githooks/pre-commit",
-		"githooks/pre-push": "npm run validate",
+		"fix": "npm-run-all2 --parallel fix.*",
+		"fix.format": "npm run format -- --write ./",
+		"fix.lint.js-ts": "npm run lint.js-ts -- --fix ./",
+		"fix.lint.styles": "npm run lint.styles -- --fix '**/*.{css,scss,jsx,tsx}'",
+		"githooks.commit-msg": "web-devdeps githooks.commit-msg",
+		"githooks.pre-commit": "web-devdeps githooks.pre-commit",
+		"githooks.pre-push": "npm run validate",
 		"init": "git config core.hooksPath ./.githooks/ && npm install && npm run validate",
-		"lint/js-ts": "web-devdeps lint/js-ts",
-		"lint/styles": "web-devdeps lint/styles",
-		"test/unit": "web-devdeps test/unit",
-		"test/unit/coverage": "npm run test/unit -- --coverage",
-		"test/unit/coverage-watch-all": "npm run test/unit/coverage -- --watch-all",
-		"test/unit/watch": "npm run test/unit/coverage -- --watch",
-		"validate": "npm-run-all2 --sequential build check test/unit/coverage"
+		"lint.js-ts": "web-devdeps lint.js-ts",
+		"lint.styles": "web-devdeps lint.styles",
+		"test.unit": "web-devdeps test.unit",
+		"test.unit.coverage": "npm run test.unit -- --coverage",
+		"test.unit.coverage-watch-all": "npm run test.unit.coverage -- --watch-all",
+		"test.unit.watch": "npm run test.unit.coverage -- --watch",
+		"validate": "npm-run-all2 --sequential build check test.unit.coverage"
 	}
 }
 ```
@@ -265,22 +265,22 @@ B. `package.json`
 ```json
 {
 	"scripts": {
-		"lint/js-ts": "web-devdeps lint/js-ts --config ./config/eslint.config.js"
+		"lint.js-ts": "web-devdeps lint.js-ts --config ./config/eslint.config.js"
 	}
 }
 ```
 
 3. In VS Code, restart the ESLint server or reload the window.
 
-4. Open a JS or TS file, add a `console.log()` statement to it, then verify that both the ESLint IDE extension and the `lint/js-ts` script report the file as having the `no-console` error.
+4. Open a JS or TS file, add a `console.log()` statement to it, then verify that both the ESLint IDE extension and the `lint.js-ts` script report the file as having the `no-console` error.
 
-As a final related note on providing transparency and avoiding "magic", this is also why the package's CLI scripts include their paths and flags (both the built-in ones that are automatically added, as well as any additional passed flags) in the terminal output when they're run. In this example, executing the `lint/js-ts` script will produce the following output:
+As a final related note on providing transparency and avoiding "magic", this is also why the package's CLI scripts include their paths and flags (both the built-in ones that are automatically added, as well as any additional passed flags) in the terminal output when they're run. In this example, executing the `lint.js-ts` script will produce the following output:
 
 ```txt
-npm run lint/js-ts -- ./src/no-console.ts
+npm run lint.js-ts -- ./src/no-console.ts
 
-> the-project@1.0.0 lint/js-ts
-> web-devdeps lint/js-ts --config ./config/eslint.config.js ./src/no-console.ts
+> the-project@1.0.0 lint.js-ts
+> web-devdeps lint.js-ts --config ./config/eslint.config.js ./src/no-console.ts
 
 📚 eslint command being run (as generated by ./node_modules/web-devdeps/lib/scripts/runCLI.js):
 > eslint --config ./config/eslint.config.js --cache --cache-location ./.caches/.eslintcache ./src/no-console.ts
@@ -323,10 +323,10 @@ npm run dev
 npm run fix
 
 # Run the unit tests in various modes.
-npm run test/unit
-npm run test/unit/coverage
-npm run test/unit/coverage-watch-all
-npm run test/unit/watch
+npm run test.unit
+npm run test.unit.coverage
+npm run test.unit.coverage-watch-all
+npm run test.unit.watch
 
 # Run the full validation suite (🛠️ build, 🧐 check, 🧪 test).
 npm run validate
@@ -336,10 +336,10 @@ Note that [`act`](https://nektosact.com) can be used to locally test the GitHub 
 
 ```sh
 # Simulate a dry-run release in the CI/CD context.
-npm run github/release
+npm run github.release
 
 # Simulate the full validation suite running in the CI/CD context.
-npm run github/validate
+npm run github.validate
 ```
 
 [kcd-scripts]: https://github.com/kentcdodds/kcd-scripts
