@@ -7,7 +7,7 @@ import {xmlPrettierPlugin} from "./prettier-plugins/xml.ts";
  * @description "Prettier is an opinionated code formatter. It removes all original styling
  *               and ensures that all outputted code conforms to a consistent style."
  * @returns Configuration for Prettier.
- * @see {@link https://prettier.io/docs/en/options.html}
+ * @see {@link https://prettier.io/docs/options.html}
  */
 export const makePrettierConfig = async (): Promise<Config> => {
 	const hasPugDependency = await dependsOn(["pug"]);
