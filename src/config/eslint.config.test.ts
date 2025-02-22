@@ -53,6 +53,7 @@ describe("it exports a configuration array and the most important config options
 		});
 		expect(userDefinedConfig?.linterOptions).toStrictEqual({
 			reportUnusedDisableDirectives: "error",
+			reportUnusedInlineConfigs: "error",
 		});
 		expect(userDefinedConfig?.rules?.["camelcase"]).toBe("error");
 		expect(userDefinedConfig?.rules?.["no-console"]).toBe("warn");

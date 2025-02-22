@@ -79,7 +79,7 @@ export const makeESLintConfig = async (): Promise<Config> => {
 			// https://eslint.org/docs/latest/use/configure/configuration-files#configuring-linter-options:
 			linterOptions: {
 				reportUnusedDisableDirectives: "error",
-				// reportUnusedInlineConfigs: "error",
+				reportUnusedInlineConfigs: "error",
 			},
 			rules: {
 				// https://eslint.org/docs/latest/rules/#possible-problems
