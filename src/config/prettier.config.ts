@@ -16,13 +16,13 @@ export const makePrettierConfig = async (): Promise<Config> => {
 		arrowParens: "always",
 		bracketSameLine: false,
 		bracketSpacing: false,
-		// Excerpt from https://prettier.io/docs/en/options.html#embedded-language-formatting:
+		// Excerpt from https://prettier.io/docs/options.html#embedded-language-formatting:
 		// > When Prettier identifies cases where it looks like you've placed some code it knows how to format
 		// > within a string in another file, like in a tagged template in JavaScript with a tag named `html`
 		// > or in code blocks in Markdown, it will by default try to format that code.
 		embeddedLanguageFormatting: "auto",
 		// The `* text=auto` setting in the .gitattributes file tells Git to detect all text files and automatically normalize the line endings.
-		// Excerpt from https://prettier.io/docs/en/options.html#end-of-line:
+		// Excerpt from https://prettier.io/docs/options.html#end-of-line:
 		// > Maintain existing line endings (mixed values within one file are normalised by looking at what's used after the first line).
 		endOfLine: "auto",
 		// Excerpt from https://prettier.io/blog/2018/11/07/1.15.0.html#whitespace-sensitive-formatting:
@@ -35,7 +35,7 @@ export const makePrettierConfig = async (): Promise<Config> => {
 		// > how to format elements due to the fact that CSS display can be changed.
 		htmlWhitespaceSensitivity: "css",
 		jsxSingleQuote: false,
-		// Excerpt from https://prettier.io/docs/en/options.html#print-width:
+		// Excerpt from https://prettier.io/docs/options.html#print-width:
 		// > Specify the line length that the printer will wrap on.
 		// > **For readability we recommend against using more than 80 characters.**
 		// > Prettier's `printWidth` option [...] is not the hard upper allowed line length limit.
@@ -51,7 +51,7 @@ export const makePrettierConfig = async (): Promise<Config> => {
 		// within sentences for contractions and to indicate possession. Examples:
 		// - Contraction: "It's a personal preference."
 		// - Possession: "This is Dustin's codebase."
-		// Excerpt from https://prettier.io/docs/en/options.html#quotes:
+		// Excerpt from https://prettier.io/docs/options.html#quotes:
 		// > If the number of quotes outweighs the other quote, the quote which is less used will be used to format the string. Examples:
 		// > - "I'm double quoted" will result in "I'm double quoted".
 		// > - "This \"example\" is single quoted" will result in 'This "example" is single quoted'.
