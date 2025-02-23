@@ -17,7 +17,6 @@ Package that provides development dependencies for other web projects (both brow
 
 - Automated dependency updates using [`renovate`](https://docs.renovatebot.com).
 - Building and typechecking using [`typescript`](https://www.typescriptlang.org).
-- Cleaning using [`rimraf`](https://github.com/isaacs/rimraf).
 - Formatting using [`prettier`](https://prettier.io) and its plugins.
 - Linting using [`eslint`](https://eslint.org) and its plugins (including [`typescript-eslint`](https://typescript-eslint.io)) for JavaScript and TypeScript.
 - Linting using [`stylelint`](https://stylelint.io) for CSS/SCSS/JSX/TSX (the latter two file types being relevant for "CSS-in-JS" solutions like `styled-components`).
@@ -160,8 +159,8 @@ npm install --save-dev --save-exact web-devdeps
 		"check.lint.styles": "npm run lint.styles -- '**/*.{css,scss,jsx,tsx}'",
 		"check.types": "tsc --noEmit",
 		"clean": "npm-run-all2 --parallel clean.*",
-		"clean.caches": "jest --clear-cache && rimraf .caches/",
-		"clean.deps": "npx rimraf ./node_modules/ ./package-lock.json",
+		"clean.caches": "jest --clear-cache && web-devdeps clean ./.caches/",
+		"clean.deps": "web-devdeps clean ./node_modules/ ./package-lock.json",
 		"format": "web-devdeps format",
 		"fix": "npm-run-all2 --parallel fix.*",
 		"fix.format": "npm run format -- --write ./",
