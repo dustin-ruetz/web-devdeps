@@ -1,7 +1,9 @@
+import {clean} from "./scripts/clean.ts";
 import {initRepo, logInitRepoHelpText} from "./scripts/initRepo.ts";
 import {runCLI} from "./scripts/runCLI.ts";
 import {runScript} from "./index.ts";
 
+jest.mock("./scripts/clean.ts");
 jest.mock("./scripts/initRepo.ts");
 jest.mock("./scripts/runCLI.ts");
 
@@ -15,6 +17,44 @@ afterAll(() => {
 });
 
 const processArgv = ["_execPath", "_filePath"] as const;
+
+describe("`clean` script is called with the correct arguments", () => {
+	beforeEach(() => {
+		process.argv = [...processArgv, "clean"];
+	});
+
+	test("when the required `paths` argument is not passed", async () => {
+		expect.hasAssertions();
+
+		await runScript();
+
+		expect(clean).toHaveBeenCalledTimes(1);
+		expect(clean).toHaveBeenCalledWith([]);
+	});
+
+	test("when the required `paths` argument is passed an array with an empty string", async () => {
+		expect.hasAssertions();
+
+		process.argv.push("");
+
+		await runScript();
+
+		expect(clean).toHaveBeenCalledTimes(1);
+		expect(clean).toHaveBeenCalledWith([""]);
+	});
+
+	test("when the required `paths` argument is passed an array of strings", async () => {
+		expect.hasAssertions();
+
+		process.argv.push("./folder/");
+		process.argv.push("./file.txt");
+
+		await runScript();
+
+		expect(clean).toHaveBeenCalledTimes(1);
+		expect(clean).toHaveBeenCalledWith(["./folder/", "./file.txt"]);
+	});
+});
 
 describe("`initRepo` script", () => {
 	beforeEach(() => {

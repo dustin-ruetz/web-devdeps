@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
+import {clean} from "./scripts/clean.ts";
 import {initRepo, logInitRepoHelpText} from "./scripts/initRepo.ts";
 import {runCLI} from "./scripts/runCLI.ts";
 import {CustomError} from "./utils/CustomError.ts";
 
 /**
- *
  * @description Function that serves as the entrypoint for the runnable Node.js CLI scripts provided by `web-devdeps`.
  * @see [package.json](../package.json) (specifically the `packageJSON.bin` field)
  */
@@ -20,6 +20,7 @@ export const runScript = async () => {
 	/** List of known scripts. */
 	/* eslint sort-keys: ["error", "asc"] */
 	const scripts = {
+		clean: "clean",
 		format: "format",
 		githooksCommitMsg: "githooks.commit-msg",
 		githooksPreCommit: "githooks.pre-commit",
@@ -30,6 +31,10 @@ export const runScript = async () => {
 	} as const;
 
 	switch (script) {
+		case scripts.clean: {
+			clean(args);
+			return;
+		}
 		case scripts.format: {
 			runCLI("prettier", args);
 			return;
