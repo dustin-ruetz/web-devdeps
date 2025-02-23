@@ -18,7 +18,7 @@ import {CustomError} from "./CustomError.ts";
  *
  * **Important:** Note that the `absoluteRepoRootPath` path is intentionally returned _without_ a trailing slash.
  * @returns The absolute root path of the repo where this specific file is being accessed from.
- * @throws An error in the event of a path mismatch, i.e if `web-devdeps` is not in the path.
+ * @throws An error in the event of a path mismatch, i.e. if `web-devdeps` is not in the path.
  */
 export const getAbsoluteRepoRootPath = () => {
 	/**
