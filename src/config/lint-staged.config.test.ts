@@ -20,14 +20,14 @@ describe("it runs the correct commands for", () => {
 
 	test("formatting", () => {
 		expect(lintstagedConfig["*" as keyof Configuration]).toBe(
-			"npm run format -- --ignore-unknown --write",
+			"pnpm format --ignore-unknown --write",
 		);
 	});
 
 	test("linting files with styles", () => {
 		expect(
 			lintstagedConfig["*.{css,scss,jsx,tsx}" as keyof Configuration],
-		).toBe("npm run lint.styles -- --fix");
+		).toBe("pnpm lint.styles --fix");
 	});
 
 	const [lintJavaScriptTypeScriptCommand, typecheckCommand, unitTestCommand] =
@@ -36,17 +36,17 @@ describe("it runs the correct commands for", () => {
 
 	test("linting JS and TS files", () => {
 		expect(lintJavaScriptTypeScriptCommand).toBe(
-			`npm run lint.js-ts -- --fix ${relativePath}`,
+			`pnpm lint.js-ts --fix ${relativePath}`,
 		);
 	});
 
 	test("typechecking", () => {
-		expect(typecheckCommand).toBe("npm run check.types");
+		expect(typecheckCommand).toBe("pnpm check.types");
 	});
 
 	test("unit testing", () => {
 		expect(unitTestCommand).toBe(
-			`npm run test.unit -- --findRelatedTests ${relativePath}`,
+			`pnpm test.unit --findRelatedTests ${relativePath}`,
 		);
 	});
 });
@@ -85,7 +85,7 @@ describe("when the staged changes include untestable TypeScript declaration file
 			lintstagedConfig["*.{js,jsx,ts,tsx}"](relativePaths);
 
 		expect(unitTestCommand).toBe(
-			`npm run test.unit -- --findRelatedTests ${relativePathToFindRelatedTestsFor}`,
+			`pnpm test.unit --findRelatedTests ${relativePathToFindRelatedTestsFor}`,
 		);
 		expect(unitTestCommand).not.toContain(typescriptDeclarationFilePath);
 		expect(unitTestCommand).not.toContain(javascriptFileMockPath);

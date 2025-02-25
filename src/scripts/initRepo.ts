@@ -1,8 +1,8 @@
 // To develop and test this script locally:
-// 1. Execute the `npm run dev` command so that `tsc` watches and auto-compiles all changes to this file.
+// 1. Execute the `pnpm dev` command so that `tsc` watches and auto-compiles all changes to this file.
 // 2. Execute the following command to run the script (note the optional flags):
 //    ```sh
-//    npm run init-repo -- repo-name --configure-frontend-testing --configure-stylelint --node-version=major.minor.patch
+//    pnpm init-repo repo-name --configure-frontend-testing --configure-stylelint --node-version=major.minor.patch
 //    ```
 
 import {readFile} from "node:fs/promises";
@@ -94,7 +94,7 @@ const logSection = (messages: string[]) => {
 const logErrorIntro = () => {
 	logSection([
 		"❌ An error occurred; see below for details.",
-		`ℹ️ Run \`npx ${packageName} init-repo --help\` for documentation on this command.`,
+		`ℹ️ Run \`pnpx ${packageName} init-repo --help\` for documentation on this command.`,
 	]);
 };
 
@@ -104,7 +104,7 @@ export const logInitRepoHelpText = async () => {
 
 	logSection(["The `init-repo` script initializes a new repository."]);
 
-	const baseCommand = `npx ${packageName} init-repo repo-name`;
+	const baseCommand = `pnpx ${packageName} init-repo repo-name`;
 
 	logSection(["Command example:", `  ${baseCommand}`]);
 

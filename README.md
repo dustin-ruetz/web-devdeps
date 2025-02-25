@@ -32,7 +32,7 @@ Additional details:
 
 ## Usage and Development
 
-Prerequisite: The following instructions assume that [Node.js](https://nodejs.org/en/download) is installed, which includes [NPM](https://www.npmjs.com).
+Prerequisite: The following instructions assume that [Node.js](https://nodejs.org/en/download) and [`pnpm`](https://pnpm.io/installation#using-corepack) are installed.
 
 ### Usage in Projects
 
@@ -60,21 +60,21 @@ Note that `web-devdeps` requires the project to have the following commonly-used
 # 1. Create and initialize a new Git repository:
 mkdir repo-name && cd repo-name && git init
 
-# 2. Use `npx` to execute this package's `init-repo` script to write the initial files
+# 2. Use `pnpx` to execute this package's `init-repo` script to write the initial files
 #    needed for web-/Node.js-based projects when creating a new Git repository.
 #
 #    **Tip:** Pass the `--help` flag to print the documentation for the command's flags.
-npx web-devdeps init-repo repo-name
+pnpx web-devdeps init-repo repo-name
 
 # 3. Configure the repo to use the Git hooks files in the written `.githooks/` directory
 #    and modify their permissions to make all files executable:
 git config core.hooksPath ./.githooks/ && chmod u+x ./.githooks/*
 
 # 4. Install the `web-devdeps` version listed in the written `package.json` file:
-npm install
+pnpm install
 
 # 5. (optional) Automatically fix the formatting for all of the written files:
-npm run fix.format
+pnpm fix.format
 
 # 6. Note how the key files (`package.json`, `README.md`, `tsconfig.json`, etc.)
 #    and folders (`.githooks/`, `.vscode/`) have all been initialized. Open each
@@ -144,7 +144,7 @@ import "@testing-library/jest-dom";
 5. Install the package as a development dependency:
 
 ```sh
-npm install --save-dev --save-exact web-devdeps
+pnpm add --save-dev --save-exact web-devdeps
 ```
 
 6. Go through the `package.json` file and add the following `scripts`, making modifications as needed (i.e. a non-TypeScript project has no use for the `check.types` script, a non-frontend project has no use for the `lint.styles` scripts, a React project that doesn't use a CSS-in-JS runtime library like `styled-components` doesn't need to check `.jsx` or `.tsx` files for linting issues with the styling, etc.):
@@ -154,28 +154,28 @@ npm install --save-dev --save-exact web-devdeps
 	"scripts": {
 		"build": "...",
 		"check": "npm-run-all2 --parallel check.*",
-		"check.format": "npm run format -- --check ./",
-		"check.lint.js-ts": "npm run lint.js-ts -- ./",
-		"check.lint.styles": "npm run lint.styles -- '**/*.{css,scss,jsx,tsx}'",
+		"check.format": "pnpm format --check ./",
+		"check.lint.js-ts": "pnpm lint.js-ts ./",
+		"check.lint.styles": "pnpm lint.styles '**/*.{css,scss,jsx,tsx}'",
 		"check.types": "tsc --noEmit",
 		"clean": "npm-run-all2 --parallel clean.*",
 		"clean.caches": "jest --clear-cache && web-devdeps clean ./.caches/",
 		"clean.deps": "web-devdeps clean ./node_modules/ ./package-lock.json",
 		"format": "web-devdeps format",
 		"fix": "npm-run-all2 --parallel fix.*",
-		"fix.format": "npm run format -- --write ./",
-		"fix.lint.js-ts": "npm run lint.js-ts -- --fix ./",
-		"fix.lint.styles": "npm run lint.styles -- --fix '**/*.{css,scss,jsx,tsx}'",
+		"fix.format": "pnpm format --write ./",
+		"fix.lint.js-ts": "pnpm lint.js-ts --fix ./",
+		"fix.lint.styles": "pnpm lint.styles --fix '**/*.{css,scss,jsx,tsx}'",
 		"githooks.commit-msg": "web-devdeps githooks.commit-msg",
 		"githooks.pre-commit": "web-devdeps githooks.pre-commit",
-		"githooks.pre-push": "npm run validate",
-		"init": "git config core.hooksPath ./.githooks/ && npm install && npm run validate",
+		"githooks.pre-push": "pnpm validate",
+		"init": "git config core.hooksPath ./.githooks/ && pnpm install && pnpm validate",
 		"lint.js-ts": "web-devdeps lint.js-ts",
 		"lint.styles": "web-devdeps lint.styles",
 		"test.unit": "web-devdeps test.unit",
-		"test.unit.coverage": "npm run test.unit -- --coverage",
-		"test.unit.coverage-watch-all": "npm run test.unit.coverage -- --watch-all",
-		"test.unit.watch": "npm run test.unit.coverage -- --watch",
+		"test.unit.coverage": "pnpm test.unit --coverage",
+		"test.unit.coverage-watch-all": "pnpm test.unit.coverage --watch-all",
+		"test.unit.watch": "pnpm test.unit.coverage --watch",
 		"validate": "npm-run-all2 --sequential build check test.unit.coverage"
 	}
 }
@@ -206,13 +206,13 @@ npm install --save-dev --save-exact web-devdeps
 9. Try running the validation script:
 
 ```sh
-npm run validate
+pnpm validate
 ```
 
 10. Remove any previous development dependencies and configuration files that are no longer needed now that they're being provided by the `web-devdeps` package:
 
 ```sh
-npm uninstall --save-dev eslint jest prettier stylelint # (etc.)
+pnpm remove --save-dev eslint jest prettier stylelint # (etc.)
 ```
 
 </details>
@@ -276,7 +276,7 @@ B. `package.json`
 As a final related note on providing transparency and avoiding "magic", this is also why the package's CLI scripts include their paths and flags (both the built-in ones that are automatically added, as well as any additional passed flags) in the terminal output when they're run. In this example, executing the `lint.js-ts` script will produce the following output:
 
 ```txt
-npm run lint.js-ts -- ./src/no-console.ts
+pnpm lint.js-ts ./src/no-console.ts
 
 > the-project@1.0.0 lint.js-ts
 > web-devdeps lint.js-ts --config ./config/eslint.config.js ./src/no-console.ts
@@ -301,44 +301,44 @@ Note that [`fnm`](https://github.com/Schniz/fnm) (Fast Node Manager) can be inst
 Start by initializing the repo for local development:
 
 1. Clone the repository and `cd` into it.
-1. Execute the `npm run init` command in order to:
+1. Execute the `pnpm run init` command in order to:
    1. Configure Git hooks;
    1. Install dependencies; and
    1. Validate the codebase.
 
-Below is a list of the most useful NPM scripts in alphabetical order (execute the `npm run` command to print the full list):
+Below is a list of the most useful scripts in alphabetical order (execute the `pnpm run` command to print the full list):
 
 ```sh
 # Compile the codebase (from src/*.ts to lib/*.js).
-npm run build
+pnpm build
 
 # Check the codebase for problems (formatting, linting and typechecking).
-npm run check
+pnpm check
 
 # Compile the codebase and recompile the output whenever the source changes.
-npm run dev
+pnpm dev
 
 # Check the codebase for problems and automatically fix them where possible (formatting and linting).
-npm run fix
+pnpm fix
 
 # Run the unit tests in various modes.
-npm run test.unit
-npm run test.unit.coverage
-npm run test.unit.coverage-watch-all
-npm run test.unit.watch
+pnpm test.unit
+pnpm test.unit.coverage
+pnpm test.unit.coverage-watch-all
+pnpm test.unit.watch
 
 # Run the full validation suite (🛠️ build, 🧐 check, 🧪 test).
-npm run validate
+pnpm validate
 ```
 
 Note that [`act`](https://nektosact.com) can be used to locally test the GitHub Actions workflow files located in [`.github/workflows/`](.github/workflows/) as well:
 
 ```sh
 # Simulate a dry-run release in the CI/CD context.
-npm run github.release
+pnpm github.release
 
 # Simulate the full validation suite running in the CI/CD context.
-npm run github.validate
+pnpm github.validate
 ```
 
 [kcd-scripts]: https://github.com/kentcdodds/kcd-scripts

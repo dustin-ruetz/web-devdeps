@@ -13,17 +13,17 @@
 
 ```sh
 # Upgrade to the latest version of husky.
-npm install --save-dev --save-exact husky@latest
+pnpm add --save-dev --save-exact husky@latest
 
 # Re-initialize the `.husky` folder and its Git hook files.
-npx husky init
+pnpx husky init
 ```
 
 2. Update the `Version` number in the [Summary](#summary) section of this file.
 
 3. Open the `package.json` file and delete the unneeded `prepare` script that was added after running the `husky init` command.
 
-4. Execute the `npm run init` command to re-configure the Git hooks path back to the `.githooks/` directory.
+4. Execute the `pnpm run init` command to re-configure the Git hooks path back to the `.githooks/` directory.
 
 5. Compare the Git diffs between the following files and incorporate the changes from the former into the latter:
 
