@@ -39,7 +39,7 @@ test("the most important configuration options are correct", () => {
 	expect(packageJSON.type).toBe("module");
 });
 
-test("NPM packages are installed with exact version numbers", () => {
+test("packages are installed with exact version numbers", () => {
 	expect.hasAssertions();
 
 	const dependencyVersions = [
