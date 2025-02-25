@@ -1,4 +1,4 @@
-# Use the `npm run github.release` command to test this GitHub Action workflow locally (performs a dry-run release).
+# Use the `pnpm github.release` command to test this GitHub Action workflow locally (performs a dry-run release).
 #
 # Adapted from "GitHub Actions - `.github/workflows/release.yml` configuration for Node projects" CI configuration recipe:
 # https://semantic-release.gitbook.io/semantic-release/recipes/ci-configurations/github-actions#github-workflows-release.yml-configuration-for-node-projects
@@ -39,7 +39,7 @@ jobs:
       # Note that while `validate` is configured to run on PRs, these commands should also
       # be run prior to releasing if/when commits are pushed directly to the `main` branch.
       - name: 📋 Validate codebase (🛠️ build, 🧐 check, 🧪 test)
-        run: npm run validate
+        run: pnpm validate
       # https://developer.1password.com/docs/ci-cd/github-actions
       # https://github.com/1Password/load-secrets-action
       - name: 🔐 Load secrets from 1Password
@@ -60,4 +60,4 @@ jobs:
           DRY_RUN: ${{ github.event.inputs.DRY_RUN == 'true' && '--dry-run' || '' }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ steps.op-secrets.outputs.WEB_DEVDEPS_NPM_TOKEN }}
-        run: npx semantic-release $DRY_RUN --extends ./lib/config/semantic-release.config.js
+        run: pnpx semantic-release $DRY_RUN --extends ./lib/config/semantic-release.config.js

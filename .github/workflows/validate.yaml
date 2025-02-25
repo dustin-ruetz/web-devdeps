@@ -1,4 +1,4 @@
-# Use the `npm run github.validate` command to test this GitHub Action workflow locally.
+# Use the `pnpm github.validate` command to test this GitHub Action workflow locally.
 name: validate
 on:
   # Run this workflow when a PR is opened and whenever it has new commits added to it.
@@ -22,4 +22,4 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: 📋 Validate codebase (🛠️ build, 🧐 check, 🧪 test)
-        run: npm run validate
+        run: pnpm validate
