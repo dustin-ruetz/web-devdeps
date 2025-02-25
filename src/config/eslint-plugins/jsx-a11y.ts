@@ -1,5 +1,5 @@
 import jsxA11y from "eslint-plugin-jsx-a11y";
-import typescripteslint from "typescript-eslint";
+import typescripteslint, {type ConfigArray} from "typescript-eslint";
 import {reactFilesGlobPattern} from "./react-hooks.ts";
 
 /**
@@ -7,7 +7,7 @@ import {reactFilesGlobPattern} from "./react-hooks.ts";
  * @returns Configuration for the JSX A11y ESLint plugin.
  * @see {@link https://github.com/jsx-eslint/eslint-plugin-jsx-a11y}
  */
-export const jsxA11yPlugin = typescripteslint.config({
+export const jsxA11yPlugin: ConfigArray = typescripteslint.config({
 	files: [reactFilesGlobPattern],
 	...jsxA11y.flatConfigs.strict,
 });
