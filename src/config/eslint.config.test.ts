@@ -1,4 +1,4 @@
-import type {TSESLint} from "@typescript-eslint/utils";
+import type {ConfigArray} from "typescript-eslint";
 import globals from "globals";
 import {access} from "node:fs/promises";
 import {dependsOnMock} from "../utils/dependsOn.mock.ts";
@@ -11,10 +11,8 @@ afterEach(() => {
 	jest.clearAllMocks();
 });
 
-const findConfigObjectByName = (
-	eslintConfig: TSESLint.FlatConfig.ConfigArray,
-	name: string,
-) => eslintConfig.find((configObj) => configObj.name === name);
+const findConfigObjectByName = (eslintConfig: ConfigArray, name: string) =>
+	eslintConfig.find((configObj) => configObj.name === name);
 
 describe("it exports a configuration array and the most important config options are correct", () => {
 	test("for the parts of the config that *are not* affected by conditional logic", async () => {

@@ -1,5 +1,5 @@
 import jsdoc from "eslint-plugin-jsdoc";
-import typescripteslint from "typescript-eslint";
+import typescripteslint, {type ConfigArray} from "typescript-eslint";
 
 /**
  * @description "JSDoc-specific linting rules."
@@ -7,7 +7,7 @@ import typescripteslint from "typescript-eslint";
  * @returns Configuration for the JSDoc ESLint plugin.
  * @see {@link https://github.com/gajus/eslint-plugin-jsdoc}
  */
-export const makeJSDocPlugin = (hasTSConfigFile: boolean) =>
+export const makeJSDocPlugin = (hasTSConfigFile: boolean): ConfigArray =>
 	typescripteslint.config(
 		hasTSConfigFile
 			? jsdoc.configs["flat/recommended-typescript-error"]

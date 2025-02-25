@@ -1,5 +1,5 @@
 import jest from "eslint-plugin-jest";
-import typescripteslint from "typescript-eslint";
+import typescripteslint, {type ConfigArray} from "typescript-eslint";
 
 export const mockAndTestFilesGlobPattern = "**/*.+(mock|test).+(js|jsx|ts|tsx)";
 
@@ -14,7 +14,7 @@ const configs = {
  * @returns Configuration for the Jest ESLint plugin.
  * @see {@link https://github.com/jest-community/eslint-plugin-jest}
  */
-export const makeJestPlugin = (hasTSConfigFile: boolean) =>
+export const makeJestPlugin = (hasTSConfigFile: boolean): ConfigArray =>
 	typescripteslint.config({
 		name: "jest/user-defined-config",
 		files: [mockAndTestFilesGlobPattern],
