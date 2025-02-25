@@ -2,6 +2,6 @@
 # Related file: `src/scripts/runCLI.ts` (specifically the `lint-staged` CLI)
 #
 # pre-commit Git hook commands run prior to any changes being committed. Details:
-# - `npm run build` - Build the codebase to `lib/` so that all configuration files are up-to-date.
-# - `lint-staged`   - Run the validation checks scoped to just the staged files.
-npm run githooks.pre-commit
+# - `pnpm build`  - Build the codebase to `lib/` so that all configuration files are up-to-date.
+# - `lint-staged` - Run the validation checks scoped to just the staged files.
+pnpm githooks.pre-commit
