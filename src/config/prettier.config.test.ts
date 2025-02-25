@@ -16,6 +16,14 @@ test("it exports a configuration object and the most important config options ar
 	expect(prettierConfig.singleQuote).toBe(false);
 	expect(prettierConfig.trailingComma).toBe("all");
 	expect(prettierConfig.useTabs).toBe(true);
+	expect(prettierConfig.overrides).toStrictEqual([
+		{
+			files: ["pnpm-lock.yaml"],
+			options: {
+				requirePragma: true,
+			},
+		},
+	]);
 });
 
 describe("plugin names and configurations are correct", () => {
