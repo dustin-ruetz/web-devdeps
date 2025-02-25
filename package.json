@@ -6,16 +6,16 @@
 	"scripts": {
 		"prebuild": "pnpm clean.lib",
 		"build": "tsc --project ./tsconfig.build.json",
-		"check": "npm-run-all2 --parallel check.*",
+		"check": "pnpm --parallel /check.*/",
 		"check.format": "pnpm format --check ./",
 		"check.lint.js-ts": "pnpm lint.js-ts ./",
 		"check.types": "tsc --noEmit",
-		"clean": "npm-run-all2 --parallel clean.*",
+		"clean": "pnpm --parallel /clean.*/",
 		"clean.caches": "jest --clear-cache && node ./src/index.ts clean ./.caches/",
 		"clean.deps": "node ./src/index.ts clean ./node_modules/ ./pnpm-lock.yaml",
 		"clean.lib": "node ./src/index.ts clean ./lib/",
 		"dev": "pnpm build --watch",
-		"fix": "npm-run-all2 --parallel fix.*",
+		"fix": "pnpm --parallel /fix.*/",
 		"fix.format": "pnpm format --write ./",
 		"fix.lint.js-ts": "pnpm lint.js-ts --fix ./",
 		"format": "node ./lib/ format",
@@ -35,7 +35,7 @@
 		"test.unit.coverage": "pnpm test.unit --coverage",
 		"test.unit.coverage-watch-all": "pnpm test.unit.coverage --watch-all",
 		"test.unit.watch": "pnpm test.unit.coverage --watch",
-		"validate": "npm-run-all2 --sequential build check test.unit.coverage"
+		"validate": "pnpm build && pnpm check && pnpm test.unit.coverage"
 	},
 	"keywords": [],
 	"author": "Dustin Ruetz",

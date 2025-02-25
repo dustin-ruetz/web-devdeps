@@ -153,16 +153,16 @@ pnpm add --save-dev --save-exact web-devdeps
 {
 	"scripts": {
 		"build": "...",
-		"check": "npm-run-all2 --parallel check.*",
+		"check": "pnpm --parallel /check.*/",
 		"check.format": "pnpm format --check ./",
 		"check.lint.js-ts": "pnpm lint.js-ts ./",
 		"check.lint.styles": "pnpm lint.styles '**/*.{css,scss,jsx,tsx}'",
 		"check.types": "tsc --noEmit",
-		"clean": "npm-run-all2 --parallel clean.*",
+		"clean": "pnpm --parallel /clean.*/",
 		"clean.caches": "jest --clear-cache && web-devdeps clean ./.caches/",
 		"clean.deps": "web-devdeps clean ./node_modules/ ./package-lock.json",
 		"format": "web-devdeps format",
-		"fix": "npm-run-all2 --parallel fix.*",
+		"fix": "pnpm --parallel /fix.*/",
 		"fix.format": "pnpm format --write ./",
 		"fix.lint.js-ts": "pnpm lint.js-ts --fix ./",
 		"fix.lint.styles": "pnpm lint.styles --fix '**/*.{css,scss,jsx,tsx}'",
@@ -176,7 +176,7 @@ pnpm add --save-dev --save-exact web-devdeps
 		"test.unit.coverage": "pnpm test.unit --coverage",
 		"test.unit.coverage-watch-all": "pnpm test.unit.coverage --watch-all",
 		"test.unit.watch": "pnpm test.unit.coverage --watch",
-		"validate": "npm-run-all2 --sequential build check test.unit.coverage"
+		"validate": "pnpm build && pnpm check && pnpm test.unit.coverage"
 	}
 }
 ```
