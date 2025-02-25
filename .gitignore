@@ -5,6 +5,10 @@
 
 .caches/
 .init-repo-script-test-output/
+# The `.pnpm-store/` directory isn't present locally, but it is populated in CI/CD pipeline jobs.
+# Ignore it here to prevent Prettier from bottlenecking and failing on its large number of files.
+# https://github.com/orgs/pnpm/discussions/6936#discussioncomment-6746063
+.pnpm-store/
 coverage/
 lib/
 node_modules/
