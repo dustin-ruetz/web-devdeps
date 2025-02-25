@@ -13,26 +13,29 @@ inputs:
 runs:
   using: "composite"
   steps:
+    # https://pnpm.io/continuous-integration#github-actions
+    # https://github.com/pnpm/action-setup
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
     # https://github.com/actions/setup-node
     - name: ⬢ Setup Node.js
       uses: actions/setup-node@v4
       with:
         # https://github.com/actions/setup-node#caching-global-packages-data
-        cache: npm
+        cache: pnpm
         node-version: ${{ inputs.node-version }}
         node-version-file: ${{ inputs.node-version-file }}
     - name: ⬇️ Install dependencies
       # Omit the `devDependencies` from installation since the `husky` package is the lone entry, and
       # `husky` is only relevant in local development during the repo's initial Git hooks setup.
-      # Excerpt from https://docs.npmjs.com/cli/v10/commands/npm-install#omit:
-      # > Dependency types to omit from the installation tree on disk.
-      # > Note that these dependencies are still resolved and added to the `package-lock.json`
-      # > or `npm-shrinkwrap.json` file. They are just not physically installed on disk.
-      # > If the resulting omit list includes `'dev'`, then the `NODE_ENV` environment variable
-      # > will be set to `'production'` for all lifecycle scripts.
-      run: npm clean-install --omit=dev
+      # Excerpt from https://pnpm.io/cli/install#--prod--p:
+      # > pnpm will not install any package listed in `devDependencies`
+      # > and will remove those insofar they were already installed.
+      run: pnpm install --prod
       shell: bash
-    # Verify the integrity of provenance attestations and registry signatures for installed dependencies.
     - name: 👀 Audit dependency signatures
+      # - Verify the integrity of provenance attestations and registry signatures for installed dependencies.
+      # - Note: pnpm does not currently have an equivalent implementation of this command.
+      # https://docs.npmjs.com/cli/v11/commands/npm-audit#audit-signatures
       run: npm audit signatures
       shell: bash
