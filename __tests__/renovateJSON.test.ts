@@ -12,7 +12,7 @@ test("the most important configuration options are correct", () => {
 	// > The default `false` behavior will mean that special characters like `.` and `/` may end up in the branch name.
 	expect(renovateJSON.branchNameStrict).toBe(true);
 
-	// Exclude the `npm` package to prevent Renovate from opening useless `chore: update npm`
+	// Exclude the `npm` package to prevent Renovate from opening unhelpful `chore: update npm`
 	// pull requests that only make modifications to the lockfile.
 	expect(renovateJSON.ignoreDeps).toStrictEqual(["npm"]);
 

@@ -3,4 +3,4 @@
 #
 # commit-msg Git hook command to run prior to saving the commit message. Details:
 # - `commitlint` - Verify that the commit message is written in the correct format.
-npm run githooks.commit-msg
+pnpm githooks.commit-msg

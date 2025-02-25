@@ -190,4 +190,4 @@ export const makeESLintConfig = async (): Promise<Config> => {
 	);
 };
 
-export default makeESLintConfig();
+export default makeESLintConfig() as Config;

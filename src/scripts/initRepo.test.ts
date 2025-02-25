@@ -38,7 +38,7 @@ beforeAll(() => {
 test("the `logInitRepoHelpText` helper function logs the correct values", async () => {
 	expect.hasAssertions();
 
-	const baseCommand = "npx web-devdeps init-repo repo-name";
+	const baseCommand = "pnpx web-devdeps init-repo repo-name";
 
 	await logInitRepoHelpText();
 

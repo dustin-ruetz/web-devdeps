@@ -64,6 +64,23 @@ export const makePrettierConfig = async (): Promise<Config> => {
 		// - https://adamtuttle.codes/blog/2021/tabs-vs-spaces-its-an-accessibility-issue/
 		// - https://alexandersandberg.com/articles/default-to-tabs-instead-of-spaces-for-an-accessible-first-environment/
 		useTabs: true,
+		overrides: [
+			{
+				// pnpm auto-generates its lockfile whenever dependencies are updated; exclude it
+				// from formatting with the `requirePragma` setting in order to prevent it
+				// from causing the `check.format` command to fail in the CI/CD pipeline.
+				files: ["pnpm-lock.yaml"],
+				options: {
+					// Excerpt from https://prettier.io/docs/options#require-pragma:
+					// > Prettier can restrict itself to only format files that contain
+					// > a special comment, called a pragma, at the top of the file.
+					// Solution adapted from:
+					// - https://github.com/prettier/prettier/issues/4547#issuecomment-1606712871
+					// - https://github.com/fzf404/prettier-config/blob/main/index.js
+					requirePragma: true,
+				},
+			},
+		],
 		// Configure the Prettier plugins.
 		plugins: [
 			// SVG files use XML syntax, so use the corresponding plugin to check and autoformat them.

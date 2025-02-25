@@ -167,7 +167,7 @@ describe("`runCLI` script", () => {
 		${"lint.styles"}         | ${"stylelint"}   | ${["--flag-name", "flag-arg"]}
 		${"test.unit"}           | ${"jest"}        | ${["--flag-name", "flag-arg"]}
 	`(
-		`Executing "npm run $script" script results in a call of runCLI("$cli", $args)`,
+		`Executing "pnpm $script" script results in a call of runCLI("$cli", $args)`,
 		async (testRow: {script: string; cli: string; args: string[]}) => {
 			expect.hasAssertions();
 

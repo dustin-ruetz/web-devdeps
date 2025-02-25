@@ -164,9 +164,9 @@ export const writePackageJson = async (
 	if (configureStylelint) {
 		packageJson.scripts["lint.styles"] = `${packageName} lint.styles`;
 		packageJson.scripts["check.lint.styles"] =
-			"npm run lint.styles -- '**/*.{css,scss,jsx,tsx}'";
+			"pnpm lint.styles '**/*.{css,scss,jsx,tsx}'";
 		packageJson.scripts["fix.lint.styles"] =
-			"npm run lint.styles -- --fix '**/*.{css,scss,jsx,tsx}'";
+			"pnpm lint.styles --fix '**/*.{css,scss,jsx,tsx}'";
 
 		// The object's keys are no longer in alphabetical order now that the above scripts
 		// have been added, so sort them then rewrite the object with the new values.

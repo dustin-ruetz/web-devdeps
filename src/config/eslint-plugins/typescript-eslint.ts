@@ -1,4 +1,4 @@
-import typescripteslint from "typescript-eslint";
+import typescripteslint, {type ConfigArray} from "typescript-eslint";
 import {mockAndTestFilesGlobPattern} from "./jest.ts";
 
 /**
@@ -7,7 +7,7 @@ import {mockAndTestFilesGlobPattern} from "./jest.ts";
  * @returns Configuration for the TypeScript ESLint plugin.
  * @see {@link https://typescript-eslint.io/getting-started/}
  */
-export const typescripteslintPlugin = typescripteslint.config(
+export const typescripteslintPlugin: ConfigArray = typescripteslint.config(
 	// Excerpt from https://typescript-eslint.io/getting-started/#additional-configs:
 	// > `strict`    - A superset of `recommended` that includes more opinionated rules which may also catch bugs.
 	// > `stylistic` - Additional rules that enforce consistent styling without significantly catching bugs or changing logic.
