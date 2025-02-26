@@ -10,9 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # Run this job on the maintenance and active Node.js LTS versions as well as the latest current version.
-        # https://nodejs.org/en/about/previous-releases/#release-schedule
-        node-version: [18, 20, 22, 23]
+        # - Run this job on the active Node.js LTS version as well as the latest current version.
+        # - Note: this repo runs the `clean` script with the `--experimental-strip-types`
+        #   flag, which requires a Node.js version of v22.6.0 or greater.
+        # - https://nodejs.org/en/about/previous-releases/#release-schedule
+        node-version: [lts/*, current]
     steps:
       # https://github.com/actions/checkout
       - name: 🛒 Git checkout repository
