@@ -6,7 +6,7 @@ on:
     types: [opened, synchronize]
 jobs:
   validate:
-    name: Validate on Node.js v${{ matrix.node-version }}
+    name: Validate on Node.js ${{ matrix.node-version }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
