@@ -15,7 +15,7 @@ runs:
   steps:
     # https://pnpm.io/continuous-integration#github-actions
     # https://github.com/pnpm/action-setup
-    - name: Install pnpm
+    - name: 🟨 Install pnpm
       uses: pnpm/action-setup@v4
     # https://github.com/actions/setup-node
     - name: ⬢ Setup Node.js
