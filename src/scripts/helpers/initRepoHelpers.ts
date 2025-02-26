@@ -70,6 +70,7 @@ export const writeGitIgnore = async () => {
 		`${rootPathToWriteTo}/.gitignore`,
 		`
 .caches/
+.pnpm-store/
 node_modules/
 `.trimStart(),
 	);
