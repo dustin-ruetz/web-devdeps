@@ -32,7 +32,7 @@ Additional details:
 
 ## Usage and Development
 
-Prerequisite: The following instructions assume that [Node.js](https://nodejs.org/en/download) and [`pnpm`](https://pnpm.io/installation#using-corepack) are installed.
+Prerequisite: The following instructions assume that [Node.js](https://nodejs.org/en/download) and [pnpm](https://pnpm.io/installation#using-corepack) are installed.
 
 ### Usage in Projects
 
