@@ -37,17 +37,18 @@ export const makeESLintConfig = async (): Promise<Config> => {
 	 * `packageJSON.devDependencies` object. So rather than checking the `devDependencies` object for
 	 * the `typescript` package, check for the presence of a `tsconfig.json` file instead.
 	 */
-	let hasTSConfigFile: boolean;
-	try {
-		// 1. _If_ the `tsconfig.json` file A) exists, and B) can be read by the calling
-		//    Node.js process, then this indicates that the repo _does_ use TypeScript.
-		await access(`${absoluteRepoRootPath}/tsconfig.json`, constants.R_OK);
-		hasTSConfigFile = true;
-	} catch (_error) {
-		// 2. _Else_ there was an error accessing the `tsconfig.json` file,
-		//     which indicates that the repo _does not_ use TypeScript.
-		hasTSConfigFile = false;
-	}
+	const hasTSConfigFile = await (async () => {
+		try {
+			// 1. _If_ the `tsconfig.json` file A) exists, and B) can be read by the calling
+			//    Node.js process, then this indicates that the repo _does_ use TypeScript.
+			await access(`${absoluteRepoRootPath}/tsconfig.json`, constants.R_OK);
+			return true;
+		} catch (_error) {
+			// 2. _Else_ there was an error accessing the `tsconfig.json` file,
+			//     which indicates that the repo _does not_ use TypeScript.
+			return false;
+		}
+	})();
 
 	return typescripteslint.config(
 		// Excerpt from https://eslint.org/docs/latest/use/configure/ignore#including-gitignore-files:
