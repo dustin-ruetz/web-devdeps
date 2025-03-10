@@ -8,6 +8,7 @@ test("it is a configuration object and the most important config options are cor
 	expect(tsconfigJSON.include).toStrictEqual(["./__tests__/", "./src/"]);
 
 	const {compilerOptions} = tsconfigJSON;
+	expect(compilerOptions.erasableSyntaxOnly).toBe(true);
 	expect(compilerOptions.module).toBe("NodeNext");
 	expect(compilerOptions.resolveJsonModule).toBe(true);
 	expect(compilerOptions.rewriteRelativeImportExtensions).toBe(true);

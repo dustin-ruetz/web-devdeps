@@ -2,6 +2,7 @@
 	"extends": "@tsconfig/strictest/tsconfig.json",
 	"include": ["./__tests__/", "./src/"],
 	"compilerOptions": {
+		"erasableSyntaxOnly": true,
 		"jsx": "react",
 		"module": "NodeNext",
 		"noUncheckedSideEffectImports": true,
