@@ -161,7 +161,7 @@ describe("it exports a configuration array and the most important config options
 
 			const reactHooksConfig = findConfigObjectByName(
 				eslintConfig,
-				"react-hooks/config",
+				"react-hooks/recommended",
 			);
 			// Verify that one of the `eslint-plugin-react-hooks` rules is included in the configuration.
 			expect(reactHooksConfig?.rules?.["react-hooks/rules-of-hooks"]).toBe(

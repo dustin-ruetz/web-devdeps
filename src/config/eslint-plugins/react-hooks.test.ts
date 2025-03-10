@@ -4,7 +4,7 @@ test("it exports a configuration array and the most important config options are
 	expect(Array.isArray(reactHooksPlugin)).toBe(true);
 
 	const reactHooksConfig = reactHooksPlugin.find(
-		(configObj) => configObj.name === "react-hooks/config",
+		(configObj) => configObj.name === "react-hooks/recommended",
 	);
 
 	// The `eslint-plugin-react-hooks` configuration contains only two rules, so verify that both are present.
