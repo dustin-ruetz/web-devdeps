@@ -57,12 +57,27 @@ export const makeStylelintConfig = async (): Promise<Config> => {
 		reportUnscopedDisables: true,
 		rules: {
 			// https://stylelint.io/user-guide/rules#avoid-errors
+			// > Longhand hex colors can be either 6 or 8 (with alpha channel) hexadecimal characters.
+			// > And their shorthand variants are 3 and 4 characters respectively.
+			"color-no-invalid-hex": true,
+			// > Syntax strings are used for the `syntax` descriptor value of the `@property` at-rule.
+			// > This rule checks their grammar and flags unsupported type names.
+			"syntax-string-no-invalid": true,
+			// > A common mistake (matching outdated non-standard syntax) is
+			// > to use just a side-or-corner without the preceding `to`.
+			"function-linear-gradient-no-nonstandard-direction": true,
+			// > This rule considers functions defined in the CSS Specifications to be known.
+			// > This rule ignores double-dashed custom functions, e.g. `--custom-function()`.
+			"function-no-unknown": true,
 			// > This rule considers the identifiers of `@keyframes` rules defined within the same source to be known.
 			"no-unknown-animations": true,
 			// > This rule considers custom media queries defined **within the same source** to be known.
 			"no-unknown-custom-media": true,
 			// > This rule considers custom properties defined within the same source to be known.
 			"no-unknown-custom-properties": true,
+			// > This rule considers units defined in the CSS Specifications,
+			// > up to and including Editor's Drafts, to be known.
+			"unit-no-unknown": true,
 			// https://stylelint.io/user-guide/rules#enforce-conventions
 			// https://stylelint.io/user-guide/rules/#allowed-disallowed--required
 			// > Disallow `!important` within declarations.
