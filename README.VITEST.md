@@ -3,6 +3,7 @@
 - [Vitest](https://vitest.dev/) works well as an alternative backup test runner to Jest.
 - Note 1: It has out-of-the-box support for ES Modules, JSX and TypeScript.
 - Note 2: I haven't tested how it handles transforms (ex: when importing a SVG file into a JS/TS file).
+- Note 3: This change may allow me to get rid of the `as Config` typecasting in the ESLint and Jest configuration files.
 
 ## Package(s) to install
 
