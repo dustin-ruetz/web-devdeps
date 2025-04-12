@@ -10,8 +10,8 @@ const rootPathToWriteTo = getRootPaths().writeTo;
 const encoding = {encoding: "utf-8"} as const;
 
 /**
- * Write a new `.gitattributes` file to disk and pre-populate it with a list
- * of file extensions common to web-/Node.js-based projects.
+ * Write a new `.gitattributes` file to disk and pre-populate it
+ * with a list of file extensions common to web-based projects.
  */
 export const writeGitAttributes = async () => {
 	await writeFile(
@@ -171,7 +171,7 @@ export const writePackageJson = async (
 			"pnpm lint.styles --fix '**/*.{css,scss,jsx,tsx}'";
 
 		// The object's keys are no longer in alphabetical order now that the above scripts
-		// have been added, so sort them then rewrite the object with the new values.
+		// have been added, so 1) sort them, then 2) rewrite the object with the new values.
 		packageJson.scripts = Object.fromEntries(
 			Object.entries(packageJson.scripts).sort(),
 		);
