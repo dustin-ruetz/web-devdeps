@@ -1,4 +1,4 @@
-import jsdoc from "eslint-plugin-jsdoc";
+import eslintPluginJSDoc from "eslint-plugin-jsdoc";
 import typescripteslint, {type ConfigArray} from "typescript-eslint";
 
 /**
@@ -10,12 +10,12 @@ import typescripteslint, {type ConfigArray} from "typescript-eslint";
 export const makeJSDocPlugin = (hasTSConfigFile: boolean): ConfigArray =>
 	typescripteslint.config(
 		hasTSConfigFile
-			? jsdoc.configs["flat/recommended-typescript-error"]
-			: jsdoc.configs["flat/recommended-error"],
+			? eslintPluginJSDoc.configs["flat/recommended-typescript-error"]
+			: eslintPluginJSDoc.configs["flat/recommended-error"],
 		{
 			name: "jsdoc/user-defined-config",
 			plugins: {
-				jsdoc,
+				jsdoc: eslintPluginJSDoc,
 			},
 			// https://github.com/gajus/eslint-plugin-jsdoc#rules
 			rules: {

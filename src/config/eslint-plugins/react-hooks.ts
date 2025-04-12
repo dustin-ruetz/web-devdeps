@@ -1,4 +1,4 @@
-import reactHooks from "eslint-plugin-react-hooks";
+import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 import typescripteslint, {type ConfigArray} from "typescript-eslint";
 
 /** Specify the list of file extensions that can be used by React. */
@@ -11,5 +11,5 @@ export const reactFilesGlobPattern = "**/*.+(js|jsx|ts|tsx)";
  */
 export const reactHooksPlugin: ConfigArray = typescripteslint.config({
 	files: [reactFilesGlobPattern],
-	...reactHooks.configs["recommended-latest"],
+	...eslintPluginReactHooks.configs["recommended-latest"],
 });
