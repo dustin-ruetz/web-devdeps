@@ -18,14 +18,16 @@ export const typescripteslintPlugin: ConfigArray = typescripteslint.config(
 		// https://typescript-eslint.io/getting-started/typed-linting/
 		languageOptions: {
 			parserOptions: {
-				// Excerpt from https://typescript-eslint.io/packages/parser#projectservice:
+				// Excerpt from https://typescript-eslint.io/packages/parser/#projectservice:
 				// > Specifies using TypeScript APIs to generate type information for rules. It will automatically detect
 				// > the TSConfig for each file (like `project: true`), and will also allow type information to be
 				// > computed for JavaScript files without the `allowJs` compiler option (unlike `project: true`).
 				projectService: true,
 			},
 		},
-		// https://typescript-eslint.io/rules/#extension-rules
+		// https://typescript-eslint.io/rules/
+		// Excerpt from `typescript-eslint` documentation explaining when to turn off base ESLint rules:
+		// > Note: You must disable the base rule as it can report incorrect errors.
 		rules: {
 			/**
 			 * @description Prefer the `type` keyword over `interface` because it displays the full type information
@@ -37,11 +39,13 @@ export const typescripteslintPlugin: ConfigArray = typescripteslint.config(
 			 */
 			"@typescript-eslint/consistent-type-definitions": ["error", "type"],
 
+			// #region dot-notation
 			// Excerpt from https://typescript-eslint.io/rules/dot-notation/:
 			// > Extending `"plugin:@typescript-eslint/stylistic-type-checked"` in an ESLint configuration enables this rule.
 			// > This rule extends the base `eslint/dot-notation` rule. It adds:
 			// > - Support for optionally ignoring computed `private` and/or `protected` member access.
 			// > - Compatibility with TypeScript's `noPropertyAccessFromIndexSignature` option.
+			// #endregion dot-notation
 
 			// Excerpt from https://typescript-eslint.io/rules/no-unused-vars/#how-to-use:
 			// > Note: You must disable the base rule as it can report incorrect errors.
