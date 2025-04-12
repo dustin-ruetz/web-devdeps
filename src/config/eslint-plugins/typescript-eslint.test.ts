@@ -62,6 +62,7 @@ test("it exports a configuration array and the most important config options are
 			configObj.name === "typescript-eslint/user-defined-test-overrides",
 	);
 	expect(userDefinedTestOverridesConfig?.rules).toStrictEqual({
+		"@typescript-eslint/no-magic-numbers": "off",
 		"@typescript-eslint/unbound-method": "off",
 	});
 });
