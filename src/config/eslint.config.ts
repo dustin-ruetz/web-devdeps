@@ -5,10 +5,12 @@ import {access, constants} from "node:fs/promises";
 import typescripteslint, {type Config} from "typescript-eslint";
 import {dependsOn} from "../utils/dependsOn.ts";
 import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.ts";
+import {mockAndTestFilesGlobPattern} from "./eslint-shared/mockAndTestFilesGlobPattern.ts";
 import {
-	makeJestPlugin,
-	mockAndTestFilesGlobPattern,
-} from "./eslint-plugins/jest.ts";
+	noMagicNumbersRuleOptions,
+	noShadowRuleOptions,
+} from "./eslint-shared/ruleOptions.ts";
+import {makeJestPlugin} from "./eslint-plugins/jest.ts";
 import {makeJSDocPlugin} from "./eslint-plugins/jsdoc.ts";
 import {jsxA11yPlugin} from "./eslint-plugins/jsx-a11y.ts";
 import {reactHooksPlugin} from "./eslint-plugins/react-hooks.ts";
@@ -121,16 +123,7 @@ export const makeESLintConfig = async (): Promise<Config> => {
 				"no-labels": "error",
 				"no-lonely-if": "error",
 				"no-loop-func": "error",
-				"no-magic-numbers": [
-					"error",
-					{
-						enforceConst: true,
-						// Allow the following numbers since they're commonly used when working with array methods.
-						ignore: [-1, 0, 1],
-						// Allow numbers to be used directly when working with arrays to avoid overly-verbose `const firstIndex = 0` declarations.
-						ignoreArrayIndexes: true,
-					},
-				],
+				"no-magic-numbers": ["error", noMagicNumbersRuleOptions],
 				"no-multi-assign": "error",
 				"no-multi-str": "error",
 				"no-new": "error",
@@ -144,6 +137,7 @@ export const makeESLintConfig = async (): Promise<Config> => {
 				"no-return-assign": "error",
 				"no-sequences": "error",
 				"no-script-url": "error",
+				"no-shadow": ["error", noShadowRuleOptions],
 				"no-throw-literal": "error",
 				"no-undef-init": "error",
 				"no-unneeded-ternary": "error",
