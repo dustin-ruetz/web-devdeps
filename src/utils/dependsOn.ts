@@ -51,6 +51,7 @@ export const dependsOn = async (deps: string[]) => {
 	const packageJsonContents = await readFile(packageJsonPath, {
 		encoding: "utf-8",
 	});
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 	const packageJson = JSON.parse(packageJsonContents) as PackageJsonTypes;
 	const allDependencies = {
 		...packageJson.dependencies,

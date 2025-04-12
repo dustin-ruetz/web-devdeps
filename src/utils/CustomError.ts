@@ -7,7 +7,7 @@
  * @returns A new `CustomError` instance.
  */
 export class CustomError extends Error {
-	constructor(
+	public constructor(
 		message: string,
 		options: {
 			cause: {

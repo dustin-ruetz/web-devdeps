@@ -106,7 +106,7 @@ export const runCLI = (cli: cli, args: string[]) => {
 	// 1. If they _are_ passed:
 	if (hasConfigFlag && hasConfigArg) {
 		// 1a. Remove them from the `args` array.
-		// eslint-disable-next-line no-magic-numbers
+		// eslint-disable-next-line @typescript-eslint/no-magic-numbers
 		args.splice(configFlagIndex, 2);
 		// 1b. Re-insert them at the beginning of the `args` array.
 		args.unshift(configFlag, configArg);
@@ -116,11 +116,11 @@ export const runCLI = (cli: cli, args: string[]) => {
 		const configFilePath = `lib/config/${cli}.config.js`;
 
 		// 2a. Determine the path to the configuration file depending on the repo.
-		const configArg = isWebDevdepsRepo
+		const configPath = isWebDevdepsRepo
 			? `./${configFilePath}`
 			: `./${nodeModulesPackagePath}/${configFilePath}`;
 		// 2b. Prepend the `--config` flag and its argument to the existing `args` array.
-		args.unshift(configFlag, configArg);
+		args.unshift(configFlag, configPath);
 	}
 	// #endregion ⚙️ config args
 

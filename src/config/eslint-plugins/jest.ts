@@ -1,10 +1,10 @@
-import jest from "eslint-plugin-jest";
+import eslintPluginJest from "eslint-plugin-jest";
 import typescripteslint, {type ConfigArray} from "typescript-eslint";
 import {mockAndTestFilesGlobPattern} from "../eslint-shared/mockAndTestFilesGlobPattern.ts";
 
 const configs = {
-	recommended: jest.configs["flat/recommended"],
-	style: jest.configs["flat/style"],
+	recommended: eslintPluginJest.configs["flat/recommended"],
+	style: eslintPluginJest.configs["flat/style"],
 } as const;
 
 /**

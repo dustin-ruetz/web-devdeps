@@ -162,6 +162,7 @@ export const initRepo = async (repoName: string, args?: string[]) => {
 	]);
 	// Throw an error if an invalid flag was passed, i.e. one that's not present in the `optionalFlags` array.
 	args?.forEach((arg) => {
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 		const [flag] = arg.split("=") as typeof optionalFlags;
 		if (flag && !optionalFlags.includes(flag)) {
 			throw new CustomError(`Invalid flag passed: ${flag}`, {

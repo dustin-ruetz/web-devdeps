@@ -160,5 +160,6 @@ export const makeJestConfig = async (): Promise<Config> => {
 	};
 };
 
-/** @todo Figure out how avoid the need to typecast this default export. */
+// Typecast configuration to allow the `tsc` build compilation step to pass.
+// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 export default makeJestConfig() as Config;

@@ -12,7 +12,12 @@ test("it exports a configuration object", () => {
  *       remove the `eslint-disable` and `@ts-expect-error` comments in this file.
  */
 
-/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call */
+/*
+	eslint-disable
+		@typescript-eslint/no-unsafe-assignment,
+		@typescript-eslint/no-unsafe-call,
+		@typescript-eslint/no-unsafe-type-assertion,
+*/
 describe("it runs the correct commands for", () => {
 	const lintstagedConfig = makeLintstagedConfig();
 	const relativePaths = ["src/lint-staged.config.ts"] as const;
@@ -92,4 +97,9 @@ describe("when the staged changes include untestable TypeScript declaration file
 		expect(unitTestCommand).not.toContain(typescriptFileMockPath);
 	});
 });
-/* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call */
+/*
+	eslint-enable
+		@typescript-eslint/no-unsafe-assignment,
+		@typescript-eslint/no-unsafe-call,
+		@typescript-eslint/no-unsafe-type-assertion,
+*/

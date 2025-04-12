@@ -52,7 +52,7 @@ export const writeGitHooks = async () => {
 
 	await mkdir(`${rootPathToWriteTo}/.githooks/`);
 	await Promise.all(
-		githooksFiles.map((githook) =>
+		githooksFiles.map(async (githook) =>
 			writeFile(
 				`${rootPathToWriteTo}/.githooks/${githook}`,
 				`
@@ -128,6 +128,7 @@ export const writePackageJson = async (
 ) => {
 	const packageJsonPath = `${rootPathToReadFrom}/package.json`;
 	const packageJsonContents = await readFile(packageJsonPath, encoding);
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-type-assertion
 	const packageJson = JSON.parse(packageJsonContents) as PackageJsonTypes;
 
 	packageJson.name = repoName;
@@ -173,7 +174,18 @@ export const writePackageJson = async (
 		// The object's keys are no longer in alphabetical order now that the above scripts
 		// have been added, so 1) sort them, then 2) rewrite the object with the new values.
 		packageJson.scripts = Object.fromEntries(
-			Object.entries(packageJson.scripts).sort(),
+			// Function to sort object keys adapted from prototype's 2015-Oct-10 answer to the following Stack Overflow question:
+			// https://stackoverflow.com/questions/9658690/is-there-a-way-to-sort-order-keys-in-javascript-objects/33049762#33049762
+			Object.entries(packageJson.scripts).sort((key1, key2) => {
+				/* v8 ignore next 7 */
+				if (key1 < key2) {
+					return -1;
+				} else if (key1 > key2) {
+					return +1;
+				} else {
+					return 0;
+				}
+			}),
 		);
 	}
 
