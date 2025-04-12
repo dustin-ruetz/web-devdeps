@@ -101,10 +101,6 @@ export const makeESLintConfig = async (): Promise<Config> => {
 				"arrow-body-style": "error",
 				camelcase: "error",
 				curly: "error",
-				/**
-				 * Refer to the `typescript-eslint` configuration file to see how this `dot-notation` rule is overridden.
-				 * @see [typescript-eslint.ts](./eslint-plugins/typescript-eslint.ts)
-				 */
 				"dot-notation": "error",
 				eqeqeq: "error",
 				"guard-for-in": "error",
@@ -142,10 +138,6 @@ export const makeESLintConfig = async (): Promise<Config> => {
 				"no-undef-init": "error",
 				"no-unneeded-ternary": "error",
 				"no-unused-expressions": "error",
-				/**
-				 * Refer to the `typescript-eslint` configuration file to see how this `no-unused-vars` rule is overridden.
-				 * @see [typescript-eslint.ts](./eslint-plugins/typescript-eslint.ts)
-				 */
 				"no-unused-vars": "error",
 				"no-useless-call": "error",
 				"no-useless-computed-key": "error",
@@ -172,7 +164,8 @@ export const makeESLintConfig = async (): Promise<Config> => {
 			name: "eslintjs/user-defined-test-overrides",
 			files: [mockAndTestFilesGlobPattern],
 			rules: {
-				// It's useful to reference arbitrary numbers directly in unit test files, so disable the "no-magic-numbers" rule for tests.
+				// It's useful to reference arbitrary numbers directly in unit test
+				// files, so disable the `no-magic-numbers` rule for tests.
 				"no-magic-numbers": "off",
 			},
 		},
