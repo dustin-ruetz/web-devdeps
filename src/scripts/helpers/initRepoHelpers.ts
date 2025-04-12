@@ -135,6 +135,14 @@ export const writePackageJson = async (
 	packageJson.version = "0.0.0";
 	packageJson.description = "";
 
+	// Update the `init` script to ensure that pnpm installs
+	// both `dependencies` and `devDependencies`.
+	const initScript = String(packageJson.scripts["init"]);
+	packageJson.scripts["init"] = initScript.replace(
+		"pnpm install --prod",
+		"pnpm install",
+	);
+
 	// Remove the "JSON code comment" entries and the scripts that aren't needed for the initialized repo.
 	delete packageJson.scripts["// githooks.*"];
 	delete packageJson.scripts["// github.*"];
