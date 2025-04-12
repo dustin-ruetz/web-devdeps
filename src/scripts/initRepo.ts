@@ -128,7 +128,7 @@ export const logInitRepoHelpText = async () => {
 /* eslint-enable no-console */
 
 /**
- * @description Writes the initial files needed for web-/Node.js-based projects when creating a new Git repository.
+ * @description Writes the initial files needed for web-based projects when creating a new Git repository.
  * @param repoName - The name of the repository. Written to the `package.json` and `README.md` files.
  * @param args - The array of arguments passed to the `init-repo` script. Refer to the arg descriptions in `getInitRepoArgs` for more information.
  */

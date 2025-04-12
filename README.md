@@ -61,7 +61,7 @@ Note that `web-devdeps` requires the project to have the following commonly-used
 mkdir repo-name && cd repo-name && git init
 
 # 2. Use `pnpx` to execute this package's `init-repo` script to write the initial files
-#    needed for web-/Node.js-based projects when creating a new Git repository.
+#    needed for web-based projects when creating a new Git repository.
 #
 #    **Tip:** Pass the `--help` flag to print the documentation for the command's flags.
 pnpx web-devdeps init-repo repo-name
