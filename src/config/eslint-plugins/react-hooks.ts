@@ -1,4 +1,4 @@
-import eslintPluginReactHooks from "eslint-plugin-react-hooks";
+import {configs} from "eslint-plugin-react-hooks";
 import typescripteslint, {type ConfigArray} from "typescript-eslint";
 import {reactFilesGlobPattern} from "../eslint-shared/reactFilesGlobPattern.ts";
 
@@ -9,5 +9,5 @@ import {reactFilesGlobPattern} from "../eslint-shared/reactFilesGlobPattern.ts";
  */
 export const reactHooksPlugin: ConfigArray = typescripteslint.config({
 	files: [reactFilesGlobPattern],
-	...eslintPluginReactHooks.configs["recommended-latest"],
+	...configs["recommended-latest"],
 });
