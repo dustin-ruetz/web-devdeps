@@ -1,6 +1,6 @@
 import eslintPluginJSXa11y from "eslint-plugin-jsx-a11y";
 import typescripteslint, {type ConfigArray} from "typescript-eslint";
-import {reactFilesGlobPattern} from "../eslint-shared/reactFilesGlobPattern.ts"
+import {reactFilesGlobPattern} from "../eslint-shared/reactFilesGlobPattern.ts";
 
 /**
  * @description Accessibility-specific linting rules for elements written in JSX syntax.
