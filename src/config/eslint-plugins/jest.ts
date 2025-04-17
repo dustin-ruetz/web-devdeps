@@ -9,7 +9,7 @@ const configs = {
 
 /**
  * @description Jest-specific linting rules.
- * @param hasTSConfigFile - Used to determine the status of the `unbound-method` rule.
+ * @param hasTSConfigFile - Determines the status of the `unbound-method` rule.
  * @returns Configuration for the Jest ESLint plugin.
  * @see {@link https://github.com/jest-community/eslint-plugin-jest}
  */

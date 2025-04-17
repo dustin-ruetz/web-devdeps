@@ -3,7 +3,7 @@ import typescripteslint, {type ConfigArray} from "typescript-eslint";
 
 /**
  * @description "JSDoc-specific linting rules."
- * @param hasTSConfigFile - Used to determine the base JSDoc lint configuration (either JS or TS) to use.
+ * @param hasTSConfigFile - Determines the base JSDoc lint configuration (either JS or TS) to use.
  * @returns Configuration for the JSDoc ESLint plugin.
  * @see {@link https://github.com/gajus/eslint-plugin-jsdoc}
  */
