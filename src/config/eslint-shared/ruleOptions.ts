@@ -5,10 +5,12 @@ export const noMagicNumbersRuleOptions = {
 	 * > keyword in variable declaration of numbers.
 	 */
 	enforceConst: true,
-	// Allow the following numbers since they're commonly used when working with array methods.
+	/** Allow the following numbers since they're useful when working with array methods. */
 	ignore: [-1, 0, 1],
-	// Allow numbers to be used directly when working with arrays to
-	// avoid overly-verbose `const firstIndex = 0` declarations.
+	/**
+	 * Allow numbers to be used directly when working with arrays to
+	 * avoid overly-verbose `const firstIndex = 0` declarations.
+	 */
 	ignoreArrayIndexes: true,
 } as const;
 
