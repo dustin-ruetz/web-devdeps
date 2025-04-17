@@ -1,8 +1,6 @@
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 import typescripteslint, {type ConfigArray} from "typescript-eslint";
-
-/** Specify the list of file extensions that can be used by React. */
-export const reactFilesGlobPattern = "**/*.+(js|jsx|ts|tsx)";
+import {reactFilesGlobPattern} from "../eslint-shared/reactFilesGlobPattern.ts"
 
 /**
  * @description React Hooks-specific linting rules.
