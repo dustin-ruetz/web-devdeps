@@ -1,4 +1,5 @@
 import type {Config} from "stylelint";
+
 import {dependsOn} from "../utils/dependsOn.ts";
 
 /**
@@ -11,7 +12,7 @@ export const makeStylelintConfig = async (): Promise<Config> => {
 	const hasStyledComponentsDependency = await dependsOn(["styled-components"]);
 
 	const overrides: Config["overrides"] = [];
-	// Use two plugins from https://stylelint.io/awesome-stylelint#custom-syntaxes
+	// Use two plugins from https://stylelint.io/awesome-stylelint/#custom-syntaxes-1
 	// so that Stylelint is also able to check Sass and styled-components code.
 	if (hasSassDependency) {
 		// https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint#only-css-and-postcss-are-validated-by-default

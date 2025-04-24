@@ -1,5 +1,7 @@
 import type {Config} from "prettier";
+
 import {dependsOn} from "../utils/dependsOn.ts";
+
 import {pugPrettierPlugin} from "./prettier-plugins/pug.ts";
 import {xmlPrettierPlugin} from "./prettier-plugins/xml.ts";
 
@@ -74,6 +76,7 @@ export const makePrettierConfig = async (): Promise<Config> => {
 					// Excerpt from https://prettier.io/docs/options#require-pragma:
 					// > Prettier can restrict itself to only format files that contain
 					// > a special comment, called a pragma, at the top of the file.
+					//
 					// Solution adapted from:
 					// - https://github.com/prettier/prettier/issues/4547#issuecomment-1606712871
 					// - https://github.com/fzf404/prettier-config/blob/main/index.js
