@@ -1,7 +1,10 @@
-import type {ConfigArray} from "typescript-eslint";
-import globals from "globals";
 import {access} from "node:fs/promises";
+
+import globals from "globals";
+import type {ConfigArray} from "typescript-eslint";
+
 import {dependsOnMock} from "../utils/dependsOn.mock.ts";
+
 import {makeESLintConfig} from "./eslint.config.ts";
 
 jest.mock("node:fs/promises");
@@ -92,6 +95,14 @@ describe("it exports a configuration array and the most important config options
 		);
 		expect(eslintConfig).toContain(jsdocUserDefinedConfig);
 		expect(typeof jsdocUserDefinedConfig?.rules).toBe("object");
+
+		// Verify that the `import` user-defined config *is* included.
+		const importUserDefinedConfig = findConfigObjectByName(
+			eslintConfig,
+			"import/user-defined-config",
+		);
+		expect(eslintConfig).toContain(jsdocUserDefinedConfig);
+		expect(typeof importUserDefinedConfig?.rules).toBe("object");
 	});
 
 	test("when linting this `web-devdeps` repo (which *does not* have frontend dependencies and *does* depend on TypeScript)", async () => {

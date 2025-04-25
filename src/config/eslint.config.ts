@@ -1,20 +1,24 @@
+import {access, constants} from "node:fs/promises";
+
 import {includeIgnoreFile} from "@eslint/compat";
 import eslintjs from "@eslint/js";
 import globals from "globals";
-import {access, constants} from "node:fs/promises";
 import typescripteslint, {type Config} from "typescript-eslint";
+
 import {dependsOn} from "../utils/dependsOn.ts";
 import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.ts";
-import {mockAndTestFilesGlobPattern} from "./eslint-shared/mockAndTestFilesGlobPattern.ts";
-import {
-	noMagicNumbersRuleOptions,
-	noShadowRuleOptions,
-} from "./eslint-shared/ruleOptions.ts";
+
+import {makeImportPlugin} from "./eslint-plugins/import.ts";
 import {makeJestPlugin} from "./eslint-plugins/jest.ts";
 import {makeJSDocPlugin} from "./eslint-plugins/jsdoc.ts";
 import {jsxA11yPlugin} from "./eslint-plugins/jsx-a11y.ts";
 import {reactHooksPlugin} from "./eslint-plugins/react-hooks.ts";
 import {typescripteslintPlugin} from "./eslint-plugins/typescript-eslint.ts";
+import {mockAndTestFilesGlobPattern} from "./eslint-shared/mockAndTestFilesGlobPattern.ts";
+import {
+	noMagicNumbersRuleOptions,
+	noShadowRuleOptions,
+} from "./eslint-shared/ruleOptions.ts";
 
 /**
  * @description "ESLint statically analyzes your code to quickly find problems."
@@ -171,6 +175,7 @@ export const makeESLintConfig = async (): Promise<Config> => {
 		},
 		...makeJestPlugin(hasTSConfigFile),
 		...makeJSDocPlugin(hasTSConfigFile),
+		...makeImportPlugin(hasReactDependency, hasTSConfigFile),
 		// Conditionally-included ESLint plugins.
 		...(hasReactDependency ? jsxA11yPlugin : []),
 		...(hasReactDependency ? reactHooksPlugin : []),

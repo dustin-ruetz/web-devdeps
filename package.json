@@ -80,6 +80,7 @@
 		"@types/node": "22.14.1",
 		"conventional-changelog-conventionalcommits": "8.0.0",
 		"eslint": "9.24.0",
+		"eslint-plugin-import": "2.31.0",
 		"eslint-plugin-jest": "28.11.0",
 		"eslint-plugin-jsdoc": "50.6.9",
 		"eslint-plugin-jsx-a11y": "6.10.2",
