@@ -1,5 +1,7 @@
 import {fileURLToPath} from "node:url";
+
 import {nodeModulesPackagePath, packageName} from "../constants.ts";
+
 import {CustomError} from "./CustomError.ts";
 
 /**

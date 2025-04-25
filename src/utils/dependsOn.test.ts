@@ -1,7 +1,9 @@
 import {readFile} from "node:fs/promises";
+
 // Ideally the following two import statements would be in alphabetical order, but since
 // `getAbsoluteRepoRootPath` is imported in `dependsOn`, its mock must be imported first.
 import {getAbsoluteRepoRootPathMock} from "./getAbsoluteRepoRootPath.mock.ts";
+// eslint-disable-next-line import/order
 import {dependsOn} from "./dependsOn.ts";
 
 jest.mock("node:fs/promises", () => ({

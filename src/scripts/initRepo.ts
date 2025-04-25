@@ -6,8 +6,10 @@
 //    ```
 
 import {readFile} from "node:fs/promises";
-import {CustomError} from "../utils/CustomError.ts";
+
 import {packageName} from "../constants.ts";
+import {CustomError} from "../utils/CustomError.ts";
+
 import {getRootPaths} from "./helpers/getRootPaths.ts";
 import {
 	writeGitAttributes,

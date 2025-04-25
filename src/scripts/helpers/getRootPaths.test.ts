@@ -1,4 +1,5 @@
 import {getAbsoluteRepoRootPathMock} from "../../utils/getAbsoluteRepoRootPath.mock.ts";
+
 import {getRootPaths} from "./getRootPaths.ts";
 
 afterEach(() => {

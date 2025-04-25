@@ -1,6 +1,6 @@
+import {nodeModulesPackagePath} from "../../constants.ts";
 import {getAbsoluteRepoRootPath} from "../../utils/getAbsoluteRepoRootPath.ts";
 import {getIsWebDevdepsRepo} from "../../utils/getIsWebDevdepsRepo.ts";
-import {nodeModulesPackagePath} from "../../constants.ts";
 
 /**
  * @description Determines the root paths when running the `init-repo` script and its associated helper functions.

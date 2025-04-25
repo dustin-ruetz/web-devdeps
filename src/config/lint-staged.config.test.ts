@@ -1,4 +1,5 @@
 import type {Configuration} from "lint-staged";
+
 import {makeLintstagedConfig} from "./lint-staged.config.ts";
 
 test("it exports a configuration object", () => {

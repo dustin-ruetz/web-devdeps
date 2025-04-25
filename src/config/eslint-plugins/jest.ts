@@ -1,5 +1,6 @@
 import eslintPluginJest from "eslint-plugin-jest";
 import typescripteslint, {type ConfigArray} from "typescript-eslint";
+
 import {mockAndTestFilesGlobPattern} from "../eslint-shared/mockAndTestFilesGlobPattern.ts";
 
 const configs = {
@@ -57,7 +58,7 @@ export const makeJestPlugin = (hasTSConfigFile: boolean): ConfigArray =>
 			// >
 			// > This rule should be applied to your test files in place of the original rule,
 			// > which should be applied to the rest of your codebase.
-
+			//
 			// Note: Ideally the `unbound-method` rule would fail silently when used in a non-TypeScript project where
 			//       typed linting is not available, since this is the described behavior on its docs page.
 			//       This doesn't appear to be the case in actual usage when linting a JavaScript project,

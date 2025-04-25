@@ -1,4 +1,5 @@
 import {fileURLToPath} from "node:url";
+
 import {getAbsoluteRepoRootPath} from "./getAbsoluteRepoRootPath.ts";
 
 jest.mock("node:url", () => ({

@@ -1,7 +1,7 @@
+import {runScript} from "./index.ts";
 import {clean} from "./scripts/clean.ts";
 import {initRepo, logInitRepoHelpText} from "./scripts/initRepo.ts";
 import {runCLI} from "./scripts/runCLI.ts";
-import {runScript} from "./index.ts";
 
 jest.mock("./scripts/clean.ts");
 jest.mock("./scripts/initRepo.ts");

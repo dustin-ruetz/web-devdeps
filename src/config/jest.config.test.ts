@@ -1,5 +1,6 @@
 import {dependsOnMock} from "../utils/dependsOn.mock.ts";
 import {getAbsoluteRepoRootPathMock} from "../utils/getAbsoluteRepoRootPath.mock.ts";
+
 import {makeJestConfig} from "./jest.config.ts";
 
 afterEach(() => {

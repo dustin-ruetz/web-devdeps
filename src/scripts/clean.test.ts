@@ -1,4 +1,5 @@
 import {rm} from "node:fs/promises";
+
 import {clean} from "./clean.ts";
 
 jest.mock("node:fs/promises");

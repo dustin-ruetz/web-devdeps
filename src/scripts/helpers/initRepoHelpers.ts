@@ -1,6 +1,8 @@
 import {mkdir, readdir, readFile, writeFile} from "node:fs/promises";
-import type {PackageJsonTypes} from "../../types.d.ts";
+
 import {nodeModulesPackagePath, packageName} from "../../constants.ts";
+import type {PackageJsonTypes} from "../../types.d.ts";
+
 import {getRootPaths} from "./getRootPaths.ts";
 
 const rootPathToReadFrom = getRootPaths().readFrom;

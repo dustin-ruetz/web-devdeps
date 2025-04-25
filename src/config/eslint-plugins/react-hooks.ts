@@ -1,5 +1,6 @@
 import {configs} from "eslint-plugin-react-hooks";
 import typescripteslint, {type ConfigArray} from "typescript-eslint";
+
 import {reactFilesGlobPattern} from "../eslint-shared/reactFilesGlobPattern.ts";
 
 /**

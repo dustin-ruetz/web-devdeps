@@ -1,6 +1,7 @@
 import {readdir} from "node:fs/promises";
-import {packageName} from "../src/constants.ts";
+
 import packageJSON from "../package.json" with {type: "json"};
+import {packageName} from "../src/constants.ts";
 
 test("INTEGRATION: the NPM package name matches the one exported from the `constants` file", () => {
 	expect(packageJSON.name).toBe(packageName);

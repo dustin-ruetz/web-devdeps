@@ -1,4 +1,5 @@
 import {dependsOnMock} from "../utils/dependsOn.mock.ts";
+
 import {makeStylelintConfig} from "./stylelint.config.ts";
 
 describe("it exports a configuration object and the most important config options are correct", () => {

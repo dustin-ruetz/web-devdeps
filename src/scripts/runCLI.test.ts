@@ -1,5 +1,7 @@
 import {spawn} from "node:child_process";
+
 import {getAbsoluteRepoRootPathMock} from "../utils/getAbsoluteRepoRootPath.mock.ts";
+
 import {type cli, runCLI} from "./runCLI.ts";
 
 jest.mock("node:child_process", () => ({

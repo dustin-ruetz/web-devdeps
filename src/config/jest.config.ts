@@ -1,9 +1,10 @@
 import type {Config} from "jest";
+
+import {nodeModulesPackagePath} from "../constants.ts";
 import {dependsOn} from "../utils/dependsOn.ts";
 import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.ts";
 import {getIsWebDevdepsRepo} from "../utils/getIsWebDevdepsRepo.ts";
 import {makeCachePath} from "../utils/makeCachePath.ts";
-import {nodeModulesPackagePath} from "../constants.ts";
 
 /**
  * @description "Jest is a delightful JavaScript testing framework with a focus on simplicity."
