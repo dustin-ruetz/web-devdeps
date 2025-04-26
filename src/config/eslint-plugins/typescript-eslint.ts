@@ -79,7 +79,6 @@ export const typescripteslintPlugin: ConfigArray = typescripteslint.config(
 				{
 					...noShadowRuleOptions,
 					hoist: "functions-and-types",
-					// ignoreTypeValueShadow: false,
 					ignoreFunctionTypeParameterNameValueShadow: false,
 				},
 			],
