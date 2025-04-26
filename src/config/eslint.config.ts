@@ -14,11 +14,11 @@ import {makeJSDocPlugin} from "./eslint-plugins/jsdoc.ts";
 import {jsxA11yPlugin} from "./eslint-plugins/jsx-a11y.ts";
 import {reactHooksPlugin} from "./eslint-plugins/react-hooks.ts";
 import {typescripteslintPlugin} from "./eslint-plugins/typescript-eslint.ts";
-import {mockAndTestFilesGlobPattern} from "./eslint-shared/mockAndTestFilesGlobPattern.ts";
+import {mockAndTestFilesGlobPattern} from "./eslint-utils/mockAndTestFilesGlobPattern.ts";
 import {
 	noMagicNumbersRuleOptions,
 	noShadowRuleOptions,
-} from "./eslint-shared/ruleOptions.ts";
+} from "./eslint-utils/ruleOptions.ts";
 
 /**
  * @description "ESLint statically analyzes your code to quickly find problems."

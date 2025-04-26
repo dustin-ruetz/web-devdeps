@@ -1,10 +1,10 @@
 import typescripteslint, {type ConfigArray} from "typescript-eslint";
 
-import {mockAndTestFilesGlobPattern} from "../eslint-shared/mockAndTestFilesGlobPattern.ts";
+import {mockAndTestFilesGlobPattern} from "../eslint-utils/mockAndTestFilesGlobPattern.ts";
 import {
 	noMagicNumbersRuleOptions,
 	noShadowRuleOptions,
-} from "../eslint-shared/ruleOptions.ts";
+} from "../eslint-utils/ruleOptions.ts";
 
 /**
  * @description "**`typescript-eslint` enables ESLint to run on TypeScript code.** It brings in the best of

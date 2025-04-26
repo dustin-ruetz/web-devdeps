@@ -1,4 +1,4 @@
-import {findConfigObjectByName} from "../eslint-shared/findConfigObjectByName.ts";
+import {findConfigObjectByName} from "../eslint-utils/findConfigObjectByName.ts";
 
 import {makeImportPlugin} from "./import.ts";
 
