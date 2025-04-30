@@ -141,7 +141,7 @@ export const writePackageJson = async (
 	// both `dependencies` and `devDependencies`.
 	const initScript = String(packageJson.scripts["init"]);
 	packageJson.scripts["init"] = initScript.replace(
-		"pnpm install --prod",
+		"pnpm install --no-optional",
 		"pnpm install",
 	);
 
