@@ -26,11 +26,7 @@ runs:
         node-version: ${{ inputs.node-version }}
         node-version-file: ${{ inputs.node-version-file }}
     - name: ⬇️ Install dependencies
-      # Omit the `optionalDependencies` from installation since the `husky` package is the lone entry,
-      # and `husky` is only relevant when creating/updating the files in the `.githooks/` directory.
-      # Excerpt from https://pnpm.io/cli/install#--no-optional:
-      # > `optionalDependencies` are not installed.
-      run: pnpm install --no-optional
+      run: pnpm install
       shell: bash
     - name: 👀 Audit dependency signatures
       # - Verify the integrity of provenance attestations and registry signatures for installed dependencies.

@@ -26,7 +26,7 @@
 		"// github.*": "Use the `act` tool to test GitHub Actions workflows locally.",
 		"github.release": "act --input DRY_RUN=true --secret OP_SERVICE_ACCOUNT_TOKEN --workflows ./.github/workflows/release.yaml",
 		"github.validate": "act --workflows ./.github/workflows/validate.yaml",
-		"init": "git config core.hooksPath ./.githooks/_/ && pnpm install --no-optional && pnpm validate",
+		"init": "git config core.hooksPath ./.githooks/_/ && pnpm install && pnpm validate",
 		"preinit-repo": "node ./src/index.ts clean ./.init-repo-script-test-output/ && mkdir ./.init-repo-script-test-output/",
 		"init-repo": "node ./lib/ init-repo",
 		"lint.js-ts": "node ./lib/ lint.js-ts",
