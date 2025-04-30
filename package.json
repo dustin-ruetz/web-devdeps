@@ -91,7 +91,6 @@
 		"lint-staged": "15.5.1",
 		"postcss-scss": "4.0.9",
 		"postcss-styled-syntax": "0.7.1",
-		"prettier": "3.5.3",
 		"semantic-release": "24.2.3",
 		"stylelint": "16.19.1",
 		"stylelint-config-standard-scss": "14.0.0",
@@ -99,6 +98,13 @@
 		"typescript-eslint": "8.31.1"
 	},
 	"devDependencies": {
+		"husky": "9.1.7",
+		"prettier": "3.5.3"
+	},
+	"optionalDependencies": {
 		"husky": "9.1.7"
+	},
+	"peerDependencies": {
+		"prettier": "3.5.3"
 	}
 }

@@ -89,9 +89,6 @@ importers:
       postcss-styled-syntax:
         specifier: 0.7.1
         version: 0.7.1(postcss@8.5.3)
-      prettier:
-        specifier: 3.5.3
-        version: 3.5.3
       semantic-release:
         specifier: 24.2.3
         version: 24.2.3(typescript@5.8.3)
@@ -108,6 +105,10 @@ importers:
         specifier: 8.31.1
         version: 8.31.1(eslint@9.25.1(jiti@2.4.2))(typescript@5.8.3)
     devDependencies:
+      prettier:
+        specifier: 3.5.3
+        version: 3.5.3
+    optionalDependencies:
       husky:
         specifier: 9.1.7
         version: 9.1.7
@@ -6238,7 +6239,8 @@ snapshots:
 
   human-signals@8.0.1: {}
 
-  husky@9.1.7: {}
+  husky@9.1.7:
+    optional: true
 
   iconv-lite@0.6.3:
     dependencies:
