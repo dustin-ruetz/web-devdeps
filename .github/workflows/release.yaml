@@ -60,4 +60,4 @@ jobs:
           DRY_RUN: ${{ github.event.inputs.DRY_RUN == 'true' && '--dry-run' || '' }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ steps.op-secrets.outputs.WEB_DEVDEPS_NPM_TOKEN }}
-        run: pnpx semantic-release $DRY_RUN --extends ./lib/config/semantic-release.config.js
+        run: ./node_modules/.bin/semantic-release $DRY_RUN --extends ./lib/config/semantic-release.config.js
