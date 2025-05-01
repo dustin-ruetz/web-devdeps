@@ -3,4 +3,4 @@
 # > You can write code that's valid TypeScript directly in Node.js without the need to transpile it first.
 # > The `--experimental-strip-types` flag tells Node.js to strip the
 # > type annotations from the TypeScript code before running it.
-node-options="--experimental-strip-types"
+nodeOptions: --experimental-strip-types
