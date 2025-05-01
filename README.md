@@ -341,4 +341,27 @@ pnpm github.release
 pnpm github.validate
 ```
 
+### Publishing an `rc-` Version
+
+To manually publish a release candidate version to the npm registry for testing purposes:
+
+1. Run `git checkout -b rc-FEATURE`, make and commit changes, then push.
+1. Create a PR from the `rc-FEATURE` branch and confirm that the automated checks all pass.
+1. Go to the [web-devdeps/actions/workflows/release.yaml](https://github.com/dustin-ruetz/web-devdeps/actions/workflows/release.yaml) GitHub page.
+1. Click the "Run workflow" button.
+1. Click the "Use workflow from Branch: main" button, then select the `rc-FEATURE` branch from Step 1.
+1. Click the green "Run workflow" button.
+1. After the `release` run is complete, confirm that the `rc` version was successfully published to the npm registry:
+   1. Via CLI - `pnpm view web-devdeps versions`
+   1. Via the [npm Versions][npm-web-devdeps-versions] page.
+1. Run the `pnpm install --save-dev --save-exact web-devdeps@VERSION` command to install it in a consuming repo for local testing.
+
+After testing is complete:
+
+1. Run `npm login` and authenticate via the browser.
+1. Run `npm unpublish web-devdeps@VERSION` to unpublish the `rc` version.
+1. Run `pnpm view web-devdeps versions` and visit the [npm Versions][npm-web-devdeps-versions] page to confirm that it was unpublished.
+1. Delete its entry from the [GitHub Releases](https://github.com/dustin-ruetz/web-devdeps/releases) page.
+
 [kcd-scripts]: https://github.com/kentcdodds/kcd-scripts
+[npm-web-devdeps-versions]: https://www.npmjs.com/package/web-devdeps?activeTab=versions
