@@ -11,7 +11,7 @@ inputs:
     description: Path to file specifying the Node.js version number; passed to actions/setup-node.
     required: false
 runs:
-  using: "composite"
+  using: composite
   steps:
     # https://pnpm.io/continuous-integration#github-actions
     # https://github.com/pnpm/action-setup
