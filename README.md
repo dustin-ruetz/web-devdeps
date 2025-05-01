@@ -36,7 +36,13 @@ Prerequisite: The following instructions assume that [Node.js](https://nodejs.or
 
 ### Usage in Projects
 
-Note that `web-devdeps` requires the project to have the following commonly-used folder/file structure:
+Using the `web-devdeps` package requires consuming projects to:
+
+1. Use pnpm as a package manager. (Note that this is not a hard requirement; npm should still work despite its shortcomings.)
+
+1. Have a flattened/hoisted `node_modules` directory. pnpm can use this installation method via the [nodeLinker](https://pnpm.io/settings#nodelinker) setting. (Note that this is npm's default behavior.)
+
+1. Adhere to the following commonly-used folder/file structure:
 
 ```text
 // Created using the `Shinotatwu-DS.file-tree-generator` extension for Visual Studio Code.
@@ -160,7 +166,7 @@ pnpm add --save-dev --save-exact web-devdeps
 		"check.types": "tsc --noEmit",
 		"clean": "pnpm --parallel /clean.*/",
 		"clean.caches": "pnpx jest --clear-cache && pnpx web-devdeps clean ./.caches/",
-		"clean.deps": "pnpx web-devdeps clean ./node_modules/ ./package-lock.json",
+		"clean.deps": "pnpx web-devdeps clean ./node_modules/ ./pnpm-lock.yaml",
 		"format": "web-devdeps format",
 		"fix": "pnpm --parallel /fix.*/",
 		"fix.format": "pnpm format --write ./",
@@ -181,7 +187,13 @@ pnpm add --save-dev --save-exact web-devdeps
 }
 ```
 
-7. Create the `renovate.json` file:
+7. Create the `pnpm-workspace.yaml` file:
+
+```yaml
+nodeLinker: hoisted
+```
+
+8. Create the `renovate.json` file:
 
 ```json
 {
@@ -190,7 +202,7 @@ pnpm add --save-dev --save-exact web-devdeps
 }
 ```
 
-8. (optional) If it's a TypeScript project, create the `tsconfig.json` file and make modifications as needed:
+9. (optional) If it's a TypeScript project, create the `tsconfig.json` file and make modifications as needed:
 
 ```json
 {
@@ -203,13 +215,13 @@ pnpm add --save-dev --save-exact web-devdeps
 }
 ```
 
-9. Try running the validation script:
+10. Try running the validation script:
 
 ```sh
 pnpm validate
 ```
 
-10. Remove any previous development dependencies and configuration files that are no longer needed now that they're being provided by the `web-devdeps` package:
+11. Remove any previous development dependencies and configuration files that are no longer needed now that they're being provided by the `web-devdeps` package:
 
 ```sh
 pnpm remove --save-dev eslint jest prettier stylelint # (etc.)
