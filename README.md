@@ -73,7 +73,7 @@ mkdir repo-name && cd repo-name && git init
 pnpx web-devdeps init-repo repo-name
 
 # 3. Configure the repo to use the Git hooks files in the written `.githooks/` directory
-#    and modify their permissions to make all files executable:
+#    and modify the permissions to make all files executable:
 git config core.hooksPath ./.githooks/ && chmod u+x ./.githooks/*
 
 # 4. Install the `web-devdeps` version listed in the written `package.json` file:
@@ -372,7 +372,7 @@ After testing is complete:
 
 1. Run `npm login` and authenticate via the browser.
 1. Run `npm unpublish web-devdeps@VERSION` to unpublish the `rc` version.
-1. Run `pnpm view web-devdeps versions` and visit the [npm Versions][npm-web-devdeps-versions] page to confirm that it was unpublished.
+1. Run `pnpm view web-devdeps versions` and/or visit the [npm Versions][npm-web-devdeps-versions] page to confirm that it was unpublished.
 1. Delete its entry from the [GitHub Releases](https://github.com/dustin-ruetz/web-devdeps/releases) page.
 
 [kcd-scripts]: https://github.com/kentcdodds/kcd-scripts
