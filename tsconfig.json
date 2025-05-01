@@ -5,11 +5,12 @@
 		"declaration": true,
 		"erasableSyntaxOnly": true,
 		"jsx": "react",
+		"lib": ["ES2024"],
 		"module": "NodeNext",
 		"noUncheckedSideEffectImports": true,
 		"resolveJsonModule": true,
 		"rewriteRelativeImportExtensions": true,
-		"target": "ES2023",
+		"target": "ES2024",
 		"verbatimModuleSyntax": true
 	}
 }

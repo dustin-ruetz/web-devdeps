@@ -13,11 +13,18 @@ test("it is a configuration object and the most important config options are cor
 	expect(compilerOptions.module).toBe("NodeNext");
 	expect(compilerOptions.resolveJsonModule).toBe(true);
 	expect(compilerOptions.rewriteRelativeImportExtensions).toBe(true);
-	// Excerpt from https://www.typescriptlang.org/tsconfig#target on not using `"target": "esnext"`:
-	// > The special `ESNext` value refers to the highest version your version of TypeScript supports.
-	// > This setting should be used with caution, since it doesn't mean the same thing between
-	// > different TypeScript versions and can make upgrades less predictable.
-	expect(compilerOptions.target).not.toMatch(/esnext/i);
-	expect(compilerOptions.target).toBe("ES2023");
 	expect(compilerOptions.verbatimModuleSyntax).toBe(true);
+
+	// Excerpt from https://www.typescriptlang.org/tsconfig/#lib:
+	// > You may want to change these for a few reasons:
+	// > - Your program doesn’t run in a browser, so you don’t want the `"dom"` type definitions
+	//
+	// Paraphrased excerpt from https://www.totaltypescript.com/tsconfig-cheat-sheet#not-running-in-the-dom:
+	// > If your code _doesn't_ run in the DOM, you'll want `lib: ["es20yy"]`.
+	// > This excludes the `dom` and `dom.iterable` typings.
+	const [lib] = compilerOptions.lib;
+	const {target} = compilerOptions;
+	expect(lib).toBe("ES2024");
+	expect(target).toBe("ES2024");
+	expect(lib).toBe(target);
 });
