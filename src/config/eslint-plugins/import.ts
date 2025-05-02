@@ -94,7 +94,7 @@ export const makeImportPlugin = (
 						named: {
 							// > Enforce ordering of names within imports and exports.
 							enabled: true,
-							// > `mixed`: Sorts all identifiers in alphabetical order.
+							// > `mixed`: Sorts all identifiers (i.e. `type` _and_ variable imports) in alphabetical order.
 							types: "mixed",
 						},
 						"newlines-between": "always",
