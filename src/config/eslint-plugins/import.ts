@@ -75,10 +75,12 @@ export const makeImportPlugin = (
 				 * > 2. This version distinguishes Flow `type` imports from standard imports.
 				 */
 				"import/no-duplicates": "error",
+				/** @see {@link https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md} */
 				"import/order": [
 					"error",
 					{
 						alphabetize: {
+							caseInsensitive: true,
 							order: "asc",
 						},
 						groups: [
@@ -89,6 +91,12 @@ export const makeImportPlugin = (
 							"sibling",
 							"index",
 						],
+						named: {
+							// > Enforce ordering of names within imports and exports.
+							enabled: true,
+							// > `mixed`: Sorts all identifiers in alphabetical order.
+							types: "mixed",
+						},
 						"newlines-between": "always",
 						warnOnUnassignedImports: true,
 					},
