@@ -216,6 +216,14 @@ export const writePackageJson = async (
 	);
 };
 
+/** Write a new `pnpm-workspace.yaml` file to disk. */
+export const writePnpmWorkspaceYaml = async () => {
+	await writeFile(
+		`${rootPathToWriteTo}/pnpm-workspace.yaml`,
+		"nodeLinker: hoisted",
+	);
+};
+
 /**
  * @description Write a new `README.md` file to disk and set the header to the name of the repository.
  * @param repoName - The name of the repository.

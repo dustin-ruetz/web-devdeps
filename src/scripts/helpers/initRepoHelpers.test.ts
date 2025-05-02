@@ -8,6 +8,7 @@ import {
 	writeLicense,
 	writeNodeVersion,
 	writePackageJson,
+	writePnpmWorkspaceYaml,
 	writeReadme,
 	writeRenovate,
 	writeTsConfig,
@@ -195,6 +196,18 @@ describe("writePackageJson", () => {
 			),
 		);
 	});
+});
+
+test("writePnpmWorkspaceYaml", async () => {
+	expect.hasAssertions();
+
+	await writePnpmWorkspaceYaml();
+
+	expect(writeFile).toHaveBeenCalledTimes(1);
+	expect(writeFile).toHaveBeenCalledWith(
+		expect.stringContaining("pnpm-workspace.yaml"),
+		"nodeLinker: hoisted",
+	);
 });
 
 test("writeReadme", async () => {

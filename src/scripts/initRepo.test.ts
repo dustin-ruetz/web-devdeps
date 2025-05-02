@@ -8,6 +8,7 @@ import {
 	writeLicense,
 	writeNodeVersion,
 	writePackageJson,
+	writePnpmWorkspaceYaml,
 	writeReadme,
 	writeRenovate,
 	writeTsConfig,
@@ -164,6 +165,7 @@ describe("initRepo", () => {
 		expect(writeJestSetupFile).not.toHaveBeenCalled();
 		expect(writeLicense).toHaveBeenCalledTimes(1);
 		expect(writeNodeVersion).toHaveBeenCalledTimes(1);
+		expect(writePnpmWorkspaceYaml).toHaveBeenCalledTimes(1);
 		expect(writeNodeVersion).toHaveBeenCalledWith(
 			defaultArgumentValues.nodeVersion,
 		);
