@@ -170,6 +170,13 @@ describe("it exports a configuration array and the most important config options
 			// Verify that one of the `eslint-plugin-jsx-a11y` strict rules is included in the configuration.
 			expect(jsxA11yConfig?.rules?.["jsx-a11y/alt-text"]).toBe("error");
 
+			const reactConfig = findConfigObjectByName(
+				eslintConfig,
+				"react/user-defined-config",
+			);
+			// Verify that one of the `eslint-plugin-react` rules is included in the configuration.
+			expect(reactConfig?.rules?.["react/display-name"]).toBe(2);
+
 			const reactHooksConfig = findConfigObjectByName(
 				eslintConfig,
 				"react-hooks/recommended",

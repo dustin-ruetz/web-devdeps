@@ -13,6 +13,7 @@ import {makeJestPlugin} from "./eslint-plugins/jest.ts";
 import {makeJSDocPlugin} from "./eslint-plugins/jsdoc.ts";
 import {jsxA11yPlugin} from "./eslint-plugins/jsx-a11y.ts";
 import {reactHooksPlugin} from "./eslint-plugins/react-hooks.ts";
+import {reactPlugin} from "./eslint-plugins/react.ts";
 import {typescripteslintPlugin} from "./eslint-plugins/typescript-eslint.ts";
 import {mockAndTestFilesGlobPattern} from "./eslint-utils/mockAndTestFilesGlobPattern.ts";
 import {
@@ -178,6 +179,7 @@ export const makeESLintConfig = async (): Promise<Config> => {
 		...makeImportPlugin(hasReactDependency, hasTSConfigFile),
 		// Conditionally-included ESLint plugins.
 		...(hasReactDependency ? jsxA11yPlugin : []),
+		...(hasReactDependency ? reactPlugin : []),
 		...(hasReactDependency ? reactHooksPlugin : []),
 		...(hasTSConfigFile ? typescripteslintPlugin : []),
 	);
