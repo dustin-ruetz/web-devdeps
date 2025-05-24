@@ -11,8 +11,6 @@ jobs:
     strategy:
       matrix:
         # - Run this job on the active Node.js LTS version as well as the latest current version.
-        # - Note: this repo runs the `clean` script with the `--experimental-strip-types`
-        #   flag, which requires a Node.js version of v22.6.0 or greater.
         # - https://nodejs.org/en/about/previous-releases/#release-schedule
         node-version: [lts/*, current]
     steps:
