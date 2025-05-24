@@ -2,6 +2,13 @@
 	"name": "web-devdeps",
 	"version": "0.0.0-semantically-released",
 	"description": "Package that provides development dependencies for other web projects (both browser- and Node.js-based) to consume.",
+	"bin": {
+		"web-devdeps": "./lib/index.js"
+	},
+	"exports": {
+		".": "./lib/exports.js",
+		"./package.json": "./package.json"
+	},
 	"main": "./lib/exports.js",
 	"scripts": {
 		"prebuild": "pnpm clean.lib",
@@ -41,9 +48,6 @@
 	"keywords": [],
 	"author": "Dustin Ruetz",
 	"license": "MIT",
-	"bin": {
-		"web-devdeps": "lib/index.js"
-	},
 	"engines": {
 		"node": ">=18",
 		"npm": ">=10",

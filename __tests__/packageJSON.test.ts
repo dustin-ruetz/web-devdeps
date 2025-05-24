@@ -3,19 +3,33 @@ import packageJSON from "../package.json" with {type: "json"};
 test("the most important configuration options are correct", () => {
 	expect(packageJSON.name).toBe("web-devdeps");
 	expect(packageJSON.author).toBe("Dustin Ruetz");
+	// Excerpt from https://docs.npmjs.com/cli/v6/configuring-npm/package-json#bin:
+	// > A lot of packages have one or more executable files that they'd like to install into the PATH.
+	// > To use this, supply a `bin` field in your package.json which is a map of command name to local file name. On install,
+	// > npm will symlink that file into `prefix/bin` for global installs, or `./node_modules/.bin/` for local installs.
+	expect(packageJSON.bin).toStrictEqual({
+		"web-devdeps": "./lib/index.js",
+	});
+
+	// Excerpt from https://docs.npmjs.com/cli/v11/configuring-npm/package-json#exports:
+	// > The "exports" field provides a modern alternative to "main" allowing multiple entry points to be defined,
+	// > conditional entry resolution support between environments, and preventing any other entry points besides
+	// > those defined in "exports". This encapsulation allows module authors to clearly define
+	// > the public interface for their package.
+	expect(packageJSON.exports).toStrictEqual({
+		".": "./lib/exports.js",
+		// Excerpt from https://www.totaltypescript.com/how-to-create-an-npm-package#64-add-an-exports-field:
+		// > It's also recommended to add `./package.json` to the `exports` field. This is
+		// > because certain tools need easy access to your `package.json` file.
+		"./package.json": "./package.json",
+	});
+
 	// Excerpt from https://docs.npmjs.com/cli/v6/configuring-npm/package-json#main:
 	// > The main field is a module ID that is the primary entry point to your program.
 	// > That is, if your package is named `foo`, and a user installs it, and then does
 	// > `require("foo")`, then your main module's exports object will be returned.
 	// > This should be a module ID relative to the root of your package folder.
 	expect(packageJSON.main).toBe("./lib/exports.js");
-	// Excerpt from https://docs.npmjs.com/cli/v6/configuring-npm/package-json#bin:
-	// > A lot of packages have one or more executable files that they'd like to install into the PATH.
-	// > To use this, supply a `bin` field in your package.json which is a map of command name to local file name. On install,
-	// > npm will symlink that file into `prefix/bin` for global installs, or `./node_modules/.bin/` for local installs.
-	expect(packageJSON.bin).toStrictEqual({
-		"web-devdeps": "lib/index.js",
-	});
 	// Ensure that only the following allowlisted files and folders are included in the published NPM package.
 	//
 	// Excerpt from https://docs.npmjs.com/cli/v10/using-npm/developers#keeping-files-out-of-your-package:
