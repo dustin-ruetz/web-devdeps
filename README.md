@@ -32,7 +32,7 @@ Additional details:
 
 ## Usage and Development
 
-Prerequisite: The following instructions assume that [Node.js](https://nodejs.org/en/download) and [pnpm](https://pnpm.io/installation#using-corepack) are installed.
+Prerequisite: The following instructions assume that [Node.js](https://nodejs.org/en/download) and [pnpm](https://pnpm.io/installation#using-corepack) are installed and that [VS Code](https://code.visualstudio.com/Download) is being used as the IDE.
 
 ### Usage in Projects
 
@@ -316,7 +316,8 @@ Start by initializing the repo for local development:
 1. Execute the `pnpm run init` command in order to:
    1. Configure Git hooks;
    1. Install dependencies; and
-   1. Validate the codebase.
+   1. Validate (🛠️ build, 🧐 check, 🧪 test) the codebase.
+1. (optional) If the repo is already opened in VS Code, reload the window.
 
 Below is a list of the most useful scripts in alphabetical order (execute the `pnpm run` command to print the full list):
 
