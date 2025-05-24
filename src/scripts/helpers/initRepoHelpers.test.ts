@@ -203,11 +203,15 @@ test("writePnpmWorkspaceYaml", async () => {
 
 	await writePnpmWorkspaceYaml();
 
+	const settings = ["nodeLinker: hoisted", 'savePrefix: ""'] as const;
+
 	expect(writeFile).toHaveBeenCalledTimes(1);
-	expect(writeFile).toHaveBeenCalledWith(
-		expect.stringContaining("pnpm-workspace.yaml"),
-		"nodeLinker: hoisted",
-	);
+	settings.forEach((setting) => {
+		expect(writeFile).toHaveBeenCalledWith(
+			expect.stringContaining("pnpm-workspace.yaml"),
+			expect.stringContaining(setting),
+		);
+	});
 });
 
 test("writeReadme", async () => {

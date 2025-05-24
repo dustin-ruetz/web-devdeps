@@ -214,7 +214,10 @@ export const writePackageJson = async (
 export const writePnpmWorkspaceYaml = async () => {
 	await writeFile(
 		`${rootPathToWriteTo}/pnpm-workspace.yaml`,
-		"nodeLinker: hoisted",
+		`
+nodeLinker: hoisted
+savePrefix: ""
+`.trimStart(),
 	);
 };
 
