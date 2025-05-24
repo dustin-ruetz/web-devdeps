@@ -7,6 +7,7 @@
 		"prebuild": "pnpm clean.lib",
 		"build": "tsc --project ./tsconfig.build.json",
 		"check": "pnpm run /check./",
+		"check.exports": "attw --ignore-rules cjs-resolves-to-esm --pack ./",
 		"check.format": "pnpm format --check ./",
 		"check.lint.js-ts": "pnpm lint.js-ts ./",
 		"check.types": "tsc --noEmit",
@@ -26,7 +27,7 @@
 		"// github.*": "Use the `act` tool to test GitHub Actions workflows locally.",
 		"github.release": "act --input DRY_RUN=true --secret OP_SERVICE_ACCOUNT_TOKEN --workflows ./.github/workflows/release.yaml",
 		"github.validate": "act --workflows ./.github/workflows/validate.yaml",
-		"init": "git config core.hooksPath ./.githooks/_/ && pnpm install --prod && pnpm validate",
+		"init": "git config core.hooksPath ./.githooks/_/ && pnpm install && pnpm validate",
 		"preinit-repo": "git clean --force -X ./.init-repo-script-test-output/ && mkdir ./.init-repo-script-test-output/",
 		"init-repo": "node ./lib/ init-repo",
 		"lint.js-ts": "node ./lib/ lint.js-ts",
@@ -100,6 +101,7 @@
 		"typescript-eslint": "8.31.1"
 	},
 	"devDependencies": {
+		"@arethetypeswrong/cli": "0.18.1",
 		"husky": "9.1.7"
 	}
 }
