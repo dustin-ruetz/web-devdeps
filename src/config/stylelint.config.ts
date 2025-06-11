@@ -3,6 +3,8 @@ import type {Config} from "stylelint";
 import {dependsOn} from "../utils/dependsOn.ts";
 
 import {logicalCssStylelintPlugin} from "./stylelint-plugins/logicalCss.ts";
+import {postcssScssStylelintSyntax} from "./stylelint-syntaxes/postcssScss.ts";
+import {postcssStyledStylelintSyntax} from "./stylelint-syntaxes/postcssStyled.ts";
 
 /**
  * @description "A mighty CSS linter that helps you avoid errors and enforce conventions."
@@ -14,35 +16,13 @@ export const makeStylelintConfig = async (): Promise<Config> => {
 	const hasStyledComponentsDependency = await dependsOn(["styled-components"]);
 
 	const overrides: Config["overrides"] = [];
-	// Use two plugins from https://stylelint.io/awesome-stylelint/#custom-syntaxes-1
+	// Use two custom syntaxes from https://stylelint.io/awesome-stylelint/#custom-syntaxes-1
 	// so that Stylelint is also able to check Sass and styled-components code.
 	if (hasSassDependency) {
-		// https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint#only-css-and-postcss-are-validated-by-default
-		overrides.push({
-			customSyntax: "postcss-scss",
-			files: ["**/*.scss"],
-			rules: {
-				// https://github.com/stylelint-scss/stylelint-scss/blob/master/src/rules/double-slash-comment-empty-line-before/README.md
-				// > Require or disallow an empty line before `//`-comments.
-				"scss/double-slash-comment-empty-line-before": [
-					"always",
-					{
-						except: ["first-nested"],
-						ignore: ["between-comments", "inside-block", "stylelint-commands"],
-					},
-				],
-				// https://github.com/stylelint-scss/stylelint-scss/blob/master/src/rules/load-partial-extension/README.md
-				// > Require or disallow extension in `@import`, `@use`, `@forward`, and `[meta.load-css]` commands.
-				"scss/load-partial-extension": "always",
-			},
-		});
+		overrides.push(postcssScssStylelintSyntax);
 	}
 	if (hasStyledComponentsDependency) {
-		// https://github.com/hudochenkov/postcss-styled-syntax#stylelint
-		overrides.push({
-			customSyntax: "postcss-styled-syntax",
-			files: ["**/*.{jsx,tsx}"],
-		});
+		overrides.push(postcssStyledStylelintSyntax);
 	}
 
 	return {
