@@ -13,6 +13,9 @@ describe("it exports a configuration object and the most important config option
 		expect(stylelintConfig.extends).toStrictEqual([
 			"stylelint-config-standard",
 		]);
+		expect(stylelintConfig.plugins).toStrictEqual([
+			"stylelint-plugin-logical-css",
+		]);
 		expect(stylelintConfig.reportDescriptionlessDisables).toBe(true);
 		expect(stylelintConfig.reportInvalidScopeDisables).toBe(true);
 		expect(stylelintConfig.reportNeedlessDisables).toBe(true);
@@ -24,6 +27,9 @@ describe("it exports a configuration object and the most important config option
 		]);
 		expect(stylelintConfig.rules?.["max-nesting-depth"]).toBe(3);
 		expect(stylelintConfig.rules?.["font-weight-notation"]).toBe("numeric");
+		expect(
+			stylelintConfig.rules?.["plugin/use-logical-properties-and-values"],
+		).toBe("error");
 	});
 
 	test("when testing this `web-devdeps` repo (which *does not* have frontend style-related dependencies)", async () => {

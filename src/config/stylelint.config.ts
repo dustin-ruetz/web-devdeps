@@ -2,6 +2,8 @@ import type {Config} from "stylelint";
 
 import {dependsOn} from "../utils/dependsOn.ts";
 
+import {logicalCssStylelintPlugin} from "./stylelint-plugins/logicalCss.ts";
+
 /**
  * @description "A mighty CSS linter that helps you avoid errors and enforce conventions."
  * @returns Configuration for Stylelint.
@@ -49,6 +51,7 @@ export const makeStylelintConfig = async (): Promise<Config> => {
 			// Conditionally extend the standard SCSS configuration if the consuming repository has a dependency on the `sass` package.
 			...(hasSassDependency ? ["stylelint-config-standard-scss"] : []),
 		],
+		plugins: [logicalCssStylelintPlugin.name],
 		// Excerpt from https://stylelint.io/user-guide/configure#report:
 		// > These `report*` properties provide extra validation for `stylelint-disable` comments.
 		// > This can help enforce useful and well-documented disables.
@@ -107,8 +110,10 @@ export const makeStylelintConfig = async (): Promise<Config> => {
 					resolveNestedSelectors: true,
 				},
 			],
+			...logicalCssStylelintPlugin.rules,
 		},
 		overrides,
 	};
 };
+
 export default makeStylelintConfig();
