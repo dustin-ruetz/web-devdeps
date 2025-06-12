@@ -11,6 +11,9 @@ describe("it exports a configuration array and the most important config options
 			(configObj) => configObj.name === "jest/user-defined-config",
 		);
 
+		// Verify that one of the Jest global variables is set correctly.
+		expect(userDefinedConfig?.languageOptions?.globals?.["jest"]).toBeDefined();
+
 		// Verify that a sampling of recommended rules are included in the configuration.
 		expect(userDefinedConfig?.rules?.["jest/expect-expect"]).toBe("warn");
 		expect(userDefinedConfig?.rules?.["jest/no-conditional-expect"]).toBe(

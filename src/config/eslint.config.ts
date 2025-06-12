@@ -78,7 +78,6 @@ export const makeESLintConfig = async (): Promise<Config> => {
 				// > the `globals` package to additionally enable all globals for a specific environment.
 				globals: {
 					...(hasFrontendDependencies ? globals.browser : {}),
-					...globals.jest,
 					// Always include the Node.js global variables since they're relevant in most repos; even
 					// frontend-only projects often still have a need for runnable Node.js CLI scripts.
 					...globals.node,

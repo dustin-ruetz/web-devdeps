@@ -20,6 +20,9 @@ export const makeJestPlugin = (hasTSConfigFile: boolean): ConfigArray =>
 		files: [mockAndTestFilesGlobPattern],
 		...configs.recommended,
 		...configs.style,
+		// **Important:** Note that this plugin automatically configures the
+		//                `languageOptions.globals.jest` variables required for the
+		//                test environment.
 		rules: {
 			...configs.recommended.rules,
 			...configs.style.rules,

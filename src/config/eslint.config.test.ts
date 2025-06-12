@@ -48,7 +48,6 @@ describe("it exports a configuration array and the most important config options
 		);
 		expect(userDefinedConfig?.languageOptions).toStrictEqual({
 			globals: {
-				...globals.jest,
 				...globals.node,
 			},
 		});
