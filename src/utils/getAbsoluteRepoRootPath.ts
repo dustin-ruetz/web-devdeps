@@ -1,3 +1,7 @@
+// Refer to `getAbsoluteRepoRootPath.test.ts` for why this entire file is being
+// excluded from test coverage.
+/* v8 ignore start */
+
 import {fileURLToPath} from "node:url";
 
 import {nodeModulesPackagePath, packageName} from "../constants.ts";

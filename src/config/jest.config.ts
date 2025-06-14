@@ -123,6 +123,9 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// > The test environment that will be used for testing. The default environment in Jest is a Node.js environment.
 		// > If you are building a web app, you can use a browser-like environment through `jsdom` instead.
 		testEnvironment,
+		testEnvironmentOptions: {
+			globalsCleanup: "on",
+		},
 		testPathIgnorePatterns: [...ignorePatterns],
 		// Excerpt from https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object:
 		// > A map from regular expressions to paths to transformers.
