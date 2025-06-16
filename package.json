@@ -81,7 +81,7 @@
 		"@testing-library/jest-dom": "6.6.3",
 		"@tsconfig/strictest": "2.0.5",
 		"@types/eslint-plugin-jsx-a11y": "6.10.0",
-		"@types/jest": "29.5.14",
+		"@types/jest": "30.0.0",
 		"@types/node": "22.15.31",
 		"conventional-changelog-conventionalcommits": "9.0.0",
 		"eslint": "9.28.0",
