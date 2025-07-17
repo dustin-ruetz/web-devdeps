@@ -1,4 +1,8 @@
-/** @see {@link https://eslint.org/docs/latest/rules/no-magic-numbers#options} */
+/**
+ * > "Magic numbers" are numbers that occur multiple times in code without an
+ * > explicit meaning. They should preferably be replaced by named constants.
+ * @see {@link https://eslint.org/docs/latest/rules/no-magic-numbers#options}
+ */
 export const noMagicNumbersRuleOptions = {
 	/**
 	 * > A boolean to specify if we should check for the `const`
@@ -14,7 +18,12 @@ export const noMagicNumbersRuleOptions = {
 	ignoreArrayIndexes: true,
 } as const;
 
-/** @see {@link https://eslint.org/docs/latest/rules/no-shadow#options} */
+/**
+ * > Disallow variable declarations from shadowing variables declared in the
+ * > outer (ex: global) scope. Shadowing is the process by which a local
+ * > variable shares the same name as a variable in its containing scope.
+ * @see {@link https://eslint.org/docs/latest/rules/no-shadow#options}
+ */
 export const noShadowRuleOptions = {
 	/**
 	 * > If `true`, the rule prevents shadowing of built-in global
