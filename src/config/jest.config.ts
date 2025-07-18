@@ -40,8 +40,6 @@ export const makeJestConfig = async (): Promise<Config> => {
 		"<rootDir>/www/",
 		".d.ts",
 		".mock.(js|ts)",
-		// Ignore the `setupFilesAfterEnv` file since it's only purpose is to perform
-		// an import side effect, i.e. it doesn't export anything that can be tested.
 		"setupFilesAfterEnv.*",
 	] as const;
 
