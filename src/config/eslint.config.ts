@@ -19,6 +19,7 @@ import {mockAndTestFilesGlobPattern} from "./eslint-utils/mockAndTestFilesGlobPa
 import {
 	noMagicNumbersRuleOptions,
 	noShadowRuleOptions,
+	noShadowRuleOptionsForTestFiles,
 } from "./eslint-utils/ruleOptions.ts";
 
 /**
@@ -171,6 +172,7 @@ export const makeESLintConfig = async (): Promise<Config> => {
 				// It's useful to reference arbitrary numbers directly in unit test
 				// files, so disable the `no-magic-numbers` rule for tests.
 				"no-magic-numbers": "off",
+				"no-shadow": ["error", noShadowRuleOptionsForTestFiles],
 			},
 		},
 		...makeJestPlugin(hasTSConfigFile),

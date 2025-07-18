@@ -40,3 +40,17 @@ export const noShadowRuleOptions = {
 	 */
 	ignoreOnInitialization: true,
 } as const;
+
+export const noShadowRuleOptionsForTestFiles = {
+	...noShadowRuleOptions,
+	/**
+	 * The `@testing-library` package suite's `screen` import conflicts with the
+	 * DOM's global `window.screen` object, so the `screen` identifier should be
+	 * allowlisted in test files.
+	 *
+	 * > Array of identifier names for which shadowing is allowed.
+	 * @see {@link https://eslint.org/docs/latest/rules/no-shadow#allow}
+	 * @see {@link https://testing-library.com/docs/queries/about/#screen}
+	 */
+	allow: ["screen"],
+} as const;

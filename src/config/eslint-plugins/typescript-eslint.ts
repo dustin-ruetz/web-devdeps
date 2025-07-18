@@ -4,7 +4,19 @@ import {mockAndTestFilesGlobPattern} from "../eslint-utils/mockAndTestFilesGlobP
 import {
 	noMagicNumbersRuleOptions,
 	noShadowRuleOptions,
+	noShadowRuleOptionsForTestFiles,
 } from "../eslint-utils/ruleOptions.ts";
+
+/**
+ * > Disallow variable declarations from shadowing variables declared in the
+ * > outer (ex: global) scope.
+ * @see {@link https://tseslint.com/rules/no-shadow#options}
+ */
+const tsNoShadowRuleOptions = {
+	hoist: "functions-and-types",
+	/** > Whether to ignore function parameters named the same as a variable. Default: `true`. */
+	ignoreFunctionTypeParameterNameValueShadow: false,
+} as const;
 
 /**
  * @description "**`typescript-eslint` enables ESLint to run on TypeScript code.** It brings in the best of
@@ -78,8 +90,7 @@ export const typescripteslintPlugin: ConfigArray = typescripteslint.config(
 				"error",
 				{
 					...noShadowRuleOptions,
-					hoist: "functions-and-types",
-					ignoreFunctionTypeParameterNameValueShadow: false,
+					...tsNoShadowRuleOptions,
 				},
 			],
 			"@typescript-eslint/no-unsafe-type-assertion": "error",
@@ -116,6 +127,13 @@ export const typescripteslintPlugin: ConfigArray = typescripteslint.config(
 			// It's useful to reference arbitrary numbers directly in unit test
 			// files, so disable the `no-magic-numbers` rule for tests.
 			"@typescript-eslint/no-magic-numbers": "off",
+			"@typescript-eslint/no-shadow": [
+				"error",
+				{
+					...noShadowRuleOptionsForTestFiles,
+					...tsNoShadowRuleOptions,
+				},
+			],
 			// Refer to the `jest.ts` ESLint plugin configuration file for more details about the `unbound-method` rule.
 			//
 			// Excerpt from https://typescript-eslint.io/rules/unbound-method/:

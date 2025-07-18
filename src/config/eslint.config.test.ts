@@ -75,9 +75,7 @@ describe("it exports a configuration array and the most important config options
 		expect(userDefinedTestOverrides?.files).toStrictEqual([
 			"**/*.+(mock|test).+(js|jsx|ts|tsx)",
 		]);
-		expect(userDefinedTestOverrides?.rules).toStrictEqual({
-			"no-magic-numbers": "off",
-		});
+		expect(userDefinedTestOverrides?.rules?.["no-magic-numbers"]).toBe("off");
 
 		// Verify that the `jest` user-defined config *is* included.
 		const jestUserDefinedConfig = findConfigObjectByName(
