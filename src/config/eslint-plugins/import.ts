@@ -32,14 +32,7 @@ export const makeImportPlugin = (
 				"import/no-extraneous-dependencies": "error",
 				"import/no-mutable-exports": "error",
 				// https://github.com/import-js/eslint-plugin-import/#static-analysis
-				/**
-				 * Note that the most recent version (currently v2.31.0) does not include
-				 * the `import/enforce-node-protocol-usage` rule.
-				 * @see {@link https://github.com/import-js/eslint-plugin-import/issues/3139}
-				 * @see {@link https://github.com/import-js/eslint-plugin-import/issues/3173}
-				 * @todo Enable the `import/enforce-node-protocol-usage` rule when it's released.
-				 */
-				"import/enforce-node-protocol-usage": "off",
+				"import/enforce-node-protocol-usage": ["error", "always"],
 				"import/no-absolute-path": "error",
 				"import/no-cycle": "error",
 				"import/no-self-import": "error",
