@@ -8,6 +8,8 @@ import typescripteslint, {type Config} from "typescript-eslint";
 import {dependsOn} from "../utils/dependsOn.ts";
 import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.ts";
 
+import {errorOptionsRuleName} from "./eslint-custom/errorOptionsRule.ts";
+import {webDevdepsPlugin} from "./eslint-custom/webDevdepsPlugin.ts";
 import {makeImportPlugin} from "./eslint-plugins/import.ts";
 import {makeJestPlugin} from "./eslint-plugins/jest.ts";
 import {makeJSDocPlugin} from "./eslint-plugins/jsdoc.ts";
@@ -173,6 +175,16 @@ export const makeESLintConfig = async (): Promise<Config> => {
 				// files, so disable the `no-magic-numbers` rule for tests.
 				"no-magic-numbers": "off",
 				"no-shadow": ["error", noShadowRuleOptionsForTestFiles],
+			},
+		},
+		// Custom-developed plugin and rules offered by this package.
+		{
+			name: webDevdepsPlugin.name,
+			plugins: {
+				[webDevdepsPlugin.name]: webDevdepsPlugin,
+			},
+			rules: {
+				[`${webDevdepsPlugin.name}/${errorOptionsRuleName}`]: "error",
 			},
 		},
 		// Plugins that are always included.

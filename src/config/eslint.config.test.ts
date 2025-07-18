@@ -77,6 +77,16 @@ describe("it exports a configuration array and the most important config options
 		]);
 		expect(userDefinedTestOverrides?.rules?.["no-magic-numbers"]).toBe("off");
 
+		// Verify that the custom `web-devdeps` plugin and rules *are* included.
+		const webDevdepsConfig = findConfigObjectByName(
+			eslintConfig,
+			"web-devdeps",
+		);
+		expect(eslintConfig).toContain(webDevdepsConfig);
+		expect(typeof webDevdepsConfig?.rules).toBe("object");
+		expect(webDevdepsConfig?.rules?.["web-devdeps/error-options"]).toBe(
+			"error",
+		);
 		// Verify that the `jest` user-defined config *is* included.
 		const jestUserDefinedConfig = findConfigObjectByName(
 			eslintConfig,
