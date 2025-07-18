@@ -175,10 +175,11 @@ export const makeESLintConfig = async (): Promise<Config> => {
 				"no-shadow": ["error", noShadowRuleOptionsForTestFiles],
 			},
 		},
+		// Plugins that are always included.
 		...makeJestPlugin(hasTSConfigFile),
 		...makeJSDocPlugin(hasTSConfigFile),
 		...makeImportPlugin(hasReactDependency, hasTSConfigFile),
-		// Conditionally-included ESLint plugins.
+		// Plugins that are conditionally included.
 		...(hasReactDependency ? jsxA11yPlugin : []),
 		...(hasReactDependency ? reactPlugin : []),
 		...(hasReactDependency ? reactHooksPlugin : []),
