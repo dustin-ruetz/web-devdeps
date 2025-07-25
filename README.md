@@ -347,10 +347,10 @@ pnpm validate
 Note that [`act`](https://nektosact.com) can be used to locally test the GitHub Actions workflow files located in [`.github/workflows/`](.github/workflows/) as well:
 
 ```sh
-# Simulate a dry-run release in the CI/CD context.
+# Simulate a dry-run release in the CI/CD environment.
 pnpm github.release
 
-# Simulate the full validation suite running in the CI/CD context.
+# Simulate the full validation suite running in the CI/CD environment.
 pnpm github.validate
 ```
 
