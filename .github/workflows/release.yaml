@@ -45,7 +45,7 @@ jobs:
       # https://github.com/1Password/load-secrets-action
       - name: 🔐 Load secrets from 1Password
         id: op-secrets
-        uses: 1Password/load-secrets-action@v2
+        uses: 1Password/load-secrets-action@v3
         env:
           # https://github.com/dustin-ruetz/web-devdeps/settings/secrets/actions
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
