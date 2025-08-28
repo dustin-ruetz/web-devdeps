@@ -135,6 +135,7 @@ describe("writePackageJson", () => {
 		"version": "",
 		"description": "",
 		"scripts": {
+			"echo": "echo 'Message logged in terminal.'",
 			"example": "node ./lib/ example"
 		},
 		"files": [],
@@ -146,10 +147,11 @@ describe("writePackageJson", () => {
 		"devDependencies": {}
 }
 `;
+	const echoScript = "echo 'Message logged in terminal.'";
 	const exampleScript = "web-devdeps example";
 	const lintStylesScript = "web-devdeps lint.styles";
 
-	test("it *does not* configure Stylelint", async () => {
+	test("it updates the commands in the `scripts` object correctly", async () => {
 		expect.hasAssertions();
 
 		readFileMock.mockResolvedValue(mockPackageJsonContents);
@@ -165,8 +167,32 @@ describe("writePackageJson", () => {
 		expect(writeFile).toHaveBeenCalledTimes(1);
 		expect(writeFile).toHaveBeenCalledWith(
 			expect.stringContaining("package.json"),
+			expect.stringMatching(new RegExp(echoScript)),
+		);
+		expect(writeFile).toHaveBeenCalledWith(
+			expect.stringContaining("package.json"),
+			expect.not.stringMatching(new RegExp("node ./lib/ example")),
+		);
+		expect(writeFile).toHaveBeenCalledWith(
+			expect.stringContaining("package.json"),
 			expect.stringMatching(new RegExp(exampleScript)),
 		);
+	});
+
+	test("it *does not* configure Stylelint", async () => {
+		expect.hasAssertions();
+
+		readFileMock.mockResolvedValue(mockPackageJsonContents);
+
+		await writePackageJson("repo-name", false);
+
+		expect(readFile).toHaveBeenCalledTimes(1);
+		expect(readFile).toHaveBeenCalledWith(
+			expect.stringContaining("package.json"),
+			{encoding: "utf-8"},
+		);
+
+		expect(writeFile).toHaveBeenCalledTimes(1);
 		expect(writeFile).toHaveBeenCalledWith(
 			expect.stringContaining("package.json"),
 			expect.not.stringMatching(new RegExp(lintStylesScript)),
@@ -192,7 +218,9 @@ describe("writePackageJson", () => {
 			expect.stringMatching(
 				// Regular expression adapted from Michael Socha's 2014-Nov-18 answer to the following question posted on Stack Overflow:
 				// https://stackoverflow.com/questions/2219830/regular-expression-to-find-two-strings-anywhere-in-input/27005678#27005678
-				new RegExp(`(${exampleScript}(.|\n)*${lintStylesScript})`),
+				new RegExp(
+					`(${echoScript}(.|\n)*${exampleScript}(.|\n)*${lintStylesScript})`,
+				),
 			),
 		);
 	});
