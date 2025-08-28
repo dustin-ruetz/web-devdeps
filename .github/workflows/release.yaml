@@ -41,6 +41,10 @@ jobs:
       # be run prior to releasing if/when commits are pushed directly to the `main` branch.
       - name: 📋 Validate codebase (🛠️ build, 🧐 check, 🧪 test)
         run: pnpm validate
+      # There shouldn't be any modified files present in the working tree
+      # after building the package, so error out if Git finds any changes.
+      - name: 🤨 Check for Git diff
+        run: git diff --exit-code
       # https://developer.1password.com/docs/ci-cd/github-actions
       # https://github.com/1Password/load-secrets-action
       - name: 🔐 Load secrets from 1Password

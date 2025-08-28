@@ -23,3 +23,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: 📋 Validate codebase (🛠️ build, 🧐 check, 🧪 test)
         run: pnpm validate
+      # There shouldn't be any modified files present in the working tree
+      # after building the package, so error out if Git finds any changes.
+      - name: 🤨 Check for Git diff
+        run: git diff --exit-code
