@@ -358,7 +358,7 @@ pnpm github.validate
 
 To manually publish a release candidate version to the npm registry for testing purposes:
 
-1. Run `git checkout -b rc-FEATURE`, make and commit changes, then push.
+1. Run `git checkout -b rc-FEATURE`, make/add/commit changes, then `git push -u origin HEAD` the branch up to GitHub.
 1. Create a PR from the `rc-FEATURE` branch and confirm that the automated checks all pass.
 1. Go to the [web-devdeps/actions/workflows/release.yaml](https://github.com/dustin-ruetz/web-devdeps/actions/workflows/release.yaml) GitHub page.
 1. Click the "Run workflow" button.
