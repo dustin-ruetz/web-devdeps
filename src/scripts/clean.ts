@@ -27,6 +27,7 @@ export const clean = (paths: string[]) => {
 
 	for (const path of paths) {
 		/* eslint-disable no-console */
+
 		// Prevent the path from being removed:
 		// 1. If it represents the repo's local directory; or
 		if (path === "./") {
@@ -46,6 +47,7 @@ export const clean = (paths: string[]) => {
 			});
 			console.log(`🧹 Deleted path: ${path}`);
 		}
+
 		/* eslint-enable no-console */
 	}
 };
