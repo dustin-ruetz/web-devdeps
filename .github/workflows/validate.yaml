@@ -16,7 +16,7 @@ jobs:
     steps:
       # https://github.com/actions/checkout
       - name: 🛒 Git checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: 🔁 Run `setup` composite action
         uses: ./.github/composite-actions/setup/
         with:
