@@ -180,9 +180,8 @@ export const initRepo = async (repoName: string, args?: string[]) => {
 
 	// #region 🃏 configureFrontendTesting
 	// Determine whether or not to write the `config/jest.setupFilesAfterEnv.ts` file.
-	let configureFrontendTesting = Boolean(
-		initRepoArgs.configureFrontendTesting.defaultValue,
-	);
+	let configureFrontendTesting: boolean =
+		initRepoArgs.configureFrontendTesting.defaultValue;
 	const configureFrontendTestingFlag = args?.filter(
 		(arg) =>
 			arg === initRepoArgs.configureFrontendTesting.longFlag ||
@@ -210,9 +209,8 @@ export const initRepo = async (repoName: string, args?: string[]) => {
 
 	// #region 📐 configureStylelint
 	// Determine whether or not to configure Stylelint.
-	let configureStylelint = Boolean(
-		initRepoArgs.configureStylelint.defaultValue,
-	);
+	let configureStylelint: boolean =
+		initRepoArgs.configureStylelint.defaultValue;
 	const configureStylelintFlag = args?.filter(
 		(arg) =>
 			arg === initRepoArgs.configureStylelint.longFlag ||

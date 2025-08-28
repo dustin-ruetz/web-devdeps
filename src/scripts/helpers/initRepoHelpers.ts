@@ -147,23 +147,15 @@ export const writePackageJson = async (
 
 	packageJson.scripts = Object.entries(packageJson.scripts).reduce(
 		(scriptsObject: PackageJsonTypes["scripts"], [scriptKey, scriptValue]) => {
-			/**
-			 * The following `String` conversion prevents TypeScript from reporting the following error:
-			 * > `"scriptValue" is of type "unknown". ts(18046)`
-			 *
-			 * This is a safe conversion because `packageJson.scripts` will _always_ be an object of scripts
-			 * that are in the format of key/value strings, so convert it here to keep TypeScript happy.
-			 */
-			const scriptValueString = String(scriptValue);
-
-			let updatedScriptValue = scriptValueString;
-			if (scriptValueString.includes("node ./lib/")) {
-				updatedScriptValue = scriptValueString.replace(
+			if (scriptValue.includes("node ./lib/")) {
+				scriptsObject[scriptKey] = scriptValue.replace(
 					"node ./lib/",
 					packageName,
 				);
+				return scriptsObject;
 			}
-			scriptsObject[scriptKey] = updatedScriptValue;
+
+			scriptsObject[scriptKey] = scriptValue;
 			return scriptsObject;
 		},
 		{},
@@ -178,14 +170,14 @@ export const writePackageJson = async (
 		// The object's keys are no longer in alphabetical order now that the above scripts
 		// have been added, so 1) sort them, then 2) rewrite the object with the new values.
 		packageJson.scripts = Object.fromEntries(
-			// Function to sort object keys adapted from prototype's 2015-Oct-10 answer to the following Stack Overflow question:
+			// Function to sort object keys adapted from @prototype's 2015-Oct-10 answer to the following Stack Overflow question:
 			// https://stackoverflow.com/questions/9658690/is-there-a-way-to-sort-order-keys-in-javascript-objects/33049762#33049762
 			Object.entries(packageJson.scripts).sort((key1, key2) => {
 				/* v8 ignore next 7 */
 				if (key1 < key2) {
 					return -1;
 				} else if (key1 > key2) {
-					return +1;
+					return 1;
 				} else {
 					return 0;
 				}
