@@ -101,7 +101,7 @@ const logErrorIntro = () => {
 	]);
 };
 
-/** Log the help text for this `init-repo` script. */
+/** Log the help text for the `init-repo` script. */
 export const logInitRepoHelpText = async () => {
 	const initRepoArgs = await getInitRepoArgs();
 

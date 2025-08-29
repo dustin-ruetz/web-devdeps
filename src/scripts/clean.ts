@@ -3,8 +3,9 @@ import {rm} from "node:fs/promises";
 import {CustomError} from "../utils/CustomError.ts";
 
 /**
- * @description OS-agnostic Node.js script equivalent of the POSIX `rm -rf` command; in other words,
- *              it recursively and forcibly removes the passed `paths`.
+ * @description Cross-platform/OS-agnostic Node.js script equivalent of the
+ *              POSIX `rm -rf` command; in other words, it recursively and
+ *              forcibly removes the passed `paths`.
  *              **Important:** For safety, any passed path that isn't explicitly relative to the current
  *              directory (i.e. not equal to or beginning with the `./` substring) will be ignored.
  * @param paths - The array of items (either directories, files, or both) to delete from the disk.

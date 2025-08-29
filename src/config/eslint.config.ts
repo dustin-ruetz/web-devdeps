@@ -171,8 +171,8 @@ export const makeESLintConfig = async (): Promise<Config> => {
 			name: "eslintjs/user-defined-test-overrides",
 			files: [mockAndTestFilesGlobPattern],
 			rules: {
-				// It's useful to reference arbitrary numbers directly in unit test
-				// files, so disable the `no-magic-numbers` rule for tests.
+				// It's often useful to reference arbitrary numbers directly in unit
+				// tests, so disable the `no-magic-numbers` rule in test files.
 				"no-magic-numbers": "off",
 				"no-shadow": ["error", noShadowRuleOptionsForTestFiles],
 			},
