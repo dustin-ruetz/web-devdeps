@@ -153,6 +153,7 @@ export const makeESLintConfig = async (): Promise<Config> => {
 				"no-sequences": "error",
 				"no-script-url": "error",
 				"no-shadow": ["error", noShadowRuleOptions],
+				"no-shadow-restricted-names": ["error", {reportGlobalThis: true}],
 				"no-throw-literal": "error",
 				"no-undef-init": "error",
 				"no-unneeded-ternary": "error",
