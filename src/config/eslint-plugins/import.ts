@@ -53,6 +53,11 @@ export const makeImportPlugin = (
 				],
 				"import/no-useless-path-segments": "error",
 				// https://github.com/import-js/eslint-plugin-import/#style-guide
+				"import/extensions": [
+					"error",
+					"ignorePackages",
+					{checkTypeImports: true},
+				],
 				"import/first": "error",
 				"import/newline-after-import": "error",
 				"import/no-anonymous-default-export": "error",
