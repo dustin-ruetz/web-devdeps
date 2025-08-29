@@ -38,7 +38,7 @@ Prerequisite: The following instructions assume that [Node.js](https://nodejs.or
 
 Using the `web-devdeps` package requires consuming projects to:
 
-1. Use pnpm as a package manager. (Note that this is not a hard requirement; npm should still work despite its shortcomings.)
+1. Use pnpm as a package manager. (Note that this is not a hard requirement; npm should still work despite its more limited feature set.)
 
 1. Have a flattened/hoisted `node_modules` directory. pnpm can use this installation method via the [nodeLinker](https://pnpm.io/settings#nodelinker) setting. (Note that this is npm's default behavior.)
 
@@ -60,7 +60,7 @@ Using the `web-devdeps` package requires consuming projects to:
 
 <details>
 
-**Important:** Replace the `repo-name` placeholder in the commands below with the actual name of the repository.
+💡 **Important:** Replace the `repo-name` placeholder in the commands below with the actual name of the repository.
 
 ```sh
 # 1. Create and initialize a new Git repository:
