@@ -1,5 +1,6 @@
 import eslintPluginJSDoc from "eslint-plugin-jsdoc";
-import typescripteslint, {type ConfigArray} from "typescript-eslint";
+import typescripteslint from "typescript-eslint";
+import type {ConfigArray} from "typescript-eslint";
 
 /**
  * @description "JSDoc-specific linting rules."

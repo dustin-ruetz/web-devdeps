@@ -1,5 +1,6 @@
 import eslintPluginJSXa11y from "eslint-plugin-jsx-a11y";
-import typescripteslint, {type ConfigArray} from "typescript-eslint";
+import typescripteslint from "typescript-eslint";
+import type {ConfigArray} from "typescript-eslint";
 
 import {reactFilesGlobPattern} from "../eslint-utils/reactFilesGlobPattern.ts";
 

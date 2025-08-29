@@ -1,5 +1,6 @@
 import {flatConfigs} from "eslint-plugin-import";
-import typescripteslint, {type ConfigArray} from "typescript-eslint";
+import typescripteslint from "typescript-eslint";
+import type {ConfigArray} from "typescript-eslint";
 
 /**
  * @description "ESLint plugin with rules that help validate proper imports."

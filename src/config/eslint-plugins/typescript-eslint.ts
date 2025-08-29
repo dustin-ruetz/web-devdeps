@@ -1,4 +1,5 @@
-import typescripteslint, {type ConfigArray} from "typescript-eslint";
+import typescripteslint from "typescript-eslint";
+import type {ConfigArray} from "typescript-eslint";
 
 import {mockAndTestFilesGlobPattern} from "../eslint-utils/mockAndTestFilesGlobPattern.ts";
 import {

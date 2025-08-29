@@ -3,7 +3,8 @@ import {access, constants} from "node:fs/promises";
 import {includeIgnoreFile} from "@eslint/compat";
 import eslintjs from "@eslint/js";
 import globals from "globals";
-import typescripteslint, {type Config} from "typescript-eslint";
+import typescripteslint from "typescript-eslint";
+import type {Config} from "typescript-eslint";
 
 import {dependsOn} from "../utils/dependsOn.ts";
 import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.ts";
@@ -96,7 +97,18 @@ export const makeESLintConfig = async (): Promise<Config> => {
 				"array-callback-return": ["error", {checkForEach: true}],
 				"no-await-in-loop": "error",
 				"no-constructor-return": "error",
-				"no-duplicate-imports": "error",
+				"no-duplicate-imports": [
+					"error",
+					{
+						// Allowing separate `type` imports is helpful in situations where
+						// there's both 1) a default import, and 2) a named `type` import.
+						// Having two separate statements will cause the `type` import line
+						// to be completely removed from the compiled JavaScript code,
+						// as opposed to having it be replaced with the `{}` empty object.
+						allowSeparateTypeImports: true,
+						includeExports: true,
+					},
+				],
 				"no-promise-executor-return": "error",
 				"no-self-compare": "error",
 				"no-template-curly-in-string": "error",
