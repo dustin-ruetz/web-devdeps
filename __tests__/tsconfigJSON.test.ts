@@ -11,6 +11,15 @@ test("it is a configuration object and the most important config options are cor
 	expect(compilerOptions.declaration).toBe(true);
 	expect(compilerOptions.erasableSyntaxOnly).toBe(true);
 	expect(compilerOptions.module).toBe("NodeNext");
+	expect(compilerOptions.jsx).toBe("react-jsx");
+	/** @see {@link https://devblogs.microsoft.com/typescript/announcing-typescript-5-9/#minimal-and-updated-tsc---init} */
+	/** @see {@link https://www.totaltypescript.com/cannot-redeclare-block-scoped-variable#setting-moduledetection-to-force} */
+	// @ts-expect-error Both `tsc --init` and Total TypeScript recommend setting
+	// `moduleDetection` to `"force"` in projects where every file is a module.
+	// While this is definitely the case in most modern projects, errors related
+	// to modules vs. scripts don't occur very often, and the benefits seem
+	// negligible at best, so don't bother setting it in the standard config.
+	expect(compilerOptions.moduleDetection).toBeUndefined();
 	expect(compilerOptions.resolveJsonModule).toBe(true);
 	expect(compilerOptions.rewriteRelativeImportExtensions).toBe(true);
 	expect(compilerOptions.verbatimModuleSyntax).toBe(true);

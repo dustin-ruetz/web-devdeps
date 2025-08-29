@@ -4,7 +4,7 @@
 	"compilerOptions": {
 		"declaration": true,
 		"erasableSyntaxOnly": true,
-		"jsx": "react",
+		"jsx": "react-jsx",
 		"lib": ["ES2024"],
 		"module": "NodeNext",
 		"noUncheckedSideEffectImports": true,
