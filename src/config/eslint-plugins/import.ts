@@ -38,17 +38,22 @@ export const makeImportPlugin = (
 				"import/no-cycle": "error",
 				"import/no-self-import": "error",
 				/**
-				 * Ideally the `typescript-eslint` package shouldn't need to be ignored
-				 * here, but since its `package.json` file doesn't have the `main` key
+				 * Ideally the following packages shouldn't need to be ignored here,
+				 * but since their `package.json` files don't have the `main` key
 				 * this causes `eslint-plugin-import` to incorrectly report the
-				 * `Unable to resolve path to module` error when importing it.
+				 * `Unable to resolve path to module` error when importing them.
 				 * @see {@link https://github.com/import-js/eslint-plugin-import/issues/1810}
+				 * @todo Consider switching to the {@link https://github.com/un-ts/eslint-plugin-import-x} package.
 				 */
 				"import/no-unresolved": [
 					"error",
 					{
 						commonjs: true,
-						ignore: ["typescript-eslint"],
+						ignore: [
+							"@vitejs/plugin-react",
+							"typescript-eslint",
+							"vitest/config",
+						],
 					},
 				],
 				"import/no-useless-path-segments": "error",
