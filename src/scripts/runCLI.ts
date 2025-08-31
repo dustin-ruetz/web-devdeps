@@ -3,7 +3,7 @@ import {spawn} from "node:child_process";
 import {nodeModulesPackagePath} from "../constants.ts";
 import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.ts";
 import {getIsWebDevdepsRepo} from "../utils/getIsWebDevdepsRepo.ts";
-import {makeCachePath} from "../utils/makeCachePath.ts";
+import {makeCachesPath} from "../utils/makeCachesPath.ts";
 
 export type cli =
 	| "commitlint"
@@ -40,7 +40,7 @@ export const runCLI = (cli: cli, args: string[]) => {
 		// https://eslint.org/docs/latest/use/command-line-interface
 		case "eslint": {
 			cliEmoji = "📚";
-			const cacheLocationArg = `./${makeCachePath(".eslintcache")}`;
+			const cacheLocationArg = `./${makeCachesPath(".eslintcache")}`;
 			args.unshift(cacheFlag, cacheLocationFlag, cacheLocationArg);
 			break;
 		}
@@ -60,7 +60,7 @@ export const runCLI = (cli: cli, args: string[]) => {
 		// https://prettier.io/docs/en/cli.html
 		case "prettier": {
 			cliEmoji = "🪞";
-			const cacheLocationArg = `./${makeCachePath(".prettiercache")}`;
+			const cacheLocationArg = `./${makeCachesPath(".prettiercache")}`;
 			args.unshift(
 				cacheFlag,
 				cacheLocationFlag,
@@ -72,7 +72,7 @@ export const runCLI = (cli: cli, args: string[]) => {
 		}
 		case "stylelint": {
 			cliEmoji = "📐";
-			const cacheLocationArg = `./${makeCachePath(".stylelintcache")}`;
+			const cacheLocationArg = `./${makeCachesPath(".stylelintcache")}`;
 			args.unshift(
 				cacheFlag,
 				cacheLocationFlag,

@@ -4,7 +4,7 @@ import {nodeModulesPackagePath} from "../constants.ts";
 import {dependsOn} from "../utils/dependsOn.ts";
 import {getAbsoluteRepoRootPath} from "../utils/getAbsoluteRepoRootPath.ts";
 import {getIsWebDevdepsRepo} from "../utils/getIsWebDevdepsRepo.ts";
-import {makeCachePath} from "../utils/makeCachePath.ts";
+import {makeCachesPath} from "../utils/makeCachesPath.ts";
 
 /**
  * @description "Jest is a delightful JavaScript testing framework with a focus on simplicity."
@@ -53,7 +53,7 @@ export const makeJestConfig = async (): Promise<Config> => {
 		// > The directory where Jest should store its cached dependency information.
 		// > Jest attempts to scan your dependency tree once (up-front) and cache it in order to ease some of the filesystem churn that
 		// > needs to happen while running tests. This config option lets you customize where Jest stores that cache data on disk.
-		cacheDirectory: `<rootDir>/${makeCachePath(".jestcache/")}`,
+		cacheDirectory: `<rootDir>/${makeCachesPath(".jestcache/")}`,
 		// Specify `collectCoverageFrom` to ensure that Jest collects test coverage for all JavaScript and TypeScript files.
 		// Excerpt from https://jestjs.io/docs/configuration#collectcoveragefrom-array:
 		// > An array of glob patterns indicating a set of files for which coverage information should be collected.
