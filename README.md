@@ -360,8 +360,8 @@ To manually publish a release candidate version to the npm registry for testing 
 
 1. Run `git checkout -b rc-FEATURE`, make/add/commit changes, then `git push -u origin HEAD` the branch up to GitHub.
 1. Create a PR from the `rc-FEATURE` branch and confirm that the automated checks all pass.
-1. Go to the [web-devdeps/actions/workflows/release.yaml](https://github.com/dustin-ruetz/web-devdeps/actions/workflows/release.yaml) GitHub page.
-1. Click the "Run workflow" button.
+1. Go to the [/actions/workflows/release.yaml](https://github.com/dustin-ruetz/web-devdeps/actions/workflows/release.yaml) GitHub page.
+1. Click the "Run workflow" menu button.
 1. Click the "Use workflow from Branch: main" button, then select the `rc-FEATURE` branch from Step 1.
 1. Click the green "Run workflow" button.
 1. After the `release` run is complete, confirm that the `rc` version was successfully published:
