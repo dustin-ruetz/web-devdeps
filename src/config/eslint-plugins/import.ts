@@ -43,17 +43,12 @@ export const makeImportPlugin = (
 				 * this causes `eslint-plugin-import` to incorrectly report the
 				 * `Unable to resolve path to module` error when importing them.
 				 * @see {@link https://github.com/import-js/eslint-plugin-import/issues/1810}
-				 * @todo Consider switching to the {@link https://github.com/un-ts/eslint-plugin-import-x} package.
 				 */
 				"import/no-unresolved": [
 					"error",
 					{
 						commonjs: true,
-						ignore: [
-							"@vitejs/plugin-react",
-							"typescript-eslint",
-							"vitest/config",
-						],
+						ignore: ["typescript-eslint"],
 					},
 				],
 				"import/no-useless-path-segments": "error",
