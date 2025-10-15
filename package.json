@@ -98,7 +98,7 @@
 		"postcss-scss": "4.0.9",
 		"postcss-styled-syntax": "0.7.1",
 		"prettier": "3.6.2",
-		"semantic-release": "24.2.7",
+		"semantic-release": "25.0.0",
 		"stylelint": "16.23.1",
 		"stylelint-config-standard-scss": "16.0.0",
 		"stylelint-plugin-logical-css": "1.2.3",
